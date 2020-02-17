@@ -13,11 +13,11 @@
                         </a>
                     </li>
 
-                    <li><a href="<?php echo base_url();?>personal/personal/add">
+                    <li><a href="<?php echo base_url();?>control/personal/add">
                             <i class="ion ion-person-add"></i><span>Registro Personal</span>
                         </a>
                     </li>   
-                    <li><a href="<?php echo base_url();?>movimientos/cajas/add">
+                    <li><a href="<?php echo base_url();?>control/personal/list">
                             <i class="ion ion-person"></i><span>Listado Personal</span>
                         </a>
                     </li> 
