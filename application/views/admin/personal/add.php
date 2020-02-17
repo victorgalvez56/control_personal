@@ -64,6 +64,9 @@
                                                             <div class="form-group">
                                                                 <label for="estado_civ">Estado Civil:</label>
                                                                 <input type="text" class="form-control" id="estado_civ" name="estado_civ" value="<?php set_value("nombre_cat"); ?>">
+                                                                <select class="form-control form-control-lg">
+                                                                    <option>Large select</option>
+                                                                </select>
                                                                 <?php echo form_error("estado_civ", "<span class='help-block'>", "</span>"); ?>
                                                             </div>
                                                         </div>
