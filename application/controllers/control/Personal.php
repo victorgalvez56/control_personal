@@ -65,10 +65,6 @@ class Personal extends CI_Controller
 		$brevete = $this->input->post("brevete");
 
 		$this->form_validation->set_rules("nombre_cat", "Nombre", "required|is_unique[categorias.nombre_cat]");
-		
-
-
-
 
 		if ($this->form_validation->run()) {
 			$data  = array(
