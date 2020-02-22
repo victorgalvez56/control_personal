@@ -35,8 +35,9 @@
                                                         </div>
                                                         <div class="col-md-2">
                                                             <div class="form-group">
-                                                                <label for="estado_civ">Grado:</label>
-                                                                <select class="form-control form-control-lg" id="estado_civ" name="estado_civ">
+                                                                <label for="grado">Grado:</label>
+                                                                <select class="form-control form-control-lg" id="grado" name="grado" required>
+                                                                    <option>Seleccione un Grado</option>
                                                                     <option>Sub Oficial de Tercera</option>
                                                                     <option>Sub Oficial de Segunda</option>
                                                                     <option>Sub Oficial de Primera</option>
@@ -56,13 +57,14 @@
                                                                     <option>General de División</option>
                                                                     <option>General de Ejército</option>
                                                                 </select>
-                                                                <?php echo form_error("estado_civ", "<span class='help-block'>", "</span>"); ?>
+                                                                <?php echo form_error("grado", "<span class='help-block'>", "</span>"); ?>
                                                             </div>
                                                         </div>
                                                         <div class="col-md-2">
                                                             <div class="form-group">
                                                                 <label for="estado_civ">Arma:</label>
                                                                 <select class="form-control form-control-lg" id="estado_civ" name="estado_civ">
+                                                                    <option>Seleccione un Arma</option>
                                                                     <option>Artillería</option>
                                                                     <option>Caballería</option>
                                                                     <option>Comunicaciones</option>
@@ -79,7 +81,7 @@
                                                         <div class="col-md-2">
                                                             <div class="form-group">
                                                                 <label for="apellido_pat">Apellido Paterno:</label>
-                                                                <input type="text" class="form-control" id="apellido_pat" name="apellido_pat" value="<?php set_value("nombre_cat"); ?>">
+                                                                <input type="text" class="form-control" id="apellido_pat" name="apellido_pat">
                                                                 <?php echo form_error("apellido_pat", "<span class='help-block'>", "</span>"); ?>
                                                             </div>
                                                         </div>
@@ -168,7 +170,8 @@
                                                         <div class="col-md-2">
                                                             <div class="form-group">
                                                                 <label for="distri_viv">Distrito:</label>
-                                                                <input type="text" class="form-control" id="distri_viv" name="distri_viv" value="<?php set_value("nombre_cat"); ?>">
+                                                                <select class="form-control form-control-lg" id="distri_viv" name="distri_viv">
+                                                                </select>
                                                                 <?php echo form_error("distri_viv", "<span class='help-block'>", "</span>"); ?>
                                                             </div>
                                                         </div>
@@ -195,8 +198,8 @@
                                                     <div class="col-md-12">
                                                         <div class="col-md-2">
                                                             <div class="form-group">
-                                                                <label for="departamento">Departamento:</label>
-                                                                <select class="form-control form-control-lg" id="departamento" name="departamento">
+                                                                <label for="depart_nac">Departamento:</label>
+                                                                <select class="form-control form-control-lg" id="depart_nac" name="depart_nac">
                                                                 </select>
                                                                 <?php echo form_error("estado_civ", "<span class='help-block'>", "</span>"); ?>
                                                             </div>
@@ -204,16 +207,16 @@
                                                         <div class="col-md-2">
                                                             <div class="form-group">
                                                                 <label for="provin_nac">Provincia:</label>
-                                                                <input type="text" class="form-control" id="provin_nac" name="provin_nac" value="<?php set_value("nombre_cat"); ?>">
+                                                                <select class="form-control form-control-lg" id="provin_nac" name="provin_nac">
+                                                                </select>
                                                                 <?php echo form_error("provin_nac", "<span class='help-block'>", "</span>"); ?>
                                                             </div>
                                                         </div>
                                                         <div class="col-md-2">
-                                                            <div class="form-group">
-                                                                <label for="distri_nac">Distrito:</label>
-                                                                <input type="text" class="form-control" id="distri_nac" name="distri_nac" value="<?php set_value("nombre_cat"); ?>">
-                                                                <?php echo form_error("distri_nac", "<span class='help-block'>", "</span>"); ?>
-                                                            </div>
+                                                            <label for="distri_nac">Distrito:</label>
+                                                            <select class="form-control form-control-lg" id="distri_nac" name="distri_nac">
+                                                            </select>
+                                                            <?php echo form_error("estado_civ", "<span class='help-block'>", "</span>"); ?>
                                                         </div>
                                                         <div class="col-md-2">
                                                             <div class="form-group">
@@ -253,14 +256,14 @@
                                                         <div class="col-md-2">
                                                             <div class="form-group">
                                                                 <label for="pasaporte">Pasaporte:</label>
-                                                                <input type="text" class="form-control" id="pasaporte" name="pasaporte" value="<?php set_value("nombre_cat"); ?>">
+                                                                <input type="number" class="form-control" id="pasaporte" name="pasaporte" value="<?php set_value("nombre_cat"); ?>">
                                                                 <?php echo form_error("pasaporte", "<span class='help-block'>", "</span>"); ?>
                                                             </div>
                                                         </div>
                                                         <div class="col-md-2">
                                                             <div class="form-group">
                                                                 <label for="brevete">Brevete:</label>
-                                                                <input type="text" class="form-control" id="brevete" name="brevete" value="<?php set_value("nombre_cat"); ?>">
+                                                                <input type="number" class="form-control" id="brevete" name="brevete" value="<?php set_value("nombre_cat"); ?>">
                                                                 <?php echo form_error("brevete", "<span class='help-block'>", "</span>"); ?>
                                                             </div>
                                                         </div>
@@ -268,11 +271,6 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <select name="estados" id="estados"></select>
-
-
                                     </div>
                                     <div class="row">
                                         <div class="col-md-12">
