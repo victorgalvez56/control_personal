@@ -2,8 +2,8 @@
 -- version 5.0.1
 -- https://www.phpmyadmin.net/
 --
--- Servidor: localhost
--- Tiempo de generación: 16-02-2020 a las 16:38:04
+-- Servidor: 127.0.0.1
+-- Tiempo de generación: 24-02-2020 a las 05:34:54
 -- Versión del servidor: 10.4.11-MariaDB
 -- Versión de PHP: 7.2.27
 
@@ -25,6 +25,25 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `asistencia`
+--
+
+CREATE TABLE `asistencia` (
+  `id` int(11) NOT NULL,
+  `registro` datetime NOT NULL,
+  `usuario_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `asistencia`
+--
+
+INSERT INTO `asistencia` (`id`, `registro`, `usuario_id`) VALUES
+(1, '2020-02-12 23:07:22', 3);
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `contacto`
 --
 
@@ -33,6 +52,37 @@ CREATE TABLE `contacto` (
   `telefono` int(9) NOT NULL,
   `operador` varchar(16) NOT NULL,
   `correo` varchar(32) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `departamento`
+--
+
+CREATE TABLE `departamento` (
+  `id` int(11) NOT NULL,
+  `nombre` varchar(32) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `departamento`
+--
+
+INSERT INTO `departamento` (`id`, `nombre`) VALUES
+(1, 'Amazonas'),
+(2, 'Ancash');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `distrito`
+--
+
+CREATE TABLE `distrito` (
+  `id` int(11) NOT NULL,
+  `nombre` varchar(32) NOT NULL,
+  `provincia_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -53,7 +103,7 @@ CREATE TABLE `menus` (
 
 INSERT INTO `menus` (`id_men`, `nombre_men`, `link_men`) VALUES
 (1, 'Inicio', 'dashboard'),
-(2, 'Personal', 'personal/personal'),
+(2, 'Personal', 'control/personal'),
 (3, 'Proveedores', 'mantenimiento/proveedores'),
 (4, 'Productos', 'mantenimiento/productos'),
 (5, 'Cajas', 'movimientos/cajas'),
@@ -145,6 +195,52 @@ CREATE TABLE `personal` (
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `provincia`
+--
+
+CREATE TABLE `provincia` (
+  `id` int(11) NOT NULL,
+  `nombre` varchar(32) NOT NULL,
+  `ciudad_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `provincia`
+--
+
+INSERT INTO `provincia` (`id`, `nombre`, `ciudad_id`) VALUES
+(1, 'Chachapoyas', 1),
+(2, 'Bagua', 1),
+(3, 'Bongara', 1),
+(4, 'Condorcanqui', 1),
+(5, 'Luya', 1),
+(6, 'Rodríguez de Mendoza', 1),
+(7, 'Luya', 1),
+(8, 'Utcubamba', 1),
+(9, 'Huaraz', 2),
+(10, 'Aija', 2),
+(11, 'Antonio Raimondi', 2),
+(12, 'Asunción', 2),
+(13, 'Bolognesi', 2),
+(14, 'Carhuaz', 2),
+(15, 'Carlos Fermín Fitzcarrald', 2),
+(16, 'Casma', 2),
+(17, 'Corongo', 2),
+(18, 'Huari', 2),
+(19, 'Huarmey', 2),
+(20, 'Huaylas', 2),
+(21, 'Mariscal Luzuriaga', 2),
+(22, 'Ocros', 2),
+(23, 'Pallasca', 2),
+(24, 'Pomabamba', 2),
+(25, 'Recuay', 2),
+(26, 'Santa', 2),
+(27, 'Sihuas', 2),
+(28, 'Yungay', 2);
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `roles`
 --
 
@@ -196,10 +292,29 @@ INSERT INTO `usuarios` (`id_usu`, `nombres_usu`, `apellidos_usu`, `telefono`, `e
 --
 
 --
+-- Indices de la tabla `asistencia`
+--
+ALTER TABLE `asistencia`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `usuario_id` (`usuario_id`);
+
+--
 -- Indices de la tabla `contacto`
 --
 ALTER TABLE `contacto`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `departamento`
+--
+ALTER TABLE `departamento`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `distrito`
+--
+ALTER TABLE `distrito`
+  ADD KEY `provincia_id` (`provincia_id`);
 
 --
 -- Indices de la tabla `menus`
@@ -222,6 +337,13 @@ ALTER TABLE `personal`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indices de la tabla `provincia`
+--
+ALTER TABLE `provincia`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_provincia_ciud` (`ciudad_id`);
+
+--
 -- Indices de la tabla `roles`
 --
 ALTER TABLE `roles`
@@ -239,10 +361,22 @@ ALTER TABLE `usuarios`
 --
 
 --
+-- AUTO_INCREMENT de la tabla `asistencia`
+--
+ALTER TABLE `asistencia`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT de la tabla `contacto`
 --
 ALTER TABLE `contacto`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `departamento`
+--
+ALTER TABLE `departamento`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `menus`
@@ -263,6 +397,12 @@ ALTER TABLE `personal`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT de la tabla `provincia`
+--
+ALTER TABLE `provincia`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+
+--
 -- AUTO_INCREMENT de la tabla `roles`
 --
 ALTER TABLE `roles`
@@ -279,11 +419,29 @@ ALTER TABLE `usuarios`
 --
 
 --
+-- Filtros para la tabla `asistencia`
+--
+ALTER TABLE `asistencia`
+  ADD CONSTRAINT `asistencia_ibfk_1` FOREIGN KEY (`usuario_id`) REFERENCES `usuarios` (`id_usu`);
+
+--
+-- Filtros para la tabla `distrito`
+--
+ALTER TABLE `distrito`
+  ADD CONSTRAINT `distrito_ibfk_1` FOREIGN KEY (`provincia_id`) REFERENCES `provincia` (`id`);
+
+--
 -- Filtros para la tabla `permisos`
 --
 ALTER TABLE `permisos`
   ADD CONSTRAINT `fk_men_per` FOREIGN KEY (`id_men`) REFERENCES `menus` (`id_men`),
   ADD CONSTRAINT `fk_rol_per` FOREIGN KEY (`id_rol`) REFERENCES `roles` (`id_rol`);
+
+--
+-- Filtros para la tabla `provincia`
+--
+ALTER TABLE `provincia`
+  ADD CONSTRAINT `fk_provincia_ciud` FOREIGN KEY (`ciudad_id`) REFERENCES `departamento` (`id`);
 
 --
 -- Filtros para la tabla `usuarios`
