@@ -21,244 +21,141 @@
                                         <div class="col-md-12">
                                             <div class="box box-primary box-solid">
                                                 <div class="box-header with-border">
-                                                    <h3 class="box-title">Datos Personales</h3>
+                                                    <h3 class="box-title">Caraterísticas Físicas</h3>
                                                 </div>
                                                 <div class="box-body">
                                                     <div class="col-md-12">
                                                         <div class="col-md-2">
                                                             <div class="form-group">
-                                                                <label for="grado">Grado:</label>
-                                                                <select class="form-control form-control-lg" id="grado" name="grado" required>
-                                                                    <option>Seleccione un Grado</option>
-                                                                    <option>Sub Oficial de Tercera</option>
-                                                                    <option>Sub Oficial de Segunda</option>
-                                                                    <option>Sub Oficial de Primera</option>
-                                                                    <option>Técnico de Tercera</option>
-                                                                    <option>Técnico de Segunda</option>
-                                                                    <option>Técnico de Primera</option>
-                                                                    <option>Técnico Jefe</option>
-                                                                    <option>Técnico Jefe Supervisor</option>
-                                                                    <option>Técnico Jefe Supervisor de Brigada</option>
-                                                                    <option>Sub Teniente</option>
-                                                                    <option>Sub teniente Caballería</option>
-                                                                    <option>Capitán</option>
-                                                                    <option>Mayor</option>
-                                                                    <option>Comandante</option>
-                                                                    <option>Coronel</option>
-                                                                    <option>General de Brigada</option>
-                                                                    <option>General de División</option>
-                                                                    <option>General de Ejército</option>
-                                                                </select>
-                                                                <?php echo form_error("grado", "<span class='help-block'>", "</span>"); ?>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-2">
-                                                            <div class="form-group">
-                                                                <label for="estado_civ">Arma:</label>
-                                                                <select class="form-control form-control-lg" id="estado_civ" name="estado_civ">
-                                                                    <option>Seleccione un Arma</option>
-                                                                    <option>Artillería</option>
-                                                                    <option>Caballería</option>
-                                                                    <option>Comunicaciones</option>
-                                                                    <option>Inteligencia</option>
-                                                                    <option>Administracion Personal</option>
-                                                                    <option>Material Defensa</option>
-                                                                    <option>Servicio Ciencia y Tecnología del Ejército</option>
-                                                                    <option>Servicio Juriídico</option>
-                                                                    <option>Sanidad</option>
-                                                                </select>
-                                                                <?php echo form_error("estado_civ", "<span class='help-block'>", "</span>"); ?>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-2">
-                                                            <div class="form-group">
-                                                                <label for="apellido_pat">Apellido Paterno:</label>
+                                                                <label for="apellido_pat">Talla:</label>
                                                                 <input type="text" class="form-control" id="apellido_pat" name="apellido_pat">
                                                                 <?php echo form_error("apellido_pat", "<span class='help-block'>", "</span>"); ?>
                                                             </div>
                                                         </div>
                                                         <div class="col-md-2">
                                                             <div class="form-group">
-                                                                <label for="apellido_mat">Apellido Materno:</label>
+                                                                <label for="apellido_mat">Peso:</label>
                                                                 <input type="text" class="form-control" id="apellido_mat" name="apellido_mat" value="<?php set_value("nombre_cat"); ?>">
                                                                 <?php echo form_error("apellido_mat", "<span class='help-block'>", "</span>"); ?>
                                                             </div>
                                                         </div>
                                                         <div class="col-md-2">
                                                             <div class="form-group">
-                                                                <label for="nombres">Nombres:</label>
+                                                                <label for="grado">Grupo Sanguíneo:</label>
+                                                                <select class="form-control form-control-lg" id="grado" name="grado" required>
+                                                                    <option>Seleccione</option>
+                                                                    <option>O-</option>
+                                                                    <option>O+</option>
+                                                                    <option>A−</option>
+                                                                    <option>A+</option>
+                                                                    <option>B−</option>
+                                                                    <option>B+</option>
+                                                                    <option>AB−</option>
+                                                                    <option>AB+</option>
+                                                                </select>
+                                                                <?php echo form_error("grado", "<span class='help-block'>", "</span>"); ?>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-2">
+                                                            <div class="form-group">
+                                                                <label for="grado">Sexo:</label>
+                                                                <select class="form-control form-control-lg" id="grado" name="grado" required>
+                                                                    <option>Seleccione</option>
+                                                                    <option>Masculino</option>
+                                                                    <option>Femenino</option>
+                                                                </select>
+                                                                <?php echo form_error("grado", "<span class='help-block'>", "</span>"); ?>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="box-header with-border">
+                                                    <h3 class="box-title">Talla de Ropa</h3>
+                                                </div>
+                                                <div class="box-body">
+                                                    <div class="col-md-12">
+                                                        <div class="col-md-2">
+                                                            <div class="form-group">
+                                                                <label for="departamento_viv">Camisa/Blusa:</label>
                                                                 <input type="text" class="form-control" id="nombres" name="nombres" value="<?php set_value("nombre_cat"); ?>">
                                                                 <?php echo form_error("nombres", "<span class='help-block'>", "</span>"); ?>
                                                             </div>
                                                         </div>
                                                         <div class="col-md-2">
                                                             <div class="form-group">
-                                                                <label for="estado_civ">Estado Civil:</label>
-                                                                <select class="form-control form-control-lg" id="estado_civ" name="estado_civ">
-                                                                    <option>Soltero</option>
-                                                                    <option>Casado</option>
-                                                                    <option>Divorciado</option>
-                                                                    <option>Cónyugue</option>
-                                                                </select>
-                                                                <?php echo form_error("estado_civ", "<span class='help-block'>", "</span>"); ?>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-2">
-                                                            <div class="form-group">
-                                                                <label for="anios_serv">Años Servicio:</label>
-                                                                <input type="number" class="form-control" id="anios_serv" name="anios_serv" value="<?php set_value("nombre_cat"); ?>">
-                                                                <?php echo form_error("anios_serv", "<span class='help-block'>", "</span>"); ?>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-2">
-                                                            <div class="form-group">
-                                                                <label for="estado_civ">Grado de Instrucción:</label>
-                                                                <select class="form-control form-control-lg" id="estado_civ" name="estado_civ">
-                                                                    <option>Primaria</option>
-                                                                    <option>Secundaria</option>
-                                                                    <option>Superior</option>
-                                                                    <option>Técnico</option>
-                                                                </select>
-                                                                <?php echo form_error("estado_civ", "<span class='help-block'>", "</span>"); ?>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-2">
-                                                            <div class="form-group">
-                                                                <label for="religion">Religión:</label>
-                                                                <input type="text" class="form-control" id="religion" name="religion" value="<?php set_value("nombre_cat"); ?>">
-                                                                <?php echo form_error("religion", "<span class='help-block'>", "</span>"); ?>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-2">
-                                                            <div class="form-group">
-                                                                <label for="fec_ult_asc">Fecha Último Ascenso:</label>
-                                                                <input type="date" class="form-control" id="fec_ult_asc" name="fec_ult_asc" value="<?php set_value("nombre_cat"); ?>">
-                                                                <?php echo form_error("fec_ult_asc", "<span class='help-block'>", "</span>"); ?>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="box-header with-border">
-                                                    <h3 class="box-title">Dirección Actual</h3>
-                                                </div>
-                                                <div class="box-body">
-                                                    <div class="col-md-12">
-                                                        <div class="col-md-2">
-                                                            <div class="form-group">
-                                                                <label for="departamento_viv">Departamento:</label>
-                                                                <select class="form-control form-control-lg" id="departamento_viv" name="departamento_viv">
-                                                                </select>
-                                                                <?php echo form_error("estado_civ", "<span class='help-block'>", "</span>"); ?>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-2">
-                                                            <div class="form-group">
-                                                                <label for="">Provincia:</label>
-                                                                <select class="form-control form-control-lg" id="provin_viv" name="provin_viv">
-                                                                </select>
-                                                                <?php echo form_error("provin_viv", "<span class='help-block'>", "</span>"); ?>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-2">
-                                                            <div class="form-group">
-                                                                <label for="distri_viv">Distrito:</label>
-                                                                <select class="form-control form-control-lg" id="distri_viv" name="distri_viv">
-                                                                </select>
-                                                                <?php echo form_error("distri_viv", "<span class='help-block'>", "</span>"); ?>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-2">
-                                                            <div class="form-group">
-                                                                <label for="urbanizacion">Urbanización:</label>
+                                                                <label for="">Pantalón:</label>
                                                                 <input type="text" class="form-control" id="urbanizacion" name="urbanizacion" value="<?php set_value("nombre_cat"); ?>">
                                                                 <?php echo form_error("urbanizacion", "<span class='help-block'>", "</span>"); ?>
                                                             </div>
                                                         </div>
                                                         <div class="col-md-2">
                                                             <div class="form-group">
-                                                                <label for="calle">Calle, Mz, Lote:</label>
-                                                                <input type="text" class="form-control" id="calle" name="calle" value="<?php set_value("nombre_cat"); ?>">
-                                                                <?php echo form_error("calle", "<span class='help-block'>", "</span>"); ?>
+                                                                <label for="distri_viv">Calzado:</label>
+                                                                <input type="text" class="form-control" id="urbanizacion" name="urbanizacion" value="<?php set_value("nombre_cat"); ?>">
+                                                                <?php echo form_error("urbanizacion", "<span class='help-block'>", "</span>"); ?>
+                                                                <?php echo form_error("distri_viv", "<span class='help-block'>", "</span>"); ?>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-2">
+                                                            <div class="form-group">
+                                                                <label for="urbanizacion">Prenda Cabeza:</label>
+                                                                <input type="text" class="form-control" id="urbanizacion" name="urbanizacion" value="<?php set_value("nombre_cat"); ?>">
+                                                                <?php echo form_error("urbanizacion", "<span class='help-block'>", "</span>"); ?>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div class="box-header with-border">
-                                                    <h3 class="box-title">Lugar y Fecha de Nacimiento</h3>
+                                                    <h3 class="box-title">Remuneración</h3>
                                                 </div>
                                                 <div class="box-body">
                                                     <div class="col-md-12">
                                                         <div class="col-md-2">
                                                             <div class="form-group">
-                                                                <label for="depart_nac">Departamento:</label>
-                                                                <select class="form-control form-control-lg" id="depart_nac" name="depart_nac">
-                                                                </select>
+                                                                <label for="depart_nac">Banco:</label>
+                                                                <input type="text" class="form-control" id="urbanizacion" name="urbanizacion" value="<?php set_value("nombre_cat"); ?>">
                                                                 <?php echo form_error("estado_civ", "<span class='help-block'>", "</span>"); ?>
                                                             </div>
                                                         </div>
                                                         <div class="col-md-2">
                                                             <div class="form-group">
-                                                                <label for="provin_nac">Provincia:</label>
-                                                                <select class="form-control form-control-lg" id="provin_nac" name="provin_nac">
-                                                                </select>
+                                                                <label for="provin_nac">Número de Cuenta:</label>
+                                                                <input type="text" class="form-control" id="urbanizacion" name="urbanizacion" value="<?php set_value("nombre_cat"); ?>">
                                                                 <?php echo form_error("provin_nac", "<span class='help-block'>", "</span>"); ?>
                                                             </div>
                                                         </div>
                                                         <div class="col-md-2">
-                                                            <label for="distri_nac">Distrito:</label>
-                                                            <select class="form-control form-control-lg" id="distri_nac" name="distri_nac">
+                                                            <label for="distri_nac">Afiliación:</label>
+                                                            <select class="form-control form-control-lg" id="grado" name="grado" required>
+                                                                <option>Seleccione</option>
+                                                                <option>AFP</option>
+                                                                <option>ONP</option>
                                                             </select>
-                                                            <?php echo form_error("estado_civ", "<span class='help-block'>", "</span>"); ?>
-                                                        </div>
-                                                        <div class="col-md-2">
-                                                            <div class="form-group">
-                                                                <label for="fecha_nac">Fecha:</label>
-                                                                <input type="date" class="form-control" id="fecha_nac" name="fecha_nac" value="<?php set_value("nombre_cat"); ?>">
-                                                                <?php echo form_error("fecha_nac", "<span class='help-block'>", "</span>"); ?>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-2">
-                                                            <div class="form-group">
-                                                                <label for="edad">Edad:</label>
-                                                                <input type="number" class="form-control" id="edad" name="edad" value="<?php set_value("nombre_cat"); ?>">
-                                                                <?php echo form_error("edad", "<span class='help-block'>", "</span>"); ?>
-                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
+
                                                 <div class="box-header with-border">
-                                                    <h3 class="box-title">Documentos Personales</h3>
+                                                    <h3 class="box-title">Idiomas que conoce</h3>
                                                 </div>
+                                                <button type="button" class="btn btn-success btn-check22"><span class="fa fa-check"></span></button>
                                                 <div class="box-body">
                                                     <div class="col-md-12">
-                                                        <div class="col-md-2">
-                                                            <div class="form-group">
-                                                                <label for="cip">CIP:</label>
-                                                                <input type="number" class="form-control" id="cip" name="cip" value="<?php set_value("nombre_cat"); ?>">
-                                                                <?php echo form_error("cip", "<span class='help-block'>", "</span>"); ?>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-2">
-                                                            <div class="form-group">
-                                                                <label for="dni">DNI:</label>
-                                                                <input type="number" class="form-control" id="dni" name="dni" value="<?php set_value("nombre_cat"); ?>">
-                                                                <?php echo form_error("dni", "<span class='help-block'>", "</span>"); ?>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-2">
-                                                            <div class="form-group">
-                                                                <label for="pasaporte">Pasaporte:</label>
-                                                                <input type="number" class="form-control" id="pasaporte" name="pasaporte" value="<?php set_value("nombre_cat"); ?>">
-                                                                <?php echo form_error("pasaporte", "<span class='help-block'>", "</span>"); ?>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-2">
-                                                            <div class="form-group">
-                                                                <label for="brevete">Brevete:</label>
-                                                                <input type="number" class="form-control" id="brevete" name="brevete" value="<?php set_value("nombre_cat"); ?>">
-                                                                <?php echo form_error("brevete", "<span class='help-block'>", "</span>"); ?>
-                                                            </div>
-                                                        </div>
+                                                        <table id="tbventas" class="table table-bordered table-striped table-hover">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>Idioma</th>
+                                                                    <th>Habla</th>
+                                                                    <th>Lee</th>
+                                                                    <th>Escribe</th>
+                                                                    <th>Adquirido</th>
+                                                                    <th>Graduado</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+
+                                                            </tbody>
+                                                        </table>
                                                     </div>
                                                 </div>
                                             </div>

@@ -18800,7 +18800,30 @@
   });
 
 
+    $(document).on("click",".btn-check22",function(){
+        data = $(this).val();
+            infoproducto = data.split("*");
+            html = "<tr>";
+            html += "<td><input type='hidden' name='idproductos[]' value='"+infoproducto[0]+"'>"+infoproducto[1]+"</td>";
 
+
+            html += "<td><input type='hidden' name='precios[]' value='"+infoproducto[2]+"'>"+infoproducto[2]+"</td>";
+
+            html += "<td><input type='hidden' name='stocks[]' value='"+infoproducto[3]+"'>"+infoproducto[3]+"</td>";       
+        
+
+            html += "<td><input type='text' name='cantidades[]' value='1' class='cantidades'></td>";
+
+            html += "<td><input type='hidden' name='importes[]' value='"+infoproducto[2]+"'><p>"+infoproducto[2]+"</p></td>";
+            html += "<td><button type='button' class='btn btn-danger btn-remove-producto'><span class='fa fa-remove'></span></button></td>";
+            html += "</tr>";
+            $("#tbventas tbody").append(html);
+            sumar();
+            $("#btn-check22").val(null);
+            $("#producto").val(null);
+            $("#modal-default").modal("hide");
+   
+    });
 
 </script>
 </body>
