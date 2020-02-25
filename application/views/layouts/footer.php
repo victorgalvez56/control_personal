@@ -18722,7 +18722,7 @@
 
   $(document).ready(function() {
     var $selectdep = $('#departamento_viv');
-    $selectdep.append('<option> Seleccione un Departamento</option>');
+    $selectdep.append('<option> Seleccione</option>');
     $.each(ubigeo.departamentos, function(i, item) {
       $selectdep.append('<option value=' + item.id_ubigeo + '>' + item.nombre_ubigeo + '</option>');
     });
@@ -18741,7 +18741,7 @@
   $("#departamento_viv").change(function() {
     var departamentoc = $("#departamento_viv").val();
     var $selectprov = $('#provin_viv');
-    $selectprov.append('<option> Seleccione un Departamento</option>');
+    $selectprov.append('<option> Seleccione</option>');
     $.each(ubigeo.provincias[departamentoc], function(i, item) {
       $selectprov.append('<option value=' + item.id_ubigeo + '>' + item.nombre_ubigeo + '</option>');
     });
@@ -18751,7 +18751,7 @@
     var provinciac = $("#provin_viv").val();
     var $selectdistr = $('#distri_viv');
     $selectdistr.empty()
-    $selectdistr.append('<option> Seleccione un Departamento</option>');
+    $selectdistr.append('<option> Seleccione</option>');
     $.each(ubigeo.distritos[provinciac], function(i, item) {
       $selectdistr.append('<option value=' + item.id_ubigeo + '>' + item.nombre_ubigeo + '</option>');
     });
@@ -18764,7 +18764,7 @@
 
   $(document).ready(function() {
     var $selectdep = $('#depart_nac');
-    $selectdep.append('<option> Seleccione un Departamento</option>');
+    $selectdep.append('<option> Seleccione</option>');
     $.each(ubigeo.departamentos, function(i, item) {
       $selectdep.append('<option value=' + item.id_ubigeo + '>' + item.nombre_ubigeo + '</option>');
     });
@@ -18783,7 +18783,7 @@
   $("#depart_nac").change(function() {
     var departamentoc = $("#depart_nac").val();
     var $selectprov = $('#provin_nac');
-    $selectprov.append('<option> Seleccione un Departamento</option>');
+    $selectprov.append('<option> Seleccione</option>');
     $.each(ubigeo.provincias[departamentoc], function(i, item) {
       $selectprov.append('<option value=' + item.id_ubigeo + '>' + item.nombre_ubigeo + '</option>');
     });
@@ -18793,38 +18793,30 @@
     var provinciac = $("#provin_nac").val();
     var $selectdistr = $('#distri_nac');
     $selectdistr.empty()
-    $selectdistr.append('<option> Seleccione un Departamento</option>');
+    $selectdistr.append('<option> Seleccione</option>');
     $.each(ubigeo.distritos[provinciac], function(i, item) {
       $selectdistr.append('<option value=' + item.id_ubigeo + '>' + item.nombre_ubigeo + '</option>');
     });
   });
+  $(document).on("click", ".btn-check22", function() {
+    data = $(this).val();
+    infoproducto = data.split("*");
+    html = "<tr>";
+    html += "<td><input type='text' class='form-control' id='apellido_mat' name='apellido_mat'</td>";
+    html += "<td><select class='form-control form-control' id='estado_civ' name='estado_civ'><option>Seleccione</option><option>Primaria</option><option>Secundaria</option><option>Superior</option><option>Técnico</option></select></td>";
+    html += "<td><select class='form-control form-control' id='estado_civ' name='estado_civ'><option>Seleccione</option><option>Primaria</option><option>Secundaria</option><option>Superior</option><option>Técnico</option></select></td>";
+    html += "<td><select class='form-control form-control' id='estado_civ' name='estado_civ'><option>Seleccione</option><option>Primaria</option><option>Secundaria</option><option>Superior</option><option>Técnico</option></select></td>";
+    html += "<td><select class='form-control form-control' id='estado_civ' name='estado_civ'><option>Seleccione</option><option>Primaria</option><option>Secundaria</option><option>Superior</option><option>Técnico</option></select></td>";
+    html += "<td><select class='form-control form-control' id='estado_civ' name='estado_civ'><option>Seleccione</option><option>Primaria</option><option>Secundaria</option><option>Superior</option><option>Técnico</option></select></td>";
+    html += "<td><button type='button' class='btn btn-danger btn-remove-producto'><span class='fa fa-remove'></span></button></td>";
+    html += "</tr>";
+    $("#tbventas tbody").append(html);
+    sumar();
+    $("#btn-check22").val(null);
+    $("#producto").val(null);
+    $("#modal-default").modal("hide");
 
-
-    $(document).on("click",".btn-check22",function(){
-        data = $(this).val();
-            infoproducto = data.split("*");
-            html = "<tr>";
-            html += "<td><input type='hidden' name='idproductos[]' value='"+infoproducto[0]+"'>"+infoproducto[1]+"</td>";
-
-
-            html += "<td><input type='hidden' name='precios[]' value='"+infoproducto[2]+"'>"+infoproducto[2]+"</td>";
-
-            html += "<td><input type='hidden' name='stocks[]' value='"+infoproducto[3]+"'>"+infoproducto[3]+"</td>";       
-        
-
-            html += "<td><input type='text' name='cantidades[]' value='1' class='cantidades'></td>";
-
-            html += "<td><input type='hidden' name='importes[]' value='"+infoproducto[2]+"'><p>"+infoproducto[2]+"</p></td>";
-            html += "<td><button type='button' class='btn btn-danger btn-remove-producto'><span class='fa fa-remove'></span></button></td>";
-            html += "</tr>";
-            $("#tbventas tbody").append(html);
-            sumar();
-            $("#btn-check22").val(null);
-            $("#producto").val(null);
-            $("#modal-default").modal("hide");
-   
-    });
-
+  });
 </script>
 </body>
 

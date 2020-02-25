@@ -15,8 +15,6 @@ class Auth extends CI_Controller {
 		else{
 			$this->load->view("admin/login");
 		}
-		
-
 	}
 
 	public function login(){

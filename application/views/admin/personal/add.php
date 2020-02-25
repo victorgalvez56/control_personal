@@ -37,7 +37,7 @@
                                                             <div class="form-group">
                                                                 <label for="grado">Grado:</label>
                                                                 <select class="form-control form-control-lg" id="grado" name="grado" required>
-                                                                    <option>Seleccione un Grado</option>
+                                                                    <option>Seleccione</option>
                                                                     <option>Sub Oficial de Tercera</option>
                                                                     <option>Sub Oficial de Segunda</option>
                                                                     <option>Sub Oficial de Primera</option>
@@ -64,7 +64,7 @@
                                                             <div class="form-group">
                                                                 <label for="estado_civ">Arma:</label>
                                                                 <select class="form-control form-control-lg" id="estado_civ" name="estado_civ">
-                                                                    <option>Seleccione un Arma</option>
+                                                                    <option>Seleccione</option>
                                                                     <option>Artillería</option>
                                                                     <option>Caballería</option>
                                                                     <option>Comunicaciones</option>
@@ -103,6 +103,7 @@
                                                             <div class="form-group">
                                                                 <label for="estado_civ">Estado Civil:</label>
                                                                 <select class="form-control form-control-lg" id="estado_civ" name="estado_civ">
+                                                                    <option>Seleccione</option>
                                                                     <option>Soltero</option>
                                                                     <option>Casado</option>
                                                                     <option>Divorciado</option>
@@ -122,6 +123,7 @@
                                                             <div class="form-group">
                                                                 <label for="estado_civ">Grado de Instrucción:</label>
                                                                 <select class="form-control form-control-lg" id="estado_civ" name="estado_civ">
+                                                                    <option>Seleccione</option>
                                                                     <option>Primaria</option>
                                                                     <option>Secundaria</option>
                                                                     <option>Superior</option>
