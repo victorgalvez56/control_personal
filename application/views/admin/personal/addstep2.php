@@ -14,7 +14,7 @@
                                 <p><i class="icon fa fa-ban"></i><?php echo $this->session->flashdata("error"); ?></p>
                             </div>
                         <?php endif; ?>
-                        <form action="<?php echo base_url(); ?>control/personal/storestep2" method="POST">
+                        <form action="<?php echo base_url();?>control/personal/storestep2" method="POST">
                             <section class="content">
                                 <div class="box box-primary">
                                     <div class="row">

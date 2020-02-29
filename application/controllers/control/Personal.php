@@ -33,15 +33,15 @@ class Personal extends CI_Controller
 
 	public function addstep2($data)
 	{
-
 		$this->load->view("layouts/header");
 		$this->load->view("layouts/aside");
-		$this->load->view("admin/personal/addstep2");
+		$this->load->view("admin/personal/addstep2",$data);
 		$this->load->view("layouts/footer");
 	}
 	public function storestep1()
 	{
-		$grado = $this->input->post("grado_personal");
+		$imagen = $this->input->post("imagen");
+		$grado = $this->input->post("grado");
 		$arma = $this->input->post("arma");
 		$apellido_pat = $this->input->post("apellido_pat");
 		$apellido_mat = $this->input->post("apellido_mat");
@@ -69,10 +69,12 @@ class Personal extends CI_Controller
 		$pasaporte = $this->input->post("pasaporte");
 		$brevete = $this->input->post("brevete");
 
-		$this->form_validation->set_rules("apellido_pat", "Grado", "required[apellido_pat.apellido_pat]");
 
+
+		$this->form_validation->set_rules("apellido_pat", "Grado", "required[apellido_pat.apellido_pat]");
 		if ($this->form_validation->run()) {
 			$data  = array(
+				'imagen' => $imagen,
 				'grado' => $grado,
 				'arma' => $arma,
 				'apellido_pat' => $apellido_pat,
@@ -102,6 +104,8 @@ class Personal extends CI_Controller
 				'brevete' => $brevete,
 			);
 			$this->addstep2($data);
+			echo json_encode($data);
+
 		} else {
 			redirect(base_url() . "control/personal/add");
 		}

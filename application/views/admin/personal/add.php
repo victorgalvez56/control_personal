@@ -27,9 +27,9 @@
                                                     <div class="col-md-12">
                                                         <div class="col-md-2">
                                                             <div class="form-group">
-                                                                <label for="estado_civ">Foto Personal:</label>
+                                                                <label for="imagen">Foto Personal:</label>
                                                                 <span class="btn btn-default btn-file">
-                                                                    Subir Foto <input type="file">
+                                                                    Subir Foto <input type="file" name="imagen  ">
                                                                 </span>
                                                             </div>
                                                         </div>
@@ -277,7 +277,7 @@
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div style="float: right">
-                                                <button type="submit" class="btn btn-success btn-flat">Guardar</button>
+                                                <button type="submit" class="btn btn-info btn-flat">Siguiente</button>
                                             </div>
                                         </div>
                                     </div>
