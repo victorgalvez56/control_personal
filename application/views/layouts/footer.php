@@ -18722,7 +18722,7 @@
 
   $(document).ready(function() {
     var $selectdep = $('#departamento_viv');
-    $selectdep.append('<option> Seleccione</option>');
+    $selectdep.append('<option value=""> Seleccione</option>');
     $.each(ubigeo.departamentos, function(i, item) {
       $selectdep.append('<option value=' + item.id_ubigeo + '>' + item.nombre_ubigeo + '</option>');
     });
@@ -18798,24 +18798,20 @@
       $selectdistr.append('<option value=' + item.id_ubigeo + '>' + item.nombre_ubigeo + '</option>');
     });
   });
-  $(document).on("click", ".btn-check22", function() {
+  $(document).on("click", ".btn-agregaridioma", function() {
     data = $(this).val();
     infoproducto = data.split("*");
     html = "<tr>";
-    html += "<td><input type='text' class='form-control' id='apellido_mat' name='apellido_mat'</td>";
-    html += "<td><select class='form-control form-control' id='estado_civ' name='estado_civ'><option>Seleccione</option><option>Primaria</option><option>Secundaria</option><option>Superior</option><option>Técnico</option></select></td>";
-    html += "<td><select class='form-control form-control' id='estado_civ' name='estado_civ'><option>Seleccione</option><option>Primaria</option><option>Secundaria</option><option>Superior</option><option>Técnico</option></select></td>";
-    html += "<td><select class='form-control form-control' id='estado_civ' name='estado_civ'><option>Seleccione</option><option>Primaria</option><option>Secundaria</option><option>Superior</option><option>Técnico</option></select></td>";
-    html += "<td><select class='form-control form-control' id='estado_civ' name='estado_civ'><option>Seleccione</option><option>Primaria</option><option>Secundaria</option><option>Superior</option><option>Técnico</option></select></td>";
-    html += "<td><select class='form-control form-control' id='estado_civ' name='estado_civ'><option>Seleccione</option><option>Primaria</option><option>Secundaria</option><option>Superior</option><option>Técnico</option></select></td>";
+    html += "<td><input type='text' class='form-control' id='idioma' name='idioma[]' style='text-transform: uppercase;' required ></td>";
+    html += "<td><select class='form-control form-control' id='idioma_habla' name='idioma_habla[]' required><option value=''>Seleccione</option><option value='B'>B</option><option value='R'>R</option><option value'M'>M</option></select></td>";
+    html += "<td><select class='form-control form-control' id='idioma_lee' name='idioma_lee[]'><option value=''>Seleccione</option><option value='B'>B</option><option value='R'>R</option><option value'M'>M</option></select></td>";
+    html += "<td><select class='form-control form-control' id='idioma_escribe' name='idioma_escribe[]'><option value=''>Seleccione</option><option value='B'>B</option><option value='R'>R</option><option value'M'>M</option></select></td>";
+    html += "<td><select class='form-control form-control' id='idioma_estudio' name='idioma_estudio[]'><option value=''>Seleccione</option><option>ESTUDIO</option><option>PRACTICA</option></select></td>";
+    html += "<td><select class='form-control form-control' id='idioma_practica' name='idioma_practica[]'><option value=''>Seleccione</option><option value='SI'>SI</option><option value='NO'>NO</option></select></td>";
     html += "<td><button type='button' class='btn btn-danger btn-remove-producto'><span class='fa fa-remove'></span></button></td>";
     html += "</tr>";
-    $("#tbventas tbody").append(html);
-    sumar();
-    $("#btn-check22").val(null);
-    $("#producto").val(null);
-    $("#modal-default").modal("hide");
-
+    $("#tbidiomas tbody").append(html);
+      $("#btn-agregaridioma").val(null);
   });
 </script>
 </body>

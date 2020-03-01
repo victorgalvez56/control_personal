@@ -35,7 +35,7 @@ class Personal extends CI_Controller
 	{
 		$this->load->view("layouts/header");
 		$this->load->view("layouts/aside");
-		$this->load->view("admin/personal/addstep2",$data);
+		$this->load->view("admin/personal/addstep2", $data);
 		$this->load->view("layouts/footer");
 	}
 	public function storestep1()
@@ -48,7 +48,7 @@ class Personal extends CI_Controller
 		$nombres = $this->input->post("nombres");
 		$estado_civ = $this->input->post("estado_civ");
 		$anios_serv = $this->input->post("anios_serv");
-		$grado_inst = $this->input->post("grado_inst");
+		$grado_instr = $this->input->post("grado_instr");
 		$religion = $this->input->post("religion");
 		$fec_ult_asc = $this->input->post("fec_ult_asc");
 
@@ -69,113 +69,71 @@ class Personal extends CI_Controller
 		$pasaporte = $this->input->post("pasaporte");
 		$brevete = $this->input->post("brevete");
 
+		$data  = array(
+			'imagen' => $imagen,
+			'grado' => $grado,
+			'arma' => $arma,
+			'apellido_pat' => $apellido_pat,
+			'apellido_mat' => $apellido_mat,
+			'nombres' => $nombres,
+			'estado_civ' => $estado_civ,
+			'anios_serv' => $anios_serv,
+			'grado_instruc' => $grado_instr,
+			'religion' => $religion,
+			'fec_ultimo_asc' => $fec_ult_asc,
 
+			'depart_viv' => $depart_viv,
+			'provinc_viv' => $provinc_viv,
+			'distrito_viv' => $distrito_viv,
+			'urbaniz_viv' => $urbaniz_viv,
+			'calle_viv' => $calle_viv,
 
-		$this->form_validation->set_rules("apellido_pat", "Grado", "required[apellido_pat.apellido_pat]");
-		if ($this->form_validation->run()) {
-			$data  = array(
-				'imagen' => $imagen,
-				'grado' => $grado,
-				'arma' => $arma,
-				'apellido_pat' => $apellido_pat,
-				'apellido_mat' => $apellido_mat,
-				'nombres' => $nombres,
-				'estado_civ' => $estado_civ,
-				'anios_serv' => $anios_serv,
-				'grado_instruc' => $grado_inst,
-				'religion' => $religion,
-				'fec_ultimo_asc' => $fec_ult_asc,
+			'depart_nac' => $depart_nac,
+			'provinc_nac' => $provinc_nac,
+			'distrito_nac' => $distrito_nac,
+			'fecha_nac' => $fecha_nac,
+			'edad' => $edad,
 
-				'depart_viv' => $depart_viv,
-				'provinc_viv' => $provinc_viv,
-				'distrito_viv' => $distrito_viv,
-				'urbaniz_viv' => $urbaniz_viv,
-				'calle_viv' => $calle_viv,
-
-				'depart_nac' => $depart_nac,
-				'provinc_nac' => $provinc_nac,
-				'distrito_nac' => $distrito_nac,
-				'fecha_nac' => $fecha_nac,
-				'edad' => $edad,
-
-				'cip' => $cip,
-				'dni' => $dni,
-				'pasaporte' => $pasaporte,
-				'brevete' => $brevete,
-			);
-			$this->addstep2($data);
-			echo json_encode($data);
-
-		} else {
-			redirect(base_url() . "control/personal/add");
-		}
+			'cip' => $cip,
+			'dni' => $dni,
+			'pasaporte' => $pasaporte,
+			'brevete' => $brevete,
+		);
+		$this->Personal_model->save($data);
+		echo json_encode($data);
 	}
 
 	public function storestep2()
 	{
-		$grado = $this->input->post("grado_personal");
-		$arma = $this->input->post("arma");
-		$apellido_pat = $this->input->post("apellido_pat");
-		$apellido_mat = $this->input->post("apellido_mat");
-		$nombres = $this->input->post("nombres");
-		$estado_civ = $this->input->post("estado_civ");
-		$anios_serv = $this->input->post("anios_serv");
-		$grado_inst = $this->input->post("grado_inst");
-		$religion = $this->input->post("religion");
-		$fec_ult_asc = $this->input->post("fec_ult_asc");
+		$data = $this->input->post("data");
+		$idioma = $this->input->post("idioma");
+		$idioma_habla = $this->input->post("idioma_habla");
+		$idioma_lee = $this->input->post("idioma_lee");
+		$idioma_escribe = $this->input->post("idioma_escribe");
+		$idioma_estudio = $this->input->post("idioma_estudio");
+		$idioma_practica = $this->input->post("idioma_practica");
+		json_encode($data);
 
-		$depart_viv = $this->input->post("provin_viv");
-		$provinc_viv = $this->input->post("provin_viv");
-		$distrito_viv = $this->input->post("distri_viv");
-		$urbaniz_viv = $this->input->post("urbanizacion");
-		$calle_viv = $this->input->post("calle");
+		$idpersonal = $this->Personal_model->lastID();
+		$this->save_detalle($idpersonal, $idioma, $idioma_habla, $idioma_lee, $idioma_escribe, $idioma_estudio, $idioma_practica);
+		redirect(base_url() . "control/personal");
+	}
 
-		$depart_nac = $this->input->post("depart_nac");
-		$provinc_nac = $this->input->post("provin_nac");
-		$distrito_nac = $this->input->post("distri_nac");
-		$fecha_nac = $this->input->post("distri_nac");
-		$edad = $this->input->post("calle");
-
-		$cip = $this->input->post("cip");
-		$dni = $this->input->post("dni");
-		$pasaporte = $this->input->post("pasaporte");
-		$brevete = $this->input->post("brevete");
-
-		$this->form_validation->set_rules("apellido_pat", "Grado", "required[apellido_pat.apellido_pat]");
-
-		if ($this->form_validation->run()) {
+	protected function save_detalle($personal, $idioma, $idioma_habla, $idioma_lee, $idioma_escribe, $idioma_estudio, $idioma_practica)
+	{
+		for ($i = 0; $i < count($personal); $i++) {
 			$data  = array(
-				'grado' => $grado,
-				'arma' => $arma,
-				'apellido_pat' => $apellido_pat,
-				'apellido_mat' => $apellido_mat,
-				'nombres' => $nombres,
-				'estado_civ' => $estado_civ,
-				'anios_serv' => $anios_serv,
-				'grado_instruc' => $grado_inst,
-				'religion' => $religion,
-				'fec_ultimo_asc' => $fec_ult_asc,
-
-				'depart_viv' => $depart_viv,
-				'provinc_viv' => $provinc_viv,
-				'distrito_viv' => $distrito_viv,
-				'urbaniz_viv' => $urbaniz_viv,
-				'calle_viv' => $calle_viv,
-
-				'depart_nac' => $depart_nac,
-				'provinc_nac' => $provinc_nac,
-				'distrito_nac' => $distrito_nac,
-				'fecha_nac' => $fecha_nac,
-				'edad' => $edad,
-
-				'cip' => $cip,
-				'dni' => $dni,
-				'pasaporte' => $pasaporte,
-				'brevete' => $brevete,
+				'id' => '',
+				'personal_id' => $personal[$i],
+				'idioma' => $idioma[$i],
+				'habla' => $idioma_habla[$i],
+				'lee' => $idioma_lee[$i],
+				'escribe' => $idioma_escribe[$i],
+				'adquirido' => $idioma_estudio[$i],
+				'graduado' => $idioma_practica[$i],
 			);
-			$this->addstep2($data);
-		} else {
-			redirect(base_url() . "control/personal/add");
+
+			$this->Personal_model->save_detalle($data);
 		}
 	}
 

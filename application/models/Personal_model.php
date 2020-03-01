@@ -10,7 +10,7 @@ class Personal_model extends CI_Model {
 	}
 
 	public function save($data){
-		return $this->db->insert("categorias",$data);
+		return $this->db->insert("personal",$data);
 	}
 	public function getCategoria($id){
 		$this->db->where("id_cat",$id);
@@ -18,9 +18,14 @@ class Personal_model extends CI_Model {
 		return $resultado->row();
 
 	}
-
+	public function save_detalle($data){
+		$this->db->insert("detalle_idioma",$data);
+	}
 	public function update($id,$data){
 		$this->db->where("id_cat",$id);
 		return $this->db->update("categorias",$data);
+	}
+	public function lastID(){
+		return $this->db->insert_id();
 	}
 }
