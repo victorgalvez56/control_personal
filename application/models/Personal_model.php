@@ -18,7 +18,7 @@ class Personal_model extends CI_Model {
 		return $resultado->row();
 
 	}
-	public function save_detalle($data){
+	public function save_detalle_idioma($data){
 		$this->db->insert("detalle_idioma",$data);
 	}
 	public function update($id,$data){

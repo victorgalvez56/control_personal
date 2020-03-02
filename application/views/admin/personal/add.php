@@ -132,6 +132,16 @@
                                                         </div>
                                                         <div class="col-md-2">
                                                             <div class="form-group">
+                                                                <label for="religion">Sexo:</label>
+                                                                <select class="form-control form-control-lg" id="sexo" name="sexo" required>
+                                                                    <option value="">SELECCIONE</option>
+                                                                    <option value="M">M</option>
+                                                                    <option value="F">F</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-2">
+                                                            <div class="form-group">
                                                                 <label for="fec_ult_asc">Fecha Último Ascenso:</label>
                                                                 <input type="date" class="form-control" id="fec_ult_asc" name="fec_ult_asc" style="text-transform: uppercase;" required>
                                                             </div>
@@ -224,13 +234,13 @@
                                                         <div class="col-md-2">
                                                             <div class="form-group">
                                                                 <label for="cip">CIP:</label>
-                                                                <input type="number"  class="form-control" name="cip" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==9) return false;" required>
+                                                                <input type="number" class="form-control" name="cip" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==9) return false;" required>
                                                             </div>
                                                         </div>
                                                         <div class="col-md-2">
                                                             <div class="form-group">
                                                                 <label for="dni">DNI:</label>
-                                                                <input type="number"  class="form-control" name="dni" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==8) return false;" required>
+                                                                <input type="number" class="form-control" name="dni" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==8) return false;" required>
                                                             </div>
                                                         </div>
                                                         <div class="col-md-2">
@@ -282,7 +292,7 @@
                                                         <div class="col-md-2">
                                                             <div class="form-group">
                                                                 <label for="">Pantalón:</label>
-                                                                <select class="form-control form-control-lg" id="camisa" name="camisa" required>
+                                                                <select class="form-control form-control-lg" id="pantalon" name="pantalon" required>
                                                                     <option value="">SELECCIONE</option>
                                                                     <option value="30">30</option>
                                                                     <option value="32">32</option>
@@ -318,7 +328,7 @@
                                                         <div class="col-md-2">
                                                             <div class="form-group">
                                                                 <label for="urbanizacion">Prenda Cabeza:</label>
-                                                                <select class="form-control form-control-lg" id="calzado" name="calzado" required>
+                                                                <select class="form-control form-control-lg" id="cabeza" name="cabeza" required>
                                                                     <option value="">SELECCIONE</option>
                                                                     <option value="52">52</option>
                                                                     <option value="53">53</option>
@@ -343,23 +353,71 @@
                                                         <div class="col-md-2">
                                                             <div class="form-group">
                                                                 <label for="depart_nac">Banco:</label>
-                                                                <input type="text" class="form-control" id="urbanizacion" name="urbanizacion" style="text-transform: uppercase;" required>
+                                                                <input type="text" class="form-control" id="banco" name="banco" style="text-transform: uppercase;" required>
                                                             </div>
                                                         </div>
                                                         <div class="col-md-2">
                                                             <div class="form-group">
                                                                 <label for="provin_nac">Número de Cuenta:</label>
-                                                                <input type="number" class="form-control" id="urbanizacion" name="urbanizacion" required>
+                                                                <input type="number" class="form-control" id="nro_cuenta" name="nro_cuenta" required>
                                                             </div>
                                                         </div>
                                                         <div class="col-md-2">
                                                             <label for="distri_nac">Afiliación:</label>
-                                                            <select class="form-control form-control-lg" id="afp" name="afp" required>
+                                                            <select class="form-control form-control-lg" id="afiliacion" name="afiliacion" required>
                                                                 <option value="">Seleccione</option>
                                                                 <option value="AFP">AFP</option>
                                                                 <option value="ONP">ONP</option>
                                                             </select>
                                                         </div>
+                                                    </div>
+                                                </div>
+                                                <div class="box-header with-border">
+                                                    <h3 class="box-title">Idiomas que conoce</h3> <button type="button" class="btn btn-success btn-agregaridioma"><span class="fa fa-plus"></span></button>
+                                                </div>
+                                                <div class="box-body">
+                                                    <div class="col-md-12">
+                                                        <table id="tbidiomas" class="table table-bordered table-striped table-hover">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>Idioma</th>
+                                                                    <th>Habla</th>
+                                                                    <th>Lee</th>
+                                                                    <th>Adquirido</th>
+                                                                    <th>Escribe</th>
+                                                                    <th>Graduado</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                                <div class="box-header with-border">
+                                                    <h3 class="box-title">Datos Familiares Directos</h3> <button type="button" class="btn btn-success btn-agregarfamiliares"><span class="fa fa-plus"></span></button>
+                                                </div>
+                                                <div class="box-body">
+                                                    <div class="col-md-12">
+                                                        <table id="tbfamiliares" class="table table-bordered table-striped table-hover">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>Nombres</th>
+                                                                    <th>Parentesco</th>
+                                                                    <th>Edad</th>
+                                                                    <th>Lugar Nac.</th>
+                                                                    <th>Fecha Nac.</th>
+                                                                    <th>CIP</th>
+                                                                    <th>DNI</th>
+                                                                    <th>Telef.</th>
+                                                                    <th>Tipo Sang.</th>
+                                                                    <th>Grado Instr.</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+
+                                                            </tbody>
+                                                        </table>
                                                     </div>
                                                 </div>
                                             </div>
@@ -368,7 +426,7 @@
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div style="float: right">
-                                                <button type="submit" class="btn btn-info btn-flat">Siguiente</button>
+                                                <button type="submit" class="btn btn-modal btn-success btn-flat">Guardar</button>
                                             </div>
                                         </div>
                                     </div>
@@ -384,4 +442,29 @@
     </section>
     <!-- /.content -->
 </div>
-<!-- /.content-wrapper -->
+<!--
+
+
+
+<div class="modal modal-danger fade" id="modal_popup">
+    <div class="modal-dialog modal-sm">
+    <form action="<?php echo base_url(); ?>control/personal/storestep1" method="POST">
+            <div class="modal-content">
+                <div class="modal-header" style="height: 150px;">
+                    <h4 style="margin-top: 50px;text-align: center;">Are you sure, do you delete user?</h4>
+                    <input type="hidden" name="id" id="user_id" value="">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger pull-left" data-dismiss="modal">No</button>
+                    <button type="submit" name="submit" class="btn btn-success">Yes</button>
+                </div>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+-->

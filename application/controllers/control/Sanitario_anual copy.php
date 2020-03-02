@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Personal extends CI_Controller
+class Sanitario_anual extends CI_Controller
 {
 
 	private $permisos;
@@ -9,7 +9,7 @@ class Personal extends CI_Controller
 	{
 		parent::__construct();
 		$this->permisos = $this->backend_lib->control();
-		$this->load->model("Personal_model");
+		$this->load->model("Sanitario_anual_model");
 	}
 	public function index()
 	{
@@ -19,7 +19,7 @@ class Personal extends CI_Controller
 		);
 		$this->load->view("layouts/header");
 		$this->load->view("layouts/aside");
-		$this->load->view("admin/personal/list", $data);
+		$this->load->view("admin/sanitario_anual/list", $data);
 		$this->load->view("layouts/footer");
 	}
 	public function add()
@@ -27,65 +27,13 @@ class Personal extends CI_Controller
 
 		$this->load->view("layouts/header");
 		$this->load->view("layouts/aside");
-		$this->load->view("admin/personal/add");
+		$this->load->view("admin/sanitario_anual/add");
 		$this->load->view("layouts/footer");
 	}
 
-	public function addstep2()
-	{
-		$this->load->view("layouts/header");
-		$this->load->view("layouts/aside");
-		$this->load->view("admin/personal/addstep2");
-		$this->load->view("layouts/footer");
-	}
 	public function storestep1()
 	{
-		$imagen = $this->input->post("imagen");
-		$grado = $this->input->post("grado");
-		$arma = $this->input->post("arma");
-		$apellido_pat = $this->input->post("apellido_pat");
-		$apellido_mat = $this->input->post("apellido_mat");
-		$nombres = $this->input->post("nombres");
-		$estado_civ = $this->input->post("estado_civ");
-		$anios_serv = $this->input->post("anios_serv");
-		$grado_instr = $this->input->post("grado_instr");
-		$religion = $this->input->post("religion");
-		$fec_ult_asc = $this->input->post("fec_ult_asc");
-		$sexo = $this->input->post("sexo");
 
-		$depart_viv = $this->input->post("provin_viv");
-		$provinc_viv = $this->input->post("provin_viv");
-		$distrito_viv = $this->input->post("distri_viv");
-		$urbaniz_viv = $this->input->post("urbanizacion");
-		$calle_viv = $this->input->post("calle");
-
-		$depart_nac = $this->input->post("depart_nac");
-		$provinc_nac = $this->input->post("provin_nac");
-		$distrito_nac = $this->input->post("distri_nac");
-		$fecha_nac = $this->input->post("distri_nac");
-		$edad = $this->input->post("calle");
-
-		$cip = $this->input->post("cip");
-		$dni = $this->input->post("dni");
-		$pasaporte = $this->input->post("pasaporte");
-		$brevete = $this->input->post("brevete");
-		
-		$camisa = $this->input->post("camisa");
-		$pantalon = $this->input->post("pantalon");
-		$calzado = $this->input->post("calzado");
-		$cabeza = $this->input->post("cabeza");
-
-		$banco = $this->input->post("banco");
-		$nro_cuenta = $this->input->post("nro_cuenta");
-		$afiliacion = $this->input->post("afiliacion");
-
-		$ididiomas = $this->input->post("ididiomas");
-		$idioma = $this->input->post("idioma");
-		$idioma_habla = $this->input->post("idioma_habla");
-		$idioma_lee = $this->input->post("idioma_lee");
-		$idioma_escribe = $this->input->post("idioma_escribe");
-		$idioma_estudio = $this->input->post("idioma_estudio");
-		$idioma_practica = $this->input->post("idioma_practica");
 
 		$data  = array(
 			'imagen' => $imagen,
