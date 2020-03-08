@@ -19,7 +19,7 @@
                                     <label for="">Lista de Personal:</label>
                                     <div class="input-group">
                                         <span class="input-group-btn">
-                                            <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#modal-default"><span class="fa fa-search"></span> Buscar</button>
+                                            <button class="btn btn-primary" id="buttonsearch" type="button" data-toggle="modal" data-target="#modal-default"><span class="fa fa-search"></span> Buscar</button>
                                         </span>
                                     </div><!-- /input-group -->
                                 </div>
@@ -32,7 +32,6 @@
                                         <th>DNI</th>
                                         <th>Nombres y Apellidos</th>
                                         <th>Grado</th>
-                                        <th>Unidad</th>
                                         <th>Sexo</th>
                                         <th>Grupo Sanguíneo</th>
                                         <th>Alergias</th>
