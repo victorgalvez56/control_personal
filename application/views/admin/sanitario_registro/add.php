@@ -13,7 +13,7 @@
             <div class="col-md-12">
                 <div class="box box-primary box-solid">
                     <div class="box-body">
-                        <form action="<?php echo base_url(); ?>movimientos/ventas/store" method="POST" class="form-horizontal">
+                        <form action="<?php echo base_url(); ?>control/Sanitario_registro/store" method="POST" class="form-horizontal">
                             <div class="form-group">
                                 <div class="col-md-6">
                                     <label for="">Lista de Personal:</label>
@@ -42,19 +42,20 @@
 
                                 </tbody>
                             </table>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div style="float: right">
+                                        <button type="submit" class="btn btn-modal btn-success btn-flat">Guardar</button>
+                                    </div>
+                                </div>
+                            </div>
                         </form>
                     </div>
                 </div>
             </div>
         </div>
 </div>
-<div class="row">
-    <div class="col-md-12">
-        <div style="float: right">
-            <button type="submit" class="btn btn-modal btn-success btn-flat">Guardar</button>
-        </div>
-    </div>
-</div>
+
 </section>
 <!-- /.content -->
 </div>
@@ -65,7 +66,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span></button>
+                    <span aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title">Lista de Personal</h4>
             </div>
             <div class="modal-body">
@@ -80,21 +81,21 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <?php if(!empty($personals)):?>
-                            <?php foreach($personals as $personal):?>
+                        <?php if (!empty($personals)) : ?>
+                            <?php foreach ($personals as $personal) : ?>
                                 <tr>
-                                    <td><?php echo $personal->dni;?></td>
-                                    <td><?php echo $personal->cip;?></td>
-                                    <td><?php echo $personal->nombres;?></td>
-                                    <td><?php echo $personal->grado;?></td>
-                                    
-                                    <?php $datapersonal = $personal->id."*".$personal->dni."*".$personal->nombres." ".$personal->apellido_pat." ".$personal->apellido_mat."*".$personal->grado."*".$personal->sexo;?>
+                                    <td><?php echo $personal->dni; ?></td>
+                                    <td><?php echo $personal->cip; ?></td>
+                                    <td><?php echo $personal->nombres; ?></td>
+                                    <td><?php echo $personal->grado; ?></td>
+
+                                    <?php $datapersonal = $personal->id . "*" . $personal->dni . "*" . $personal->nombres . " " . $personal->apellido_pat . " " . $personal->apellido_mat . "*" . $personal->grado . "*" . $personal->sexo; ?>
                                     <td>
-                                        <button type="button" class="btn btn-success btn-check22" value="<?php echo $datapersonal;?>"><span class="fa fa-check"></span></button>
+                                        <button type="button" class="btn btn-success btn-check22" value="<?php echo $datapersonal; ?>"><span class="fa fa-check"></span></button>
                                     </td>
                                 </tr>
-                            <?php endforeach;?>
-                        <?php endif;?>
+                            <?php endforeach; ?>
+                        <?php endif; ?>
                     </tbody>
                 </table>
             </div>

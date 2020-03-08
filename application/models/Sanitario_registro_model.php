@@ -10,7 +10,7 @@ class Sanitario_registro_model extends CI_Model {
 	}
 
 	public function save($data){
-		return $this->db->insert("personal",$data);
+		return $this->db->insert("registro_sanitario",$data);
 	}
 	public function getCategoria($id){
 		$this->db->where("id_cat",$id);

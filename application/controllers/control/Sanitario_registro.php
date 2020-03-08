@@ -11,7 +11,6 @@ class Sanitario_registro extends CI_Controller
 		$this->permisos = $this->backend_lib->control();
 		$this->load->model("Sanitario_registro_model");
 		$this->load->model("Personal_model");
-
 	}
 	public function index()
 	{
@@ -28,15 +27,31 @@ class Sanitario_registro extends CI_Controller
 	{
 		$data = array(
 			'personals' => $this->Personal_model->getPersonals(),
-			);	
+		);
 		$this->load->view("layouts/header");
 		$this->load->view("layouts/aside");
-		$this->load->view("admin/sanitario_registro/add",$data);
+		$this->load->view("admin/sanitario_registro/add", $data);
 		$this->load->view("layouts/footer");
 	}
 
-	public function store()
-	{
+
+	public function store(){
+		$fecha = date("d-m-Y H:i:s");
+		$nuevafecha = strtotime('-7 hour', strtotime($fecha)); // 6 hour en horario de verano
+		$nuevafecha = date('Y-m-d H:i:s', $nuevafecha);
+		$dni = $this->input->post("dni");
+		$sexo = $this->input->post("sexo");
+		$grupo_sang = $this->input->post("grupo_sang");
+		$alergias = $this->input->post("alergias");
+		$data = array(
+			'personal_id' => $dni,
+			'sexo' => $sexo,
+			'grupo_sang' => $grupo_sang,
+			'alergias' => $alergias,
+			'estado' => "1"
+		);
+		$this->Sanitario_registro_model->save($data);
+
 
 	}
 

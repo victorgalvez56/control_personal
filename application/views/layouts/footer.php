@@ -43,12 +43,12 @@
     if (data != '') {
       infoproducto = data.split("*");
       html = "<tr>";
-      html += "<td><input type='hidden' name='idproductos[]' value='" + infoproducto[0] + "'>" + infoproducto[1] + "</td>";
-      html += "<td><input type='hidden' name='precios[]'  value='" + infoproducto[2] + "'>" + infoproducto[2] + "</td>";
-      html += "<td><input type='hidden' name='stocks[]' value='" + infoproducto[3] + "'>" + infoproducto[3] + "</td>";
-      html += "<td><select class='form-control form-control' id='grado_instr' name='grado_instr[]'><option value=''>Seleccione</option><option value='MASCULINO'>MASCULINO</option><option value='FEMENINO'>FEMENINO</option></select></td>";
-      html += "<td><select class='form-control form-control' id='grado_instr' name='grado_instr[]'><option value=''>Seleccione</option><option value='PRIMARIA'>PRIMARIA</option><option value='SECUNDARIA'>SECUNDARIA</option><option value='SUPERIOR'>TECNICO</option><option value='TECNICO'>TECNICO</option></select></td>";
-      html += "<td><input class='form-control form-control' type='text' name='city' list='citynames'  style='text-transform: uppercase;' required><datalist id='citynames'>  <option value='NO'></datalist></td>";
+      html += "<td><input type='hidden' name='dni' value='" + infoproducto[0] + "'>" + infoproducto[1] + "</td>";
+      html += "<td><input type='hidden' name='nombres'  value='" + infoproducto[2] + "'>" + infoproducto[2] + "</td>";
+      html += "<td><input type='hidden' name='grado' value='" + infoproducto[3] + "'>" + infoproducto[3] + "</td>";
+      html += "<td><select class='form-control form-control' name='sexo'><option value=''>Seleccione</option><option value='MASCULINO'>MASCULINO</option><option value='FEMENINO'>FEMENINO</option></select></td>";
+      html += "<td><select class='form-control form-control'  name='grupo_sang'><option value=''>Seleccione</option><option value='PRIMARIA'>PRIMARIA</option><option value='SECUNDARIA'>SECUNDARIA</option><option value='SUPERIOR'>TECNICO</option><option value='TECNICO'>TECNICO</option></select></td>";
+      html += "<td><input class='form-control form-control' type='text' name='alergias' list='citynames'  style='text-transform: uppercase;' required><datalist id='citynames'>  <option value='NO'></datalist></td>";
       html += "<td><button type='button' class='btn btn-danger btn-remove-producto'><span class='fa fa-remove'></span></button></td>";
       html += "</tr>";
       $("#tbventas tbody").append(html);
