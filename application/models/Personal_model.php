@@ -5,6 +5,7 @@ class Personal_model extends CI_Model {
 
 	public function getPersonals(){
 		$this->db->where("estado","1");
+		$this->db->where("estado_registro","0");
 		$resultados = $this->db->get("personal");
 		return $resultados->result();
 	}
@@ -22,8 +23,8 @@ class Personal_model extends CI_Model {
 		$this->db->insert("detalle_idioma",$data);
 	}
 	public function update($id,$data){
-		$this->db->where("id_cat",$id);
-		return $this->db->update("categorias",$data);
+		$this->db->where("id",$id);
+		return $this->db->update("personal",$data);
 	}
 	public function lastID(){
 		return $this->db->insert_id();

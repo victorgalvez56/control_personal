@@ -89,7 +89,7 @@
                                     <td><?php echo $personal->nombres; ?></td>
                                     <td><?php echo $personal->grado; ?></td>
 
-                                    <?php $datapersonal = $personal->id . "*" . $personal->dni . "*" . $personal->nombres . " " . $personal->apellido_pat . " " . $personal->apellido_mat . "*" . $personal->grado . "*" . $personal->sexo; ?>
+                                    <?php $datapersonal = $personal->id . "*" . $personal->dni . "*" . $personal->nombres . " " . $personal->apellido_pat . " " . $personal->apellido_mat . "*" . $personal->grado ; ?>
                                     <td>
                                         <button type="button" class="btn btn-success btn-check22" value="<?php echo $datapersonal; ?>"><span class="fa fa-check"></span></button>
                                     </td>

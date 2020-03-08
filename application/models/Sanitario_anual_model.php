@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Sanitario_registro_model extends CI_Model {
+class Sanitario_anual_model extends CI_Model {
 
 	public function getPersonals(){
 		$this->db->select("r.*,p.dni,p.nombres,p.apellido_pat,p.apellido_mat");

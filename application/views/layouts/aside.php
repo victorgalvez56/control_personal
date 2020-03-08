@@ -29,11 +29,11 @@
                             </span>
                         </a>
                         <ul class="treeview-menu">
-                        <li><a href="<?php echo base_url(); ?>control/sanitario_registro/add"><i class="fa fa-circle-o">
+                        <li><a href="<?php echo base_url(); ?>control/sanitario_registro/"><i class="fa fa-circle-o">
                                     </i>Registro</a></li>
-                            <li><a href="<?php echo base_url(); ?>control/sanitario_mensual/add"><i class="fa fa-circle-o">
+                            <li><a href="<?php echo base_url(); ?>control/sanitario_mensual/"><i class="fa fa-circle-o">
                                     </i>Mensual</a></li>
-                            <li><a href="<?php echo base_url(); ?>control/sanitario_anual/add"><i class="fa fa-circle-o">
+                            <li><a href="<?php echo base_url(); ?>control/sanitario_anual/"><i class="fa fa-circle-o">
                                     </i>Anual</a></li>
                         </ul>
 

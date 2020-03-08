@@ -4,7 +4,7 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-        Categorias
+        Registro Sanitario
         <small>Listado</small>
         </h1>
     </section>
@@ -16,7 +16,7 @@
                 <div class="row">
                     <div class="col-md-12">
                         <?php if ($permisos->insert==1):?>
-                        <a href="<?php echo base_url();?>mantenimiento/categorias/add" class="btn btn-primary btn-flat"><span class="fa fa-plus"></span> Agregar Categoria</a>
+                        <a href="<?php echo base_url();?>control/sanitario_registro/add" class="btn btn-primary btn-flat"><span class="fa fa-plus"></span> Agregar Registro</a>
                         <?php endif;?>
                     </div>
                 </div>
@@ -26,26 +26,32 @@
                         <table id="example5" class="table table-bordered table-hover">
                             <thead>
                                 <tr>
+                                    <th>Dni</th>
                                     <th>Nombre</th>
-                                    <th>Descripcion</th>
+                                    <th>Sexo</th>
+                                    <th>Grupo Sanguíneo</th>
+                                    <th>Alergias</th>
+                                    <th>Fecha</th>
                                     <th>opciones</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php if(!empty($categorias)):?>
-                                    <?php foreach($categorias as $categoria):?>
+                                <?php if(!empty($registros)):?>
+                                    <?php foreach($registros as $registro):?>
                                         <tr>
-                                            <td><?php echo $categoria->nombre_cat;?></td>
-                                            <td><?php echo $categoria->descripcion_cat;?></td>
+                                            <td><?php echo $registro->dni;?></td>
+                                            <td><?php echo $registro->nombres." ".$registro->apellido_pat." ".$registro->apellido_mat;?></td>
+                                            <td><?php echo $registro->sexo;?></td>
+                                            <td><?php echo $registro->grupo_sang;?></td>
+                                            <td><?php echo $registro->alergias;?></td>
+                                            <td><?php echo $registro->fecha;?></td>
                                             <td>
                                                 <div class="btn-group">
-                                                    
-
                                                     <?php if($permisos->update == 1):?>
-                                                    <a href="<?php echo base_url()?>mantenimiento/categorias/edit/<?php echo $categoria->id_cat;?>" class="btn btn-warning"><span class="fa fa-pencil"></span></a>
+                                                    <a href="<?php echo base_url()?>mantenimiento/categorias/edit/<?php echo $registro->id;?>" class="btn btn-warning"><span class="fa fa-pencil"></span></a>
                                                     <?php endif;?>
                                                     <?php if($permisos->delete == 1):?>
-                                                    <a href="<?php echo base_url();?>mantenimiento/categorias/delete/<?php echo $categoria->id_cat;?>" class="btn btn-danger btn-remove"><span class="fa fa-remove"></span></a>
+                                                    <a href="<?php echo base_url();?>mantenimiento/categorias/delete/<?php echo $registro->id;?>" class="btn btn-danger btn-remove"><span class="fa fa-remove"></span></a>
                                                     <?php endif;?>
                                                 </div>
                                             </td>

@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Sanitario_registro extends CI_Controller
+class Sanitario_anual extends CI_Controller
 {
 
 	private $permisos;
@@ -9,18 +9,18 @@ class Sanitario_registro extends CI_Controller
 	{
 		parent::__construct();
 		$this->permisos = $this->backend_lib->control();
-		$this->load->model("Sanitario_registro_model");
+		$this->load->model("Sanitario_anual_model");
 		$this->load->model("Personal_model");
 	}
 	public function index()
 	{
 		$data  = array(
 			'permisos' => $this->permisos,
-			'registros' => $this->Sanitario_registro_model->getPersonals(),
+			'registros' => $this->Sanitario_anual_model->getPersonals(),
 		);
 		$this->load->view("layouts/header");
 		$this->load->view("layouts/aside");
-		$this->load->view("admin/sanitario_registro/list", $data);
+		$this->load->view("admin/sanitario_anual/list", $data);
 		$this->load->view("layouts/footer");
 	}
 	public function add()
@@ -30,7 +30,7 @@ class Sanitario_registro extends CI_Controller
 		);
 		$this->load->view("layouts/header");
 		$this->load->view("layouts/aside");
-		$this->load->view("admin/sanitario_registro/add", $data);
+		$this->load->view("admin/sanitario_anual/add", $data);
 		$this->load->view("layouts/footer");
 	}
 
