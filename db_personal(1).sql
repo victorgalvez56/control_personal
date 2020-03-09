@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 24-02-2020 a las 05:34:54
+-- Tiempo de generación: 09-03-2020 a las 04:43:49
 -- Versión del servidor: 10.4.11-MariaDB
 -- Versión de PHP: 7.2.27
 
@@ -25,25 +25,6 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `asistencia`
---
-
-CREATE TABLE `asistencia` (
-  `id` int(11) NOT NULL,
-  `registro` datetime NOT NULL,
-  `usuario_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Volcado de datos para la tabla `asistencia`
---
-
-INSERT INTO `asistencia` (`id`, `registro`, `usuario_id`) VALUES
-(1, '2020-02-12 23:07:22', 3);
-
--- --------------------------------------------------------
-
---
 -- Estructura de tabla para la tabla `contacto`
 --
 
@@ -57,33 +38,27 @@ CREATE TABLE `contacto` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `departamento`
+-- Estructura de tabla para la tabla `detalle_idioma`
 --
 
-CREATE TABLE `departamento` (
+CREATE TABLE `detalle_idioma` (
   `id` int(11) NOT NULL,
-  `nombre` varchar(32) NOT NULL
+  `personal_id` int(11) NOT NULL,
+  `idioma` varchar(100) NOT NULL,
+  `habla` varchar(50) NOT NULL,
+  `lee` varchar(50) NOT NULL,
+  `escribe` varchar(50) NOT NULL,
+  `adquirido` varchar(50) NOT NULL,
+  `graduado` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Volcado de datos para la tabla `departamento`
+-- Volcado de datos para la tabla `detalle_idioma`
 --
 
-INSERT INTO `departamento` (`id`, `nombre`) VALUES
-(1, 'Amazonas'),
-(2, 'Ancash');
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `distrito`
---
-
-CREATE TABLE `distrito` (
-  `id` int(11) NOT NULL,
-  `nombre` varchar(32) NOT NULL,
-  `provincia_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+INSERT INTO `detalle_idioma` (`id`, `personal_id`, `idioma`, `habla`, `lee`, `escribe`, `adquirido`, `graduado`) VALUES
+(1, 14, '123123', 'R', 'R', 'R', 'PRACTICA', 'SI'),
+(2, 14, '123', 'B', 'B', 'B', 'ESTUDIO', 'SI');
 
 -- --------------------------------------------------------
 
@@ -104,10 +79,10 @@ CREATE TABLE `menus` (
 INSERT INTO `menus` (`id_men`, `nombre_men`, `link_men`) VALUES
 (1, 'Inicio', 'dashboard'),
 (2, 'Personal', 'control/personal'),
-(3, 'Proveedores', 'mantenimiento/proveedores'),
-(4, 'Productos', 'mantenimiento/productos'),
-(5, 'Cajas', 'movimientos/cajas'),
-(6, 'Registrar Cajas', 'movimientos/cajas/add'),
+(3, 'Sanitario', 'control/sanitario_mensual'),
+(4, 'Sanitario', 'control/sanitario_anual'),
+(5, 'Sanitario Registro', 'control/sanitario_registro'),
+(6, 'Vehiculos', 'control/vehiculos'),
 (7, 'Reporte Cajas', 'reportes/cajas'),
 (8, 'Ventas', 'movimientos/ventas'),
 (9, 'Vender', 'movimientos/ventas/add'),
@@ -143,7 +118,11 @@ CREATE TABLE `permisos` (
 
 INSERT INTO `permisos` (`id_per`, `read`, `insert`, `update`, `delete`, `id_men`, `id_rol`) VALUES
 (1, 1, 1, 1, 1, 1, 1),
-(2, 1, 1, 1, 1, 2, 1);
+(2, 1, 1, 1, 1, 2, 1),
+(29, 1, 1, 1, 1, 3, 1),
+(30, 1, 1, 1, 1, 4, 1),
+(31, 1, 1, 1, 1, 5, 1),
+(32, 1, 1, 1, 1, 6, 1);
 
 -- --------------------------------------------------------
 
@@ -153,7 +132,8 @@ INSERT INTO `permisos` (`id_per`, `read`, `insert`, `update`, `delete`, `id_men`
 
 CREATE TABLE `personal` (
   `id` int(11) NOT NULL,
-  `grado` int(11) NOT NULL,
+  `imagen` varchar(64) NOT NULL,
+  `grado` varchar(64) NOT NULL,
   `arma` varchar(32) NOT NULL,
   `apellido_pat` varchar(16) NOT NULL,
   `apellido_mat` varchar(16) NOT NULL,
@@ -180,63 +160,63 @@ CREATE TABLE `personal` (
   `talla_camisa` varchar(4) NOT NULL,
   `talla_pantalon` varchar(4) NOT NULL,
   `talla_calzado` varchar(4) NOT NULL,
-  `talla_prenda` int(11) NOT NULL,
-  `talla` double NOT NULL,
-  `peso` double NOT NULL,
-  `grupo_sang` varchar(8) NOT NULL,
-  `sexo` varchar(8) NOT NULL,
+  `talla_prenda` varchar(4) NOT NULL,
   `banco` varchar(16) NOT NULL,
   `nro_cuenta` int(16) NOT NULL,
-  `afp` varchar(16) NOT NULL,
-  `onp` varchar(16) NOT NULL,
-  `estado` varchar(16) NOT NULL
+  `afiliacion` varchar(16) NOT NULL,
+  `estado` varchar(16) NOT NULL,
+  `estado_registro` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `personal`
+--
+
+INSERT INTO `personal` (`id`, `imagen`, `grado`, `arma`, `apellido_pat`, `apellido_mat`, `nombres`, `estado_civ`, `anios_serv`, `grado_instruc`, `religion`, `fec_ultimo_asc`, `depart_nac`, `provinc_nac`, `distrito_nac`, `fecha_nac`, `edad`, `depart_viv`, `provinc_viv`, `distrito_viv`, `urbaniz_viv`, `calle_viv`, `cip`, `dni`, `pasaporte`, `brevete`, `talla_camisa`, `talla_pantalon`, `talla_calzado`, `talla_prenda`, `banco`, `nro_cuenta`, `afiliacion`, `estado`, `estado_registro`) VALUES
+(16, 'pp.jpg', 'SUB OFICIAL DE TERCERA', 'CABALLERIA', 'Galvez', 'Galvez', 'Victor', 'DIVORCIADO', 123, 'SUPERIOR', '123', '1111-11-11', '2812', '2843', '2845', '0000-00-00', 123, '2645', '2645', '2646', '123', '123', 123, 123, '123', 'A-I', 'M', '30', '38', '55', '123', 123, 'AFP', '0', 0),
+(17, 'pp.jpg', 'SUB OFICIAL DE TERCERA', 'CABALLERIA', 'galvez', 'chavez', 'victor', 'DIVORCIADO', 123, 'SUPERIOR', '123', '1111-11-11', '2534', '2563', '2565', '0000-00-00', 123, '2576', '2576', '2577', '123', '123', 115955050, 77127600, '123', 'A-I', 'M', '30', '38', '55', '123', 123, 'AFP', '0', 0);
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `provincia`
+-- Estructura de tabla para la tabla `registro_anual`
 --
 
-CREATE TABLE `provincia` (
+CREATE TABLE `registro_anual` (
   `id` int(11) NOT NULL,
-  `nombre` varchar(32) NOT NULL,
-  `ciudad_id` int(11) NOT NULL
+  `fecha` datetime NOT NULL,
+  `personal_id` int(11) NOT NULL,
+  `presion` varchar(16) NOT NULL,
+  `medicina` varchar(64) NOT NULL,
+  `edad` int(11) NOT NULL,
+  `talla` double NOT NULL,
+  `peso` double NOT NULL,
+  `peri_abdominal` double NOT NULL,
+  `estado` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Volcado de datos para la tabla `provincia`
+-- Volcado de datos para la tabla `registro_anual`
 --
 
-INSERT INTO `provincia` (`id`, `nombre`, `ciudad_id`) VALUES
-(1, 'Chachapoyas', 1),
-(2, 'Bagua', 1),
-(3, 'Bongara', 1),
-(4, 'Condorcanqui', 1),
-(5, 'Luya', 1),
-(6, 'Rodríguez de Mendoza', 1),
-(7, 'Luya', 1),
-(8, 'Utcubamba', 1),
-(9, 'Huaraz', 2),
-(10, 'Aija', 2),
-(11, 'Antonio Raimondi', 2),
-(12, 'Asunción', 2),
-(13, 'Bolognesi', 2),
-(14, 'Carhuaz', 2),
-(15, 'Carlos Fermín Fitzcarrald', 2),
-(16, 'Casma', 2),
-(17, 'Corongo', 2),
-(18, 'Huari', 2),
-(19, 'Huarmey', 2),
-(20, 'Huaylas', 2),
-(21, 'Mariscal Luzuriaga', 2),
-(22, 'Ocros', 2),
-(23, 'Pallasca', 2),
-(24, 'Pomabamba', 2),
-(25, 'Recuay', 2),
-(26, 'Santa', 2),
-(27, 'Sihuas', 2),
-(28, 'Yungay', 2);
+INSERT INTO `registro_anual` (`id`, `fecha`, `personal_id`, `presion`, `medicina`, `edad`, `talla`, `peso`, `peri_abdominal`, `estado`) VALUES
+(1, '2020-03-08 18:11:10', 16, 'asd', 'asd', 123, 12123, 123, 123, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `registro_sanitario`
+--
+
+CREATE TABLE `registro_sanitario` (
+  `id` int(11) NOT NULL,
+  `personal_id` int(11) NOT NULL,
+  `fecha` datetime NOT NULL,
+  `sexo` varchar(32) NOT NULL,
+  `grupo_sang` varchar(64) NOT NULL,
+  `alergias` varchar(124) NOT NULL,
+  `estado` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -287,16 +267,41 @@ INSERT INTO `usuarios` (`id_usu`, `nombres_usu`, `apellidos_usu`, `telefono`, `e
 (3, 'Deek', 'Calderon', NULL, NULL, 'deek', '123', 3, 1),
 (4, 'Kato', NULL, NULL, NULL, 'kato', '123', 3, 1);
 
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `vehiculos`
+--
+
+CREATE TABLE `vehiculos` (
+  `id` int(11) NOT NULL,
+  `n_placa` varchar(32) NOT NULL,
+  `n_serie` varchar(32) NOT NULL,
+  `n_vin` varchar(32) NOT NULL,
+  `n_motor` varchar(32) NOT NULL,
+  `n_color` varchar(16) NOT NULL,
+  `marca` varchar(16) NOT NULL,
+  `modelo` varchar(16) NOT NULL,
+  `placa_vigente` varchar(32) NOT NULL,
+  `placa_anterior` varchar(32) NOT NULL,
+  `anotaciones` varchar(32) NOT NULL,
+  `sede` varchar(32) NOT NULL,
+  `personal_id` int(11) NOT NULL,
+  `estado` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `vehiculos`
+--
+
+INSERT INTO `vehiculos` (`id`, `n_placa`, `n_serie`, `n_vin`, `n_motor`, `n_color`, `marca`, `modelo`, `placa_vigente`, `placa_anterior`, `anotaciones`, `sede`, `personal_id`, `estado`) VALUES
+(1, 'XS1232SRFEWR', 'XS1232SRFEWR', 'XS1232SRFEWR', 'XS1232SRFEWR', 'NEGRO', 'SUZUKI', 'AVPAS', 'ASDDAS', 'NINGUNA', 'ASDASD', 'ASDASD', 16, 1),
+(2, 'asdasd', 'asd', 'asd', 'asd', 'asd', 'asd', 'asd', 'asd', 'as', 'as', 'asd', 17, 1),
+(3, 'asdasd', 'asd', 'asd', 'asd', 'asd', 'asd', 'asd', 'asd', 'as', 'as', 'asd', 17, 1);
+
 --
 -- Índices para tablas volcadas
 --
-
---
--- Indices de la tabla `asistencia`
---
-ALTER TABLE `asistencia`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `usuario_id` (`usuario_id`);
 
 --
 -- Indices de la tabla `contacto`
@@ -305,16 +310,11 @@ ALTER TABLE `contacto`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indices de la tabla `departamento`
+-- Indices de la tabla `detalle_idioma`
 --
-ALTER TABLE `departamento`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indices de la tabla `distrito`
---
-ALTER TABLE `distrito`
-  ADD KEY `provincia_id` (`provincia_id`);
+ALTER TABLE `detalle_idioma`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `personal_id` (`personal_id`);
 
 --
 -- Indices de la tabla `menus`
@@ -337,11 +337,18 @@ ALTER TABLE `personal`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indices de la tabla `provincia`
+-- Indices de la tabla `registro_anual`
 --
-ALTER TABLE `provincia`
+ALTER TABLE `registro_anual`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `fk_provincia_ciud` (`ciudad_id`);
+  ADD KEY `personal_id` (`personal_id`);
+
+--
+-- Indices de la tabla `registro_sanitario`
+--
+ALTER TABLE `registro_sanitario`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_personal_registro` (`personal_id`);
 
 --
 -- Indices de la tabla `roles`
@@ -357,14 +364,15 @@ ALTER TABLE `usuarios`
   ADD KEY `fk_role_usuarios` (`id_rol`);
 
 --
--- AUTO_INCREMENT de las tablas volcadas
+-- Indices de la tabla `vehiculos`
 --
+ALTER TABLE `vehiculos`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `personal_id` (`personal_id`);
 
 --
--- AUTO_INCREMENT de la tabla `asistencia`
+-- AUTO_INCREMENT de las tablas volcadas
 --
-ALTER TABLE `asistencia`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `contacto`
@@ -373,9 +381,9 @@ ALTER TABLE `contacto`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de la tabla `departamento`
+-- AUTO_INCREMENT de la tabla `detalle_idioma`
 --
-ALTER TABLE `departamento`
+ALTER TABLE `detalle_idioma`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
@@ -388,19 +396,25 @@ ALTER TABLE `menus`
 -- AUTO_INCREMENT de la tabla `permisos`
 --
 ALTER TABLE `permisos`
-  MODIFY `id_per` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `id_per` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT de la tabla `personal`
 --
 ALTER TABLE `personal`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
--- AUTO_INCREMENT de la tabla `provincia`
+-- AUTO_INCREMENT de la tabla `registro_anual`
 --
-ALTER TABLE `provincia`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+ALTER TABLE `registro_anual`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT de la tabla `registro_sanitario`
+--
+ALTER TABLE `registro_sanitario`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT de la tabla `roles`
@@ -415,20 +429,20 @@ ALTER TABLE `usuarios`
   MODIFY `id_usu` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
+-- AUTO_INCREMENT de la tabla `vehiculos`
+--
+ALTER TABLE `vehiculos`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- Restricciones para tablas volcadas
 --
 
 --
--- Filtros para la tabla `asistencia`
+-- Filtros para la tabla `detalle_idioma`
 --
-ALTER TABLE `asistencia`
-  ADD CONSTRAINT `asistencia_ibfk_1` FOREIGN KEY (`usuario_id`) REFERENCES `usuarios` (`id_usu`);
-
---
--- Filtros para la tabla `distrito`
---
-ALTER TABLE `distrito`
-  ADD CONSTRAINT `distrito_ibfk_1` FOREIGN KEY (`provincia_id`) REFERENCES `provincia` (`id`);
+ALTER TABLE `detalle_idioma`
+  ADD CONSTRAINT `detalle_idioma_ibfk_1` FOREIGN KEY (`personal_id`) REFERENCES `personal` (`id`);
 
 --
 -- Filtros para la tabla `permisos`
@@ -438,16 +452,28 @@ ALTER TABLE `permisos`
   ADD CONSTRAINT `fk_rol_per` FOREIGN KEY (`id_rol`) REFERENCES `roles` (`id_rol`);
 
 --
--- Filtros para la tabla `provincia`
+-- Filtros para la tabla `registro_anual`
 --
-ALTER TABLE `provincia`
-  ADD CONSTRAINT `fk_provincia_ciud` FOREIGN KEY (`ciudad_id`) REFERENCES `departamento` (`id`);
+ALTER TABLE `registro_anual`
+  ADD CONSTRAINT `registro_anual_ibfk_1` FOREIGN KEY (`personal_id`) REFERENCES `personal` (`id`);
+
+--
+-- Filtros para la tabla `registro_sanitario`
+--
+ALTER TABLE `registro_sanitario`
+  ADD CONSTRAINT `fk_personal_registro` FOREIGN KEY (`personal_id`) REFERENCES `personal` (`id`);
 
 --
 -- Filtros para la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
   ADD CONSTRAINT `fk_role_usuarios` FOREIGN KEY (`id_rol`) REFERENCES `roles` (`id_rol`);
+
+--
+-- Filtros para la tabla `vehiculos`
+--
+ALTER TABLE `vehiculos`
+  ADD CONSTRAINT `vehiculos_ibfk_1` FOREIGN KEY (`personal_id`) REFERENCES `personal` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
