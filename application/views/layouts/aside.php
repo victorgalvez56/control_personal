@@ -29,7 +29,7 @@
                             </span>
                         </a>
                         <ul class="treeview-menu">
-                        <li><a href="<?php echo base_url(); ?>control/sanitario_registro/"><i class="fa fa-circle-o">
+                            <li><a href="<?php echo base_url(); ?>control/sanitario_registro/"><i class="fa fa-circle-o">
                                     </i>Registro</a></li>
                             <li><a href="<?php echo base_url(); ?>control/sanitario_mensual/"><i class="fa fa-circle-o">
                                     </i>Mensual</a></li>
@@ -37,6 +37,10 @@
                                     </i>Anual</a></li>
                         </ul>
 
+                    </li>
+                    <li><a href="<?php echo base_url(); ?>control/vehiculos/">
+                            <i class="ion ion-android-car"></i><span>Registro Vehicular</span>
+                        </a>
                     </li>
                     <li class="treeview">
                         <a href="#">

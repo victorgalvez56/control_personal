@@ -4,16 +4,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Sanitario_anual_model extends CI_Model {
 
 	public function getPersonals(){
-		$this->db->select("r.*,p.dni,p.nombres,p.apellido_pat,p.apellido_mat");
-		$this->db->from("registro_sanitario r");
-		$this->db->join("personal p","r.personal_id = p.id");	
-		$this->db->where("r.estado","1");
+		$this->db->select("p.*,r.*");
+		$this->db->from("personal p");
+		$this->db->join("registro_sanitario r","r.personal_id = p.id");	
+		$this->db->where("p.estado","1");
 		$resultados = $this->db->get();
 		return $resultados->result();
 	}
 
 	public function save($data){
-		return $this->db->insert("registro_sanitario",$data);
+		return $this->db->insert("registro_anual",$data);
 	}
 	public function getCategoria($id){
 		$this->db->where("id_cat",$id);
@@ -26,7 +26,7 @@ class Sanitario_anual_model extends CI_Model {
 	}
 	public function update($id,$data){
 		$this->db->where("id_cat",$id);
-		return $this->db->update("categorias",$data);
+		return $this->db->update("personal",$data);
 	}
 	public function lastID(){
 		return $this->db->insert_id();

@@ -36,6 +36,19 @@
 <!-- AdminLTE for demo purposes -->
 <script src="<?php echo base_url(); ?>assets/template/dist/js/demo.js"></script>
 <script>
+    $(document).on("click",".btn-view-vehiculo",function(){
+        valor_id = $(this).val();
+        $.ajax({
+            url: base_url + "control/vehiculos/view",
+            type:"POST",
+            dataType:"html",
+            data:{id:valor_id},
+            success:function(data){
+                $("#modal-default .modal-body").html(data);
+                $("#modal-venta .modal-body").html(data);
+            }
+        });
+    });
 
   $(document).on("click", ".btn-check22", function() {
     $("#modal-default").modal("hide");
@@ -55,9 +68,35 @@
       $( "#buttonsearch" ).prop( "disabled", true );
       $("#btn-check22").val(null);
     } else {
+      alert("seleccione un personal...");
+    }
+  });
+
+  $(document).on("click", ".btn-checkanual", function() {
+    $("#modal-default").modal("hide");
+    data = $(this).val();
+    if (data != '') {
+      infoproducto = data.split("*");
+      html = "<tr>";
+      html += "<td><input type='hidden' name='dni' value='" + infoproducto[0] + "'>" + infoproducto[1] + "</td>";
+      html += "<td><input type='hidden' name='nombres'  value='" + infoproducto[2] + "'>" + infoproducto[2] + "</td>";
+      html += "<td><input class='form-control form-control' type='text' name='presion' list='citynames'  style='text-transform: uppercase;' required><datalist id='citynames'>  <option value='NO'></datalist></td>";
+      html += "<td><input class='form-control form-control' type='text' name='medicacion' list='citynames'  style='text-transform: uppercase;' required><datalist id='citynames'>  <option value='NO'></datalist></td>";
+      html += "<td><input type='number' class='form-control form-control' min='1' name='edad'></td>";
+      html += "<td><input type='number' class='form-control form-control' min='1' name='talla'></td>";
+      html += "<td><input type='number' class='form-control form-control' min='1' name='peso'></td>";
+      html += "<td><input type='number' class='form-control form-control' min='1' name='perimetro'></td>";
+      html += "<td><button type='button' class='btn btn-danger btn-remove-producto'><span class='fa fa-remove'></span></button></td>";
+      html += "</tr>";
+      $("#tbventas tbody").append(html);
+      $( "#buttonsearch" ).prop( "disabled", true );
+      $("#btn-check22").val(null);
+    } else {
       alert("seleccione un producto...");
     }
   });
+
+
   $(document).on("click", ".btn-remove-producto", function() {
     $(this).closest("tr").remove();
     $( "#buttonsearch" ).prop( "disabled", false );

@@ -9,6 +9,7 @@ class Sanitario_anual extends CI_Controller
 	{
 		parent::__construct();
 		$this->permisos = $this->backend_lib->control();
+		$this->load->model("Sanitario_registro_model");
 		$this->load->model("Sanitario_anual_model");
 		$this->load->model("Personal_model");
 	}
@@ -26,7 +27,7 @@ class Sanitario_anual extends CI_Controller
 	public function add()
 	{
 		$data = array(
-			'personals' => $this->Personal_model->getPersonals(),
+			'personals' => $this->Personal_model->getPersonalsanual(),
 		);
 		$this->load->view("layouts/header");
 		$this->load->view("layouts/aside");
@@ -37,75 +38,29 @@ class Sanitario_anual extends CI_Controller
 
 	public function store(){
 		$fecha = date("d-m-Y H:i:s");
-		$nuevafecha = strtotime('-7 hour', strtotime($fecha)); // 6 hour en horario de verano
+		$nuevafecha = strtotime('-6 hour', strtotime($fecha)); // 6 hour en horario de verano
 		$nuevafecha = date('Y-m-d H:i:s', $nuevafecha);
 		$dni = $this->input->post("dni");
-		$sexo = $this->input->post("sexo");
-		$grupo_sang = $this->input->post("grupo_sang");
-		$alergias = $this->input->post("alergias");
+		$presion = $this->input->post("presion");
+		$medicacion = $this->input->post("medicacion");
+		$edad = $this->input->post("edad");
+		$talla = $this->input->post("talla");
+		$peso = $this->input->post("peso");
+		$perimetro = $this->input->post("perimetro");
 		$data = array(
+			'fecha' => $nuevafecha,
 			'personal_id' => $dni,
-			'sexo' => $sexo,
-			'grupo_sang' => $grupo_sang,
-			'alergias' => $alergias,
+			'presion' => $presion,
+			'medicina' => $medicacion,
+			'edad' => $edad,
+			'talla' => $talla,
+			'peso' => $peso,
+			'peri_abdominal' => $perimetro,
 			'estado' => "1",
 		);
-		$datapersonal = array(
-			'estado_registro' => "1",
-		);
-
-
-		$this->Sanitario_registro_model->save($data);
-		$this->Personal_model->update($dni,$datapersonal);
-
-		redirect(base_url()."control/sanitario_registro");
-
-
+		$this->Sanitario_anual_model->save($data);
+		redirect(base_url()."control/sanitario_anual");
 	}
-
-	public function edit($id)
-	{
-		$data  = array(
-			'categoria' => $this->Categorias_model->getCategoria($id),
-		);
-		$this->load->view("layouts/header");
-		$this->load->view("layouts/aside");
-		$this->load->view("admin/categorias/edit", $data);
-		$this->load->view("layouts/footer");
-	}
-
-	public function update()
-	{
-
-		$idCategoria = $this->input->post("idCategoria");
-		$nombre = $this->input->post("nombre_cat");
-		$descripcion = $this->input->post("descripcion_cat");
-
-		$categoriaactual = $this->Categorias_model->getCategoria($idCategoria);
-
-		if ($nombre == $categoriaactual->nombre_cat) {
-			$is_unique = "";
-		} else {
-			$is_unique = "|is_unique[categorias.nombre_cat]";
-		}
-		$this->form_validation->set_rules("nombre_cat", "Nombre", "required" . $is_unique);
-		if ($this->form_validation->run() == TRUE) {
-			$data = array(
-				'nombre_cat' => $nombre,
-				'descripcion_cat' => $descripcion,
-			);
-
-			if ($this->Categorias_model->update($idCategoria, $data)) {
-				redirect(base_url() . "mantenimiento/categorias");
-			} else {
-				$this->session->set_flashdata("error", "No se pudo actualizar la informacion");
-				redirect(base_url() . "mantenimiento/categorias/edit/" . $idCategoria);
-			}
-		} else {
-			$this->edit($idCategoria);
-		}
-	}
-
 	public function view($id)
 	{
 		$data  = array(
