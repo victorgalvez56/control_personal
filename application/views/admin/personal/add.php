@@ -14,7 +14,7 @@
                                 <p><i class="icon fa fa-ban"></i><?php echo $this->session->flashdata("error"); ?></p>
                             </div>
                         <?php endif; ?>
-                        <form action="<?php echo base_url(); ?>control/personal/storestep1" method="POST">
+                        <form action="<?php echo base_url(); ?>control/personal/store" method="POST">
                             <section class="content">
                                 <div class="box box-primary">
                                     <div class="row">
@@ -109,7 +109,7 @@
                                                         <div class="col-md-2">
                                                             <div class="form-group">
                                                                 <label for="anios_serv">Años Servicio:</label>
-                                                                <input type="number" class="form-control" id="anios_serv" name="anios_serv" style="text-transform: uppercase;" required>
+                                                                <input type="number" class="form-control" id="anios_serv" name="anios_serv" style="text-transform: uppercase;" min="0" required>
                                                             </div>
                                                         </div>
                                                         <div class="col-md-2">
@@ -130,16 +130,7 @@
                                                                 <input type="text" class="form-control" id="religion" name="religion" style="text-transform: uppercase;" required>
                                                             </div>
                                                         </div>
-                                                        <div class="col-md-2">
-                                                            <div class="form-group">
-                                                                <label for="religion">Sexo:</label>
-                                                                <select class="form-control form-control-lg" id="sexo" name="sexo" required>
-                                                                    <option value="">SELECCIONE</option>
-                                                                    <option value="M">M</option>
-                                                                    <option value="F">F</option>
-                                                                </select>
-                                                            </div>
-                                                        </div>
+                                                        
                                                         <div class="col-md-2">
                                                             <div class="form-group">
                                                                 <label for="fec_ult_asc">Fecha Último Ascenso:</label>
@@ -188,6 +179,31 @@
                                                         </div>
                                                     </div>
                                                 </div>
+<div class="box-header with-border">
+                                                    <h3 class="box-title">Teléfono</h3>
+                                                </div>
+                                                <div class="box-body">
+                                                    <div class="col-md-12">
+                                                        <div class="col-md-2">
+                                                            <div class="form-group">
+                                                                <label for="telefono">Número:</label>
+                                                                <input type="number" class="form-control" id="numero" min="0" name="telefono" style="text-transform: uppercase;" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==9) return false;"  required>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-2">
+                                                            <div class="form-group">
+                                                                <label for="">Operador:</label>
+                                                                <input type="text" class="form-control" id="operador" name="operador" style="text-transform: uppercase;" required>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                <label for="correo">Correo Electrónico:</label>
+                                                                <input type="email" class="form-control" id="correo" name="correo" style="text-transform: uppercase;" required>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>                                                
                                                 <div class="box-header with-border">
                                                     <h3 class="box-title">Lugar y Fecha de Nacimiento</h3>
                                                 </div>
@@ -266,6 +282,52 @@
                                                                     <option value="B-II-B">B-II-B</option>
                                                                     <option value="B-II-C">B-II-C</option>
                                                                     <option value="B">B</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="box-header with-border">
+                                                    <h3 class="box-title">Características Físicas</h3>
+                                                </div>
+                                                <div class="box-body">
+                                                    <div class="col-md-12">
+                                                        <div class="col-md-2">
+                                                            <div class="form-group">
+                                                                <label for="talla">Talla(m.):</label>
+                                                                <input type="text" class="form-control" name="talla"  required>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-2">
+                                                            <div class="form-group">
+                                                                <label for="peso">Peso(kg.):</label>
+                                                                <input type="text" class="form-control" name="peso" required>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-2">
+                                                            <div class="form-group">
+                                                                <label for="grupo_sang">Grupo Sanguíneo:</label>
+                                                                <select class="form-control form-control-lg" id="grupo_sang" name="grupo_sang" required>
+                                                                    <option value="">SELECCIONE</option>
+                                                                    <option value="A+">A+</option>
+                                                                    <option value="A-">A-</option>
+                                                                    <option value="B+">B+</option>
+                                                                    <option value="B-">B-</option>
+                                                                    <option value="AB+">AB+</option>
+                                                                    <option value="AB-">AB-</option>
+                                                                    <option value="O+">O+</option>
+                                                                    <option value="O-">O-</option>
+                                                                    
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-2">
+                                                            <div class="form-group">
+                                                                <label for="religion">Sexo:</label>
+                                                                <select class="form-control form-control-lg" id="sexo" name="sexo" required>
+                                                                    <option value="">SELECCIONE</option>
+                                                                    <option value="MASCULINO">MASCULINO</option>
+                                                                    <option value="FEMENINO">FEMENINO</option>
                                                                 </select>
                                                             </div>
                                                         </div>
@@ -399,7 +461,7 @@
                                                 </div>
                                                 <div class="box-body">
                                                     <div class="col-md-12">
-                                                        <table id="tbfamiliares" class="table table-bordered table-striped table-hover">
+                                                        <table id="tbfamiliares1" class="table table-bordered   table-striped table-hover">
                                                             <thead>
                                                                 <tr>
                                                                     <th>Nombres</th>
@@ -407,17 +469,26 @@
                                                                     <th>Edad</th>
                                                                     <th>Lugar Nac.</th>
                                                                     <th>Fecha Nac.</th>
-                                                                    <th>CIP</th>
-                                                                    <th>DNI</th>
-                                                                    <th>Telef.</th>
-                                                                    <th>Tipo Sang.</th>
-                                                                    <th>Grado Instr.</th>
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
 
                                                             </tbody>
                                                         </table>
+                                                        <table id="tbfamiliares2" class="table table-bordered table-striped table-hover">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>CIP</th>
+                                                                    <th>DNI</th>
+                                                                    <th>Telef.</th>
+                                                                    <th>Grupo Sang.</th>
+                                                                    <th>Grado Instr.</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+
+                                                            </tbody>
+                                                        </table>                                                        
                                                     </div>
                                                 </div>
                                             </div>

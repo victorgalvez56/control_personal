@@ -18900,12 +18900,19 @@
     $(this).closest("tr").remove();
   });
   $(document).on("click", ".btn-agregarfamiliares", function() {
-    html = "<tr>";
+    html = "<tr id='tableremove1'>";
     html += "<td><input type='text' class='form-control' id='idioma' name='nombres[]' style='text-transform: uppercase;' required ></td>";
     html += "<td><input type='text' class='form-control' id='parentesco' name='parentesco[]' style='text-transform: uppercase;' required ></td>";
     html += "<td><input type='number' class='form-control' id='edad' name='edad[]' style='text-transform: uppercase;' required ></td>";
     html += "<td><input type='text' class='form-control' id='lugar_nac' name='lugar_nac[]' style='text-transform: uppercase;' required ></td>";
     html += "<td><input type='date' class='form-control' id='fecha_nac' name='fecha_nac[]' style='text-transform: uppercase;' required ></td>";
+    html += "</tr>";
+    $("#tbfamiliares1 tbody").append(html);
+    $("#btn-agregarfamiliares").val(null);
+  });
+
+  $(document).on("click", ".btn-agregarfamiliares", function() {
+    html = "<tr id='tableremove2'>";
     html += "<td><input type='number' class='form-control' id='cip' name='cip[]' style='text-transform: uppercase;' required ></td>";
     html += "<td><input type='number' class='form-control' id='dni' name='dni[]' style='text-transform: uppercase;' required ></td>";
     html += "<td><input type='number' class='form-control' id='telefono' name='telefono[]' style='text-transform: uppercase;' required ></td>";
@@ -18913,13 +18920,15 @@
     html += "<td><select class='form-control form-control' id='grado_instr' name='grado_instr[]'><option value=''>Seleccione</option><option value='PRIMARIA'>PRIMARIA</option><option value='SECUNDARIA'>SECUNDARIA</option><option value='SUPERIOR'>TECNICO</option><option value='TECNICO'>TECNICO</option></select></td>";
     html += "<td><button type='button' class='btn btn-danger btn-remove-familiares'><span class='fa fa-remove'></span></button></td>";
     html += "</tr>";
-    $("#tbfamiliares tbody").append(html);
+    $("#tbfamiliares2 tbody").append(html);
     $("#btn-agregarfamiliares").val(null);
   });
-
-
+    
+    
   $(document).on("click", ".btn-remove-familiares", function() {
-    $(this).closest("tr").remove();
+                document.getElementById("tableremove1").remove(); 
+                      document.getElementById("tableremove2").remove(); 
+
   });
 </script>
 </body>

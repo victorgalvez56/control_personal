@@ -38,7 +38,7 @@ class Personal extends CI_Controller
 		$this->load->view("admin/personal/addstep2");
 		$this->load->view("layouts/footer");
 	}
-	public function storestep1()
+	public function store()
 	{
 		$imagen = $this->input->post("imagen");
 		$grado = $this->input->post("grado");
@@ -51,7 +51,6 @@ class Personal extends CI_Controller
 		$grado_instr = $this->input->post("grado_instr");
 		$religion = $this->input->post("religion");
 		$fec_ult_asc = $this->input->post("fec_ult_asc");
-		$sexo = $this->input->post("sexo");
 
 		$depart_viv = $this->input->post("provin_viv");
 		$provinc_viv = $this->input->post("provin_viv");
@@ -69,7 +68,13 @@ class Personal extends CI_Controller
 		$dni = $this->input->post("dni");
 		$pasaporte = $this->input->post("pasaporte");
 		$brevete = $this->input->post("brevete");
-		
+
+		$talla = $this->input->post("talla");
+		$peso = $this->input->post("peso");
+		$grupo_sang = $this->input->post("grupo_sang");
+		$sexo = $this->input->post("sexo");
+
+
 		$camisa = $this->input->post("camisa");
 		$pantalon = $this->input->post("pantalon");
 		$calzado = $this->input->post("calzado");
@@ -79,6 +84,11 @@ class Personal extends CI_Controller
 		$nro_cuenta = $this->input->post("nro_cuenta");
 		$afiliacion = $this->input->post("afiliacion");
 
+		/* Temporal*/
+		$telefono = $this->input->post("telefono");
+		$operador = $this->input->post("operador");
+		$correo = $this->input->post("correo");
+
 		$ididiomas = $this->input->post("ididiomas");
 		$idioma = $this->input->post("idioma");
 		$idioma_habla = $this->input->post("idioma_habla");
@@ -87,19 +97,34 @@ class Personal extends CI_Controller
 		$idioma_estudio = $this->input->post("idioma_estudio");
 		$idioma_practica = $this->input->post("idioma_practica");
 
+		$nombre_fam = $this->input->post("nombre_fam");
+		$parentesco_fam = $this->input->post("parentesco_fam");
+		$edad_fam = $this->input->post("edad_fam");
+		$lugar_nac_fam = $this->input->post("lugar_nac_fam");
+		$fecha_nac_fam = $this->input->post("fecha_nac_fam");
+		$cip_fam = $this->input->post("cip_fam");
+		$dni_fam = $this->input->post("dni_fam");
+		$telef_fam = $this->input->post("telef_fam");
+		$grup_sang_fam = $this->input->post("grup_sang_fam");
+		$grad_inst_fam = $this->input->post("grad_inst_fam");
+
+
 		$data  = array(
 			'imagen' => $imagen,
 			'grado' => $grado,
 			'arma' => $arma,
 			'apellido_pat' => $apellido_pat,
 			'apellido_mat' => $apellido_mat,
-			'nombres' => $nombres,
+			'nombres' => 'NOMBRE...',
 			'estado_civ' => $estado_civ,
 			'anios_serv' => $anios_serv,
-			'grado_instruc' => $grado_instr,
+			'grado_instruc' => 'PRIMARIA',
 			'religion' => $religion,
 			'fec_ultimo_asc' => $fec_ult_asc,
-			'sexo' => $sexo,
+
+			'telefono' => '958560996',
+			'operador' => $operador,
+			'correo' => $correo,
 
 			'depart_viv' => $depart_viv,
 			'provinc_viv' => $provinc_viv,
@@ -113,10 +138,17 @@ class Personal extends CI_Controller
 			'fecha_nac' => $fecha_nac,
 			'edad' => $edad,
 
-			'cip' => $cip,
-			'dni' => $dni,
-			'pasaporte' => $pasaporte,
+			'cip' => '115955050',
+			'dni' => '77127600',
+			'pasaporte' => 'ASDASD111',
 			'brevete' => $brevete,
+
+
+			'talla' => $talla,
+			'peso' => $peso,
+			'grupo_sang' => $grupo_sang,
+			'sexo' => $sexo,
+
 
 			'talla_camisa' => $camisa,
 			'talla_pantalon' => $pantalon,
@@ -131,14 +163,14 @@ class Personal extends CI_Controller
 
 
 		);
-		$this->addstep2();
 
 		if ($this->Personal_model->save($data)) {
 			$idpersonal = $this->Personal_model->lastID();
 			$this->save_detalle_idioma($idpersonal, $idioma, $idioma_habla, $idioma_lee, $idioma_escribe, $idioma_estudio, $idioma_practica);
+			$this->save_detalle_familiar($idpersonal, $nombre_fam, $parentesco_fam, $edad_fam, $lugar_nac_fam, $fecha_nac_fam, $cip_fam, $dni_fam, $telef_fam, $grup_sang_fam, $grad_inst_fam);
 			redirect(base_url() . "control/personal");
 		} else {
-			redirect(base_url() . "movimientos/ventas/add");
+			echo "no funcionòs";
 		}
 	}
 
@@ -160,6 +192,27 @@ class Personal extends CI_Controller
 		}
 	}
 
+	protected function save_detalle_familiar($idpersonal, $nombre_fam, $parentesco_fam, $edad_fam, $lugar_nac_fam, $fecha_nac_fam, $cip_fam, $dni_fam, $telef_fam, $grup_sang_fam, $grad_inst_fam)
+	{
+		for ($i = 0; $i < count($nombre_fam); $i++) {
+			$data  = array(
+				'id' => '',
+				'personal_id' => $idpersonal,
+				'nombre_fam' => $nombre_fam[$i],
+				'parentesco_fam' => $parentesco_fam[$i],
+				'edad_fam' => $edad_fam[$i],
+				'lugar_nac_fam' => $lugar_nac_fam[$i],
+				'fecha_nac_fam' => $fecha_nac_fam[$i],
+				'cip_fam' => $cip_fam[$i],
+				'dni_fam' => $dni_fam[$i],
+				'telef_fam' => $telef_fam[$i],
+				'grup_sang_fam' => $grup_sang_fam[$i],
+				'grad_inst_fam' => $grad_inst_fam[$i],
+			);
+
+			$this->Personal_model->save_detalle_familiar($data);
+		}
+	}
 	public function edit($id)
 	{
 		$data  = array(
