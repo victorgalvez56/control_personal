@@ -16,6 +16,7 @@ class Sanitario_registro extends CI_Controller
 	{
 		$data  = array(
 			'permisos' => $this->permisos,
+            			'registros' => $this->Sanitario_registro_model->getRegistros(),
 		);
 		$this->load->view("layouts/header");
 		$this->load->view("layouts/aside");
@@ -25,13 +26,12 @@ class Sanitario_registro extends CI_Controller
 	public function add()
 	{
 		$data = array(
-			'registros' => $this->Sanitario_registro_model->getPersonals(),
+			'personals' => $this->Sanitario_registro_model->getPersonals(),
 		);
 		$this->load->view("layouts/header");
 		$this->load->view("layouts/aside");
 		$this->load->view("admin/sanitario_registro/add", $data);
 		$this->load->view("layouts/footer");
-		echo json_encode($data);
 
 	}
 

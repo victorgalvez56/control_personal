@@ -12,14 +12,19 @@
                             <i class="fa fa-home"></i> <span>Inicio</span>
                         </a>
                     </li>
-
-                    <li><a href="<?php echo base_url(); ?>control/personal/add">
-                            <i class="ion ion-person-add"></i><span>Registro Personal</span>
+                    <li class="treeview">
+                        <a href="#">
+                        <i class="ion ion-person"></i><span>Personal</span>
+                            <span class="pull-right-container">
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </span>
                         </a>
-                    </li>
-                    <li><a href="<?php echo base_url(); ?>control/personal/list">
-                            <i class="ion ion-person"></i><span>Listado Personal</span>
-                        </a>
+                        <ul class="treeview-menu">
+                        <li><a href="<?php echo base_url(); ?>control/personal/"><i class="fa fa-circle-o">
+                                    </i>Personal Militar</a></li>
+                            <li><a href="<?php echo base_url(); ?>control/sanitario_mensual/"><i class="fa fa-circle-o">
+                                    </i>Personal Civil</a></li>
+                        </ul>
                     </li>
                     <li class="treeview">
                         <a href="#">
@@ -38,8 +43,14 @@
                         </ul>
 
                     </li>
+                    <li><a href="<?php echo base_url(); ?>control/unidades"><i class="fa fa-circle-o"></i>Unidades</a></li>
+
                     <li><a href="<?php echo base_url(); ?>control/vehiculos/">
                             <i class="ion ion-android-car"></i><span>Registro Vehicular</span>
+                        </a>
+                    </li>
+                    <li><a href="<?php echo base_url(); ?>control/vehiculos/">
+                            <i class="ion ion-ios-list-outline"></i><span>Tarjeta identidad Seguridad</span>
                         </a>
                     </li>
                     <li class="treeview">

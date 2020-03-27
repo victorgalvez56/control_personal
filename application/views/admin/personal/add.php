@@ -38,24 +38,24 @@
                                                                 <label for="grado">Grado:</label>
                                                                 <select class="form-control form-control-lg" id="grado" name="grado" required>
                                                                     <option value="">SELECCIONE</option>
-                                                                    <option value="SUB OFICIAL DE TERCERA">SUB OFICIAL DE TERCERA</option>
-                                                                    <option value="SUB OFICIAL DE SEGUNDA">SUB OFICIAL DE SEGUNDA</option>
-                                                                    <option value="SUB OFICIAL DE PRIMERA">SUB OFICIAL DE PRIMERA</option>
-                                                                    <option value="TECNICO DE TERCERA">TECNICO DE TERCERA</option>
-                                                                    <option value="TECNICO DE SEGUNDA">TECNICO DE SEGUNDA</option>
-                                                                    <option value="TECNICO DE PRIMERA">TECNICO DE PRIMERA</option>
-                                                                    <option value="TECNICO JEFE">TECNICO JEFE</option>
-                                                                    <option value="TECNICO JEFE SUPERVISOR">TECNICO JEFE SUPERVISOR</option>
-                                                                    <option value="TECNICO JEFE SUPERVISOR DE BRIGADA">TECNICO JEFE SUPERVISOR DE BRIGADA</option>
-                                                                    <option value="SUB TENIENTE">SUB TENIENTE</option>
-                                                                    <option value="SUB TENIENTE CABALLERIA">SUB TENIENTE CABALLERIA</option>
-                                                                    <option value="CAPITAN">CAPITAN</option>
-                                                                    <option value="MAYOR">MAYOR</option>
-                                                                    <option value="COMANDANTE">COMANDANTE</option>
-                                                                    <option value="CORONEL">CORONEL</option>
-                                                                    <option value="GENERAL DE BRIGADA">GENERAL DE BRIGADA</option>
-                                                                    <option value="GENERAL DE DIVISION">GENERAL DE DIVISION</option>
-                                                                    <option value="GENERAL DE EJERCITO">GENERAL DE EJERCITO</option>
+                                                                    <option value="GRAL DIV EP">GRAL DIV EP</option>
+                                                                    <option value="GRAL BRIG EP">GRAL BRIG EP</option>
+                                                                    <option value="CRL EP">CRL EP</option>
+                                                                    <option value="TTE CRL EP">TTE CRL EP</option>
+                                                                    <option value="MY EP">MY EP</option>
+                                                                    <option value="CAP EP">CAP EP</option>
+                                                                    <option value="TTE EP">TTE EP</option>
+                                                                    <option value="STTE EP">STTE EP</option>
+                                                                    <option value="ALFZ EP">ALFZ EP</option>
+                                                                    <option value="TCOJS EP">TCOJS EP</option>
+                                                                    <option value="TCOJ EP">TCOJ EP</option>
+                                                                    <option value="TCO1 EP">TCO1 EP</option>
+                                                                    <option value="TCO2 EP">TCO2 EP</option>
+                                                                    <option value="TCO3 EP">TCO3 EP</option>
+                                                                    <option value="SO1">SO1</option>
+                                                                    <option value="SO2">SO2</option>
+                                                                    <option value="SO3">SO3</option>
+                                                                    
                                                                 </select>
                                                             </div>
                                                         </div>
@@ -171,7 +171,7 @@
                                                                 <input type="text" class="form-control" id="urbanizacion" name="urbanizacion" style="text-transform: uppercase;" required>
                                                             </div>
                                                         </div>
-                                                        <div class="col-md-2">
+                                                        <div class="col-md-4">
                                                             <div class="form-group">
                                                                 <label for="calle">Calle, Mz, Lote:</label>
                                                                 <input type="text" class="form-control" id="calle" name="calle" style="text-transform: uppercase;" required>
@@ -412,13 +412,13 @@
                                                 </div>
                                                 <div class="box-body">
                                                     <div class="col-md-12">
-                                                        <div class="col-md-2">
+                                                        <div class="col-md-6">
                                                             <div class="form-group">
                                                                 <label for="depart_nac">Banco:</label>
                                                                 <input type="text" class="form-control" id="banco" name="banco" style="text-transform: uppercase;" required>
                                                             </div>
                                                         </div>
-                                                        <div class="col-md-2">
+                                                        <div class="col-md-4">
                                                             <div class="form-group">
                                                                 <label for="provin_nac">Número de Cuenta:</label>
                                                                 <input type="number" class="form-control" id="nro_cuenta" name="nro_cuenta" required>
@@ -491,6 +491,71 @@
                                                         </table>                                                        
                                                     </div>
                                                 </div>
+                                                
+                                                <div class="box-header with-border">
+                                                    <h3 class="box-title">Viajes al Extranjero</h3> <button type="button" class="btn btn-success btn-viajesExtranjero"><span class="fa fa-plus"></span></button>
+                                                </div>
+
+                                                
+                                                <div class="box-body">
+                                                    <div class="col-md-12">
+                                                        <table id="tbviajesExtranjero" class="table table-bordered   table-striped table-hover">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>Lugar</th>
+                                                                    <th>Motivo</th>
+                                                                    <th>Fecha</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>                                                
+                                                                        
+                                                
+                                                
+                                                <div class="box-header with-border">
+                                                    <h3 class="box-title">Estudios Realizados</h3><button type="button" class="btn btn-success btn-estudiosRealizados"><span class="fa fa-plus"></span></button>
+                                                </div>
+                                                
+                                                <div class="box-body">
+                                                    <div class="col-md-12">
+                                                        <table id="tbestudiosRealizados" class="table table-bordered   table-striped table-hover">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>Curso</th>
+                                                                    <th>Tipo de Curso</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>                                                
+                                                
+                                                <div class="box-header with-border">
+                                                    <h3 class="box-title">Cuenta con Seguro </h3><button type="button" class="btn btn-success btn-seguro"><span class="fa fa-plus"></span></button>
+                                                </div>
+                                                
+                                                <div class="box-body">
+                                                    <div class="col-md-12">
+                                                        <table id="tbseguro" class="table table-bordered   table-striped table-hover">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>Seguro</th>
+                                                                    <th>Tipo de Seguro</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>                                                  
+                                                
                                             </div>
                                         </div>
                                     </div>

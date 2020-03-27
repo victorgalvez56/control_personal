@@ -4,7 +4,7 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-        Categorias
+        Personal
         <small>Listado</small>
         </h1>
     </section>
@@ -16,7 +16,7 @@
                 <div class="row">
                     <div class="col-md-12">
                         <?php if ($permisos->insert==1):?>
-                        <a href="<?php echo base_url();?>mantenimiento/categorias/add" class="btn btn-primary btn-flat"><span class="fa fa-plus"></span> Agregar Categoria</a>
+                        <a href="<?php echo base_url();?>control/personal/add" class="btn btn-primary btn-flat"><span class="fa fa-plus"></span> Agregar Personal Militar</a>
                         <?php endif;?>
                     </div>
                 </div>
@@ -26,26 +26,39 @@
                         <table id="example5" class="table table-bordered table-hover">
                             <thead>
                                 <tr>
+                                    <th>DNI</th>
+                                    <th>CIP</th>
                                     <th>Nombre</th>
-                                    <th>Descripcion</th>
+                                    <th>Grado</th>
+                                    <th>Arma</th>
+                                                                        <th>Teléfono</th>
+                                    <th>Correo</th>
+
                                     <th>opciones</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php if(!empty($categorias)):?>
-                                    <?php foreach($categorias as $categoria):?>
+                                <?php if(!empty($personals)):?>
+                                    <?php foreach($personals as $personal):?>
                                         <tr>
-                                            <td><?php echo $categoria->nombre_cat;?></td>
-                                            <td><?php echo $categoria->descripcion_cat;?></td>
+                                                                                        <td><?php echo $personal->dni?></td>
+                                            <td><?php echo $personal->cip?></td>
+
+                                            <td><?php echo $personal->nombres." ".$personal->apellido_pat." ".$personal->apellido_mat;?></td>
+                                            <td><?php echo $personal->grado?></td>
+                                                                                        <td><?php echo $personal->arma?></td>
+                                                                                        <td><?php echo $personal->telefono?></td>
+                                                                                        <td><?php echo $personal->correo?></td>
+
+
                                             <td>
                                                 <div class="btn-group">
-                                                    
-
+                                                    <button type="button" class="btn btn-info btn-view-persona" value="<?php echo $personal->id;?>" data-toggle="modal" data-target="#modal-default"><span class="fa fa-search"></span></button>
                                                     <?php if($permisos->update == 1):?>
-                                                    <a href="<?php echo base_url()?>mantenimiento/categorias/edit/<?php echo $categoria->id_cat;?>" class="btn btn-warning"><span class="fa fa-pencil"></span></a>
+                                                    <a href="<?php echo base_url()?>control/personal/edit/<?php echo $personal->id;?>" class="btn btn-warning"><span class="fa fa-pencil"></span></a>
                                                     <?php endif;?>
                                                     <?php if($permisos->delete == 1):?>
-                                                    <a href="<?php echo base_url();?>mantenimiento/categorias/delete/<?php echo $categoria->id_cat;?>" class="btn btn-danger btn-remove"><span class="fa fa-remove"></span></a>
+                                                    <a href="<?php echo base_url();?>control/personal/delete/<?php echo $personal->id;?>" class="btn btn-danger btn-remove"><span class="fa fa-remove"></span></a>
                                                     <?php endif;?>
                                                 </div>
                                             </td>
@@ -71,7 +84,7 @@
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title">Informacion de la Categoria</h4>
+        <h4 class="modal-title">Información del Personal</h4>
       </div>
       <div class="modal-body">
         

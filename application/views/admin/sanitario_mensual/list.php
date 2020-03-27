@@ -3,7 +3,7 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-            Registro Anual
+            Registro Mensual
             <small>Listado</small>
         </h1>
     </section>
@@ -15,7 +15,7 @@
                 <div class="row">
                     <div class="col-md-12">
                         <?php if ($permisos->insert == 1) : ?>
-                            <a href="<?php echo base_url(); ?>control/sanitario_anual/add" class="btn btn-primary btn-flat"><span class="fa fa-plus"></span> Agregar Registro Anual</a>
+                            <a href="<?php echo base_url(); ?>control/sanitario_mensual/add" class="btn btn-primary btn-flat"><span class="fa fa-plus"></span> Agregar Registro Mensual</a>
                         <?php endif; ?>
                     </div>
                 </div>

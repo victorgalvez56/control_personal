@@ -2,6 +2,7 @@
   <div class="pull-right hidden-xs">
     <b>Version</b> 2.4.0
   </div>
+
   <strong>Copyright &copy; 2018-2019 <a href="https://www.facebook.com/victor.galvezc">Victor E. Gálvez</a>.</strong> All rights
   reserved.
 </footer>
@@ -36,19 +37,55 @@
 <!-- AdminLTE for demo purposes -->
 <script src="<?php echo base_url(); ?>assets/template/dist/js/demo.js"></script>
 <script>
-    $(document).on("click",".btn-view-vehiculo",function(){
-        valor_id = $(this).val();
-        $.ajax({
-            url: base_url + "control/vehiculos/view",
-            type:"POST",
-            dataType:"html",
-            data:{id:valor_id},
-            success:function(data){
-                $("#modal-default .modal-body").html(data);
-                $("#modal-venta .modal-body").html(data);
-            }
-        });
+  console.log('Prueba que carga bien el script')
+
+  $id_depa = $("#input_depa").val();
+  $id_prov = $('#input_prov').val();
+  $id_dist = $('#input_dist').val();
+
+  $(document).ready(function() {
+
+    $.each(ubigeo.departamentos, function(i, item) {
+      if ($id_depa == item.id_ubigeo) {
+        $('#td_depa').html(item.nombre_ubigeo);
+      }
     });
+  });
+
+  $(document).ready(function() {
+
+    $.each(ubigeo.provincias[$id_depa], function(i, item) {
+      if ($id_prov == item.id_ubigeo) {
+        $('#td_prov').html(item.nombre_ubigeo);
+      }
+    });
+  });
+
+  $(document).ready(function() {
+
+    $.each(ubigeo.distritos[$id_prov], function(i, item) {
+      if ($id_dist == item.id_ubigeo) {
+        $('#td_dist').html(item.nombre_ubigeo);
+      }
+    });
+  });
+
+
+
+  $(document).on("click", ".btn-view-personal", function() {
+    valor_id = $(this).val();
+    $.ajax({
+      url: base_url + "control/personal/view",
+      type: "POST",
+      dataType: "html",
+      data: {
+        id: valor_id
+      },
+      success: function(data) {
+        $("#modal-default .modal-body").html(data);
+      }
+    });
+  });
 
   $(document).on("click", ".btn-check22", function() {
     $("#modal-default").modal("hide");
@@ -59,13 +96,14 @@
       html += "<td><input type='hidden' name='dni' value='" + infoproducto[0] + "'>" + infoproducto[1] + "</td>";
       html += "<td><input type='hidden' name='nombres'  value='" + infoproducto[2] + "'>" + infoproducto[2] + "</td>";
       html += "<td><input type='hidden' name='grado' value='" + infoproducto[3] + "'>" + infoproducto[3] + "</td>";
-      html += "<td><select class='form-control form-control' name='sexo'  style='text-transform: uppercase;' required><option value=''>Seleccione</option><option value='MASCULINO'>MASCULINO</option><option value='FEMENINO'>FEMENINO</option></select></td>";
-      html += "<td><select class='form-control form-control'  name='grupo_sang'  style='text-transform: uppercase;' required><option value='' >Seleccione</option><option value='PRIMARIA'>PRIMARIA</option><option value='SECUNDARIA'>SECUNDARIA</option><option value='SUPERIOR'>TECNICO</option><option value='TECNICO'>TECNICO</option></select></td>";
+      html += "<td><input type='hidden' name='sexo' value='" + infoproducto[5] + "'>" + infoproducto[5] + "</td>";
+      html += "<td><input type='hidden' name='grupo_sang' value='" + infoproducto[4] + "'>" + infoproducto[4] + "</td>";
+
       html += "<td><input class='form-control form-control' type='text' name='alergias' list='citynames'  style='text-transform: uppercase;' required><datalist id='citynames'>  <option value='NO'></datalist></td>";
       html += "<td><button type='button' class='btn btn-danger btn-remove-producto'><span class='fa fa-remove'></span></button></td>";
       html += "</tr>";
       $("#tbventas tbody").append(html);
-      $( "#buttonsearch" ).prop( "disabled", true );
+      $("#buttonsearch").prop("disabled", true);
       $("#btn-check22").val(null);
     } else {
       alert("seleccione un personal...");
@@ -83,13 +121,44 @@
       html += "<td><input class='form-control form-control' type='text' name='presion' list='citynames'  style='text-transform: uppercase;' required><datalist id='citynames'>  <option value='NO'></datalist></td>";
       html += "<td><input class='form-control form-control' type='text' name='medicacion' list='citynames'  style='text-transform: uppercase;' required><datalist id='citynames'>  <option value='NO'></datalist></td>";
       html += "<td><input type='number' class='form-control form-control' min='1' name='edad'></td>";
-      html += "<td><input type='number' class='form-control form-control' min='1' name='talla'></td>";
-      html += "<td><input type='number' class='form-control form-control' min='1' name='peso'></td>";
-      html += "<td><input type='number' class='form-control form-control' min='1' name='perimetro'></td>";
+      html += "<td><input type='text' class='form-control form-control' min='1' name='talla'></td>";
+      html += "<td><input type='text' class='form-control form-control' min='1' name='peso'></td>";
+      html += "<td><input type='text' class='form-control form-control' min='1' name='perimetro'></td>";
       html += "<td><button type='button' class='btn btn-danger btn-remove-producto'><span class='fa fa-remove'></span></button></td>";
       html += "</tr>";
       $("#tbventas tbody").append(html);
-      $( "#buttonsearch" ).prop( "disabled", true );
+      $("#buttonsearch").prop("disabled", true);
+      $("#btn-check22").val(null);
+    } else {
+      alert("seleccione un producto...");
+    }
+  });
+
+  $(document).on("click", ".btn-checkmensual", function() {
+    $("#modal-default").modal("hide");
+
+    data = $(this).val();
+    if (data != '') {
+      responsable = $("#buttonsearch").val();
+
+      infoproducto = data.split("*");
+
+      html = "<tr>";
+      html += "<td><input type='hidden' name='dni' value='" + infoproducto[0] + "'>" + infoproducto[1] + "</td>";
+      html += "<td><input type='hidden' name='nombres'  value='" + infoproducto[2] + "'>" + infoproducto[3] + "</td>";
+      html += "<td><input type='text' class='form-control form-control' name='pres_sis' '></td>";
+      html += "<td><input type='text' class='form-control form-control' name='pres_dia' '></td>";
+      html += "<td><input type='text' class='form-control form-control' name='pulso' '></td>";
+      html += "<td><input type='text' class='form-control form-control' name='valoracion' readonly></td>";
+      html += "<td><input type='hidden' name='medico'  value='" + responsable + "'>" + responsable + "</td>";
+      html += "<td><input type='text' id='peso' class='form-control form-control' name='peso' ></td>";
+      html += "<td><input type='text' class='form-control form-control' name='imc' readonly></td>";
+      html += "<td><input type='text' class='form-control form-control' name='clasi_imc' readonly></td>";
+      html += "<td><input type='text' class='form-control form-control' name='perimetro'></td>";
+      html += "<td><input type='text' class='form-control form-control' name='clasi_peri'readonly></td>";
+      html += "</tr>";
+      $("#tbmensual tbody").append(html);
+      $("#buttonsearch").prop("disabled", true);
       $("#btn-check22").val(null);
     } else {
       alert("seleccione un producto...");
@@ -97,9 +166,24 @@
   });
 
 
+  $(document).on("keyup", "#peso", function() {
+
+    sumar();
+  });
+
+  function sumar() {
+    peso = $("input[name=peso]").val();
+    talla = $("input[name=nombres]").val();
+    imc = peso * talla;
+    $("input[name=imc]").val(imc.toFixed(2));
+
+  }
+
+
+
   $(document).on("click", ".btn-remove-producto", function() {
     $(this).closest("tr").remove();
-    $( "#buttonsearch" ).prop( "disabled", false );
+    $("#buttonsearch").prop("disabled", false);
   });
   $('#example5').dataTable({
     "order": [],
@@ -121,6 +205,223 @@
       show: true
     });
   });
+
+
+
+  $(document).ready(function() {
+    var $selectdep = $('#departamento_viv');
+    var $selectprov = $('#provin_viv');
+    $selectdep.append('<option value=""> Seleccione</option>');
+    $selectprov.append('<option value=""> Seleccione</option>');
+    $.each(ubigeo.departamentos, function(i, itemdep) {
+        $selectdep.append('<option value=' + itemdep.id_ubigeo + '>' + itemdep.nombre_ubigeo + '</option>');
+      
+        $("#departamento_viv option:selected").each(function() {
+          $(this).val('gaaaaaa')
+      })}
+    );
+
+
+
+
+    $("#departamento_viv").change(function() {
+      var $selectdep = $('#departamento_viv');
+      var str = "";
+      $("#departamento_viv option:selected").each(function() {
+        str += $(this).text();
+        console.log($(this).text())
+        var departamentoc = $("#departamento_viv").val();
+        var $selectprov = $('#provin_viv');
+        $selectprov.empty()
+      });
+    });
+    $("#departamento_viv").change(function() {
+      var departamentoc = $("#departamento_viv").val();
+      var $selectprov = $('#provin_viv');
+      $selectprov.append('<option> Seleccione</option>');
+      $.each(ubigeo.provincias[departamentoc], function(i, item) {
+        $selectprov.append('<option value=' + item.id_ubigeo + '>' + item.nombre_ubigeo + '</option>');
+      });
+
+    });
+
+  });
+
+
+
+  /*
+    $(document).ready(function() {
+      var $selectdep = $('#departamento_viv');
+      $selectdep.append('<option value=""> Seleccione</option>');
+      $.each(ubigeo.departamentos, function(i, item) {
+        $selectdep.append('<option value=' + item.nombre_ubigeo + '>' + item.nombre_ubigeo + '</option>');
+      });
+    });
+    $("#departamento_viv").change(function() {
+      var $selectdep = $('#departamento_viv');
+      var str = "";
+      $("#departamento_viv option:selected").each(function() {
+        str += $(this).text();
+
+        console.log($(this).text())
+        var departamentoc = $("#departamento_viv").val();
+        var $selectprov = $('#provin_viv');
+        $selectprov.empty()
+      });
+    });
+    $("#departamento_viv").change(function() {
+      var departamentoc = $("#departamento_viv").val();
+      var $selectprov = $('#provin_viv');
+      $selectprov.append('<option> Seleccione</option>');
+      $.each(ubigeo.provincias[departamentoc], function(i, item) {
+        $selectprov.append('<option value=' + item.id_ubigeo + '>' + item.nombre_ubigeo + '</option>');
+      });
+
+    });
+    $("#provin_viv").change(function() {
+      var provinciac = $("#provin_viv").val();
+      var $selectdistr = $('#distri_viv');
+      $selectdistr.empty()
+      $selectdistr.append('<option> Seleccione</option>');
+      $.each(ubigeo.distritos[provinciac], function(i, item) {
+        $selectdistr.append('<option value=' + item.id_ubigeo + '>' + item.nombre_ubigeo + '</option>');
+      });
+    });
+  */
+
+
+
+
+  $(document).ready(function() {
+    var $selectdep = $('#depart_nac');
+    $selectdep.append('<option> Seleccione</option>');
+    $.each(ubigeo.departamentos, function(i, item) {
+      $selectdep.append('<option value=' + item.id_ubigeo + '>' + item.nombre_ubigeo + '</option>');
+    });
+  });
+  $("#depart_nac").change(function() {
+    var $selectdep = $('#depart_nac');
+    var str = "";
+    $("#depart_nac option:selected").each(function() {
+      str += $(this).text();
+      var departamentoc = $("#depart_nac").val();
+      var $selectprov = $('#provin_nac');
+      var $selectprov = $('#provin_nac');
+      $selectprov.empty()
+    });
+  });
+  $("#depart_nac").change(function() {
+    var departamentoc = $("#depart_nac").val();
+    var $selectprov = $('#provin_nac');
+    $selectprov.append('<option> Seleccione</option>');
+    $.each(ubigeo.provincias[departamentoc], function(i, item) {
+      $selectprov.append('<option value=' + item.id_ubigeo + '>' + item.nombre_ubigeo + '</option>');
+    });
+
+  });
+  $("#provin_nac").change(function() {
+    var provinciac = $("#provin_nac").val();
+    var $selectdistr = $('#distri_nac');
+    $selectdistr.empty()
+    $selectdistr.append('<option> Seleccione</option>');
+    $.each(ubigeo.distritos[provinciac], function(i, item) {
+      $selectdistr.append('<option value=' + item.id_ubigeo + '>' + item.nombre_ubigeo + '</option>');
+    });
+  });
+
+  $(document).on("click", ".btn-agregaridioma", function() {
+    html = "<tr>";
+    html += "<td><input type='text' class='form-control' id='idioma' name='idioma[]' style='text-transform: uppercase;' required ></td>";
+    html += "<td><select class='form-control form-control' id='idioma_habla' name='idioma_habla[]' required><option value=''>Seleccione</option><option value='B'>B</option><option value='R'>R</option><option value'M'>M</option></select></td>";
+    html += "<td><select class='form-control form-control' id='idioma_lee' name='idioma_lee[]'><option value=''>Seleccione</option><option value='B'>B</option><option value='R'>R</option><option value'M'>M</option></select></td>";
+    html += "<td><select class='form-control form-control' id='idioma_escribe' name='idioma_escribe[]'><option value=''>Seleccione</option><option value='B'>B</option><option value='R'>R</option><option value'M'>M</option></select></td>";
+    html += "<td><select class='form-control form-control' id='idioma_estudio' name='idioma_estudio[]'><option value=''>Seleccione</option><option>ESTUDIO</option><option>PRACTICA</option></select></td>";
+    html += "<td><select class='form-control form-control' id='idioma_practica' name='idioma_practica[]'><option value=''>Seleccione</option><option value='SI'>SI</option><option value='NO'>NO</option></select></td>";
+    html += "<td><button type='button' class='btn btn-danger btn-remove-idioma'><span class='fa fa-remove'></span></button></td>";
+    html += "</tr>";
+    $("#tbidiomas tbody").append(html);
+    $("#btn-agregaridioma").val(null);
+  });
+  $(document).on("click", ".btn-remove-idioma", function() {
+    $(this).closest("tr").remove();
+  });
+
+
+  $(document).on("click", ".btn-agregarfamiliares", function() {
+    html = "<tr id='tableremove1'>";
+    html += "<td><input type='text' class='form-control' id='idioma' name='nombres[]' style='text-transform: uppercase;' required ></td>";
+    html += "<td><input type='text' class='form-control' id='parentesco' name='parentesco[]' style='text-transform: uppercase;' required ></td>";
+    html += "<td><input type='number' class='form-control' id='edad' name='edad[]' style='text-transform: uppercase;' required ></td>";
+    html += "<td><input type='text' class='form-control' id='lugar_nac' name='lugar_nac[]' style='text-transform: uppercase;' required ></td>";
+    html += "<td><input type='date' class='form-control' id='fecha_nac' name='fecha_nac[]' style='text-transform: uppercase;' required ></td>";
+    html += "</tr>";
+    $("#tbfamiliares1 tbody").append(html);
+    $("#btn-agregarfamiliares").val(null);
+  });
+
+  $(document).on("click", ".btn-agregarfamiliares", function() {
+    html = "<tr id='tableremove2'>";
+    html += "<td><input type='number' class='form-control' id='cip' name='cip[]' style='text-transform: uppercase;' required ></td>";
+    html += "<td><input type='number' class='form-control' id='dni' name='dni[]' style='text-transform: uppercase;' required ></td>";
+    html += "<td><input type='number' class='form-control' id='telefono' name='telefono[]' style='text-transform: uppercase;' required ></td>";
+    html += "<td><select class='form-control form-control' id='tipo_sangr' name='tipo_sangr[]'><option value=''>Seleccione</option><option value='A+'>A+</option><option value='A-'>A-</option><option value='B+'>B+</option><option value='B-'>B-</option><option value='AB+'>AB+</option><option value='AB-'>AB-</option><option value='O+'>O+</option><option value='O-'>O-</option></select></td>";
+    html += "<td><select class='form-control form-control' id='grado_instr' name='grado_instr[]'><option value=''>Seleccione</option><option value='PRIMARIA'>PRIMARIA</option><option value='SECUNDARIA'>SECUNDARIA</option><option value='TECNICO'>TECNICO</option><option value='SUPERIOR'>SUPERIOR</option></select></td>";
+    html += "<td><button type='button' class='btn btn-danger btn-remove-familiares'><span class='fa fa-remove'></span></button></td>";
+    html += "</tr>";
+    $("#tbfamiliares2 tbody").append(html);
+    $("#btn-agregarfamiliares").val(null);
+  });
+
+
+  $(document).on("click", ".btn-remove-familiares", function() {
+    document.getElementById("tableremove1").remove();
+    document.getElementById("tableremove2").remove();
+
+  });
+
+
+  $(document).on("click", ".btn-viajesExtranjero", function() {
+    html = "<tr>";
+    html += "<td><input type='text' class='form-control' id='lugar' name='lugar[]' style='text-transform: uppercase;' required ></td>";
+    html += "<td><input type='text' class='form-control' id='motivo' name='motivo[]' style='text-transform: uppercase;' required ></td>";
+    html += "<td><input type='date' class='form-control' id='fecha_viaje' name='fecha_viaje[]' style='text-transform: uppercase;' required ></td>";
+    html += "<td><button type='button' class='btn btn-danger btn-remove-viajesExtranjero'><span class='fa fa-remove'></span></button></td>";
+    html += "</tr>";
+    $("#tbviajesExtranjero tbody").append(html);
+    $("#btn-agregarviajesExtranjero").val(null);
+  });
+  $(document).on("click", ".btn-remove-viajesExtranjero", function() {
+    $(this).closest("tr").remove();
+  });
+
+  $(document).on("click", ".btn-estudiosRealizados", function() {
+    html = "<tr>";
+    html += "<td><input type='text' class='form-control' id='curso' name='curso[]' style='text-transform: uppercase;' required ></td>";
+    html += "<td><select class='form-control form-control' id='tipo_curso' name='tipo_curso[]'><option value=''>Seleccione</option><option value='MILITAR'>MILITAR</option><option value='EXTRACASTRENCE'>EXTRACASTRENCE</option></select></td>";
+    html += "<td><button type='button' class='btn btn-danger btn-remove-estudiosRealizados'><span class='fa fa-remove'></span></button></td>";
+    html += "</tr>";
+    $("#tbestudiosRealizados tbody").append(html);
+    $("#btn-estudiosRealizados").val(null);
+  });
+  $(document).on("click", ".btn-remove-estudiosRealizados", function() {
+    $(this).closest("tr").remove();
+  });
+
+  $(document).on("click", ".btn-seguro", function() {
+    html = "<tr>";
+    html += "<td><input type='text' class='form-control' id='curso' name='seguro[]' style='text-transform: uppercase;' required ></td>";
+    html += "<td><select class='form-control form-control' id='tipo_seguro' name='tipo_seguro[]'><option value=''>Seleccione</option><option value='MILITAR'>MILITAR</option><option value='CIVIL'>CIVIL</option></select></td>";
+    html += "<td><button type='button' class='btn btn-danger btn-remove-seguro'><span class='fa fa-remove'></span></button></td>";
+    html += "</tr>";
+    $("#tbseguro tbody").append(html);
+    $("#btn-seguro").val(null);
+  });
+  $(document).on("click", ".btn-remove-seguro", function() {
+    $(this).closest("tr").remove();
+  });
+
+
+
   var ubigeo = {};
   ubigeo.departamentos = [{
     "id_ubigeo": "2534",
@@ -18804,132 +19105,6 @@
       "id_padre_ubigeo": "4584"
     }]
   };
-
-  $(document).ready(function() {
-    var $selectdep = $('#departamento_viv');
-    $selectdep.append('<option value=""> Seleccione</option>');
-    $.each(ubigeo.departamentos, function(i, item) {
-      $selectdep.append('<option value=' + item.id_ubigeo + '>' + item.nombre_ubigeo + '</option>');
-    });
-  });
-  $("#departamento_viv").change(function() {
-    var $selectdep = $('#departamento_viv');
-    var str = "";
-    $("#departamento_viv option:selected").each(function() {
-      str += $(this).text();
-      var departamentoc = $("#departamento_viv").val();
-      var $selectprov = $('#provin_viv');
-      var $selectprov = $('#provin_viv');
-      $selectprov.empty()
-    });
-  });
-  $("#departamento_viv").change(function() {
-    var departamentoc = $("#departamento_viv").val();
-    var $selectprov = $('#provin_viv');
-    $selectprov.append('<option> Seleccione</option>');
-    $.each(ubigeo.provincias[departamentoc], function(i, item) {
-      $selectprov.append('<option value=' + item.id_ubigeo + '>' + item.nombre_ubigeo + '</option>');
-    });
-
-  });
-  $("#provin_viv").change(function() {
-    var provinciac = $("#provin_viv").val();
-    var $selectdistr = $('#distri_viv');
-    $selectdistr.empty()
-    $selectdistr.append('<option> Seleccione</option>');
-    $.each(ubigeo.distritos[provinciac], function(i, item) {
-      $selectdistr.append('<option value=' + item.id_ubigeo + '>' + item.nombre_ubigeo + '</option>');
-    });
-  });
-
-
-
-
-
-
-  $(document).ready(function() {
-    var $selectdep = $('#depart_nac');
-    $selectdep.append('<option> Seleccione</option>');
-    $.each(ubigeo.departamentos, function(i, item) {
-      $selectdep.append('<option value=' + item.id_ubigeo + '>' + item.nombre_ubigeo + '</option>');
-    });
-  });
-  $("#depart_nac").change(function() {
-    var $selectdep = $('#depart_nac');
-    var str = "";
-    $("#depart_nac option:selected").each(function() {
-      str += $(this).text();
-      var departamentoc = $("#depart_nac").val();
-      var $selectprov = $('#provin_nac');
-      var $selectprov = $('#provin_nac');
-      $selectprov.empty()
-    });
-  });
-  $("#depart_nac").change(function() {
-    var departamentoc = $("#depart_nac").val();
-    var $selectprov = $('#provin_nac');
-    $selectprov.append('<option> Seleccione</option>');
-    $.each(ubigeo.provincias[departamentoc], function(i, item) {
-      $selectprov.append('<option value=' + item.id_ubigeo + '>' + item.nombre_ubigeo + '</option>');
-    });
-
-  });
-  $("#provin_nac").change(function() {
-    var provinciac = $("#provin_nac").val();
-    var $selectdistr = $('#distri_nac');
-    $selectdistr.empty()
-    $selectdistr.append('<option> Seleccione</option>');
-    $.each(ubigeo.distritos[provinciac], function(i, item) {
-      $selectdistr.append('<option value=' + item.id_ubigeo + '>' + item.nombre_ubigeo + '</option>');
-    });
-  });
-  $(document).on("click", ".btn-agregaridioma", function() {
-    html = "<tr>";
-    html += "<td><input type='text' class='form-control' id='idioma' name='idioma[]' style='text-transform: uppercase;' required ></td>";
-    html += "<td><select class='form-control form-control' id='idioma_habla' name='idioma_habla[]' required><option value=''>Seleccione</option><option value='B'>B</option><option value='R'>R</option><option value'M'>M</option></select></td>";
-    html += "<td><select class='form-control form-control' id='idioma_lee' name='idioma_lee[]'><option value=''>Seleccione</option><option value='B'>B</option><option value='R'>R</option><option value'M'>M</option></select></td>";
-    html += "<td><select class='form-control form-control' id='idioma_escribe' name='idioma_escribe[]'><option value=''>Seleccione</option><option value='B'>B</option><option value='R'>R</option><option value'M'>M</option></select></td>";
-    html += "<td><select class='form-control form-control' id='idioma_estudio' name='idioma_estudio[]'><option value=''>Seleccione</option><option>ESTUDIO</option><option>PRACTICA</option></select></td>";
-    html += "<td><select class='form-control form-control' id='idioma_practica' name='idioma_practica[]'><option value=''>Seleccione</option><option value='SI'>SI</option><option value='NO'>NO</option></select></td>";
-    html += "<td><button type='button' class='btn btn-danger btn-remove-idioma'><span class='fa fa-remove'></span></button></td>";
-    html += "</tr>";
-    $("#tbidiomas tbody").append(html);
-    $("#btn-agregaridioma").val(null);
-  });
-  $(document).on("click", ".btn-remove-idioma", function() {
-    $(this).closest("tr").remove();
-  });
-  $(document).on("click", ".btn-agregarfamiliares", function() {
-    html = "<tr id='tableremove1'>";
-    html += "<td><input type='text' class='form-control' id='idioma' name='nombres[]' style='text-transform: uppercase;' required ></td>";
-    html += "<td><input type='text' class='form-control' id='parentesco' name='parentesco[]' style='text-transform: uppercase;' required ></td>";
-    html += "<td><input type='number' class='form-control' id='edad' name='edad[]' style='text-transform: uppercase;' required ></td>";
-    html += "<td><input type='text' class='form-control' id='lugar_nac' name='lugar_nac[]' style='text-transform: uppercase;' required ></td>";
-    html += "<td><input type='date' class='form-control' id='fecha_nac' name='fecha_nac[]' style='text-transform: uppercase;' required ></td>";
-    html += "</tr>";
-    $("#tbfamiliares1 tbody").append(html);
-    $("#btn-agregarfamiliares").val(null);
-  });
-
-  $(document).on("click", ".btn-agregarfamiliares", function() {
-    html = "<tr id='tableremove2'>";
-    html += "<td><input type='number' class='form-control' id='cip' name='cip[]' style='text-transform: uppercase;' required ></td>";
-    html += "<td><input type='number' class='form-control' id='dni' name='dni[]' style='text-transform: uppercase;' required ></td>";
-    html += "<td><input type='number' class='form-control' id='telefono' name='telefono[]' style='text-transform: uppercase;' required ></td>";
-    html += "<td><select class='form-control form-control' id='tipo_sangr' name='tipo_sangr[]'><option value=''>Seleccione</option><option value='PRIMARIA'>PRIMARIA</option><option value='SECUNDARIA'>SECUNDARIA</option><option value='SUPERIOR'>TECNICO</option><option value='TECNICO'>TECNICO</option></select></td>";
-    html += "<td><select class='form-control form-control' id='grado_instr' name='grado_instr[]'><option value=''>Seleccione</option><option value='PRIMARIA'>PRIMARIA</option><option value='SECUNDARIA'>SECUNDARIA</option><option value='SUPERIOR'>TECNICO</option><option value='TECNICO'>TECNICO</option></select></td>";
-    html += "<td><button type='button' class='btn btn-danger btn-remove-familiares'><span class='fa fa-remove'></span></button></td>";
-    html += "</tr>";
-    $("#tbfamiliares2 tbody").append(html);
-    $("#btn-agregarfamiliares").val(null);
-  });
-    
-    
-  $(document).on("click", ".btn-remove-familiares", function() {
-                document.getElementById("tableremove1").remove(); 
-                      document.getElementById("tableremove2").remove(); 
-
-  });
 </script>
 </body>
 

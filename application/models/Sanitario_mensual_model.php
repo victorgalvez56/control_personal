@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Sanitario_anual_model extends CI_Model {
+class Sanitario_mensual_model extends CI_Model {
 
 	public function getPersonals(){
 		$this->db->select("p.*,r.*");
@@ -11,7 +11,7 @@ class Sanitario_anual_model extends CI_Model {
 		$resultados = $this->db->get();
 		return $resultados->result();
 	}
-	public function getPersonalsanual()
+	public function getPersonalsmensual()
 	{
 		$this->db->where("estado", "1");
 		$resultados = $this->db->get("personal");

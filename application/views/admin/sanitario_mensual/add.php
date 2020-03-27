@@ -3,7 +3,7 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-            Datos de Valoración Sanitaria
+            Datos de Evaluación Mensual
             <small>Nuevo</small>
         </h1>
     </section>
@@ -13,28 +13,34 @@
             <div class="col-md-12">
                 <div class="box box-primary box-solid">
                     <div class="box-body">
-                        <form action="<?php echo base_url(); ?>control/Sanitario_registro/store" method="POST" class="form-horizontal">
+                        <form action="<?php echo base_url(); ?>control/Sanitario_mensual/store" method="POST" class="form-horizontal">
                             <div class="form-group">
                                 <div class="col-md-6">
                                     <label for="">Lista de Personal:</label>
                                     <div class="input-group">
                                         <span class="input-group-btn">
-                                            <button class="btn btn-primary" id="buttonsearch" type="button" data-toggle="modal" data-target="#modal-default"><span class="fa fa-search"></span> Buscar</button>
+                                            <button class="btn btn-primary" value='<?php echo $responsable; ?>' id="buttonsearch" type="button" data-toggle="modal" data-target="#modal-default"><span class="fa fa-search"></span> Buscar</button>
                                         </span>
                                     </div><!-- /input-group -->
                                 </div>
                             </div>
 
 
-                            <table id="tbventas" class="table table-bordered table-striped table-hover">
+                            <table id="tbmensual" class="table table-bordered table-striped table-hover">
                                 <thead>
                                     <tr>
                                         <th>DNI</th>
-                                        <th>Nombres y Apellidos</th>
-                                        <th>Grado</th>
-                                        <th>Sexo</th>
-                                        <th>Grupo Sanguíneo</th>
-                                        <th>Alergias</th>
+                                        <th>Nombres</th>
+                                        <th>P. Sistólica</th>
+                                        <th>P. Diastólica</th>
+                                        <th>Pulso</th>
+                                        <th>Valoración</th>
+                                        <th>Médico Turno</th>
+                                        <th>Peso</th>
+                                        <th>IMC</th>
+                                        <th>Clas. IMC</th>
+                                        <th>Perímetro Abdominal</th>
+                                        <th>Clas. Per. Abdom.</th>
                                         <th></th>
                                     </tr>
                                 </thead>
@@ -53,7 +59,6 @@
                     </div>
                 </div>
             </div>
-        </div>
 </div>
 
 </section>
@@ -89,9 +94,9 @@
                                     <td><?php echo $personal->nombres; ?></td>
                                     <td><?php echo $personal->grado; ?></td>
 
-                                    <?php $datapersonal = $personal->id . "*" . $personal->dni . "*" . $personal->nombres . " " . $personal->apellido_pat . " " . $personal->apellido_mat . "*" . $personal->grado."*".$personal->grupo_sang."*".$personal->sexo; ?>
+                                    <?php $datapersonal = $personal->id . "*" . $personal->dni . "*" . $personal->talla. "*" . $personal->nombres . " " . $personal->apellido_pat . " " . $personal->apellido_mat . "*" . $personal->grado ; ?>
                                     <td>
-                                        <button type="button" class="btn btn-success btn-check22" value="<?php echo $datapersonal; ?>"><span class="fa fa-check"></span></button>
+                                        <button type="button" class="btn btn-success btn-checkmensual" value="<?php echo $datapersonal; ?>"><span class="fa fa-check"></span></button>
                                     </td>
                                 </tr>
                             <?php endforeach; ?>

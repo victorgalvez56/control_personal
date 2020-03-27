@@ -39,6 +39,7 @@
                 <!-- mini logo for sidebar mini 50x50 pixels -->
                 <span class="logo-mini">P</span>
                 <!-- logo for regular state and mobile devices -->
+                <img src="..img/logoep.png" alt="">
                 <span class="logo-lg"><b>PANEL</b></span>
             </a>
             <!-- Header Navbar: style can be found in header.less -->

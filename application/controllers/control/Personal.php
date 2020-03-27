@@ -40,7 +40,8 @@ class Personal extends CI_Controller
 	}
 	public function store()
 	{
-		$imagen = $this->input->post("imagen");
+
+
 		$grado = $this->input->post("grado");
 		$arma = $this->input->post("arma");
 		$apellido_pat = $this->input->post("apellido_pat");
@@ -96,6 +97,7 @@ class Personal extends CI_Controller
 		$idioma_escribe = $this->input->post("idioma_escribe");
 		$idioma_estudio = $this->input->post("idioma_estudio");
 		$idioma_practica = $this->input->post("idioma_practica");
+		/*
 
 		$nombre_fam = $this->input->post("nombre_fam");
 		$parentesco_fam = $this->input->post("parentesco_fam");
@@ -108,9 +110,20 @@ class Personal extends CI_Controller
 		$grup_sang_fam = $this->input->post("grup_sang_fam");
 		$grad_inst_fam = $this->input->post("grad_inst_fam");
 
+*/
+		$lugar = $this->input->post("lugar");
+		$motivo = $this->input->post("motivo");
+		$fecha_viaje = $this->input->post("fecha_viaje");
+
+		$seguro = $this->input->post("seguro");
+		$tipo_seguro = $this->input->post("tipo_seguro");
+
+
+		$curso = $this->input->post("curso");
+		$tipo_curso = $this->input->post("tipo_curso");
+
 
 		$data  = array(
-			'imagen' => $imagen,
 			'grado' => $grado,
 			'arma' => $arma,
 			'apellido_pat' => $apellido_pat,
@@ -166,11 +179,65 @@ class Personal extends CI_Controller
 
 		if ($this->Personal_model->save($data)) {
 			$idpersonal = $this->Personal_model->lastID();
+			//$this->save_detalle_familiar($idpersonal, $nombre_fam, $parentesco_fam, $edad_fam, $lugar_nac_fam, $fecha_nac_fam, $cip_fam, $dni_fam, $telef_fam, $grup_sang_fam, $grad_inst_fam);
 			$this->save_detalle_idioma($idpersonal, $idioma, $idioma_habla, $idioma_lee, $idioma_escribe, $idioma_estudio, $idioma_practica);
-			$this->save_detalle_familiar($idpersonal, $nombre_fam, $parentesco_fam, $edad_fam, $lugar_nac_fam, $fecha_nac_fam, $cip_fam, $dni_fam, $telef_fam, $grup_sang_fam, $grad_inst_fam);
+			$this->save_detalle_viaje($idpersonal, $lugar, $motivo, $fecha_viaje);
+
+
+			$this->save_detalle_seguro($idpersonal, $seguro, $tipo_seguro);
+			$this->save_detalle_estudio($idpersonal, $curso, $tipo_curso);
+
+
 			redirect(base_url() . "control/personal");
 		} else {
 			echo "no funcionòs";
+		}
+	}
+
+
+	protected function save_detalle_seguro($idpersonal, $seguro, $tipo_seguro)
+	{
+		for ($i = 0; $i < count($seguro); $i++) {
+			$data  = array(
+				'id' => '',
+				'personal_id' => $idpersonal,
+				'seguro' => $seguro[$i],
+				'tipo_seguro' => $tipo_seguro[$i],
+				'estado' => '1',
+
+			);
+			$this->Personal_model->save_detalle_seguro($data);
+		}
+	}
+
+	protected function save_detalle_estudio($idpersonal, $curso, $tipo_curso)
+	{
+		for ($i = 0; $i < count($curso); $i++) {
+			$data  = array(
+				'id' => '',
+				'personal_id' => $idpersonal,
+				'curso' => $curso[$i],
+				'tipo_curso' => $tipo_curso[$i],
+				'estado' => '1',
+
+			);
+			$this->Personal_model->save_detalle_curso($data);
+		}
+	}
+
+	protected function save_detalle_viaje($idpersonal, $lugar, $motivo, $fecha_viaje)
+	{
+		for ($i = 0; $i < count($lugar); $i++) {
+			$data  = array(
+				'id' => '',
+				'personal_id' => $idpersonal,
+				'lugar' => $lugar[$i],
+				'motivo' => $motivo[$i],
+				'fecha' => $fecha_viaje[$i],
+				'estado' => '1',
+
+			);
+			$this->Personal_model->save_detalle_viaje($data);
 		}
 	}
 
@@ -187,17 +254,17 @@ class Personal extends CI_Controller
 				'adquirido' => $idioma_estudio[$i],
 				'graduado' => $idioma_practica[$i],
 			);
-
 			$this->Personal_model->save_detalle_idioma($data);
 		}
 	}
 
-	protected function save_detalle_familiar($idpersonal, $nombre_fam, $parentesco_fam, $edad_fam, $lugar_nac_fam, $fecha_nac_fam, $cip_fam, $dni_fam, $telef_fam, $grup_sang_fam, $grad_inst_fam)
+	protected function save_detalle_familiar($personal, $nombre_fam, $parentesco_fam, $edad_fam, $lugar_nac_fam, $fecha_nac_fam, $cip_fam, $dni_fam, $telef_fam, $grup_sang_fam, $grad_inst_fam)
 	{
+
 		for ($i = 0; $i < count($nombre_fam); $i++) {
 			$data  = array(
 				'id' => '',
-				'personal_id' => $idpersonal,
+				'personal_id' => $personal,
 				'nombre_fam' => $nombre_fam[$i],
 				'parentesco_fam' => $parentesco_fam[$i],
 				'edad_fam' => $edad_fam[$i],
@@ -255,14 +322,6 @@ class Personal extends CI_Controller
 			$this->edit($idCategoria);
 		}
 	}
-
-	public function view($id)
-	{
-		$data  = array(
-			'categoria' => $this->Categorias_model->getCategoria($id),
-		);
-		$this->load->view("admin/categorias/view", $data);
-	}
 	public function delete($id)
 	{
 		$data  = array(
@@ -271,4 +330,15 @@ class Personal extends CI_Controller
 		$this->Categorias_model->update($id, $data);
 		echo "mantenimiento/categorias";
 	}
+    
+    
+    
+    	public function view(){
+		$idventa = $this->input->post("id");
+		$data = array(
+			"personals" => $this->Personal_model->getPersonals(),
+		);
+		$this->load->view("admin/personal/view",$data);
+	}
+    
 }

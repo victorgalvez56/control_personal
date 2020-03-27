@@ -15,11 +15,13 @@ class Vehiculos_model extends CI_Model {
 	public function save($data){
 		return $this->db->insert("vehiculos",$data);
 	}
-	public function getCategoria($id){
-		$this->db->where("id_cat",$id);
-		$resultado = $this->db->get("categorias");
-		return $resultado->row();
 
+	public function getVehiculo($id){
+		$this->db->select("*");
+		$this->db->from("vehiculos");
+		$this->db->where("id",$id);
+		$resultado = $this->db->get();
+		return $resultado->row();
 	}
 
 	public function update($id,$data){

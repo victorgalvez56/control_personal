@@ -5,14 +5,19 @@ class Sanitario_registro_model extends CI_Model
 {
 	public function getPersonals()
 	{
-		$this->db->select("r.*,p.dni,p.nombres,p.apellido_pat,p.apellido_mat");
-		$this->db->from("registro_sanitario r");
-		$this->db->join("personal p", "r.personal_id = p.id");
-		$this->db->where("r.estado", "1");
+		$this->db->where("estado","1");
+		$resultados = $this->db->get("personal");
+		return $resultados->result();
+	}
+	public function getRegistros()
+	{
+		$this->db->select("r.*,p.nombres,p.apellido_pat,p.apellido_mat,,p.dni");
+		$this->db->from("personal p");
+		$this->db->join("registro_sanitario r","p.id = r.personal_id");	
+		$this->db->where("r.estado","1");
 		$resultados = $this->db->get();
 		return $resultados->result();
 	}
-
 
 	public function getPersonalsregistro()
 	{
