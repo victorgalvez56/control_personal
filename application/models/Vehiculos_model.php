@@ -11,6 +11,13 @@ class Vehiculos_model extends CI_Model {
 		$resultados = $this->db->get();
 		return $resultados->result();
 	}
+	public function getPersonalsforVehiculos(){
+		$this->db->select("*");
+		$this->db->from("personal");
+		$this->db->where("estado", "1");
+		$resultados = $this->db->get();
+		return $resultados->result();
+	}
 
 	public function save($data){
 		return $this->db->insert("vehiculos",$data);

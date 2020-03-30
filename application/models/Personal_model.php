@@ -3,13 +3,10 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class Personal_model extends CI_Model
 {
-
 	public function getPersonals()
 	{
-		$this->db->select("p.*,r.*");
-		$this->db->from("personal p");
-		$this->db->join("registro_sanitario r","r.personal_id = p.id");	
-		$this->db->where("p.estado","1");
+		$this->db->select("*");
+		$this->db->from("personal");
 		$resultados = $this->db->get();
 		return $resultados->result();
 	}

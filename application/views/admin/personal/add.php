@@ -55,7 +55,7 @@
                                                                     <option value="SO1">SO1</option>
                                                                     <option value="SO2">SO2</option>
                                                                     <option value="SO3">SO3</option>
-                                                                    
+
                                                                 </select>
                                                             </div>
                                                         </div>
@@ -130,7 +130,7 @@
                                                                 <input type="text" class="form-control" id="religion" name="religion" style="text-transform: uppercase;" required>
                                                             </div>
                                                         </div>
-                                                        
+
                                                         <div class="col-md-2">
                                                             <div class="form-group">
                                                                 <label for="fec_ult_asc">Fecha Último Ascenso:</label>
@@ -147,7 +147,7 @@
                                                         <div class="col-md-2">
                                                             <div class="form-group">
                                                                 <label for="departamento_viv">Departamento:</label>
-                                                                <select class="form-control form-control-lg" id="departamento_viv" name="departamento_viv" required>
+                                                                <select class="form-control form-control-lg" id="departamento_viv" name="depart_viv" required>
                                                                 </select>
                                                             </div>
                                                         </div>
@@ -179,7 +179,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
-<div class="box-header with-border">
+                                                <div class="box-header with-border">
                                                     <h3 class="box-title">Teléfono</h3>
                                                 </div>
                                                 <div class="box-body">
@@ -187,7 +187,7 @@
                                                         <div class="col-md-2">
                                                             <div class="form-group">
                                                                 <label for="telefono">Número:</label>
-                                                                <input type="number" class="form-control" id="numero" min="0" name="telefono" style="text-transform: uppercase;" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==9) return false;"  required>
+                                                                <input type="number" class="form-control" id="numero" min="0" name="telefono" style="text-transform: uppercase;" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==9) return false;" required>
                                                             </div>
                                                         </div>
                                                         <div class="col-md-2">
@@ -203,7 +203,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>                                                
+                                                </div>
                                                 <div class="box-header with-border">
                                                     <h3 class="box-title">Lugar y Fecha de Nacimiento</h3>
                                                 </div>
@@ -295,7 +295,7 @@
                                                         <div class="col-md-2">
                                                             <div class="form-group">
                                                                 <label for="talla">Talla(m.):</label>
-                                                                <input type="text" class="form-control" name="talla"  required>
+                                                                <input type="text" class="form-control" name="talla" required>
                                                             </div>
                                                         </div>
                                                         <div class="col-md-2">
@@ -317,7 +317,7 @@
                                                                     <option value="AB-">AB-</option>
                                                                     <option value="O+">O+</option>
                                                                     <option value="O-">O-</option>
-                                                                    
+
                                                                 </select>
                                                             </div>
                                                         </div>
@@ -420,7 +420,7 @@
                                                         </div>
                                                         <div class="col-md-4">
                                                             <div class="form-group">
-                                                                <label for="provin_nac">Número de Cuenta:</label>
+                                                                <label for="Numero Cuenta">Número de Cuenta:</label>
                                                                 <input type="number" class="form-control" id="nro_cuenta" name="nro_cuenta" required>
                                                             </div>
                                                         </div>
@@ -488,15 +488,15 @@
                                                             <tbody>
 
                                                             </tbody>
-                                                        </table>                                                        
+                                                        </table>
                                                     </div>
                                                 </div>
-                                                
+
                                                 <div class="box-header with-border">
                                                     <h3 class="box-title">Viajes al Extranjero</h3> <button type="button" class="btn btn-success btn-viajesExtranjero"><span class="fa fa-plus"></span></button>
                                                 </div>
 
-                                                
+
                                                 <div class="box-body">
                                                     <div class="col-md-12">
                                                         <table id="tbviajesExtranjero" class="table table-bordered   table-striped table-hover">
@@ -512,14 +512,14 @@
                                                             </tbody>
                                                         </table>
                                                     </div>
-                                                </div>                                                
-                                                                        
-                                                
-                                                
+                                                </div>
+
+
+
                                                 <div class="box-header with-border">
                                                     <h3 class="box-title">Estudios Realizados</h3><button type="button" class="btn btn-success btn-estudiosRealizados"><span class="fa fa-plus"></span></button>
                                                 </div>
-                                                
+
                                                 <div class="box-body">
                                                     <div class="col-md-12">
                                                         <table id="tbestudiosRealizados" class="table table-bordered   table-striped table-hover">
@@ -534,12 +534,12 @@
                                                             </tbody>
                                                         </table>
                                                     </div>
-                                                </div>                                                
-                                                
+                                                </div>
+
                                                 <div class="box-header with-border">
                                                     <h3 class="box-title">Cuenta con Seguro </h3><button type="button" class="btn btn-success btn-seguro"><span class="fa fa-plus"></span></button>
                                                 </div>
-                                                
+
                                                 <div class="box-body">
                                                     <div class="col-md-12">
                                                         <table id="tbseguro" class="table table-bordered   table-striped table-hover">
@@ -554,8 +554,8 @@
                                                             </tbody>
                                                         </table>
                                                     </div>
-                                                </div>                                                  
-                                                
+                                                </div>
+
                                             </div>
                                         </div>
                                     </div>
@@ -563,6 +563,8 @@
                                         <div class="col-md-12">
                                             <div style="float: right">
                                                 <button type="submit" class="btn btn-modal btn-success btn-flat">Guardar</button>
+                                                <input type="hidden" class="form-control" id="auxiliar_viv" name="auxiliar_viv" style="text-transform: uppercase;" min="18" required>
+                                                <input type="hidden" class="form-control" id="auxiliar_nac" name="auxiliar_nac" style="text-transform: uppercase;" min="18" required>
                                             </div>
                                         </div>
                                     </div>

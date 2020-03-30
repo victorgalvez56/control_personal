@@ -53,7 +53,7 @@ class Personal extends CI_Controller
 		$religion = $this->input->post("religion");
 		$fec_ult_asc = $this->input->post("fec_ult_asc");
 
-		$depart_viv = $this->input->post("provin_viv");
+		$depart_viv = $this->input->post("depart_viv");
 		$provinc_viv = $this->input->post("provin_viv");
 		$distrito_viv = $this->input->post("distri_viv");
 		$urbaniz_viv = $this->input->post("urbanizacion");
@@ -128,14 +128,14 @@ class Personal extends CI_Controller
 			'arma' => $arma,
 			'apellido_pat' => $apellido_pat,
 			'apellido_mat' => $apellido_mat,
-			'nombres' => 'NOMBRE...',
+			'nombres' => $nombres,
 			'estado_civ' => $estado_civ,
 			'anios_serv' => $anios_serv,
 			'grado_instruc' => 'PRIMARIA',
 			'religion' => $religion,
 			'fec_ultimo_asc' => $fec_ult_asc,
 
-			'telefono' => '958560996',
+			'telefono' => $telefono,
 			'operador' => $operador,
 			'correo' => $correo,
 
@@ -151,9 +151,9 @@ class Personal extends CI_Controller
 			'fecha_nac' => $fecha_nac,
 			'edad' => $edad,
 
-			'cip' => '115955050',
-			'dni' => '77127600',
-			'pasaporte' => 'ASDASD111',
+			'cip' => $cip,
+			'dni' => $dni,
+			'pasaporte' => $pasaporte,
 			'brevete' => $brevete,
 
 

@@ -39,38 +39,6 @@
 <script>
   console.log('Prueba que carga bien el script')
 
-  $id_depa = $("#input_depa").val();
-  $id_prov = $('#input_prov').val();
-  $id_dist = $('#input_dist').val();
-
-  $(document).ready(function() {
-
-    $.each(ubigeo.departamentos, function(i, item) {
-      if ($id_depa == item.id_ubigeo) {
-        $('#td_depa').html(item.nombre_ubigeo);
-      }
-    });
-  });
-
-  $(document).ready(function() {
-
-    $.each(ubigeo.provincias[$id_depa], function(i, item) {
-      if ($id_prov == item.id_ubigeo) {
-        $('#td_prov').html(item.nombre_ubigeo);
-      }
-    });
-  });
-
-  $(document).ready(function() {
-
-    $.each(ubigeo.distritos[$id_prov], function(i, item) {
-      if ($id_dist == item.id_ubigeo) {
-        $('#td_dist').html(item.nombre_ubigeo);
-      }
-    });
-  });
-
-
 
   $(document).on("click", ".btn-view-personal", function() {
     valor_id = $(this).val();
@@ -179,8 +147,6 @@
 
   }
 
-
-
   $(document).on("click", ".btn-remove-producto", function() {
     $(this).closest("tr").remove();
     $("#buttonsearch").prop("disabled", false);
@@ -206,128 +172,109 @@
     });
   });
 
-
-
+  /* Jquery para departamento, provincia y distrito vivienda.*/
   $(document).ready(function() {
-    var $selectdep = $('#departamento_viv');
-    var $selectprov = $('#provin_viv');
-    $selectdep.append('<option value=""> Seleccione</option>');
-    $selectprov.append('<option value=""> Seleccione</option>');
-    $.each(ubigeo.departamentos, function(i, itemdep) {
-        $selectdep.append('<option value=' + itemdep.id_ubigeo + '>' + itemdep.nombre_ubigeo + '</option>');
-      
-        $("#departamento_viv option:selected").each(function() {
-          $(this).val('gaaaaaa')
-      })}
-    );
-
-
-
-
-    $("#departamento_viv").change(function() {
-      var $selectdep = $('#departamento_viv');
-      var str = "";
-      $("#departamento_viv option:selected").each(function() {
-        str += $(this).text();
-        console.log($(this).text())
-        var departamentoc = $("#departamento_viv").val();
-        var $selectprov = $('#provin_viv');
-        $selectprov.empty()
-      });
-    });
-    $("#departamento_viv").change(function() {
-      var departamentoc = $("#departamento_viv").val();
-      var $selectprov = $('#provin_viv');
-      $selectprov.append('<option> Seleccione</option>');
-      $.each(ubigeo.provincias[departamentoc], function(i, item) {
-        $selectprov.append('<option value=' + item.id_ubigeo + '>' + item.nombre_ubigeo + '</option>');
-      });
-
-    });
-
-  });
-
-
-
-  /*
-    $(document).ready(function() {
-      var $selectdep = $('#departamento_viv');
-      $selectdep.append('<option value=""> Seleccione</option>');
-      $.each(ubigeo.departamentos, function(i, item) {
-        $selectdep.append('<option value=' + item.nombre_ubigeo + '>' + item.nombre_ubigeo + '</option>');
-      });
-    });
-    $("#departamento_viv").change(function() {
-      var $selectdep = $('#departamento_viv');
-      var str = "";
-      $("#departamento_viv option:selected").each(function() {
-        str += $(this).text();
-
-        console.log($(this).text())
-        var departamentoc = $("#departamento_viv").val();
-        var $selectprov = $('#provin_viv');
-        $selectprov.empty()
-      });
-    });
-    $("#departamento_viv").change(function() {
-      var departamentoc = $("#departamento_viv").val();
-      var $selectprov = $('#provin_viv');
-      $selectprov.append('<option> Seleccione</option>');
-      $.each(ubigeo.provincias[departamentoc], function(i, item) {
-        $selectprov.append('<option value=' + item.id_ubigeo + '>' + item.nombre_ubigeo + '</option>');
-      });
-
-    });
-    $("#provin_viv").change(function() {
-      var provinciac = $("#provin_viv").val();
-      var $selectdistr = $('#distri_viv');
-      $selectdistr.empty()
-      $selectdistr.append('<option> Seleccione</option>');
-      $.each(ubigeo.distritos[provinciac], function(i, item) {
-        $selectdistr.append('<option value=' + item.id_ubigeo + '>' + item.nombre_ubigeo + '</option>');
-      });
-    });
-  */
-
-
-
-
-  $(document).ready(function() {
-    var $selectdep = $('#depart_nac');
-    $selectdep.append('<option> Seleccione</option>');
+    var selectdep = $('#departamento_viv');
+    selectdep.append('<option value=" "> Seleccione</option>');
     $.each(ubigeo.departamentos, function(i, item) {
-      $selectdep.append('<option value=' + item.id_ubigeo + '>' + item.nombre_ubigeo + '</option>');
+      selectdep.append('<option value=' + item.nombre_ubigeo + '>' + item.nombre_ubigeo + '</option>');
     });
   });
-  $("#depart_nac").change(function() {
-    var $selectdep = $('#depart_nac');
-    var str = "";
-    $("#depart_nac option:selected").each(function() {
-      str += $(this).text();
-      var departamentoc = $("#depart_nac").val();
-      var $selectprov = $('#provin_nac');
-      var $selectprov = $('#provin_nac');
-      $selectprov.empty()
+
+  $("#departamento_viv").change(function() {
+    var departamentoc = $("#departamento_viv").val();
+    $.each(ubigeo.departamentos, function(i, item) {
+      if (departamentoc == item.nombre_ubigeo) {
+        var id_departamento = item.id_ubigeo
+        inputProvinc(id_departamento)
+      }
     });
   });
+
+  function inputProvinc(id_departamento) {
+    var provin_viv = $('#provin_viv');
+    provin_viv.empty()
+    var auxiliar_viv = $('#auxiliar_viv');
+    auxiliar_viv.val(id_departamento)
+    provin_viv.append('<option> Seleccione</option>');
+    $.each(ubigeo.provincias[id_departamento], function(i, item) {
+      provin_viv.append('<option value=' + item.nombre_ubigeo + '>' + item.nombre_ubigeo + '</option>');
+    });
+  }
+
+  $("#provin_viv").change(function() {
+    auxiliar_viv = $('#auxiliar_viv').val();
+    var provin_viv = $('#provin_viv').val();
+    var selectdistri = $('#distri_viv');
+    selectdistri.empty()
+    $.each(ubigeo.provincias[auxiliar_viv], function(i, item) {
+      if (provin_viv == item.nombre_ubigeo) {
+        var id_provincia = item.id_ubigeo
+        inputDistrit(id_provincia)
+      }
+    });
+  });
+
+  function inputDistrit(id_provincia) {
+    var selectdistr = $('#distri_viv');
+    selectdistr.empty()
+    selectdistr.append('<option> Seleccione</option>');
+    $.each(ubigeo.distritos[id_provincia], function(i, item) {
+      selectdistr.append('<option value=' + item.nombre_ubigeo + '>' + item.nombre_ubigeo + '</option>');
+    });
+  }
+  //-------------------------------------------------------------------------------------------------------------
+  /* Jquery para departamento, provincia y distrito vivienda.*/
+  $(document).ready(function() {
+    var selectdep = $('#depart_nac');
+    selectdep.append('<option value=" "> Seleccione</option>');
+    $.each(ubigeo.departamentos, function(i, item) {
+      selectdep.append('<option value=' + item.nombre_ubigeo + '>' + item.nombre_ubigeo + '</option>');
+    });
+  });
+
   $("#depart_nac").change(function() {
     var departamentoc = $("#depart_nac").val();
-    var $selectprov = $('#provin_nac');
-    $selectprov.append('<option> Seleccione</option>');
-    $.each(ubigeo.provincias[departamentoc], function(i, item) {
-      $selectprov.append('<option value=' + item.id_ubigeo + '>' + item.nombre_ubigeo + '</option>');
+    $.each(ubigeo.departamentos, function(i, item) {
+      if (departamentoc == item.nombre_ubigeo) {
+        var id_departamento = item.id_ubigeo
+        inputProvincNac(id_departamento)
+      }
     });
+  });
+  function inputProvincNac(id_departamento) {
+    var provin_nac = $('#provin_nac');
+    provin_nac.empty()
+    var auxiliar_nac = $('#auxiliar_nac');
+    auxiliar_nac.val(id_departamento)
+    provin_nac.append('<option value=" "> Seleccione</option>');
+    $.each(ubigeo.provincias[id_departamento], function(i, item) {
+      provin_nac.append('<option value=' + item.nombre_ubigeo + '>' + item.nombre_ubigeo + '</option>');
+    });
+  }
 
-  });
   $("#provin_nac").change(function() {
-    var provinciac = $("#provin_nac").val();
-    var $selectdistr = $('#distri_nac');
-    $selectdistr.empty()
-    $selectdistr.append('<option> Seleccione</option>');
-    $.each(ubigeo.distritos[provinciac], function(i, item) {
-      $selectdistr.append('<option value=' + item.id_ubigeo + '>' + item.nombre_ubigeo + '</option>');
+    auxiliar_nac = $('#auxiliar_nac').val();
+    var provin_nac = $('#provin_nac').val();
+    var selectdistri = $('#distri_nac');
+    selectdistri.empty()
+    $.each(ubigeo.provincias[auxiliar_nac], function(i, item) {
+      if (provin_nac == item.nombre_ubigeo) {
+        var id_provincia = item.id_ubigeo
+        inputDistritNac(id_provincia)
+      }
     });
   });
+
+  function inputDistritNac(id_provincia) {
+    var selectdistr = $('#distri_nac');
+    selectdistr.empty()
+    selectdistr.append('<option value=" "> Seleccione</option>');
+    $.each(ubigeo.distritos[id_provincia], function(i, item) {
+      selectdistr.append('<option value=' + item.nombre_ubigeo + '>' + item.nombre_ubigeo + '</option>');
+    });
+  }
+    //-------------------------------------------------------------------------------------------------------------
 
   $(document).on("click", ".btn-agregaridioma", function() {
     html = "<tr>";
