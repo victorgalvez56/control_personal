@@ -7,6 +7,7 @@ class Personal extends CI_Controller
 	private $permisos;
 	public function __construct()
 	{
+		date_default_timezone_set('America/Lima');
 		parent::__construct();
 		$this->permisos = $this->backend_lib->control();
 		$this->load->model("Personal_model");
@@ -31,166 +32,177 @@ class Personal extends CI_Controller
 		$this->load->view("layouts/footer");
 	}
 
-	public function addstep2()
-	{
-		$this->load->view("layouts/header");
-		$this->load->view("layouts/aside");
-		$this->load->view("admin/personal/addstep2");
-		$this->load->view("layouts/footer");
-	}
 	public function store()
 	{
+		$mi_imagen = 'upload';
+		$config['upload_path'] = "uploads/";
+		$config['file_name'] = "nombre_archivo";
+		$config['allowed_types'] = "gif|jpg|jpeg|png";
+		$config['max_size'] = "50000";
+		$config['max_width'] = "2000";
+		$config['max_height'] = "2000";
+
+		$this->load->library('upload', $config);
+
+		if ($this->upload->do_upload($mi_imagen)) {
+
+			$data['uploadSuccess'] = $this->upload->data();
+			$data = array("upload_data" => $this->upload->data());
+
+			$grado = strtoupper($this->input->post("grado"));
+			$arma = strtoupper($this->input->post("arma"));
+			$apellido_pat = strtoupper($this->input->post("apellido_pat"));
+			$apellido_mat = strtoupper($this->input->post("apellido_mat"));
+			$nombres = strtoupper($this->input->post("nombres"));
+			$estado_civ = strtoupper($this->input->post("estado_civ"));
+			$a_servicio = strtoupper($this->input->post("a_servicio"));
+			$grado_ins_per = strtoupper($this->input->post("grado_ins_per"));
+			$religion = strtoupper($this->input->post("religion"));
+			$fec_ult_asc = strtoupper($this->input->post("fec_ult_asc"));
+
+			$depart_viv = strtoupper($this->input->post("depart_viv"));
+			$provinc_viv = strtoupper($this->input->post("provin_viv"));
+			$distrito_viv = strtoupper($this->input->post("distri_viv"));
+			$urbaniz_viv = strtoupper($this->input->post("urbanizacion"));
+			$calle_viv = strtoupper($this->input->post("calle"));
+
+			$depart_nac = strtoupper($this->input->post("depart_nac"));
+			$provinc_nac = strtoupper($this->input->post("provin_nac"));
+			$distrito_nac = strtoupper($this->input->post("distri_nac"));
+			$fecha_nac = strtoupper($this->input->post("distri_nac"));
+			$edad = strtoupper($this->input->post("calle"));
+
+			$cip = strtoupper($this->input->post("cip_per"));
+			$dni = strtoupper($this->input->post("dni_per"));
+			$pasaporte = strtoupper($this->input->post("pasaporte"));
+			$brevete = strtoupper($this->input->post("brevete"));
+
+			$talla = strtoupper($this->input->post("talla"));
+			$peso = strtoupper($this->input->post("peso"));
+			$grupo_sang = strtoupper($this->input->post("grupo_sang"));
+			$sexo = strtoupper($this->input->post("sexo"));
 
 
-		$grado = $this->input->post("grado");
-		$arma = $this->input->post("arma");
-		$apellido_pat = $this->input->post("apellido_pat");
-		$apellido_mat = $this->input->post("apellido_mat");
-		$nombres = $this->input->post("nombres");
-		$estado_civ = $this->input->post("estado_civ");
-		$anios_serv = $this->input->post("anios_serv");
-		$grado_instr = $this->input->post("grado_instr");
-		$religion = $this->input->post("religion");
-		$fec_ult_asc = $this->input->post("fec_ult_asc");
+			$camisa = strtoupper($this->input->post("camisa"));
+			$pantalon = strtoupper($this->input->post("pantalon"));
+			$calzado = strtoupper($this->input->post("calzado"));
+			$cabeza = strtoupper($this->input->post("cabeza"));
 
-		$depart_viv = $this->input->post("depart_viv");
-		$provinc_viv = $this->input->post("provin_viv");
-		$distrito_viv = $this->input->post("distri_viv");
-		$urbaniz_viv = $this->input->post("urbanizacion");
-		$calle_viv = $this->input->post("calle");
+			$banco = strtoupper($this->input->post("banco"));
+			$nro_cuenta = strtoupper($this->input->post("nro_cuenta"));
+			$afiliacion = strtoupper($this->input->post("afiliacion"));
 
-		$depart_nac = $this->input->post("depart_nac");
-		$provinc_nac = $this->input->post("provin_nac");
-		$distrito_nac = $this->input->post("distri_nac");
-		$fecha_nac = $this->input->post("distri_nac");
-		$edad = $this->input->post("calle");
+			/* Temporal*/
+			$telefono = strtoupper($this->input->post("telef_per"));
+			$operador = strtoupper($this->input->post("operador"));
+			$correo = strtoupper($this->input->post("correo"));
 
-		$cip = $this->input->post("cip");
-		$dni = $this->input->post("dni");
-		$pasaporte = $this->input->post("pasaporte");
-		$brevete = $this->input->post("brevete");
+			$ididiomas = $this->input->post("ididiomas");
+			$idioma = $this->input->post("idioma");
+			$idioma_habla = $this->input->post("idioma_habla");
+			$idioma_lee = $this->input->post("idioma_lee");
+			$idioma_escribe = $this->input->post("idioma_escribe");
+			$idioma_estudio = $this->input->post("idioma_estudio");
+			$idioma_practica = $this->input->post("idioma_practica");
+			
+	
+			$nombresfamiliar = $this->input->post("nombresfamiliar");
+			$parentesco_fam = $this->input->post("parentesco");
+			$edad_fam = $this->input->post("edad");
+			$lugar_nac_fam = $this->input->post("lugar_nac");
+			$fecha_nac_fam = $this->input->post("fecha_nac");
+			$cip_fam = $this->input->post("cip");
+			$dni_fam = $this->input->post("dni");
+			$telef_fam = $this->input->post("telefono");
+			$grup_sang_fam = $this->input->post("tipo_sangr");
+			$grad_inst_fam = $this->input->post("grado_instr");
+	
 
-		$talla = $this->input->post("talla");
-		$peso = $this->input->post("peso");
-		$grupo_sang = $this->input->post("grupo_sang");
-		$sexo = $this->input->post("sexo");
+			$lugar = $this->input->post("lugar");
+			$motivo = $this->input->post("motivo");
+			$fecha_viaje = $this->input->post("fecha_viaje");
 
-
-		$camisa = $this->input->post("camisa");
-		$pantalon = $this->input->post("pantalon");
-		$calzado = $this->input->post("calzado");
-		$cabeza = $this->input->post("cabeza");
-
-		$banco = $this->input->post("banco");
-		$nro_cuenta = $this->input->post("nro_cuenta");
-		$afiliacion = $this->input->post("afiliacion");
-
-		/* Temporal*/
-		$telefono = $this->input->post("telefono");
-		$operador = $this->input->post("operador");
-		$correo = $this->input->post("correo");
-
-		$ididiomas = $this->input->post("ididiomas");
-		$idioma = $this->input->post("idioma");
-		$idioma_habla = $this->input->post("idioma_habla");
-		$idioma_lee = $this->input->post("idioma_lee");
-		$idioma_escribe = $this->input->post("idioma_escribe");
-		$idioma_estudio = $this->input->post("idioma_estudio");
-		$idioma_practica = $this->input->post("idioma_practica");
-		/*
-
-		$nombre_fam = $this->input->post("nombre_fam");
-		$parentesco_fam = $this->input->post("parentesco_fam");
-		$edad_fam = $this->input->post("edad_fam");
-		$lugar_nac_fam = $this->input->post("lugar_nac_fam");
-		$fecha_nac_fam = $this->input->post("fecha_nac_fam");
-		$cip_fam = $this->input->post("cip_fam");
-		$dni_fam = $this->input->post("dni_fam");
-		$telef_fam = $this->input->post("telef_fam");
-		$grup_sang_fam = $this->input->post("grup_sang_fam");
-		$grad_inst_fam = $this->input->post("grad_inst_fam");
-
-*/
-		$lugar = $this->input->post("lugar");
-		$motivo = $this->input->post("motivo");
-		$fecha_viaje = $this->input->post("fecha_viaje");
-
-		$seguro = $this->input->post("seguro");
-		$tipo_seguro = $this->input->post("tipo_seguro");
+			$seguro = $this->input->post("seguro");
+			$tipo_seguro = $this->input->post("tipo_seguro");
 
 
-		$curso = $this->input->post("curso");
-		$tipo_curso = $this->input->post("tipo_curso");
+			$curso = $this->input->post("curso");
+			$tipo_curso = $this->input->post("tipo_curso");
 
 
-		$data  = array(
-			'grado' => $grado,
-			'arma' => $arma,
-			'apellido_pat' => $apellido_pat,
-			'apellido_mat' => $apellido_mat,
-			'nombres' => $nombres,
-			'estado_civ' => $estado_civ,
-			'anios_serv' => $anios_serv,
-			'grado_instruc' => 'PRIMARIA',
-			'religion' => $religion,
-			'fec_ultimo_asc' => $fec_ult_asc,
+			$data  = array(
+				'imagen' => $data['upload_data']['file_name'],
+				'grado' => $grado,
+				'arma' => $arma,
+				'apellido_pat' => $apellido_pat,
+				'apellido_mat' => $apellido_mat,
+				'nombres' => $nombres,
+				'estado_civ' => $estado_civ,
+				'anios_serv' => $a_servicio,
+				'grado_instruc' => $grado_ins_per,
+				'religion' => $religion,
+				'fec_ultimo_asc' => $fec_ult_asc,
 
-			'telefono' => $telefono,
-			'operador' => $operador,
-			'correo' => $correo,
+				'telefono' => $telefono,
+				'operador' => $operador,
+				'correo' => $correo,
 
-			'depart_viv' => $depart_viv,
-			'provinc_viv' => $provinc_viv,
-			'distrito_viv' => $distrito_viv,
-			'urbaniz_viv' => $urbaniz_viv,
-			'calle_viv' => $calle_viv,
+				'depart_viv' => $depart_viv,
+				'provinc_viv' => $provinc_viv,
+				'distrito_viv' => $distrito_viv,
+				'urbaniz_viv' => $urbaniz_viv,
+				'calle_viv' => $calle_viv,
 
-			'depart_nac' => $depart_nac,
-			'provinc_nac' => $provinc_nac,
-			'distrito_nac' => $distrito_nac,
-			'fecha_nac' => $fecha_nac,
-			'edad' => $edad,
+				'depart_nac' => $depart_nac,
+				'provinc_nac' => $provinc_nac,
+				'distrito_nac' => $distrito_nac,
+				'fecha_nac' => $fecha_nac,
+				'edad' => $edad,
 
-			'cip' => $cip,
-			'dni' => $dni,
-			'pasaporte' => $pasaporte,
-			'brevete' => $brevete,
-
-
-			'talla' => $talla,
-			'peso' => $peso,
-			'grupo_sang' => $grupo_sang,
-			'sexo' => $sexo,
+				'cip' => $cip,
+				'dni' => $dni,
+				'pasaporte' => $pasaporte,
+				'brevete' => $brevete,
 
 
-			'talla_camisa' => $camisa,
-			'talla_pantalon' => $pantalon,
-			'talla_calzado' => $calzado,
-			'talla_prenda' => $cabeza,
-
-			'banco' => $banco,
-			'nro_cuenta' => $nro_cuenta,
-			'afiliacion' => $afiliacion,
-
-			'estado' => '1',
+				'talla' => $talla,
+				'peso' => $peso,
+				'grupo_sang' => $grupo_sang,
+				'sexo' => $sexo,
 
 
-		);
+				'talla_camisa' => $camisa,
+				'talla_pantalon' => $pantalon,
+				'talla_calzado' => $calzado,
+				'talla_prenda' => $cabeza,
 
-		if ($this->Personal_model->save($data)) {
-			$idpersonal = $this->Personal_model->lastID();
-			//$this->save_detalle_familiar($idpersonal, $nombre_fam, $parentesco_fam, $edad_fam, $lugar_nac_fam, $fecha_nac_fam, $cip_fam, $dni_fam, $telef_fam, $grup_sang_fam, $grad_inst_fam);
-			$this->save_detalle_idioma($idpersonal, $idioma, $idioma_habla, $idioma_lee, $idioma_escribe, $idioma_estudio, $idioma_practica);
-			$this->save_detalle_viaje($idpersonal, $lugar, $motivo, $fecha_viaje);
+				'banco' => $banco,
+				'nro_cuenta' => $nro_cuenta,
+				'afiliacion' => $afiliacion,
+
+				'estado' => '1',
 
 
-			$this->save_detalle_seguro($idpersonal, $seguro, $tipo_seguro);
-			$this->save_detalle_estudio($idpersonal, $curso, $tipo_curso);
+			);
+
+			if ($this->Personal_model->save($data)) {
+				$idpersonal = $this->Personal_model->lastID();
+				$this->save_detalle_familiar($idpersonal, $nombresfamiliar, $parentesco_fam, $edad_fam, $lugar_nac_fam, $fecha_nac_fam, $cip_fam, $dni_fam, $telef_fam, $grup_sang_fam, $grad_inst_fam);
+				$this->save_detalle_idioma($idpersonal, $idioma, $idioma_habla, $idioma_lee, $idioma_escribe, $idioma_estudio, $idioma_practica);
+				$this->save_detalle_viaje($idpersonal, $lugar, $motivo, $fecha_viaje);
+				$this->save_detalle_seguro($idpersonal, $seguro, $tipo_seguro);
+				$this->save_detalle_estudio($idpersonal, $curso, $tipo_curso);
 
 
-			redirect(base_url() . "control/personal");
+				redirect(base_url() . "control/personal");
+			} else {
+				echo "Error";
+			}
 		} else {
-			echo "no funcionòs";
+			$data['uploadError'] = $this->upload->display_errors();
+			$mensaje = $this->upload->display_errors();
+			echo $mensaje;
+			return;
 		}
 	}
 
@@ -201,8 +213,8 @@ class Personal extends CI_Controller
 			$data  = array(
 				'id' => '',
 				'personal_id' => $idpersonal,
-				'seguro' => $seguro[$i],
-				'tipo_seguro' => $tipo_seguro[$i],
+				'seguro' => strtoupper($seguro[$i]),
+				'tipo_seguro' => strtoupper($tipo_seguro[$i]),
 				'estado' => '1',
 
 			);
@@ -216,8 +228,8 @@ class Personal extends CI_Controller
 			$data  = array(
 				'id' => '',
 				'personal_id' => $idpersonal,
-				'curso' => $curso[$i],
-				'tipo_curso' => $tipo_curso[$i],
+				'curso' => strtoupper($curso[$i]),
+				'tipo_curso' => strtoupper($tipo_curso[$i]),
 				'estado' => '1',
 
 			);
@@ -258,14 +270,14 @@ class Personal extends CI_Controller
 		}
 	}
 
-	protected function save_detalle_familiar($personal, $nombre_fam, $parentesco_fam, $edad_fam, $lugar_nac_fam, $fecha_nac_fam, $cip_fam, $dni_fam, $telef_fam, $grup_sang_fam, $grad_inst_fam)
+	protected function save_detalle_familiar($personal, $nombresfamiliar, $parentesco_fam, $edad_fam, $lugar_nac_fam, $fecha_nac_fam, $cip_fam, $dni_fam, $telef_fam, $grup_sang_fam, $grad_inst_fam)
 	{
 
-		for ($i = 0; $i < count($nombre_fam); $i++) {
+		for ($i = 0; $i < count($nombresfamiliar); $i++) {
 			$data  = array(
 				'id' => '',
 				'personal_id' => $personal,
-				'nombre_fam' => $nombre_fam[$i],
+				'nombre_fam' => $nombresfamiliar[$i],
 				'parentesco_fam' => $parentesco_fam[$i],
 				'edad_fam' => $edad_fam[$i],
 				'lugar_nac_fam' => $lugar_nac_fam[$i],
@@ -330,15 +342,16 @@ class Personal extends CI_Controller
 		$this->Categorias_model->update($id, $data);
 		echo "mantenimiento/categorias";
 	}
-    
-    
-    
-    	public function view(){
+
+
+
+	public function view()
+	{
 		$idventa = $this->input->post("id");
 		$data = array(
-			"personals" => $this->Personal_model->getPersonals(),
+			"personals" => $this->Personal_model->getPersonal($idventa),
 		);
-		$this->load->view("admin/personal/view",$data);
+		//echo json_encode($data);	
+		$this->load->view("admin/personal/view", $data);
 	}
-    
 }

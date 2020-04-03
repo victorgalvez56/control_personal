@@ -8,6 +8,7 @@ class Sanitario_registro extends CI_Controller
 	public function __construct()
 	{
 		parent::__construct();
+		date_default_timezone_set('America/Lima');
 		$this->permisos = $this->backend_lib->control();
 		$this->load->model("Sanitario_registro_model");
 		$this->load->model("Personal_model");
@@ -16,7 +17,7 @@ class Sanitario_registro extends CI_Controller
 	{
 		$data  = array(
 			'permisos' => $this->permisos,
-            			'registros' => $this->Sanitario_registro_model->getRegistros(),
+            'registros' => $this->Sanitario_registro_model->getRegistros(),
 		);
 		$this->load->view("layouts/header");
 		$this->load->view("layouts/aside");
@@ -38,7 +39,7 @@ class Sanitario_registro extends CI_Controller
 
 	public function store(){
 		$fecha = date("d-m-Y H:i:s");
-		$nuevafecha = strtotime('-6 hour', strtotime($fecha)); // 6 hour en horario de verano
+		$nuevafecha = strtotime('-0 hour', strtotime($fecha)); // 6 hour en horario de verano
 		$nuevafecha = date('Y-m-d H:i:s', $nuevafecha);
 		$dni = $this->input->post("dni");
 		$sexo = $this->input->post("sexo");

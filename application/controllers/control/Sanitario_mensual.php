@@ -8,6 +8,7 @@ class Sanitario_mensual extends CI_Controller
 	public function __construct()
 	{
 		parent::__construct();
+		date_default_timezone_set('America/Lima');
 		$this->permisos = $this->backend_lib->control();
 		$this->load->model("Sanitario_mensual_model");
 		$this->load->model("Personal_model");
@@ -40,7 +41,7 @@ class Sanitario_mensual extends CI_Controller
 
 	public function store(){
 		$fecha = date("d-m-Y H:i:s");
-		$nuevafecha = strtotime('-6 hour', strtotime($fecha)); // 6 hour en horario de verano
+		$nuevafecha = strtotime('-0 hour', strtotime($fecha)); // 6 hour en horario de verano
 		$nuevafecha = date('Y-m-d H:i:s', $nuevafecha);
 		$dni = $this->input->post("dni");
 		$presion = $this->input->post("presion");
@@ -60,7 +61,7 @@ class Sanitario_mensual extends CI_Controller
 			'peri_abdominal' => $perimetro,
 			'estado' => "1",
 		);
-		$this->Sanitario_anual_model->save($data);
+		$this->Sanitario_mensual_model->save($data);
 		redirect(base_url()."control/sanitario_anual");
 	}
 	public function view($id)

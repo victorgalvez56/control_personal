@@ -59,7 +59,7 @@
 
                                 <?php
                                 $fecha = date("d-m-Y H:i:s");
-                                $nuevafecha = strtotime('-6 hour', strtotime($fecha)); // 6 hour en horario de verano
+                                $nuevafecha = strtotime('-0 hour', strtotime($fecha)); // 6 hour en horario de verano
                                 $nuevafecha3 = date('d', $nuevafecha);
 
 

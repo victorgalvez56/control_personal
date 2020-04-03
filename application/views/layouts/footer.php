@@ -38,10 +38,16 @@
 <script src="<?php echo base_url(); ?>assets/template/dist/js/demo.js"></script>
 <script>
   console.log('Prueba que carga bien el script')
-
+  $(document).on("click", ".btn-print", function() {
+    $("#modal-default .modal-body").print({
+      title: "Información del Personal"
+    });
+  });
 
   $(document).on("click", ".btn-view-personal", function() {
+    var base_url = "<?php echo base_url(); ?>";
     valor_id = $(this).val();
+    console.log(valor_id)
     $.ajax({
       url: base_url + "control/personal/view",
       type: "POST",
@@ -51,6 +57,7 @@
       },
       success: function(data) {
         $("#modal-default .modal-body").html(data);
+        $("#modal-venta .modal-body").html(data);
       }
     });
   });
@@ -175,7 +182,7 @@
   /* Jquery para departamento, provincia y distrito vivienda.*/
   $(document).ready(function() {
     var selectdep = $('#departamento_viv');
-    selectdep.append('<option value=" "> Seleccione</option>');
+    selectdep.append('<option value=""> Seleccione</option>');
     $.each(ubigeo.departamentos, function(i, item) {
       selectdep.append('<option value=' + item.nombre_ubigeo + '>' + item.nombre_ubigeo + '</option>');
     });
@@ -196,7 +203,7 @@
     provin_viv.empty()
     var auxiliar_viv = $('#auxiliar_viv');
     auxiliar_viv.val(id_departamento)
-    provin_viv.append('<option> Seleccione</option>');
+    provin_viv.append('<option value=""> Seleccione</option>');
     $.each(ubigeo.provincias[id_departamento], function(i, item) {
       provin_viv.append('<option value=' + item.nombre_ubigeo + '>' + item.nombre_ubigeo + '</option>');
     });
@@ -218,7 +225,7 @@
   function inputDistrit(id_provincia) {
     var selectdistr = $('#distri_viv');
     selectdistr.empty()
-    selectdistr.append('<option> Seleccione</option>');
+    selectdistr.append('<option value=""> Seleccione</option>');
     $.each(ubigeo.distritos[id_provincia], function(i, item) {
       selectdistr.append('<option value=' + item.nombre_ubigeo + '>' + item.nombre_ubigeo + '</option>');
     });
@@ -227,7 +234,7 @@
   /* Jquery para departamento, provincia y distrito vivienda.*/
   $(document).ready(function() {
     var selectdep = $('#depart_nac');
-    selectdep.append('<option value=" "> Seleccione</option>');
+    selectdep.append('<option value=""> Seleccione</option>');
     $.each(ubigeo.departamentos, function(i, item) {
       selectdep.append('<option value=' + item.nombre_ubigeo + '>' + item.nombre_ubigeo + '</option>');
     });
@@ -242,12 +249,13 @@
       }
     });
   });
+
   function inputProvincNac(id_departamento) {
     var provin_nac = $('#provin_nac');
     provin_nac.empty()
     var auxiliar_nac = $('#auxiliar_nac');
     auxiliar_nac.val(id_departamento)
-    provin_nac.append('<option value=" "> Seleccione</option>');
+    provin_nac.append('<option value=""> Seleccione</option>');
     $.each(ubigeo.provincias[id_departamento], function(i, item) {
       provin_nac.append('<option value=' + item.nombre_ubigeo + '>' + item.nombre_ubigeo + '</option>');
     });
@@ -269,12 +277,15 @@
   function inputDistritNac(id_provincia) {
     var selectdistr = $('#distri_nac');
     selectdistr.empty()
-    selectdistr.append('<option value=" "> Seleccione</option>');
+    selectdistr.append('<option value=""> Seleccione</option>');
     $.each(ubigeo.distritos[id_provincia], function(i, item) {
       selectdistr.append('<option value=' + item.nombre_ubigeo + '>' + item.nombre_ubigeo + '</option>');
     });
   }
-    //-------------------------------------------------------------------------------------------------------------
+  //-------------------------------------------------------------------------------------------------------------
+
+
+
 
   $(document).on("click", ".btn-agregaridioma", function() {
     html = "<tr>";
@@ -296,7 +307,7 @@
 
   $(document).on("click", ".btn-agregarfamiliares", function() {
     html = "<tr id='tableremove1'>";
-    html += "<td><input type='text' class='form-control' id='idioma' name='nombres[]' style='text-transform: uppercase;' required ></td>";
+    html += "<td><input type='text' class='form-control' id='idioma' name='nombresfamiliar[]' style='text-transform: uppercase;' required ></td>";
     html += "<td><input type='text' class='form-control' id='parentesco' name='parentesco[]' style='text-transform: uppercase;' required ></td>";
     html += "<td><input type='number' class='form-control' id='edad' name='edad[]' style='text-transform: uppercase;' required ></td>";
     html += "<td><input type='text' class='form-control' id='lugar_nac' name='lugar_nac[]' style='text-transform: uppercase;' required ></td>";

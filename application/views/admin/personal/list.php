@@ -32,9 +32,6 @@
                                     <th>Arma</th>
                                     <th>Teléfono</th>
                                     <th>Correo</th>
-                                    <th>Arma</th>
-                                    <th>Teléfono</th>
-                                    <th>Correo</th>
                                     <th>opciones</th>
                                 </tr>
                             </thead>
@@ -42,12 +39,16 @@
                                 <?php if (!empty($personals)) : ?>
                                     <?php foreach ($personals as $personal) : ?>
                                         <tr>
-                                            <td><?php echo $personal->nombres?></td>
-                                            <td><?php echo $personal->nombre_ubigeo?></td>
-
+                                            <td><?php echo $personal->dni ?></td>
+                                            <td><?php echo $personal->cip ?></td>
+                                            <td><?php echo $personal->nombres." ".$personal->apellido_pat." ".$personal->apellido_mat ?></td>
+                                            <td><?php echo $personal->grado ?></td>
+                                            <td><?php echo $personal->arma ?></td>
+                                            <td><?php echo $personal->telefono ?></td>
+                                            <td><?php echo $personal->correo?></td>
                                             <td>
                                                 <div class="btn-group">
-                                                    <button type="button" class="btn btn-info btn-view-persona" value="<?php echo $personal->id; ?>" data-toggle="modal" data-target="#modal-default"><span class="fa fa-search"></span></button>
+                                                    <button type="button" class="btn btn-info btn-view-personal" value="<?php echo $personal->id; ?>" data-toggle="modal" data-target="#modal-default"><span class="fa fa-search"></span></button>
                                                     <?php if ($permisos->update == 1) : ?>
                                                         <a href="<?php echo base_url() ?>control/personal/edit/<?php echo $personal->id; ?>" class="btn btn-warning"><span class="fa fa-pencil"></span></a>
                                                     <?php endif; ?>
@@ -74,7 +75,8 @@
 
 <div class="modal fade" id="modal-default">
     <div class="modal-dialog">
-        <div class="modal-content">
+        <div class="modal-content" style="width:1000px;margin: 0;top: 50%;left: 50%;margin-right: -50%;transform: translate(-50%, -0%)">
+
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span></button>
@@ -85,6 +87,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-danger pull-left" data-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary btn-print"><span class="fa fa-print"> </span>Imprimir</button>              
             </div>
         </div>
         <!-- /.modal-content -->

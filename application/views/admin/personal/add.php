@@ -14,7 +14,7 @@
                                 <p><i class="icon fa fa-ban"></i><?php echo $this->session->flashdata("error"); ?></p>
                             </div>
                         <?php endif; ?>
-                        <form action="<?php echo base_url(); ?>control/personal/store" method="POST">
+                        <form action="<?php echo base_url(); ?>control/personal/store" method="POST" enctype="multipart/form-data">
                             <section class="content">
                                 <div class="box box-primary">
                                     <div class="row">
@@ -29,7 +29,7 @@
                                                             <div class="form-group">
                                                                 <label for="imagen">Foto Personal:</label>
                                                                 <span class="btn btn-default btn-file">
-                                                                    Subir Foto <input type="file" name="imagen" required>
+                                                                    Subir Foto <input type="file" name="upload" required>
                                                                 </span>
                                                             </div>
                                                         </div>
@@ -108,14 +108,14 @@
                                                         </div>
                                                         <div class="col-md-2">
                                                             <div class="form-group">
-                                                                <label for="anios_serv">Años Servicio:</label>
-                                                                <input type="number" class="form-control" id="anios_serv" name="anios_serv" style="text-transform: uppercase;" min="0" required>
+                                                                <label for="a_servicio">Años Servicio:</label>
+                                                                <input type="number" class="form-control" id="a_servicio" name="a_servicio" style="text-transform: uppercase;" min="0" required>
                                                             </div>
                                                         </div>
                                                         <div class="col-md-2">
                                                             <div class="form-group">
                                                                 <label for="grado_instr">Grado de Instrucción:</label>
-                                                                <select class="form-control form-control-lg" id="grado_instr" name="grado_instr" required>
+                                                                <select class="form-control form-control-lg" id="grado_ins_per" name="grado_ins_per" required>
                                                                     <option value="">SELECCIONE</option>
                                                                     <option value="PRIMARIA">PRIMARIA</option>
                                                                     <option value="SECUNDARIA">SECUNDARIA</option>
@@ -154,14 +154,14 @@
                                                         <div class="col-md-2">
                                                             <div class="form-group">
                                                                 <label for="">Provincia:</label>
-                                                                <select class="form-control form-control-lg" id="provin_viv" name="provin_viv">
+                                                                <select class="form-control form-control-lg" id="provin_viv" name="provin_viv" required>
                                                                 </select>
                                                             </div>
                                                         </div>
                                                         <div class="col-md-2">
                                                             <div class="form-group">
                                                                 <label for="distri_viv">Distrito:</label>
-                                                                <select class="form-control form-control-lg" id="distri_viv" name="distri_viv">
+                                                                <select class="form-control form-control-lg" id="distri_viv" name="distri_viv" required>
                                                                 </select>
                                                             </div>
                                                         </div>
@@ -187,7 +187,7 @@
                                                         <div class="col-md-2">
                                                             <div class="form-group">
                                                                 <label for="telefono">Número:</label>
-                                                                <input type="number" class="form-control" id="numero" min="0" name="telefono" style="text-transform: uppercase;" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==9) return false;" required>
+                                                                <input type="number" class="form-control" id="numero" min="0" name="telef_per" style="text-transform: uppercase;" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==9) return false;" required>
                                                             </div>
                                                         </div>
                                                         <div class="col-md-2">
@@ -212,20 +212,20 @@
                                                         <div class="col-md-2">
                                                             <div class="form-group">
                                                                 <label for="depart_nac">Departamento:</label>
-                                                                <select class="form-control form-control-lg" id="depart_nac" name="depart_nac">
+                                                                <select class="form-control form-control-lg" id="depart_nac" name="depart_nac" required>
                                                                 </select>
                                                             </div>
                                                         </div>
                                                         <div class="col-md-2">
                                                             <div class="form-group">
                                                                 <label for="provin_nac">Provincia:</label>
-                                                                <select class="form-control form-control-lg" id="provin_nac" name="provin_nac">
+                                                                <select class="form-control form-control-lg" id="provin_nac" name="provin_nac" required>
                                                                 </select>
                                                             </div>
                                                         </div>
                                                         <div class="col-md-2">
                                                             <label for="distri_nac">Distrito:</label>
-                                                            <select class="form-control form-control-lg" id="distri_nac" name="distri_nac">
+                                                            <select class="form-control form-control-lg" id="distri_nac" name="distri_nac" required>
                                                             </select>
                                                         </div>
                                                         <div class="col-md-2">
@@ -250,13 +250,13 @@
                                                         <div class="col-md-2">
                                                             <div class="form-group">
                                                                 <label for="cip">CIP:</label>
-                                                                <input type="number" class="form-control" name="cip" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==9) return false;" required>
+                                                                <input type="number" class="form-control" name="cip_per" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==9) return false;" required>
                                                             </div>
                                                         </div>
                                                         <div class="col-md-2">
                                                             <div class="form-group">
                                                                 <label for="dni">DNI:</label>
-                                                                <input type="number" class="form-control" name="dni" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==8) return false;" required>
+                                                                <input type="number" class="form-control" name="dni_per" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==8) return false;" required>
                                                             </div>
                                                         </div>
                                                         <div class="col-md-2">
