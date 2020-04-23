@@ -181,6 +181,7 @@ class Personal extends CI_Controller
 				'afiliacion' => $afiliacion,
 
 				'estado' => '1',
+				'estado_registro' => '1',
 
 
 			);

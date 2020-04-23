@@ -20,6 +20,7 @@
                                     <div class="input-group">
                                         <span class="input-group-btn">
                                             <button class="btn btn-primary" id="buttonsearch" type="button" data-toggle="modal" data-target="#modal-default"><span class="fa fa-search"></span> Buscar</button>
+                                            <input type="hidden" name="idPersonal" id="idPersonal">
                                         </span>
                                     </div><!-- /input-group -->
                                 </div>

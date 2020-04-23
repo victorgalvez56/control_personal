@@ -27,7 +27,7 @@ class Sanitario_registro extends CI_Controller
 	public function add()
 	{
 		$data = array(
-			'personals' => $this->Sanitario_registro_model->getPersonals(),
+			'personals' => $this->Sanitario_registro_model->getPersonalsforRegister(),
 		);
 		$this->load->view("layouts/header");
 		$this->load->view("layouts/aside");
@@ -38,6 +38,7 @@ class Sanitario_registro extends CI_Controller
 
 
 	public function store(){
+		$idPersonal= $this->input->post("idPersonal");
 		$fecha = date("d-m-Y H:i:s");
 		$nuevafecha = strtotime('-0 hour', strtotime($fecha)); // 6 hour en horario de verano
 		$nuevafecha = date('Y-m-d H:i:s', $nuevafecha);
@@ -48,19 +49,16 @@ class Sanitario_registro extends CI_Controller
 		$data = array(
 			'fecha' => $nuevafecha,
 			'personal_id' => $dni,
-			'sexo' => $sexo,
-			'grupo_sang' => $grupo_sang,
 			'alergias' => $alergias,
 			'estado' => "1",
 		);
 		$datapersonal = array(
-			'estado_registro' => "1",
+			'estado_registro' => "0",
 		);
 
 
 		$this->Sanitario_registro_model->save($data);
-		$this->Personal_model->update($dni,$datapersonal);
-
+		$this->Personal_model->update($idPersonal,$datapersonal);
 		redirect(base_url()."control/sanitario_registro");
 
 
@@ -69,59 +67,46 @@ class Sanitario_registro extends CI_Controller
 	public function edit($id)
 	{
 		$data  = array(
-			'categoria' => $this->Categorias_model->getCategoria($id),
+			'sanitario' => $this->Sanitario_registro_model->getRegistro($id),
 		);
 		$this->load->view("layouts/header");
 		$this->load->view("layouts/aside");
-		$this->load->view("admin/categorias/edit", $data);
+		$this->load->view("admin/sanitario_registro/edit", $data);
 		$this->load->view("layouts/footer");
+		echo json_encode($data);
 	}
 
 	public function update()
 	{
 
-		$idCategoria = $this->input->post("idCategoria");
-		$nombre = $this->input->post("nombre_cat");
-		$descripcion = $this->input->post("descripcion_cat");
-
-		$categoriaactual = $this->Categorias_model->getCategoria($idCategoria);
-
-		if ($nombre == $categoriaactual->nombre_cat) {
-			$is_unique = "";
-		} else {
-			$is_unique = "|is_unique[categorias.nombre_cat]";
-		}
-		$this->form_validation->set_rules("nombre_cat", "Nombre", "required" . $is_unique);
-		if ($this->form_validation->run() == TRUE) {
+		$idRegistro = $this->input->post("idRegistro");
+		$alergias = $this->input->post("alergias");
+		$registroactual = $this->Sanitario_registro_model->getRegistro($idRegistro);
 			$data = array(
-				'nombre_cat' => $nombre,
-				'descripcion_cat' => $descripcion,
+				'alergias' => $alergias,
 			);
 
-			if ($this->Categorias_model->update($idCategoria, $data)) {
-				redirect(base_url() . "mantenimiento/categorias");
+			if ($this->Sanitario_registro_model->update($idRegistro, $data)) {
+				redirect(base_url() . "control/sanitario_registro");
 			} else {
-				$this->session->set_flashdata("error", "No se pudo actualizar la informacion");
-				redirect(base_url() . "mantenimiento/categorias/edit/" . $idCategoria);
+				$this->session->set_flashdata("error", "No se pudo actualizar la información");
+				redirect(base_url() . "control/sanitario_registro/edit/" . $idRegistro);
 			}
-		} else {
-			$this->edit($idCategoria);
-		}
+
 	}
 
-	public function view($id)
-	{
-		$data  = array(
-			'categoria' => $this->Categorias_model->getCategoria($id),
-		);
-		$this->load->view("admin/categorias/view", $data);
-	}
 	public function delete($id)
-	{
+	{	
+
 		$data  = array(
-			'estado_cat' => "0",
+			'estado' => "0",
 		);
-		$this->Categorias_model->update($id, $data);
-		echo "mantenimiento/categorias";
+		$updatepersona  = array(
+			'estado_registro' => "1"
+		);
+		$registro = $this->Sanitario_registro_model->getRegistroby($id);
+		$this->Sanitario_registro_model->update($id, $data);
+		$this->Personal_model->update($registro->personal_id, $updatepersona);
+		redirect(base_url() . "control/sanitario_registro");
 	}
 }

@@ -48,10 +48,10 @@
                                             <td>
                                                 <div class="btn-group">
                                                     <?php if($permisos->update == 1):?>
-                                                    <a href="<?php echo base_url()?>mantenimiento/categorias/edit/<?php echo $registro->id;?>" class="btn btn-warning"><span class="fa fa-pencil"></span></a>
+                                                    <a href="<?php echo base_url()?>control/sanitario_registro/edit/<?php echo $registro->id;?>" class="btn btn-warning"><span class="fa fa-pencil"></span></a>
                                                     <?php endif;?>
                                                     <?php if($permisos->delete == 1):?>
-                                                    <a href="<?php echo base_url();?>mantenimiento/categorias/delete/<?php echo $registro->id;?>" class="btn btn-danger btn-remove"><span class="fa fa-remove"></span></a>
+                                                    <a href="<?php echo base_url();?>control/sanitario_registro/delete/<?php echo $registro->id; ?>" class="btn btn-danger btn-remove"><span class="fa fa-remove"></span></a>
                                                     <?php endif;?>
                                                 </div>
                                             </td>

@@ -80,6 +80,8 @@
       $("#tbventas tbody").append(html);
       $("#buttonsearch").prop("disabled", true);
       $("#btn-check22").val(null);
+      console.log('ga')
+      $("#idPersonal").val(infoproducto[0]);
     } else {
       alert("seleccione un personal...");
     }
@@ -115,22 +117,22 @@
     data = $(this).val();
     if (data != '') {
       responsable = $("#buttonsearch").val();
-
       infoproducto = data.split("*");
-
+      $("input[name=sexo_rgm]").val(infoproducto[5]);
       html = "<tr>";
       html += "<td><input type='hidden' name='dni' value='" + infoproducto[0] + "'>" + infoproducto[1] + "</td>";
       html += "<td><input type='hidden' name='nombres'  value='" + infoproducto[2] + "'>" + infoproducto[3] + "</td>";
-      html += "<td><input type='text' class='form-control form-control' name='pres_sis' '></td>";
-      html += "<td><input type='text' class='form-control form-control' name='pres_dia' '></td>";
-      html += "<td><input type='text' class='form-control form-control' name='pulso' '></td>";
-      html += "<td><input type='text' class='form-control form-control' name='valoracion' readonly></td>";
+      html += "<td><input type='number' min='0' class='form-control form-control' name='pres_sis' required></td>";
+      html += "<td><input type='number' min='0' class='form-control form-control' name='pres_dia' required></td>";
+      html += "<td><input type='number' min='0' class='form-control form-control' name='pulso' required></td>";
+      html += "<td><input type='text' class='form-control form-control'  size='45' name='valoracion' readonly></td>";
       html += "<td><input type='hidden' name='medico'  value='" + responsable + "'>" + responsable + "</td>";
-      html += "<td><input type='text' id='peso' class='form-control form-control' name='peso' ></td>";
+      html += "<td><input type='number' min='0' id='peso' class='form-control form-control' name='peso' required></td>";
       html += "<td><input type='text' class='form-control form-control' name='imc' readonly></td>";
-      html += "<td><input type='text' class='form-control form-control' name='clasi_imc' readonly></td>";
-      html += "<td><input type='text' class='form-control form-control' name='perimetro'></td>";
-      html += "<td><input type='text' class='form-control form-control' name='clasi_peri'readonly></td>";
+      html += "<td><input type='text' class='form-control form-control' size='35' name='clasi_imc' readonly></td>";
+      html += "<td><input type='number' min='0' class='form-control form-control' name='perimetro'  required></td>";
+      html += "<td><input type='text' class='form-control form-control'size='30' name='clasi_peri'readonly></td>";
+      html += "<td><button type='button' class='btn btn-danger btn-remove-producto'><span class='fa fa-remove'></span></button></td>";
       html += "</tr>";
       $("#tbmensual tbody").append(html);
       $("#buttonsearch").prop("disabled", true);
@@ -141,18 +143,87 @@
   });
 
 
-  $(document).on("keyup", "#peso", function() {
+  $(document).on("keyup", "input[name=peso]", function() {
 
-    sumar();
+    calcularImc();
   });
 
-  function sumar() {
+  function calcularImc() {
     peso = $("input[name=peso]").val();
     talla = $("input[name=nombres]").val();
-    imc = peso * talla;
+    imc = peso / (talla * talla);
+    var imcFix = imc.toFixed(2)
     $("input[name=imc]").val(imc.toFixed(2));
-
+    if (imc < '18.5') {
+      $("input[name=clasi_imc]").val('DELGADEZ');
+    } else if (imc > '18.5' && imc < '25') {
+      $("input[name=clasi_imc]").val('NORMAL');
+    } else if (imc => '25' && imc < '30') {
+      $("input[name=clasi_imc]").val('SOBREPESO');
+    } else if (imc => '30') {
+      $("input[name=clasi_imc]").val('OBESIDAD');
+    }
   }
+
+  $(document).on("keyup", "input[name=perimetro]", function() {
+
+    calcularPerimetroAbd();
+  });
+
+  function calcularPerimetroAbd() {
+    perimetro = $("input[name=perimetro]").val();
+    sexo = $("input[name=sexo_rgm]").val();
+
+    if (sexo = 'FEMENINO') {
+      if (perimetro < 80) {
+        $("input[name=clasi_peri]").val('BAJO');
+      } else if (perimetro > 79 && perimetro < 88) {
+        $("input[name=clasi_peri]").val('ALTO');
+      } else if (perimetro > 87) {
+        $("input[name=clasi_peri]").val('MUY ALTO');
+      }
+      if ($("input[name=perimetro]").val().length <= 0) {
+        $("input[name=clasi_peri]").val('');
+      }
+    } else {
+      if (perimetro < 94) {
+        $("input[name=clasi_peri]").val('BAJO');
+      } else if (perimetro > 93 && perimetro < 102) {
+        $("input[name=clasi_peri]").val('ALTO');
+      } else if (perimetro > 101) {
+        $("input[name=clasi_peri]").val('MUY ALTO');
+      }
+      if ($("input[name=perimetro]").val().length <= 0) {
+        $("input[name=clasi_peri]").val('');
+      }
+    }
+  }
+
+  $(document).on("keyup", "input[name=pres_sis]", function() {
+
+    calcularValoracion();
+  });
+  $(document).on("keyup", "input[name=pres_dia]", function() {
+
+    calcularValoracion();
+  });
+
+  function calcularValoracion() {
+    sistolica = $("input[name=pres_sis]").val();
+    diastolica = $("input[name=pres_dia]").val();
+
+    if (sistolica < 120 & diastolica < 80) {
+      $("input[name=valoracion]").val('NORMAL');
+    }else if (sistolica > 119 & sistolica < 140 & diastolica < 91 ){
+      $("input[name=valoracion]").val('PRE-HIPERTENSION');
+    }else if (sistolica > 139){
+      $("input[name=valoracion]").val('HIPERTENSION 1');
+    }
+    if ($("input[name=pres_sis]").val().length <= 0) {
+      $("input[name=valoracion]").val('');
+    }
+  }
+
 
   $(document).on("click", ".btn-remove-producto", function() {
     $(this).closest("tr").remove();

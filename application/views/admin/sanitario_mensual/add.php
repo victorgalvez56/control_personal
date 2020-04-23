@@ -20,6 +20,7 @@
                                     <div class="input-group">
                                         <span class="input-group-btn">
                                             <button class="btn btn-primary" value='<?php echo $responsable; ?>' id="buttonsearch" type="button" data-toggle="modal" data-target="#modal-default"><span class="fa fa-search"></span> Buscar</button>
+                                            <input type='hidden' name='sexo_rgm'>
                                         </span>
                                     </div><!-- /input-group -->
                                 </div>
@@ -52,6 +53,8 @@
                                 <div class="col-md-12">
                                     <div style="float: right">
                                         <button type="submit" class="btn btn-modal btn-success btn-flat">Guardar</button>
+                                        <input type='hidden' name='medico'>
+                                        <input type='hidden' name='medico'>
                                     </div>
                                 </div>
                             </div>
@@ -59,10 +62,10 @@
                     </div>
                 </div>
             </div>
-</div>
+        </div>
 
-</section>
-<!-- /.content -->
+    </section>
+    <!-- /.content -->
 </div>
 <!-- /.content-wrapper -->
 
@@ -94,7 +97,7 @@
                                     <td><?php echo $personal->nombres; ?></td>
                                     <td><?php echo $personal->grado; ?></td>
 
-                                    <?php $datapersonal = $personal->id . "*" . $personal->dni . "*" . $personal->talla. "*" . $personal->nombres . " " . $personal->apellido_pat . " " . $personal->apellido_mat . "*" . $personal->grado ; ?>
+                                    <?php $datapersonal = $personal->id . "*" . $personal->dni . "*" . $personal->talla . "*" . $personal->nombres . " " . $personal->apellido_pat . " " . $personal->apellido_mat . "*" . $personal->grado . "*" . $personal->sexo; ?>
                                     <td>
                                         <button type="button" class="btn btn-success btn-checkmensual" value="<?php echo $datapersonal; ?>"><span class="fa fa-check"></span></button>
                                     </td>
