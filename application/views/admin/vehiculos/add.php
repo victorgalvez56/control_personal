@@ -27,16 +27,17 @@
                                                 <div class="box-header with-border">
                                                     <h3 class="box-title">Datos Vehiculares</h3>
                                                 </div>
+                                                <input type="hidden" class="form-control" id="idPersonalV" name="idPersonalV" style="text-transform: uppercase;" readonly>
                                                 <div class="box-body">
                                                     <div class="col-md-12">
-                                                        <div class="col-md-2">
+                                                        <div class="col-md-6">
                                                             <div class="form-group">
                                                                 <label for="">Lista de Personal:</label>
                                                                 <div class="input-group">
                                                                     <span class="input-group-btn">
                                                                         <button class="btn btn-primary" id="buttonsearch" type="button" data-toggle="modal" data-target="#modal-default"><span class="fa fa-search"></span> Buscar</button>
                                                                     </span>
-                                                                    <input type="text" class="form-control" id="placa" name="placa" style="text-transform: uppercase;" disabled>
+                                                                    <input type="text" class="form-control" id="nombrePersonalV" name="nombrePersonalV" style="text-transform: uppercase;" disabled>
                                                                 </div><!-- /input-group -->
                                                             </div>
                                                         </div>
@@ -146,8 +147,8 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <?php if (!empty($personals)) : ?>
-                            <?php foreach ($personals as $personal) : ?>
+                        <?php if (!empty($personales)) : ?>
+                            <?php foreach ($personales as $personal) : ?>
                                 <tr>
                                     <td><?php echo $personal->dni; ?></td>
                                     <td><?php echo $personal->cip; ?></td>

@@ -44,32 +44,39 @@ class Sanitario_mensual extends CI_Controller
 		$nuevafecha = strtotime('-0 hour', strtotime($fecha)); // 6 hour en horario de verano
 		$nuevafecha = date('Y-m-d H:i:s', $nuevafecha);
 		$dni = $this->input->post("dni");
-		$presion = $this->input->post("presion");
-		$medicacion = $this->input->post("medicacion");
-		$edad = $this->input->post("edad");
-		$talla = $this->input->post("talla");
+		$pres_sis = $this->input->post("pres_sis");
+		$pres_dia = $this->input->post("pres_dia");
+		$pulso = $this->input->post("pulso");
+		$valoracion = $this->input->post("valoracion");
+		$medico = $this->input->post("medico");
 		$peso = $this->input->post("peso");
+		$imc = $this->input->post("imc");
 		$perimetro = $this->input->post("perimetro");
+		$clasi_imc = $this->input->post("clasi_imc");
+		$clasi_peri = $this->input->post("clasi_peri");
+
+		
 		$data = array(
 			'fecha' => $nuevafecha,
 			'personal_id' => $dni,
-			'presion' => $presion,
-			'medicina' => $medicacion,
-			'edad' => $edad,
-			'talla' => $talla,
+			'pres_sis' => $pres_sis,
+			'pres_dia' => $pres_dia,
+			'pulso' => $pulso,
+			'valoracion' => $valoracion,
+			'medico' =>$this->session->userdata("nombre"),
 			'peso' => $peso,
-			'peri_abdominal' => $perimetro,
+			'perimetro' => $perimetro,
+			'imc' => $imc,
+			'clasi_imc' => $clasi_imc,
+			'clasi_peri' => $clasi_peri,
 			'estado' => "1",
 		);
 		$this->Sanitario_mensual_model->save($data);
-		redirect(base_url()."control/sanitario_anual");
+		redirect(base_url()."control/sanitario_mensual"); 	
 	}
 	public function view($id)
 	{
-		$data  = array(
-			'categoria' => $this->Categorias_model->getCategoria($id),
-		);
-		$this->load->view("admin/categorias/view", $data);
+
 	}
 	public function delete($id)
 	{

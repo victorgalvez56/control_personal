@@ -6,7 +6,7 @@ class Sanitario_mensual_model extends CI_Model {
 	public function getPersonals(){
 		$this->db->select("p.*,r.*");
 		$this->db->from("personal p");
-		$this->db->join("registro_anual r","r.personal_id = p.id");	
+		$this->db->join("registro_mensual r","r.personal_id = p.id");	
 		$this->db->where("p.estado","1");
 		$resultados = $this->db->get();
 		return $resultados->result();
@@ -18,7 +18,7 @@ class Sanitario_mensual_model extends CI_Model {
 		return $resultados->result();
 	}
 	public function save($data){
-		return $this->db->insert("registro_anual",$data);
+		return $this->db->insert("registro_mensual",$data);
 	}
 	public function getCategoria($id){
 		$this->db->where("id_cat",$id);

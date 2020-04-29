@@ -40,7 +40,7 @@ class Vehiculos extends CI_Controller
 
 	public function store()
 	{
-		$idpersonal = $this->input->post("personal");
+		$idpersonal = $this->input->post("idPersonalV");
 		$placa = $this->input->post("placa");
 		$vin = $this->input->post("vin");
 		$serie = $this->input->post("serie");
@@ -51,7 +51,6 @@ class Vehiculos extends CI_Controller
 		$placa_vig = $this->input->post("placa_vig");
 		$placa_ant = $this->input->post("placa_ant");
 		$anotaciones = $this->input->post("anotaciones");
-		$sede = $this->input->post("sede");
 
 
 
@@ -67,7 +66,7 @@ class Vehiculos extends CI_Controller
 			'placa_vigente' => $placa_vig,
 			'placa_anterior' => $placa_ant,
 			'anotaciones' => $anotaciones,
-			'sede' => $sede,
+			'sede' => 'AREQUIPA',
 			'estado' => "1"
 		);
 

@@ -28,12 +28,16 @@
                                     <th>Fecha</th>
                                     <th>Dni</th>
                                     <th>Nombre</th>
-                                    <th>Presión</th>
-                                    <th>Medicina</th>
-                                    <th>Edad</th>
-                                    <th>Talla</th>
-                                    <th>Peso</th>
+                                    <th>Presión Sist.</th>
+                                    <th>Presión Dias.</th>
+                                    <th>Pulso</th>
+                                    <th>Valoración</th>
+                                    <th>Medico</th>
                                     <th>Perimetro Abdominal</th>
+                                    <th>Imc</th>
+                                    <th>Clas. Imc</th>
+                                    <th>Clas. Per.</th>
+
                                     <th>opciones</th>
                                 </tr>
                             </thead>
@@ -44,12 +48,16 @@
                                             <td><?php echo $registro->fecha; ?></td>
                                             <td><?php echo $registro->dni; ?></td>
                                             <td><?php echo $registro->nombres . " " . $registro->apellido_pat . " " . $registro->apellido_mat; ?></td>
-                                            <td><?php echo $registro->presion; ?></td>
-                                            <td><?php echo $registro->medicina; ?></td>
-                                            <td><?php echo $registro->edad; ?></td>
-                                            <td><?php echo $registro->talla; ?></td>
-                                            <td><?php echo $registro->peso; ?></td>
-                                            <td><?php echo $registro->peri_abdominal; ?></td>
+                                            <td><?php echo $registro->pres_sis; ?></td>
+                                            <td><?php echo $registro->pres_dia; ?></td>
+                                            <td><?php echo $registro->pulso; ?></td>
+                                            <td><?php echo $registro->valoracion; ?></td>
+                                            <td><?php echo $registro->medico; ?></td>
+                                            <td><?php echo $registro->perimetro; ?></td>
+                                            <td><?php echo $registro->imc; ?></td>
+                                            <td><?php echo $registro->clasi_imc; ?></td>
+                                            <td><?php echo $registro->clasi_peri; ?></td>
+
                                             <td>
                                                 <div class="btn-group">
                                                     <?php if ($permisos->update == 1) : ?>

@@ -28,8 +28,6 @@
                                         <th>DNI</th>
                                         <th>Nombres y Apellidos</th>
                                         <th>Grado</th>
-                                        <th>Sexo</th>
-                                        <th>Grupo Sanguíneo</th>
                                         <th>Alergias</th>
                                     </tr>
                                 </thead>
@@ -39,8 +37,6 @@
                                         <th><input type="text" class="form-control" id="dni" name="dni" value="<?php echo $sanitario->dni ?>" readonly></th>
                                         <th><input type="text" class="form-control" id="nombres" name="nombres" value="<?php echo $sanitario->nombres . " " . $sanitario->apellido_pat . " " . $sanitario->apellido_mat ?>" readonly>
                                         <th><input type="text" class="form-control" id="grado" name="grado" value="<?php echo $sanitario->grado ?>" readonly>
-                                        <th><input type="text" class="form-control" id="sexo" name="sexo" value="<?php echo $sanitario->sexo ?>" readonly>
-                                        <th><input type="text" class="form-control" id="grupo_sang" name="grupo_sang" value="<?php echo $sanitario->grupo_sang ?>" readonly>
                                         <th><input class='form-control form-control' type='text' name='alergias' list='citynames' value="<?php echo $sanitario->alergias ?>" style='text-transform: uppercase;' required><datalist id='citynames'><option value='NO'></datalist></th>
                                     </tr>
                                 </tbody>
