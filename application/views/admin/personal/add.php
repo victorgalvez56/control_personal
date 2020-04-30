@@ -28,6 +28,33 @@
                                 <li class="nav-item">
                                     <a class="nav-link inactive_tab1" id="list_born_details" style="border:1px solid #ccc">Lugar y Fecha de Nacimiento</a>
                                 </li>
+                                <li class="nav-item">
+                                    <a class="nav-link inactive_tab1" id="list_documents_details" style="border:1px solid #ccc">Documentos Personales</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link inactive_tab1" id="list_caracters_details" style="border:1px solid #ccc">Características Físicas</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link inactive_tab1" id="list_clothes_details" style="border:1px solid #ccc">Talla de Ropa</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link inactive_tab1" id="list_remuneration_details" style="border:1px solid #ccc">Remuneración</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link inactive_tab1" id="list_lenguage_details" style="border:1px solid #ccc">Idiomas</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link inactive_tab1" id="list_family_details" style="border:1px solid #ccc">Familiares Directos</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link inactive_tab1" id="list_trips_details" style="border:1px solid #ccc">Viajes al Extranjero</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link inactive_tab1" id="list_studies_details" style="border:1px solid #ccc">Estudios Realizados</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link inactive_tab1" id="list_insurances_details" style="border:1px solid #ccc">Seguros</a>
+                                </li>
                             </ul>
                             <div class="tab-content" style="margin-top:16px;">
                                 <div class="tab-pane active" id="login_details">
@@ -209,12 +236,14 @@
                                 <div class="tab-pane fade" id="contact_details">
                                     <div class="panel panel-default">
                                         <div class="panel-heading">Detalle Contacto</div>
+                                        <div class="thirdStep">
+                                        </div>
                                         <div class="panel-body">
                                             <div class="col-md-12">
                                                 <div class="col-md-2">
                                                     <div class="form-group">
                                                         <label for="telefono">Número:</label>
-                                                        <input type="number" class="form-control" id="numero" min="0" name="telef_per" style="text-transform: uppercase;" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==9) return false;" required>
+                                                        <input type="number" class="form-control" id="telef_per" min="0" name="telef_per" style="text-transform: uppercase;" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==9) return false;" required>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-2">
@@ -232,7 +261,7 @@
                                             </div>
                                             <div align="center">
                                                 <button type="button" name="previous_btn_contact_details" id="previous_btn_contact_details" class="btn btn-default btn-lg">Previous</button>
-                                                <button type="button" name="btn_personal_born" id="btn_personal_born" class="btn btn-info btn-lg">Next</button>
+                                                <button type="button" name="btn_contact_details" id="btn_contact_details" class="btn btn-info btn-lg">Next</button>
                                             </div>
                                             <br />
                                         </div>
@@ -277,7 +306,7 @@
                                             </div>
                                             <div align="center">
                                                 <button type="button" name="previous_btn_personal_born" id="previous_btn_personal_born" class="btn btn-default btn-lg">Previous</button>
-                                                <button type="button" name="btn_personal_documents" id="btn_personal_documents" class="btn btn-info btn-lg">Next</button>
+                                                <button type="button" name="btn_personal_born" id="btn_personal_born" class="btn btn-info btn-lg">Next</button>
                                             </div>
                                             <br />
                                         </div>

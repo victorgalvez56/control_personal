@@ -151,7 +151,7 @@ class Vehiculos extends CI_Controller
 		$data = array(
 			"vehiculo" => $this->Vehiculos_model->getVehiculo($idventa),
 		);
-        echo json_encode($data);
+        //echo json_encode($data);
 		$this->load->view("admin/vehiculos/view",$data);
 	}
 }

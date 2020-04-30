@@ -8,7 +8,6 @@ class Permisos extends CI_Controller {
 		$this->permisos = $this->backend_lib->control();
 		$this->load->model("Permisos_model");
 		$this->load->model("Usuarios_model");
-		$this->load->model("Cajas_model");
 	}
 
 	public function index(){
@@ -16,36 +15,9 @@ class Permisos extends CI_Controller {
 			'permisos' => $this->permisos,
 			'permisos2' => $this->Permisos_model->getPermisos(), 
 		);
-		$idUltimaCaja = $this->Cajas_model->getIdUltimaCaja();
-		$idresponsable = $idUltimaCaja->responsable;
-		$idCaja = $idUltimaCaja->id_caja;
-		$idCajaAbierta = $idUltimaCaja->caja_abierta;
-
-
-
-		if($idresponsable==$this->session->userdata("nombre")){
-			$dataaside = array(
-
-				"validacion" => $this->$idCajaAbierta = $idUltimaCaja->caja_abierta,
-				"validacionusuario" =>'1',
-
-			);
-
-		}else{
-
-			$dataaside = array(
-
-			"validacion" => $this->$idCajaAbierta = $idUltimaCaja->caja_abierta,
-			"validacionusuario" =>'0',
-
-			);
-		}
-
-	
-
 
 		$this->load->view("layouts/header");
-		$this->load->view("layouts/aside",$dataaside);
+		$this->load->view("layouts/aside");
 		$this->load->view("admin/permisos/list",$data);
 		$this->load->view("layouts/footer");
 	}
@@ -55,31 +27,9 @@ class Permisos extends CI_Controller {
 			'roles' => $this->Usuarios_model->getRoles(), 
 			'menus' => $this->Permisos_model->getMenus(), 
 		);
-		$idUltimaCaja = $this->Cajas_model->getIdUltimaCaja();
-		$idCaja = $idUltimaCaja->id_caja;
-		$idCajaAbierta = $idUltimaCaja->caja_abierta;
-			$dataaside = array(
-
-				"validacion" => $this->$idCajaAbierta = $idUltimaCaja->caja_abierta,
-				"validacionusuario" =>'1',
-
-			);
-
-		}else{
-
-			$dataaside = array(
-
-			"validacion" => $this->$idCajaAbierta = $idUltimaCaja->caja_abierta,
-			"validacionusuario" =>'0',
-
-			);
-		}
-
-	
-
 
 		$this->load->view("layouts/header");
-		$this->load->view("layouts/aside",$dataaside);
+		$this->load->view("layouts/aside");
 		$this->load->view("admin/permisos/add",$data);
 		$this->load->view("layouts/footer");
 	}
@@ -116,29 +66,6 @@ class Permisos extends CI_Controller {
 			'menus' => $this->Permisos_model->getMenus(), 
 			'permiso' => $this->Permisos_model->getPermiso($id)
 		);
-		$idUltimaCaja = $this->Cajas_model->getIdUltimaCaja();
-		$idCaja = $idUltimaCaja->id_caja;
-		$idCajaAbierta = $idUltimaCaja->caja_abierta;
-			$dataaside = array(
-
-				"validacion" => $this->$idCajaAbierta = $idUltimaCaja->caja_abierta,
-				"validacionusuario" =>'1',
-
-			);
-
-		}else{
-
-			$dataaside = array(
-
-			"validacion" => $this->$idCajaAbierta = $idUltimaCaja->caja_abierta,
-			"validacionusuario" =>'0',
-
-			);
-		}
-
-	
-
-
 		$this->load->view("layouts/header");
 		$this->load->view("layouts/aside",$dataaside);
 		$this->load->view("admin/permisos/edit",$data);

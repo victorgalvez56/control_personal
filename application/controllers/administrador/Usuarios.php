@@ -7,7 +7,6 @@ class Usuarios extends CI_Controller {
 		parent::__construct();
 		$this->permisos = $this->backend_lib->control();
 		$this->load->model("Usuarios_model");
-		$this->load->model("Cajas_model");
 
 	}
 
@@ -16,37 +15,9 @@ class Usuarios extends CI_Controller {
 			'permisos' => $this->permisos,
 			'usuarios' => $this->Usuarios_model->getUsuarios(), 
 		);
-		$idUltimaCaja = $this->Cajas_model->getIdUltimaCaja();
-		$idresponsable = $idUltimaCaja->responsable;
-
-		$idCaja = $idUltimaCaja->id_caja;
-		$idCajaAbierta = $idUltimaCaja->caja_abierta;
-
-
-
-		if($idresponsable==$this->session->userdata("nombre")){
-			$dataaside = array(
-
-				"validacion" => $this->$idCajaAbierta = $idUltimaCaja->caja_abierta,
-				"validacionusuario" =>'1',
-
-			);
-
-		}else{
-
-			$dataaside = array(
-
-			"validacion" => $this->$idCajaAbierta = $idUltimaCaja->caja_abierta,
-			"validacionusuario" =>'0',
-
-			);
-		}
-
-	
-
 
 		$this->load->view("layouts/header");
-		$this->load->view("layouts/aside",$dataaside);
+		$this->load->view("layouts/aside",);
 		$this->load->view("admin/usuarios/list",$data);
 		$this->load->view("layouts/footer");
 	}
@@ -55,31 +26,9 @@ class Usuarios extends CI_Controller {
 		$data  = array(
 			'roles' => $this->Usuarios_model->getRoles(), 
 		);
-		$idUltimaCaja = $this->Cajas_model->getIdUltimaCaja();
-		$idCaja = $idUltimaCaja->id_caja;
-		$idCajaAbierta = $idUltimaCaja->caja_abierta;
-			$dataaside = array(
-
-				"validacion" => $this->$idCajaAbierta = $idUltimaCaja->caja_abierta,
-				"validacionusuario" =>'1',
-
-			);
-
-		}else{
-
-			$dataaside = array(
-
-			"validacion" => $this->$idCajaAbierta = $idUltimaCaja->caja_abierta,
-			"validacionusuario" =>'0',
-
-			);
-		}
-
-	
-
 
 		$this->load->view("layouts/header");
-		$this->load->view("layouts/aside",$dataaside);
+		$this->load->view("layouts/aside");
 		$this->load->view("admin/usuarios/add",$data);
 		$this->load->view("layouts/footer");
 	}
@@ -129,31 +78,10 @@ class Usuarios extends CI_Controller {
 			'roles' => $this->Usuarios_model->getRoles(), 
 			'usuario' => $this->Usuarios_model->getUsuario($id)
 		);
-		$idUltimaCaja = $this->Cajas_model->getIdUltimaCaja();
-		$idCaja = $idUltimaCaja->id_caja;
-		$idCajaAbierta = $idUltimaCaja->caja_abierta;
-			$dataaside = array(
-
-				"validacion" => $this->$idCajaAbierta = $idUltimaCaja->caja_abierta,
-				"validacionusuario" =>'1',
-
-			);
-
-		}else{
-
-			$dataaside = array(
-
-			"validacion" => $this->$idCajaAbierta = $idUltimaCaja->caja_abierta,
-			"validacionusuario" =>'0',
-
-			);
-		}
-
-	
 
 
 		$this->load->view("layouts/header");
-		$this->load->view("layouts/aside",$dataaside);
+		$this->load->view("layouts/aside");
 		$this->load->view("admin/usuarios/edit",$data);
 		$this->load->view("layouts/footer");
 	}

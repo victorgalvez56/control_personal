@@ -60,10 +60,32 @@
       },
       success: function(data) {
         $("#modal-default .modal-body").html(data);
-        $("#modal-venta .modal-body").html(data);
       }
     });
   });
+  $(document).on("click", ".btn-print-vehiculo", function() {
+    $("#modal-default .modal-body").print({
+      title: "Información del Vehículo"
+    });
+  });
+  $(document).on("click", ".btn-view-vehiculo", function() {
+    var base_url = "<?php echo base_url(); ?>";
+    valor_id = $(this).val();
+    console.log(valor_id)
+    $.ajax({
+      url: base_url + "control/vehiculos/view",
+      type: "POST",
+      dataType: "html",
+      data: {
+        id: valor_id
+      },
+      success: function(data) {
+        $("#modal-default .modal-body").html(data);
+      }
+    });
+  });
+
+
 
   $(document).on("click", ".btn-check22", function() {
     $("#modal-default").modal("hide");
@@ -599,6 +621,8 @@
       $('#login_details').addClass('active in');
     });
 
+    //------------------ SEGUNDO STEP REGISTRO PERSONAL --------------------------
+
     $('#btn_personal_details').click(function() {
       var error_departVivienda = '';
       var error_provinVivienda = '';
@@ -684,11 +708,14 @@
       $('#personal_details').addClass('active in');
     });
 
+    //------------------ TERCER STEP REGISTRO PERSONAL --------------------------
+
+
     $('#btn_contact_details').click(function() {
       var error_telef_per = '';
       var error_operador = '';
       var error_correo = '';
- 
+
       if ($.trim($('#telef_per').val()).length == 0) {
         error_telef_per = 'OK';
         $('#telef_per').addClass('has-error');
@@ -723,17 +750,36 @@
       ) {
         return false;
       } else {
-        $('#list_born_details').removeClass('active active_tab1');
-        $('#list_born_details').removeAttr('href data-toggle');
-        $('#born_details').removeClass('active');
-        $('#list_born_details').addClass('inactive_tab1');
-        $('#list_contact_details').removeClass('inactive_tab1');
-        $('#list_contact_details').addClass('active_tab1 active');
-        $('#list_contact_details').attr('href', '#contact_details');
-        $('#list_contact_details').attr('data-toggle', 'tab');
-        $('#contact_details').addClass('active in');
+        $('#list_contact_details').removeClass('active active_tab1');
+        $('#list_contact_details').removeAttr('href data-toggle');
+        $('#contact_details').removeClass('active');
+        $('#list_contact_details').addClass('inactive_tab1');
+        $('#list_born_details').removeClass('inactive_tab1');
+        $('#list_born_details').addClass('active_tab1 active');
+        $('#list_born_details').attr('href', '#born_details');
+        $('#list_born_details').attr('data-toggle', 'tab');
+        $('#born_details').addClass('active in');
+
       }
     });
+
+    $('#previous_btn_personal_born').click(function() {
+      $('#list_born_details').removeClass('active active_tab1');
+      $('#list_born_details').removeAttr('href data-toggle');
+      $('#born_details').removeClass('active in');
+      $('#list_born_details').addClass('inactive_tab1');
+
+      $('#list_contact_details').removeClass('inactive_tab1');
+      $('#list_contact_details').addClass('active_tab1 active');
+      $('#list_contact_details').attr('href', '#contact_details');
+      $('#list_contact_details').attr('data-toggle', 'tab');
+      $('#contact_details').addClass('active in');
+    });
+    //------------------ CUARTO STEP REGISTRO PERSONAL --------------------------
+
+
+
+
 
   });
 </script>

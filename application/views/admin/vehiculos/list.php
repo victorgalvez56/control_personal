@@ -57,8 +57,6 @@
 
                                             <td>
                                                 <div class="btn-group">
-
-
                                                     <button type="button" class="btn btn-info btn-view-vehiculo" value="<?php echo $vehiculo->id; ?>" data-toggle="modal" data-target="#modal-default"><span class="fa fa-search"></span></button>
                                                     <?php if ($permisos->delete == 1) : ?>
                                                         <a href="<?php echo base_url(); ?>control/vehiculos/delete/<?php echo $vehiculo->id; ?>" class="btn btn-danger btn-remove"><span class="fa fa-remove"></span></a>
@@ -93,7 +91,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-danger pull-left" data-dismiss="modal">Cerrar</button>
-                <button type="button" class="btn btn-primary btn-print"><span class="fa fa-print"> </span>Imprimir</button>
+                <button type="button" class="btn btn-primary btn-print-vehiculo"><span class="fa fa-print"> </span>Imprimir</button>
             </div>
         </div>
         <!-- /.modal-content -->
