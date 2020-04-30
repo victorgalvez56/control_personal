@@ -20,21 +20,21 @@
                                     <a class="nav-link active_tab1" style="border:1px solid #ccc" id="list_login_details">Datos Personales</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link inactive_tab1" id="list_personal_details" style="border:1px solid #ccc">Personal Details</a>
+                                    <a class="nav-link inactive_tab1" id="list_personal_details" style="border:1px solid #ccc">Dirección Actual</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link inactive_tab1" id="list_contact_details" style="border:1px solid #ccc">Contact Details</a>
+                                    <a class="nav-link inactive_tab1" id="list_contact_details" style="border:1px solid #ccc">Contacto</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link inactive_tab1" id="list_born_details" style="border:1px solid #ccc">Lugar y Fecha de Nacimiento</a>
                                 </li>
                             </ul>
                             <div class="tab-content" style="margin-top:16px;">
                                 <div class="tab-pane active" id="login_details">
                                     <div class="panel panel-default">
                                         <div class="panel-heading">Detalles Personales</div>
-                                        <ol>
-                                        </ol>
-                                        <span id="error_email" class="text-danger"></span>
-                                        <span id="error_grado" class="text-danger"></span>
-                                        <span id="error_arma" class="text-danger"></span>
+                                        <div class="firstStep">
+                                        </div>
                                         <div class="panel-body">
                                             <div class="col-md-12">
                                                 <div class="col-md-2">
@@ -159,28 +159,45 @@
                                 </div>
                                 <div class="tab-pane fade" id="personal_details">
                                     <div class="panel panel-default">
-                                        <div class="panel-heading">Fill Personal Details</div>
+                                        <div class="panel-heading">Dirección</div>
+                                        <div class="secondStep">
+                                        </div>
                                         <div class="panel-body">
-                                            <div class="form-group">
-                                                <label>Enter First Name</label>
-                                                <input type="text" name="first_name" id="first_name" class="form-control" />
-                                                <span id="error_first_name" class="text-danger"></span>
+                                            <div class="col-md-12">
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
+                                                        <label for="departamento_viv">Departamento:</label>
+                                                        <select class="form-control form-control-lg" id="departamento_viv" name="depart_viv" required>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
+                                                        <label for="">Provincia:</label>
+                                                        <select class="form-control form-control-lg" id="provin_viv" name="provin_viv" required>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
+                                                        <label for="distri_viv">Distrito:</label>
+                                                        <select class="form-control form-control-lg" id="distri_viv" name="distri_viv" required>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
+                                                        <label for="urbanizacion">Urbanización:</label>
+                                                        <input type="text" class="form-control" id="urbanizacion" name="urbanizacion" style="text-transform: uppercase;" required>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label for="calle">Calle, Mz, Lote:</label>
+                                                        <input type="text" class="form-control" id="calle" name="calle" style="text-transform: uppercase;" required>
+                                                    </div>
+                                                </div>
                                             </div>
-                                            <div class="form-group">
-                                                <label>Enter Last Name</label>
-                                                <input type="text" name="last_name" id="last_name" class="form-control" />
-                                                <span id="error_last_name" class="text-danger"></span>
-                                            </div>
-                                            <div class="form-group">
-                                                <label>Gender</label>
-                                                <label class="radio-inline">
-                                                    <input type="radio" name="gender" value="male" checked> Male
-                                                </label>
-                                                <label class="radio-inline">
-                                                    <input type="radio" name="gender" value="female"> Female
-                                                </label>
-                                            </div>
-                                            <br />
                                             <div align="center">
                                                 <button type="button" name="previous_btn_personal_details" id="previous_btn_personal_details" class="btn btn-default btn-lg">Previous</button>
                                                 <button type="button" name="btn_personal_details" id="btn_personal_details" class="btn btn-info btn-lg">Next</button>
@@ -191,25 +208,88 @@
                                 </div>
                                 <div class="tab-pane fade" id="contact_details">
                                     <div class="panel panel-default">
-                                        <div class="panel-heading">Fill Contact Details</div>
+                                        <div class="panel-heading">Detalle Contacto</div>
                                         <div class="panel-body">
-                                            <div class="form-group">
-                                                <label>Enter Address</label>
-                                                <textarea name="address" id="address" class="form-control"></textarea>
-                                                <span id="error_address" class="text-danger"></span>
+                                            <div class="col-md-12">
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
+                                                        <label for="telefono">Número:</label>
+                                                        <input type="number" class="form-control" id="numero" min="0" name="telef_per" style="text-transform: uppercase;" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==9) return false;" required>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
+                                                        <label for="">Operador:</label>
+                                                        <input type="text" class="form-control" id="operador" name="operador" style="text-transform: uppercase;" required>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label for="correo">Correo Electrónico:</label>
+                                                        <input type="email" class="form-control" id="correo" name="correo" style="text-transform: uppercase;" required>
+                                                    </div>
+                                                </div>
                                             </div>
-                                            <div class="form-group">
-                                                <label>Enter Mobile No.</label>
-                                                <input type="text" name="mobile_no" id="mobile_no" class="form-control" />
-                                                <span id="error_mobile_no" class="text-danger"></span>
-                                            </div>
-                                            <br />
                                             <div align="center">
                                                 <button type="button" name="previous_btn_contact_details" id="previous_btn_contact_details" class="btn btn-default btn-lg">Previous</button>
-                                                <button type="button" name="btn_contact_details" id="btn_contact_details" class="btn btn-success btn-lg">Register</button>
+                                                <button type="button" name="btn_personal_born" id="btn_personal_born" class="btn btn-info btn-lg">Next</button>
                                             </div>
                                             <br />
                                         </div>
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade" id="born_details">
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading">Detalle Nacimiento</div>
+                                        <div class="panel-body">
+                                            <div class="col-md-12">
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
+                                                        <label for="depart_nac">Departamento:</label>
+                                                        <select class="form-control form-control-lg" id="depart_nac" name="depart_nac" required>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
+                                                        <label for="provin_nac">Provincia:</label>
+                                                        <select class="form-control form-control-lg" id="provin_nac" name="provin_nac" required>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <label for="distri_nac">Distrito:</label>
+                                                    <select class="form-control form-control-lg" id="distri_nac" name="distri_nac" required>
+                                                    </select>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
+                                                        <label for="fecha_nac">Fecha:</label>
+                                                        <input type="date" class="form-control" id="fecha_nac" name="fecha_nac" max="2002-01-01" style="text-transform: uppercase;" required>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
+                                                        <label for="edad">Edad:</label>
+                                                        <input type="number" class="form-control" id="edad" name="edad" style="text-transform: uppercase;" min="18" required>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div align="center">
+                                                <button type="button" name="previous_btn_personal_born" id="previous_btn_personal_born" class="btn btn-default btn-lg">Previous</button>
+                                                <button type="button" name="btn_personal_documents" id="btn_personal_documents" class="btn btn-info btn-lg">Next</button>
+                                            </div>
+                                            <br />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div style="float: right">
+                                        <button type="submit" class="btn btn-modal btn-success btn-flat">Guardar</button>
+                                        <input type="hidden" class="form-control" id="auxiliar_viv" name="auxiliar_viv" style="text-transform: uppercase;" required>
+                                        <input type="hidden" class="form-control" id="auxiliar_nac" name="auxiliar_nac" style="text-transform: uppercase;" required>
                                     </div>
                                 </div>
                             </div>
