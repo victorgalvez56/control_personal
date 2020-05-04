@@ -46,17 +46,17 @@
                                             <td><?php echo $registro->nombres . " " . $registro->apellido_pat . " " . $registro->apellido_mat; ?></td>
                                             <td><?php echo $registro->presion; ?></td>
                                             <td><?php echo $registro->medicina; ?></td>
-                                            <td><?php echo $registro->edad; ?></td>
+                                            <td><?php echo $registro->edad." años"; ?></td>
                                             <td><?php echo $registro->talla; ?></td>
                                             <td><?php echo $registro->peso; ?></td>
                                             <td><?php echo $registro->peri_abdominal; ?></td>
                                             <td>
                                                 <div class="btn-group">
                                                     <?php if ($permisos->update == 1) : ?>
-                                                        <a href="<?php echo base_url() ?>mantenimiento/categorias/edit/<?php echo $registro->id; ?>" class="btn btn-warning"><span class="fa fa-pencil"></span></a>
+                                                        <a href="<?php echo base_url() ?>control/sanitario_anual/edit/<?php echo $registro->id; ?>" class="btn btn-warning"><span class="fa fa-pencil"></span></a>
                                                     <?php endif; ?>
                                                     <?php if ($permisos->delete == 1) : ?>
-                                                        <a href="<?php echo base_url(); ?>mantenimiento/categorias/delete/<?php echo $registro->id; ?>" class="btn btn-danger btn-remove"><span class="fa fa-remove"></span></a>
+                                                        <a href="<?php echo base_url(); ?>control/sanitario_anual/delete/<?php echo $registro->id; ?>" class="btn btn-danger btn-remove"><span class="fa fa-remove"></span></a>
                                                     <?php endif; ?>
                                                 </div>
                                             </td>

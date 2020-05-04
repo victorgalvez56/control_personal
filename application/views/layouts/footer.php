@@ -6,7 +6,6 @@
   <strong>Copyright &copy;2020.</strong> All rights
   reserved.
 </footer>
-</div>
 <!-- ./wrapper -->
 <!-- jQuery 3 -->
 <script src="<?php echo base_url(); ?>assets/template/jquery/jquery.min.js"></script>
@@ -41,6 +40,15 @@
 
 <script>
   console.log('Prueba que carga bien el script')
+
+
+  $(document).on("keyup", 'input[type="text"]', function() {
+    if (!/^[ a-z0-9]*$/i.test(this.value)) {
+      this.value = this.value.replace(/[^ a-z0-9]+/ig, "");
+    }
+  })
+
+
   $(document).on("click", ".btn-print", function() {
     $("#modal-default .modal-body").print({
       title: "Información del Personal"
@@ -120,15 +128,27 @@
     data = $(this).val();
     if (data != '') {
       infoproducto = data.split("*");
+      $("input[name=fecha_nacedit]").val(infoproducto[6]);
+
+      var hoy = new Date();
+      var nac = infoproducto[6];
+      var cumpleanos = new Date(nac);
+      var edad = hoy.getFullYear() - cumpleanos.getFullYear();
+      var m = hoy.getMonth() - cumpleanos.getMonth();
+
+      if (m < 0 || (m === 0 && hoy.getDate() < cumpleanos.getDate())) {
+        edad--;
+      }
+
       html = "<tr>";
       html += "<td><input type='hidden' name='dni' value='" + infoproducto[0] + "'>" + infoproducto[1] + "</td>";
       html += "<td><input type='hidden' name='nombres'  value='" + infoproducto[2] + "'>" + infoproducto[2] + "</td>";
       html += "<td><input class='form-control form-control' type='text' name='presion' list='citynames'  style='text-transform: uppercase;' required><datalist id='citynames'>  <option value='NO'></datalist></td>";
       html += "<td><input class='form-control form-control' type='text' name='medicacion' list='citynames'  style='text-transform: uppercase;' required><datalist id='citynames'>  <option value='NO'></datalist></td>";
-      html += "<td><input type='number' class='form-control form-control' min='1' name='edad'></td>";
-      html += "<td><input type='text' class='form-control form-control' min='1' name='talla'></td>";
-      html += "<td><input type='text' class='form-control form-control' min='1' name='peso'></td>";
-      html += "<td><input type='text' class='form-control form-control' min='1' name='perimetro'></td>";
+      html += "<td><input type='number' class='form-control form-control edad_anual' min='1' name='edad' readonly value='" + edad + "'></td>";
+      html += "<td><input type='number'  step = '0.01'  class='form-control form-control' min='1' name='talla' required></td>";
+      html += "<td><input type='number'  step = '0.01' class='form-control form-control' min='1' name='peso' required></td>";
+      html += "<td><input type='number'  step = '0.01' class='form-control form-control' min='1' name='perimetro' required></td>";
       html += "<td><button type='button' class='btn btn-danger btn-remove-producto'><span class='fa fa-remove'></span></button></td>";
       html += "</tr>";
       $("#tbventas tbody").append(html);
@@ -138,6 +158,7 @@
       alert("seleccione un producto...");
     }
   });
+
 
   $(document).on("click", ".btn-checkmensual", function() {
     $("#modal-default").modal("hide");
@@ -164,7 +185,6 @@
       html += "</tr>";
       $("#tbmensual tbody").append(html);
       $("#buttonsearch").prop("disabled", true);
-      $("#btn-check22").val(null);
     } else {
       alert("seleccione un producto...");
     }
@@ -172,6 +192,9 @@
 
 
   $(document).on("keyup", "input[name=peso]", function() {
+    calcularImc();
+  });
+  $(document).on("change", "input[name=peso]", function() {
 
     calcularImc();
   });
@@ -194,6 +217,10 @@
   }
 
   $(document).on("keyup", "input[name=perimetro]", function() {
+
+    calcularPerimetroAbd();
+  });
+  $(document).on("onchange", "input[name=perimetro]", function() {
 
     calcularPerimetroAbd();
   });
@@ -232,7 +259,7 @@
 
     calcularValoracion();
   });
-  $(document).on("keyup", "input[name=pres_dia]", function() {
+  $(document).on("change", "input[name=pres_sis]", function() {
 
     calcularValoracion();
   });
@@ -241,12 +268,36 @@
     sistolica = $("input[name=pres_sis]").val();
     diastolica = $("input[name=pres_dia]").val();
 
-    if (sistolica < 120 & diastolica < 80) {
+    if (sistolica < 120) {
       $("input[name=valoracion]").val('NORMAL');
-    } else if (sistolica > 119 & sistolica < 140 & diastolica < 91) {
-      $("input[name=valoracion]").val('PRE-HIPERTENSION');
-    } else if (sistolica > 139) {
-      $("input[name=valoracion]").val('HIPERTENSION 1');
+      $("input[name=pres_dia]").attr({
+        "max": 79,
+        "min": 0
+      });
+    } else if (sistolica > 119 & sistolica < 140) {
+      $("input[name=valoracion]").val('PRE-HIPERTENSIÓN');
+      $("input[name=pres_dia]").attr({
+        "max": 89,
+        "min": 0
+      });
+    } else if (sistolica > 139 & sistolica < 160) {
+      $("input[name=valoracion]").val('HIPERTENSIÓN 1');
+      $("input[name=pres_dia]").attr({
+        "max": 99,
+        "min": 90
+      });
+    } else if (sistolica > 159 & sistolica < 180) {
+      $("input[name=valoracion]").val('HIPERTENSIÓN 2');
+      $("input[name=pres_dia]").attr({
+        "max": 110,
+        "min": 100
+      });
+    } else if (sistolica > 179) {
+      $("input[name=valoracion]").val('CRISIS DE HIPERTENSIÓN');
+      $("input[name=pres_dia]").attr({
+        "min": 220,
+        "max": 700
+      });
     }
     if ($("input[name=pres_sis]").val().length <= 0) {
       $("input[name=valoracion]").val('');
@@ -392,7 +443,7 @@
     html = "<tr>";
     html += "<td><input type='text' class='form-control' id='idioma' name='idioma[]' style='text-transform: uppercase;' required ></td>";
     html += "<td><select class='form-control form-control' id='idioma_habla' name='idioma_habla[]' required><option value=''>Seleccione</option><option value='B'>B</option><option value='R'>R</option><option value'M'>M</option></select></td>";
-    html += "<td><select class='form-control form-control' id='idioma_lee' name='idioma_lee[]'><option value=''>Seleccione</option><option value='B'>B</option><option value='R'>R</option><option value'M'>M</option></select></td>";
+    html += "<td><select class='form-control form-control' id='idioma_lee' name='idioma_lee[]'><option value=''>Seleccione</option><option value='B'>B</option><option value='R'>R</option><option value='M'>M</option></select></td>";
     html += "<td><select class='form-control form-control' id='idioma_escribe' name='idioma_escribe[]'><option value=''>Seleccione</option><option value='B'>B</option><option value='R'>R</option><option value'M'>M</option></select></td>";
     html += "<td><select class='form-control form-control' id='idioma_estudio' name='idioma_estudio[]'><option value=''>Seleccione</option><option>ESTUDIO</option><option>PRACTICA</option></select></td>";
     html += "<td><select class='form-control form-control' id='idioma_practica' name='idioma_practica[]'><option value=''>Seleccione</option><option value='SI'>SI</option><option value='NO'>NO</option></select></td>";
@@ -400,6 +451,7 @@
     html += "</tr>";
     $("#tbidiomas tbody").append(html);
     $("#btn-agregaridioma").val(null);
+
   });
   $(document).on("click", ".btn-remove-idioma", function() {
     $(this).closest("tr").remove();
@@ -484,7 +536,7 @@
 
   $(document).ready(function() {
 
-    //------------------ PRIMER STEP REGISTRO PERSONAL --------------------------
+    //------------------ PRIMER STEP DATOS PERSONALES --------------------------
     $('#btn_login_details').click(function() {
 
       var error_foto = '';
@@ -621,7 +673,7 @@
       $('#login_details').addClass('active in');
     });
 
-    //------------------ SEGUNDO STEP REGISTRO PERSONAL --------------------------
+    //------------------ SEGUNDO STEP DIRECCIÓN ACTUAL --------------------------
 
     $('#btn_personal_details').click(function() {
       var error_departVivienda = '';
@@ -708,7 +760,7 @@
       $('#personal_details').addClass('active in');
     });
 
-    //------------------ TERCER STEP REGISTRO PERSONAL --------------------------
+    //------------------ TERCER STEP CONTACTO --------------------------
 
 
     $('#btn_contact_details').click(function() {
@@ -775,12 +827,603 @@
       $('#list_contact_details').attr('data-toggle', 'tab');
       $('#contact_details').addClass('active in');
     });
-    //------------------ CUARTO STEP REGISTRO PERSONAL --------------------------
+    //------------------ CUARTO STEP LUGAR Y FECHA NACIMIENTO --------------------------
+
+    $("#fecha_nac").change(function() {
+      var hoy = new Date();
+      var nac = $("#fecha_nac").val();
+      var cumpleanos = new Date(nac);
+      var edad = hoy.getFullYear() - cumpleanos.getFullYear();
+      var m = hoy.getMonth() - cumpleanos.getMonth();
+
+      if (m < 0 || (m === 0 && hoy.getDate() < cumpleanos.getDate())) {
+        edad--;
+      }
+      $(".edad_nac").val(edad)
+    });
+
+    $(document).ready(function() {
+
+      var hoy = new Date();
+      var nac = $(".fecha_nacedit").val();
+      var cumpleanos = new Date(nac);
+      var edad = hoy.getFullYear() - cumpleanos.getFullYear();
+      var m = hoy.getMonth() - cumpleanos.getMonth();
+
+      if (m < 0 || (m === 0 && hoy.getDate() < cumpleanos.getDate())) {
+        edad--;
+      }
+      $(".edad_anual").val(edad)
+    });
+
+
+    $('#btn_personal_born').click(function() {
+      var error_departnacimiento = '';
+      var error_provicnacimiento = '';
+      var error_distrinacimiento = '';
+      var error_fechanacimiento = '';
+      var error_edadnacimiento = '';
+
+      if ($.trim($('#depart_nac').val()).length == 0) {
+        error_departnacimiento = 'OK';
+        $('#depart_nac').addClass('has-error');
+        $(".fourthStep").append("<div class='alert alert-danger alert-dismissible'> <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button><p><i class='icon fa fa-ban'></i>Seleccione un Departamento</p></div>");
+      } else {
+        error_departnacimiento = '';
+        $('#depart_nac').removeClass('has-error');
+      }
+
+      if ($.trim($('#provin_nac').val()).length == 0) {
+        error_provicnacimiento = 'OK';
+        $('#provin_nac').addClass('has-error');
+        $(".fourthStep").append("<div class='alert alert-danger alert-dismissible'> <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button><p><i class='icon fa fa-ban'></i>Seleccione una Provincia</p></div>");
+      } else {
+        error_provicnacimiento = '';
+        $('#provin_nac').removeClass('has-error');
+      }
+
+      if ($.trim($('#distri_nac').val()).length == 0) {
+        error_distrinacimiento = 'OK';
+        $('#distri_nac').addClass('has-error');
+        $(".fourthStep").append("<div class='alert alert-danger alert-dismissible'> <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button><p><i class='icon fa fa-ban'></i>Seleccione un Distrito</p></div>");
+      } else {
+        error_distrinacimiento = '';
+        $('#distri_nac').removeClass('has-error');
+      }
+      if ($.trim($('#fecha_nac').val()).length == 0) {
+        error_fechanacimiento = 'OK';
+        $('#fecha_nac').addClass('has-error');
+        $(".fourthStep").append("<div class='alert alert-danger alert-dismissible'> <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button><p><i class='icon fa fa-ban'></i>Complete una fecha</p></div>");
+      } else {
+        error_fechanacimiento = '';
+        $('#fecha_nac').removeClass('has-error');
+      }
+      if ($('#edad_nac').val() <= 17) {
+        error_edadnacimiento = 'OK';
+        $('#edad_nac').addClass('has-error');
+        $(".fourthStep").append("<div class='alert alert-danger alert-dismissible'> <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button><p><i class='icon fa fa-ban'></i>Se tiene que ser mayor de edad</p></div>");
+      } else {
+        error_edadnacimiento = '';
+        $('#edad_nac').removeClass('has-error');
+      }
+
+      if (
+        error_departnacimiento != '' ||
+        error_provicnacimiento != '' ||
+        error_distrinacimiento != '' ||
+        error_fechanacimiento != '' ||
+        error_edadnacimiento != ''
+      ) {
+        return false;
+      } else {
+
+        $('#list_born_details').removeClass('active active_tab1');
+        $('#list_born_details').removeAttr('href data-toggle');
+        $('#born_details').removeClass('active');
+        $('#list_born_details').addClass('inactive_tab1');
+        $('#list_documents_details').removeClass('inactive_tab1');
+        $('#list_documents_details').addClass('active_tab1 active');
+        $('#list_documents_details').attr('href', '#born_details');
+        $('#list_documents_details').attr('data-toggle', 'tab');
+        $('#documents_details').addClass('active in');
+      }
+    });
+
+    $('#previous_btn_personal_documents').click(function() {
+      $('#list_documents_details').removeClass('active active_tab1');
+      $('#list_documents_details').removeAttr('href data-toggle');
+      $('#documents_details').removeClass('active in');
+      $('#list_documents_details').addClass('inactive_tab1');
+
+      $('#list_born_details').removeClass('inactive_tab1');
+      $('#list_born_details').addClass('active_tab1 active');
+      $('#list_born_details').attr('href', '#born_details');
+      $('#list_born_details').attr('data-toggle', 'tab');
+      $('#born_details').addClass('active in');
+    });
+
+
+    //------------------ 5TO STEP LUGAR Y DOCUMENTOS --------------------------
+
+
+    $('#btn_personal_documents').click(function() {
+      var error_cip = '';
+      var error_dni = '';
+      var error_pasaporte = '';
+      var error_brevete = '';
+
+      if ($.trim($('#cip_per').val()).length == 0) {
+        error_cip = 'OK';
+        $('#cip_per').addClass('has-error');
+        $(".fivethStep").append("<div class='alert alert-danger alert-dismissible'> <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button><p><i class='icon fa fa-ban'></i>Complete el Cip</p></div>");
+      } else {
+        error_cip = '';
+        $('#cip_per').removeClass('has-error');
+      }
+
+      if ($.trim($('#dni_per').val()).length == 0) {
+        error_dni = 'OK';
+        $('#dni_per').addClass('has-error');
+        $(".fivethStep").append("<div class='alert alert-danger alert-dismissible'> <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button><p><i class='icon fa fa-ban'></i>Complete el Dni</p></div>");
+      } else {
+        error_dni = '';
+        $('#dni_per').removeClass('has-error');
+      }
+
+      if ($.trim($('#pasaporte').val()).length == 0) {
+        error_pasaporte = 'OK';
+        $('#pasaporte').addClass('has-error');
+        $(".fivethStep").append("<div class='alert alert-danger alert-dismissible'> <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button><p><i class='icon fa fa-ban'></i>Complete el Pasaporte</p></div>");
+      } else {
+        error_pasaporte = '';
+        $('#pasaporte').removeClass('has-error');
+      }
+      if ($.trim($('#brevete').val()).length == 0) {
+        error_brevete = 'OK';
+        $('#brevete').addClass('has-error');
+        $(".fivethStep").append("<div class='alert alert-danger alert-dismissible'> <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button><p><i class='icon fa fa-ban'></i>Complete uel Brevete</p></div>");
+      } else {
+        error_brevete = '';
+        $('#brevete').removeClass('has-error');
+      }
+
+      if (
+        error_cip != '' ||
+        error_dni != '' ||
+        error_pasaporte != '' ||
+        error_brevete != ''
+      ) {
+        return false;
+      } else {
+        $('#list_documents_details').removeClass('active active_tab1');
+        $('#list_documents_details').removeAttr('href data-toggle');
+        $('#documents_details').removeClass('active');
+        $('#list_documents_details').addClass('inactive_tab1');
+        $('#list_caracters_details').removeClass('inactive_tab1');
+        $('#list_caracters_details').addClass('active_tab1 active');
+        $('#list_caracters_details').attr('href', '#caracters_detailss');
+        $('#list_caracters_details').attr('data-toggle', 'tab');
+        $('#caracters_details').addClass('active in');
+      }
+    });
+
+    $('#previous_btn_personal_documents').click(function() {
+      $('#list_documents_details').removeClass('active active_tab1');
+      $('#list_documents_details').removeAttr('href data-toggle');
+      $('#documents_details').removeClass('active in');
+      $('#list_documents_details').addClass('inactive_tab1');
+      $('#list_born_details').removeClass('inactive_tab1');
+      $('#list_born_details').addClass('active_tab1 active');
+      $('#list_born_details').attr('href', '#born_details');
+      $('#list_born_details').attr('data-toggle', 'tab');
+      $('#born_details').addClass('active in');
+    });
+
+
+    //------------------ 6TO STEP LUGAR Y DOCUMENTOS --------------------------
+
+
+    $('#btn_personal_caracters').click(function() {
+      var error_talla = '';
+      var error_peso = '';
+      var error_grupoSang = '';
+      var error_sexo = '';
+
+      if ($.trim($('#talla').val()).length == 0) {
+        error_talla = 'OK';
+        $('#talla').addClass('has-error');
+        $(".sixStep").append("<div class='alert alert-danger alert-dismissible'> <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button><p><i class='icon fa fa-ban'></i>Complete la Talla</p></div>");
+      } else {
+        error_talla = '';
+        $('#talla').removeClass('has-error');
+      }
+
+      if ($.trim($('#peso').val()).length == 0) {
+        error_peso = 'OK';
+        $('#peso').addClass('has-error');
+        $(".sixStep").append("<div class='alert alert-danger alert-dismissible'> <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button><p><i class='icon fa fa-ban'></i>Complete el Peso</p></div>");
+      } else {
+        error_peso = '';
+        $('#peso').removeClass('has-error');
+      }
+
+      if ($.trim($('#grupo_sang').val()).length == 0) {
+        error_grupoSang = 'OK';
+        $('#grupo_sang').addClass('has-error');
+        $(".sixStep").append("<div class='alert alert-danger alert-dismissible'> <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button><p><i class='icon fa fa-ban'></i>Escoja el Grupo Sanguíneo</p></div>");
+      } else {
+        error_pasaporte = '';
+        $('#grupo_sang').removeClass('has-error');
+      }
+      if ($.trim($('#sexo').val()).length == 0) {
+        error_sexo = 'OK';
+        $('#sexo').addClass('has-error');
+        $(".sixStep").append("<div class='alert alert-danger alert-dismissible'> <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button><p><i class='icon fa fa-ban'></i>Complete uel Brevete</p></div>");
+      } else {
+        error_sexo = '';
+        $('#sexo').removeClass('has-error');
+      }
+
+      if (
+        error_talla != '' ||
+        error_peso != '' ||
+        error_grupoSang != '' ||
+        error_sexo != ''
+      ) {
+        return false;
+      } else {
+        $('#list_caracters_details').removeClass('active active_tab1');
+        $('#list_caracters_details').removeAttr('href data-toggle');
+        $('#caracters_details').removeClass('active');
+        $('#list_caracters_details').addClass('inactive_tab1');
+        $('#list_clothes_details').removeClass('inactive_tab1');
+        $('#list_clothes_details').addClass('active_tab1 active');
+        $('#list_clothes_details').attr('href', '#clothes_details');
+        $('#list_clothes_details').attr('data-toggle', 'tab');
+        $('#clothes_details').addClass('active in');
+      }
+    });
+
+    $('#previous_btn_personal_caracters').click(function() {
+      $('#list_caracters_details').removeClass('active active_tab1');
+      $('#list_caracters_details').removeAttr('href data-toggle');
+      $('#caracters_details').removeClass('active in');
+      $('#list_caracters_details').addClass('inactive_tab1');
+      $('#list_documents_details').removeClass('inactive_tab1');
+      $('#list_documents_details').addClass('active_tab1 active');
+      $('#list_documents_details').attr('href', '#documents_details');
+      $('#list_documents_details').attr('data-toggle', 'tab');
+      $('#documents_details').addClass('active in');
+
+    });
+
+    //------------------ 7TO STEP LUGAR Y DOCUMENTOS --------------------------
+
+
+    $('#btn_personal_clothes').click(function() {
+      var error_camisa = '';
+      var error_pantalon = '';
+      var error_calzado = '';
+      var error_cabeza = '';
+      if ($.trim($('#camisa').val()).length == 0) {
+        error_camisa = 'OK';
+        $('#camisa').addClass('has-error');
+        $(".sevenStep").append("<div class='alert alert-danger alert-dismissible'> <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button><p><i class='icon fa fa-ban'></i>Escoja talla de Camisa</p></div>");
+      } else {
+        error_camisa = '';
+        $('#camisa').removeClass('has-error');
+      }
+
+      if ($.trim($('#pantalon').val()).length == 0) {
+        error_pantalon = 'OK';
+        $('#pantalon').addClass('has-error');
+        $(".sevenStep").append("<div class='alert alert-danger alert-dismissible'> <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button><p><i class='icon fa fa-ban'></i>Escoja talla de Pantalón</p></div>");
+      } else {
+        error_pantalon = '';
+        $('#pantalon').removeClass('has-error');
+      }
+
+      if ($.trim($('#calzado').val()).length == 0) {
+        error_calzado = 'OK';
+        $('#calzado').addClass('has-error');
+        $(".sevenStep").append("<div class='alert alert-danger alert-dismissible'> <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button><p><i class='icon fa fa-ban'></i>Escoja talla del Calzado</p></div>");
+      } else {
+        error_calzado = '';
+        $('#calzado').removeClass('has-error');
+      }
+      if ($.trim($('#cabeza').val()).length == 0) {
+        error_cabeza = 'OK';
+        $('#cabeza').addClass('has-error');
+        $(".sevenStep").append("<div class='alert alert-danger alert-dismissible'> <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button><p><i class='icon fa fa-ban'></i>Escoja talla para prenda de Cabeza</p></div>");
+      } else {
+        error_cabeza = '';
+        $('#cabeza').removeClass('has-error');
+      }
+
+      if (
+        error_camisa != '' ||
+        error_pantalon != '' ||
+        error_calzado != '' ||
+        error_cabeza != ''
+      ) {
+        console.log('ga')
+
+        return false;
+      } else {
+        console.log('ga2')
+
+        $('#list_clothes_details').removeClass('active active_tab1');
+        $('#list_clothes_details').removeAttr('href data-toggle');
+        $('#clothes_details').removeClass('active');
+        $('#list_clothes_details').addClass('inactive_tab1');
+        $('#list_remuneration_details').removeClass('inactive_tab1');
+        $('#list_remuneration_details').addClass('active_tab1 active');
+        $('#list_remuneration_details').attr('href', '#remuneration_detailss');
+        $('#list_remuneration_details').attr('data-toggle', 'tab');
+        $('#remuneration_details').addClass('active in');
+      }
+    });
+
+    $('#previous_btn_personal_clothes').click(function() {
+      $('#list_clothes_details').removeClass('active active_tab1');
+      $('#list_clothes_details').removeAttr('href data-toggle');
+      $('#clothes_details').removeClass('active in');
+      $('#list_clothes_details').addClass('inactive_tab1');
+      $('#list_caracters_details').removeClass('inactive_tab1');
+      $('#list_caracters_details').addClass('active_tab1 active');
+      $('#list_caracters_details').attr('href', '#caracters_details');
+      $('#list_caracters_details').attr('data-toggle', 'tab');
+      $('#caracters_details').addClass('active in');
+
+    });
+    //------------------ 8TO STEP LUGAR Y DOCUMENTOS --------------------------
+
+
+    $('#btn_personal_remuneration').click(function() {
+      var error_banco = '';
+      var error_nroCuenta = '';
+      var error_afiliacion = '';
+
+      if ($.trim($('#banco').val()).length == 0) {
+        error_banco = 'OK';
+        $('#banco').addClass('has-error');
+        $(".eightStep").append("<div class='alert alert-danger alert-dismissible'> <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button><p><i class='icon fa fa-ban'></i>Complete el Banco</p></div>");
+      } else {
+        error_banco = '';
+        $('#banco').removeClass('has-error');
+      }
+
+      if ($.trim($('#nro_cuenta').val()).length == 0) {
+        error_nroCuenta = 'OK';
+        $('#nro_cuenta').addClass('has-error');
+        $(".eightStep").append("<div class='alert alert-danger alert-dismissible'> <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button><p><i class='icon fa fa-ban'></i>Complete el N° de cuenta</p></div>");
+      } else {
+        error_nroCuenta = '';
+        $('#nro_cuenta').removeClass('has-error');
+      }
+
+      if ($.trim($('#afiliacion').val()).length == 0) {
+        error_afiliacion = 'OK';
+        $('#afiliacion').addClass('has-error');
+        $(".eightStep").append("<div class='alert alert-danger alert-dismissible'> <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button><p><i class='icon fa fa-ban'></i>Escoja la afiliación</p></div>");
+      } else {
+        error_afiliacion = '';
+        $('#afiliacion').removeClass('has-error');
+      }
+
+      if (
+        error_banco != '' ||
+        error_nroCuenta != '' ||
+        error_afiliacion != ''
+      ) {
+        return false;
+      } else {
+        $('#list_remuneration_details').removeClass('active active_tab1');
+        $('#list_remuneration_details').removeAttr('href data-toggle');
+        $('#remuneration_details').removeClass('active');
+        $('#list_remuneration_details').addClass('inactive_tab1');
+        $('#list_langtripssttudies_details').removeClass('inactive_tab1');
+        $('#list_langtripssttudies_details').addClass('active_tab1 active');
+        $('#list_langtripssttudies_details').attr('href', '#langtripssttudies_details');
+        $('#list_langtripssttudies_details').attr('data-toggle', 'tab');
+        $('#langtripssttudies_details').addClass('active in');
+      }
+    });
+
+    $('#previous_btn_personal_remuneration').click(function() {
+      $('#list_caracters_details').removeClass('active active_tab1');
+      $('#list_caracters_details').removeAttr('href data-toggle');
+      $('#caracters_details').removeClass('active in');
+      $('#list_caracters_details').addClass('inactive_tab1');
+      $('#list_documents_details').removeClass('inactive_tab1');
+      $('#list_documents_details').addClass('active_tab1 active');
+      $('#list_documents_details').attr('href', '#documents_details');
+      $('#list_documents_details').attr('data-toggle', 'tab');
+      $('#documents_details').addClass('active in');
+
+    });
+
+    //------------------ 10MO STEP LUGAR Y DOCUMENTOS --------------------------
+
+
+    $('#btn_personal_langtripssttudies').click(function() {
+
+      /*
+    html += "<td><input type='text' class='form-control' id='lugar' name='lugar[]' style='text-transform: uppercase;' required ></td>";
+    html += "<td><input type='text' class='form-control' id='motivo' name='motivo[]' style='text-transform: uppercase;' required ></td>";
+    html += "<td><input type='date' class='form-control' id='fecha_viaje' name='fecha_viaje[]' style='text-transform: uppercase;' required ></td>";
+ 
+      */
+
+
+      var error_idioma = '';
+      var error_idiomaHabla = '';
+      var error_idiomaLee = '';
+      var error_idiomaEscribe = '';
+      var error_idiomaEstudio = '';
+      var error_idiomaPractica = '';
+
+      var error_lugar = '';
+      var error_motivo = '';
+      var error_fecha_viaje = '';
+
+
+      if (document.getElementById("tbidiomas").rows.length > 1) {
+
+        $("input[id=idioma]").each(function() {
+          var $this = $(this);
+          if ($this.val() == '') {
+            error_idioma = 'OK';
+            $("input[id=idioma]").addClass('has-error');
+            $(".nineStep").append("<div class='alert alert-danger alert-dismissible'> <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button><p><i class='icon fa fa-ban'></i>Complete el Idioma</p></div>");
+          } else {
+            error_idioma = '';
+            $('input[id=idioma]').removeClass('has-error');
+          }
+        });
+
+        $("select[id=idioma_habla]").each(function() {
+          var $this = $(this);
+          if ($this.val() == '') {
+            error_idiomaHabla = 'OK';
+            $("select[id=idioma_habla]").addClass('has-error');
+            $(".nineStep").append("<div class='alert alert-danger alert-dismissible'> <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button><p><i class='icon fa fa-ban'></i>Escoja el nivel del Habla</p></div>");
+          } else {
+            error_idiomaHabla = '';
+            $('select[id=idioma_habla]').removeClass('has-error');
+          }
+        });
+
+        $("select[id=idioma_lee]").each(function() {
+          var $this = $(this);
+          if ($this.val() == '') {
+            error_idiomaLee = 'OK';
+            $("select[id=idioma_lee]").addClass('has-error');
+            $(".nineStep").append("<div class='alert alert-danger alert-dismissible'> <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button><p><i class='icon fa fa-ban'></i>Escoja el nivel de Lectura</p></div>");
+          } else {
+            error_idiomaLee = '';
+            $('select[id=idioma_lee]').removeClass('has-error');
+          }
+        });
+
+        $("select[id=idioma_escribe]").each(function() {
+          var $this = $(this);
+          if ($this.val() == '') {
+            error_idiomaEscribe = 'OK';
+            $("select[id=idioma_escribe]").addClass('has-error');
+            $(".nineStep").append("<div class='alert alert-danger alert-dismissible'> <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button><p><i class='icon fa fa-ban'></i>Escoja el nivel del Adquirido</p></div>");
+          } else {
+            error_idiomaEscribe = '';
+            $('select[id=idioma_escribe]').removeClass('has-error');
+          }
+        });
+
+        $("select[id=idioma_estudio]").each(function() {
+          var $this = $(this);
+          if ($this.val() == '') {
+            error_idiomaEstudio = 'OK';
+            $("select[id=idioma_estudio]").addClass('has-error');
+            $(".nineStep").append("<div class='alert alert-danger alert-dismissible'> <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button><p><i class='icon fa fa-ban'></i>Escoja el nivel de Escritura</p></div>");
+          } else {
+            error_idiomaEstudio = '';
+            $('select[id=idioma_estudio]').removeClass('has-error');
+          }
+        });
+
+        $("select[id=idioma_practica]").each(function() {
+          var $this = $(this);
+          if ($this.val() == '') {
+            error_idiomaPractica = 'OK';
+            $("select[id=idioma_practica]").addClass('has-error');
+            $(".nineStep").append("<div class='alert alert-danger alert-dismissible'> <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button><p><i class='icon fa fa-ban'></i>Escoja el nivel de Graduado</p></div>");
+          } else {
+            error_idiomaPractica = '';
+            $('select[id=idioma_practica]').removeClass('has-error');
+          }
+        });
+      }
+
+
+
+      if (document.getElementById("tbviajesExtranjero").rows.length > 1) {
+        $("input[id=lugar]").each(function() {
+          var $this = $(this);
+          if ($this.val() == '') {
+            error_lugar = 'OK';
+            $("input[id=lugar]").addClass('has-error');
+            $(".nineStep").append("<div class='alert alert-danger alert-dismissible'> <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button><p><i class='icon fa fa-ban'></i>Complete el Lugar</p></div>");
+          } else {
+            error_lugar = '';
+            $('input[id=lugar]').removeClass('has-error');
+          }
+        });
+        $("input[id=motivo]").each(function() {
+          var $this = $(this);
+          if ($this.val() == '') {
+            error_motivo = 'OK';
+            $("input[id=motivo]").addClass('has-error');
+            $(".nineStep").append("<div class='alert alert-danger alert-dismissible'> <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button><p><i class='icon fa fa-ban'></i>Complete el Motivo</p></div>");
+          } else {
+            error_motivo = '';
+            $('input[id=motivo]').removeClass('has-error');
+          }
+        });
+
+        $("input[id=fecha_viaje]").each(function() {
+          var $this = $(this);
+          if ($this.val() == '') {
+            error_fecha_viaje = 'OK';
+            $("input[id=fecha_viaje]").addClass('has-error');
+            $(".nineStep").append("<div class='alert alert-danger alert-dismissible'> <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button><p><i class='icon fa fa-ban'></i>Complete la Fecha</p></div>");
+          } else {
+            error_fecha_viaje = '';
+            $('input[id=fecha_viaje]').removeClass('has-error');
+          }
+        });
+      
+      }
 
 
 
 
 
+      if (
+        error_idioma != '' ||
+        error_idiomaHabla != '' ||
+        error_idiomaLee != '' ||
+        error_idiomaEscribe != '' ||
+        error_idiomaEstudio != '' ||
+        error_idiomaPractica != '' ||
+        error_lugar != '' ||
+        error_motivo != '' ||
+        error_fecha_viaje != '' 
+      ) {
+        return false;
+      } else {
+        $('#list_langtripssttudies_details').removeClass('active active_tab1');
+        $('#list_langtripssttudies_details').removeAttr('href data-toggle');
+        $('#langtripssttudies_details').removeClass('active');
+        $('#list_langtripssttudies_details').addClass('inactive_tab1');
+        $('#list_securfam_details').removeClass('inactive_tab1');
+        $('#list_securfam_details').addClass('active_tab1 active');
+        $('#list_securfam_details').attr('href', '#securfam_details');
+        $('#list_securfam_details').attr('data-toggle', 'tab');
+        $('#securfam_details').addClass('active in');
+      }
+
+      $('#previous_btn_personal_remuneration').click(function() {
+        $('#list_caracters_details').removeClass('active active_tab1');
+        $('#list_caracters_details').removeAttr('href data-toggle');
+        $('#caracters_details').removeClass('active in');
+        $('#list_caracters_details').addClass('inactive_tab1');
+        $('#list_documents_details').removeClass('inactive_tab1');
+        $('#list_documents_details').addClass('active_tab1 active');
+        $('#list_documents_details').attr('href', '#documents_details');
+        $('#list_documents_details').attr('data-toggle', 'tab');
+        $('#documents_details').addClass('active in');
+
+      });
+    });
   });
 </script>
 <style>

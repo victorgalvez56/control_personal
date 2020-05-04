@@ -16,42 +16,85 @@
 
   <!-- Theme style -->
   <link rel="stylesheet" href="<?php echo base_url();?>assets/template/dist/css/AdminLTE.min.css">
+    
+    <style type="text/css">
+ 
+        .fondo {
+           width: 100%;
+            height: 700px;
+            background-image: url(https://www.diariosinfronteras.pe/wp-content/uploads/2019/02/14A-RUDY.jpg);
+            background-size: 150%;
+            animation: movimiento 10s infinite linear alternate;
+
+            }
+        @keyframes movimiento{
+            
+            from{
+                
+                background-position: bottom left
+            }to{
+                background-position: top right;
+            }
+            
+        }
+        
+        .fondo-degrade{
+            width: 100%;
+            height: 100%;
+            position:fixed;
+            background: -webkit-linear-gradient(left,black,#0672d0);
+            opacity: 0.5;
+        }
+        .frente{
+
+            position: relative;
+        }
+         
+     </style>
 
 </head>
-<body class="hold-transition login-page">
-    <div class="login-box">
-        <div class="login-logo">
-            <h2>SISTEMA CONTROL DE PERSONAL</h2>
-        </div>
-        <!-- /.login-logo -->
-        <div class="login-box-body">
-            <p class="login-box-msg">Introduzca sus datos de ingreso</p>
-            <?php if($this->session->flashdata("error")):?>
-              <div class="alert alert-danger">
-                <p><?php echo $this->session->flashdata("error")?></p>
-              </div>
-            <?php endif; ?>
-            <form action="<?php echo base_url();?>auth/login" method="post">
-                <div class="form-group has-feedback">
-                    <input type="text" class="form-control" placeholder="Usuario" name="username">
-                    <span class="glyphicon glyphicon-user form-control-feedback"></span>
-                </div>
-                <div class="form-group has-feedback">
-                    <input type="password" class="form-control" placeholder="Password" name="password">
-                    <span class="glyphicon glyphicon-lock form-control-feedback"></span>
-                </div>
-                <div class="row">
-                    <div class="col-xs-12">
-                        <button type="submit" class="btn btn-primary btn-block btn-flat">Sign In</button>
+<body class="fondo">
+    
+    <div class="fondo-degrade">
+        
+        <div class="login-box">
+            
+            <div class="login-logo">
+                <img height="120" width="100" src=https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Emblem_of_the_Peruvian_Army.svg/374px-Emblem_of_the_Peruvian_Army.svg.png>
+            </div>
+            <!-- /.login-logo -->
+            <div class="frente">
+            <div class="login-box-body">
+                <p class="login-box-msg">Introduzca sus datos de ingreso</p>
+                <?php if($this->session->flashdata("error")):?>
+                  <div class="alert alert-danger">
+                    <p><?php echo $this->session->flashdata("error")?></p>
+                  </div>
+                <?php endif; ?>
+                <form action="<?php echo base_url();?>auth/login" method="post">
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" placeholder="Usuario" name="username">
+                        <span class="glyphicon glyphicon-user form-control-feedback"></span>
                     </div>
-                    <!-- /.col -->
-                </div>
-            </form>
-
+                    <div class="form-group has-feedback">
+                        <input type="password" class="form-control" placeholder="Password" name="password">
+                        <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <button type="submit" class="btn btn-primary btn-block btn-flat">Sign In</button>
+                        </div>
+                        <!-- /.col -->
+                    </div>
+                </form>
+                
+            </div>
+            </div>
+                <!-- /.login-box-body -->
         </div>
-        <!-- /.login-box-body -->
-    </div>
     <!-- /.login-box -->
+        
+    </div>
 
 <!-- jQuery 3 -->
 <script src="<?php echo base_url();?>assets/template/jquery/jquery.min.js"></script>

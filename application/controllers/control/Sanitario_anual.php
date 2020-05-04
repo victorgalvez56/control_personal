@@ -62,19 +62,51 @@ class Sanitario_anual extends CI_Controller
 		$this->Sanitario_anual_model->save($data);
 		redirect(base_url()."control/sanitario_anual");
 	}
-	public function view($id)
+	public function edit($id)
 	{
 		$data  = array(
-			'categoria' => $this->Categorias_model->getCategoria($id),
+			'sanitario' => $this->Sanitario_anual_model->getRegistro($id),
 		);
-		$this->load->view("admin/categorias/view", $data);
+		$this->load->view("layouts/header");
+		$this->load->view("layouts/aside");
+		$this->load->view("admin/sanitario_anual/edit", $data);
+		$this->load->view("layouts/footer");
 	}
+
+	public function update()
+	{
+
+		$idRegistro = $this->input->post("idRegistro");
+		$presion = $this->input->post("presion");
+		$medicacion = $this->input->post("medicacion");
+		$edad = $this->input->post("edad");
+		$talla = $this->input->post("talla");
+		$peso = $this->input->post("peso");
+		$perimetro = $this->input->post("perimetro");
+
+		$data = array(
+			'presion' => $presion,
+			'medicina' => $medicacion,
+			'edad' => $edad,
+			'talla' => $talla,
+			'peso' => $peso,
+			'peri_abdominal' => $perimetro,
+		);
+
+		if ($this->Sanitario_anual_model->update($idRegistro, $data)) {
+			redirect(base_url() . "control/sanitario_anual");
+		} else {
+			$this->session->set_flashdata("error", "No se pudo actualizar la información");
+			redirect(base_url() . "control/sanitario_anual/edit/" . $idRegistro);
+		}
+	}
+
 	public function delete($id)
 	{
 		$data  = array(
-			'estado_cat' => "0",
+			'estado' => "0",
 		);
-		$this->Categorias_model->update($id, $data);
-		echo "mantenimiento/categorias";
+		$this->Sanitario_anual_model->update($id, $data);
+		redirect(base_url() . "control/sanitario_anual");
 	}
 }

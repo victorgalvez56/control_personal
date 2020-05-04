@@ -7,7 +7,7 @@ class Sanitario_anual_model extends CI_Model {
 		$this->db->select("p.*,r.*");
 		$this->db->from("personal p");
 		$this->db->join("registro_anual r","r.personal_id = p.id");	
-		$this->db->where("p.estado","1");
+		$this->db->where("r.estado","1");
 		$resultados = $this->db->get();
 		return $resultados->result();
 	}
@@ -20,9 +20,12 @@ class Sanitario_anual_model extends CI_Model {
 	public function save($data){
 		return $this->db->insert("registro_anual",$data);
 	}
-	public function getCategoria($id){
-		$this->db->where("id_cat",$id);
-		$resultado = $this->db->get("categorias");
+	public function getRegistro($id){
+		$this->db->select("p.dni,p.nombres,p.apellido_pat,p.apellido_mat,p.fecha_nac,p.talla,r.*");
+		$this->db->from("personal p");
+		$this->db->join("registro_anual r","r.personal_id = p.id");	
+		$this->db->where("r.id",$id);
+		$resultado = $this->db->get("registro_anual");
 		return $resultado->row();
 
 	}
@@ -30,8 +33,8 @@ class Sanitario_anual_model extends CI_Model {
 		$this->db->insert("detalle_idioma",$data);
 	}
 	public function update($id,$data){
-		$this->db->where("id_cat",$id);
-		return $this->db->update("personal",$data);
+		$this->db->where("id",$id);
+		return $this->db->update("registro_anual",$data);
 	}
 	public function lastID(){
 		return $this->db->insert_id();

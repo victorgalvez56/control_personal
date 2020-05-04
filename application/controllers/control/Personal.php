@@ -69,7 +69,7 @@ class Personal extends CI_Controller
 			$depart_nac = strtoupper($this->input->post("depart_nac"));
 			$provinc_nac = strtoupper($this->input->post("provin_nac"));
 			$distrito_nac = strtoupper($this->input->post("distri_nac"));
-			$fecha_nac = strtoupper($this->input->post("distri_nac"));
+			$fecha_nac = strtoupper($this->input->post("edad_nac"));
 			$edad = strtoupper($this->input->post("calle"));
 
 			$cip = strtoupper($this->input->post("cip_per"));

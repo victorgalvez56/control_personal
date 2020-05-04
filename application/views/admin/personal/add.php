@@ -41,19 +41,10 @@
                                     <a class="nav-link inactive_tab1" id="list_remuneration_details" style="border:1px solid #ccc">Remuneración</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link inactive_tab1" id="list_lenguage_details" style="border:1px solid #ccc">Idiomas</a>
+                                    <a class="nav-link inactive_tab1" id="list_langtripssttudies_details" style="border:1px solid #ccc">Idiomas, Viajes y Estudios</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link inactive_tab1" id="list_family_details" style="border:1px solid #ccc">Familiares Directos</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link inactive_tab1" id="list_trips_details" style="border:1px solid #ccc">Viajes al Extranjero</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link inactive_tab1" id="list_studies_details" style="border:1px solid #ccc">Estudios Realizados</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link inactive_tab1" id="list_insurances_details" style="border:1px solid #ccc">Seguros</a>
+                                    <a class="nav-link inactive_tab1" id="list_securfam_details" style="border:1px solid #ccc">Familiares y Seguros</a>
                                 </li>
                             </ul>
                             <div class="tab-content" style="margin-top:16px;">
@@ -270,6 +261,8 @@
                                 <div class="tab-pane fade" id="born_details">
                                     <div class="panel panel-default">
                                         <div class="panel-heading">Detalle Nacimiento</div>
+                                        <div class="fourthStep">
+                                        </div>
                                         <div class="panel-body">
                                             <div class="col-md-12">
                                                 <div class="col-md-2">
@@ -294,13 +287,13 @@
                                                 <div class="col-md-2">
                                                     <div class="form-group">
                                                         <label for="fecha_nac">Fecha:</label>
-                                                        <input type="date" class="form-control" id="fecha_nac" name="fecha_nac" max="2002-01-01" style="text-transform: uppercase;" required>
+                                                        <input type="date" class="form-control" id="fecha_nac" name="fecha_nac" style="text-transform: uppercase;" required>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-2">
                                                     <div class="form-group">
                                                         <label for="edad">Edad:</label>
-                                                        <input type="number" class="form-control" id="edad" name="edad" style="text-transform: uppercase;" min="18" required>
+                                                        <input type="number" class="form-control edad_nac" id="edad_nac" name="edad_nac" style="text-transform: uppercase;" readonly>
                                                     </div>
                                                 </div>
                                             </div>
@@ -309,6 +302,363 @@
                                                 <button type="button" name="btn_personal_born" id="btn_personal_born" class="btn btn-info btn-lg">Next</button>
                                             </div>
                                             <br />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade" id="documents_details">
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading">Detalle Documentos</div>
+                                        <div class="fivethStep">
+                                        </div>
+                                        <div class="panel-body">
+                                            <div class="col-md-12">
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
+                                                        <label for="cip">CIP:</label>
+                                                        <input type="number" min="0" class="form-control" id="cip_per" name="cip_per" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==9) return false;" required>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
+                                                        <label for="dni">DNI:</label>
+                                                        <input type="number" min="0" class="form-control" id="dni_per" name="dni_per" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==8) return false;" required>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
+                                                        <label for="pasaporte">Pasaporte:</label>
+                                                        <input type="text" class="form-control" id="pasaporte" name="pasaporte" style="text-transform: uppercase;" required>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
+                                                        <label for="brevete">Brevete:</label>
+                                                        <select class="form-control form-control-lg" id="brevete" name="brevete" required>
+                                                            <option value="">SELECCIONE</option>
+                                                            <option value="A-I">A-I</option>
+                                                            <option value="A-II-A">A-II-A</option>
+                                                            <option value="A-II-B">A-II-B</option>
+                                                            <option value="A-III-A">A-III-A</option>
+                                                            <option value="A-III-B">A-III-B</option>
+                                                            <option value="A-III-C">A-III-C</option>
+                                                            <option value="A-IV-ESPECIAL">A-IV-ESPECIAL</option>
+                                                            <option value="B-I">B-I</option>
+                                                            <option value="B-II-A">B-II-A</option>
+                                                            <option value="B-II-B">B-II-B</option>
+                                                            <option value="B-II-C">B-II-C</option>
+                                                            <option value="B">B</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div align="center">
+                                                <button type="button" name="previous_btn_personal_documents" id="previous_btn_personal_documents" class="btn btn-default btn-lg">Previous</button>
+                                                <button type="button" name="btn_personal_documents" id="btn_personal_documents" class="btn btn-info btn-lg">Next</button>
+                                            </div>
+                                            <br />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade" id="caracters_details">
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading">Detalle Características</div>
+                                        <div class="sixStep">
+                                        </div>
+                                        <div class="panel-body">
+                                            <div class="col-md-12">
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
+                                                        <label for="talla">Talla(m.):</label>
+                                                        <input type="number" step="0.01" min="0" class="form-control" id="talla" name="talla" required>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
+                                                        <label for="peso">Peso(kg.):</label>
+                                                        <input type="number" step="0.01" min="0" class="form-control" id="peso" name="peso" required>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
+                                                        <label for="grupo_sang">Grupo Sanguíneo:</label>
+                                                        <select class="form-control form-control-lg" id="grupo_sang" name="grupo_sang" required>
+                                                            <option value="">SELECCIONE</option>
+                                                            <option value="A+">A+</option>
+                                                            <option value="A-">A-</option>
+                                                            <option value="B+">B+</option>
+                                                            <option value="B-">B-</option>
+                                                            <option value="AB+">AB+</option>
+                                                            <option value="AB-">AB-</option>
+                                                            <option value="O+">O+</option>
+                                                            <option value="O-">O-</option>
+
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
+                                                        <label for="religion">Sexo:</label>
+                                                        <select class="form-control form-control-lg" id="sexo" name="sexo" required>
+                                                            <option value="">SELECCIONE</option>
+                                                            <option value="MASCULINO">MASCULINO</option>
+                                                            <option value="FEMENINO">FEMENINO</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div align="center">
+                                                <button type="button" name="previous_btn_personal_caracters" id="previous_btn_personal_caracters" class="btn btn-default btn-lg">Previous</button>
+                                                <button type="button" name="btn_personal_caracters" id="btn_personal_caracters" class="btn btn-info btn-lg">Next</button>
+                                            </div>
+                                            <br />
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="tab-pane fade" id="clothes_details">
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading">Detalle Talla de ropa</div>
+                                        <div class="sevenStep">
+                                        </div>
+                                        <div class="panel-body">
+                                            <div class="col-md-12">
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
+                                                        <label for="grado">Camisa/Blusa:</label>
+                                                        <select class="form-control form-control-lg" id="camisa" name="camisa" required>
+                                                            <option value="">SELECCIONE</option>
+                                                            <option value="S">S</option>
+                                                            <option value="M">M</option>
+                                                            <option value="L">L</option>
+                                                            <option value="XL">XL</option>
+                                                            <option value="XLL">XLL</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
+                                                        <label for="">Pantalón:</label>
+                                                        <select class="form-control form-control-lg" id="pantalon" name="pantalon" required>
+                                                            <option value="">SELECCIONE</option>
+                                                            <option value="30">30</option>
+                                                            <option value="32">32</option>
+                                                            <option value="34">34</option>
+                                                            <option value="36">36</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
+                                                        <label for="distri_viv">Calzado:</label>
+                                                        <select class="form-control form-control-lg" id="calzado" name="calzado" required>
+                                                            <option value="">SELECCIONE</option>
+                                                            <option value="35">35</option>
+                                                            <option value="36">36</option>
+                                                            <option value="37">37</option>
+                                                            <option value="38">38</option>
+                                                            <option value="39">39</option>
+                                                            <option value="40">40</option>
+                                                            <option value="41">41</option>
+                                                            <option value="42">43</option>
+                                                            <option value="43">43</option>
+                                                            <option value="44">44</option>
+                                                            <option value="45">45</option>
+                                                            <option value="46">46</option>
+                                                            <option value="47">47</option>
+                                                            <option value="48">48</option>
+                                                            <option value="49">49</option>
+                                                            <option value="50">50</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
+                                                        <label for="urbanizacion">Prenda Cabeza:</label>
+                                                        <select class="form-control form-control-lg" id="cabeza" name="cabeza" required>
+                                                            <option value="">SELECCIONE</option>
+                                                            <option value="52">52</option>
+                                                            <option value="53">53</option>
+                                                            <option value="54">54</option>
+                                                            <option value="55">55</option>
+                                                            <option value="56">56</option>
+                                                            <option value="57">57</option>
+                                                            <option value="58">58</option>
+                                                            <option value="59">59</option>
+                                                            <option value="60">60</option>
+                                                            <option value="61">61</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div align="center">
+                                                <button type="button" name="previous_btn_personal_clothes" id="previous_btn_personal_clothes" class="btn btn-default btn-lg">Previous</button>
+                                                <button type="button" name="btn_personal_clothes" id="btn_personal_clothes" class="btn btn-info btn-lg">Next</button>
+                                            </div>
+                                            <br />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade" id="remuneration_details">
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading">Detalle de Remuneración</div>
+                                        <div class="eightStep">
+                                        </div>
+                                        <div class="panel-body">
+                                            <div class="col-md-12">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="depart_nac">Banco:</label>
+                                                        <input type="text" class="form-control" id="banco" name="banco" style="text-transform: uppercase;" required>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label for="Numero Cuenta">Número de Cuenta:</label>
+                                                        <input type="number" class="form-control" id="nro_cuenta" name="nro_cuenta" required>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <label for="distri_nac">Afiliación:</label>
+                                                    <select class="form-control form-control-lg" id="afiliacion" name="afiliacion" required>
+                                                        <option value="">Seleccione</option>
+                                                        <option value="AFP">AFP</option>
+                                                        <option value="ONP">ONP</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div align="center">
+                                                <button type="button" name="previous_btn_personal_remuneration" id="previous_btn_personal_remuneration" class="btn btn-default btn-lg">Previous</button>
+                                                <button type="button" name="btn_personal_remuneration" id="btn_personal_remuneration" class="btn btn-info btn-lg">Next</button>
+                                            </div>
+                                            <br />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tab-pane active" id="langtripssttudies_details">
+                                <div class="nineStep">
+                                        </div>
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading">Detalle de Idiomas <button type="button" class="btn btn-success btn-agregaridioma"><span class="fa fa-plus"></span></button></div>
+   
+                                        <div class="panel-body">
+                                            <div class="col-md-12">
+                                                <table id="tbidiomas" class="table table-bordered table-striped table-hover">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Idioma</th>
+                                                            <th>Habla</th>
+                                                            <th>Lee</th>
+                                                            <th>Adquirido</th>
+                                                            <th>Escribe</th>
+                                                            <th>Graduado</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            <br />
+                                        </div>
+                                    </div>
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading">Detalle de Viajes al extranjero <button type="button" class="btn btn-success btn-viajesExtranjero"><span class="fa fa-plus"></span></button></div>
+                                        <div class="panel-body">
+                                            <div class="col-md-12">
+                                                <table id="tbviajesExtranjero" class="table table-bordered   table-striped table-hover">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Lugar</th>
+                                                            <th>Motivo</th>
+                                                            <th>Fecha</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading">Detalle de Estudios <button type="button" class="btn btn-success btn-estudiosRealizados"><span class="fa fa-plus"></span></button></div>
+                                        <div class="panel-body">
+                                            <div class="col-md-12">
+                                                <table id="tbestudiosRealizados" class="table table-bordered   table-striped table-hover">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Curso</th>
+                                                            <th>Tipo de Curso</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            <div align="center">
+                                                <button type="button" name="previous_btn_personal_langtripssttudies" id="previous_btn_personal_langtripssttudies" class="btn btn-default btn-lg">Previous</button>
+                                                <button type="button" name="btn_personal_langtripssttudies" id="btn_personal_langtripssttudies" class="btn btn-info btn-lg">Next</button>
+                                            </div>
+                                            <br />
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="tab-pane fade" id="securfam_details">
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading">Detalle Familiares <button type="button" class="btn btn-success btn-agregarfamiliares"><span class="fa fa-plus"></span></button></div>
+                                        <div class="tenStep">
+                                        </div>
+                                        <div class="panel-body">
+                                            <div class="col-md-12">
+                                                <table id="tbfamiliares1" class="table table-bordered   table-striped table-hover">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Nombres</th>
+                                                            <th>Parentesco</th>
+                                                            <th>Edad</th>
+                                                            <th>Lugar Nac.</th>
+                                                            <th>Fecha Nac.</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+
+                                                    </tbody>
+                                                </table>
+                                                <table id="tbfamiliares2" class="table table-bordered table-striped table-hover">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>CIP</th>
+                                                            <th>DNI</th>
+                                                            <th>Telef.</th>
+                                                            <th>Grupo Sang.</th>
+                                                            <th>Grado Instr.</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading">Detalle de Seguros <button type="button" class="btn btn-success btn-seguro"><span class="fa fa-plus"></span></button> </div>
+                                        <div class="panel-body">
+                                            <div class="col-md-12">
+                                                <table id="tbseguro" class="table table-bordered   table-striped table-hover">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Seguro</th>
+                                                            <th>Tipo de Seguro</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+
+                                                    </tbody>
+                                                </table>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

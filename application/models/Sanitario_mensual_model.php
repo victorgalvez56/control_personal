@@ -7,7 +7,7 @@ class Sanitario_mensual_model extends CI_Model {
 		$this->db->select("p.*,r.*");
 		$this->db->from("personal p");
 		$this->db->join("registro_mensual r","r.personal_id = p.id");	
-		$this->db->where("p.estado","1");
+		$this->db->where("r.estado","1");
 		$resultados = $this->db->get();
 		return $resultados->result();
 	}
@@ -20,18 +20,18 @@ class Sanitario_mensual_model extends CI_Model {
 	public function save($data){
 		return $this->db->insert("registro_mensual",$data);
 	}
-	public function getCategoria($id){
-		$this->db->where("id_cat",$id);
-		$resultado = $this->db->get("categorias");
+	public function getRegistro($id){
+		$this->db->select("p.dni,p.nombres,p.apellido_pat,p.apellido_mat,p.sexo,p.talla,r.*");
+		$this->db->from("personal p");
+		$this->db->join("registro_mensual r","r.personal_id = p.id");	
+		$this->db->where("r.id",$id);
+		$resultado = $this->db->get("registro_mensual");
 		return $resultado->row();
 
 	}
-	public function save_detalle_idioma($data){
-		$this->db->insert("detalle_idioma",$data);
-	}
 	public function update($id,$data){
-		$this->db->where("id_cat",$id);
-		return $this->db->update("personal",$data);
+		$this->db->where("id",$id);
+		return $this->db->update("registro_mensual",$data);
 	}
 	public function lastID(){
 		return $this->db->insert_id();

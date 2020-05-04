@@ -24,8 +24,7 @@
                                     </div><!-- /input-group -->
                                 </div>
                             </div>
-
-
+                            <input type="hidden" class="fecha_nacedit" name="fecha_nacedit">
                             <table id="tbventas" class="table table-bordered table-striped table-hover">
                                 <thead>
                                     <tr>
@@ -56,10 +55,7 @@
                 </div>
             </div>
         </div>
-</div>
-
-</section>
-<!-- /.content -->
+    </section>
 </div>
 <!-- /.content-wrapper -->
 
@@ -91,7 +87,7 @@
                                     <td><?php echo $personal->nombres; ?></td>
                                     <td><?php echo $personal->grado; ?></td>
 
-                                    <?php $datapersonal = $personal->id . "*" . $personal->dni . "*" . $personal->nombres . " " . $personal->apellido_pat . " " . $personal->apellido_mat . "*" . $personal->grado ; ?>
+                                    <?php $datapersonal = $personal->id . "*" . $personal->dni . "*" . $personal->nombres . "*" . $personal->apellido_pat . "*" . $personal->apellido_mat . "*" . $personal->grado. "*". $personal->fecha_nac; ?>
                                     <td>
                                         <button type="button" class="btn btn-success btn-checkanual" value="<?php echo $datapersonal; ?>"><span class="fa fa-check"></span></button>
                                     </td>
