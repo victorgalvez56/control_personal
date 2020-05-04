@@ -18,7 +18,7 @@
   <link rel="stylesheet" href="<?php echo base_url();?>assets/template/dist/css/AdminLTE.min.css">
     
     <style type="text/css">
- 
+
         .fondo {
            width: 100%;
             height: 700px;
@@ -42,8 +42,7 @@
             width: 100%;
             height: 100%;
             position:fixed;
-            background: -webkit-linear-gradient(left,black,#0672d0);
-            opacity: 0.5;
+            background: -webkit-linear-gradient(left,black, #0672d0);
         }
         .frente{
 

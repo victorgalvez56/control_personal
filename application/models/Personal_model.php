@@ -3,13 +3,32 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class Personal_model extends CI_Model
 {
-	public function getPersonals()
+	public function getPersonalMilitar()
+	{
+		$this->db->select("*");
+		$this->db->from("personal");
+		$resultados = $this->db->get();
+		$this->db->where("tipo_personal","MILITAR");
+		return $resultados->result();
+	}
+	public function getPersonalCivil()
+	{
+		$this->db->select("*");
+		$this->db->from("personal");
+		$this->db->where("tipo_personal","CIVIL");
+		$resultados = $this->db->get();
+		return $resultados->result();
+	}
+
+	public function getPersonalTarjeta()
 	{
 		$this->db->select("*");
 		$this->db->from("personal");
 		$resultados = $this->db->get();
 		return $resultados->result();
 	}
+	
+
 	public function getPersonalsregistro()
 	{
 		$this->db->select("p.*,r.*");
@@ -31,6 +50,46 @@ class Personal_model extends CI_Model
 		$resultado = $this->db->get();
 		return $resultado->row();
 	}
+
+	public function getDetalleIdioma($id){
+		$this->db->select("*");
+		$this->db->from("detalle_idioma");
+		$this->db->where("personal_id", $id);
+		$resultados = $this->db->get();
+		return $resultados->result();
+	}
+
+	public function getDetalleFamiliar($id){
+		$this->db->select("*");
+		$this->db->from("detalle_familiar");
+		$this->db->where("personal_id", $id);
+		$resultados = $this->db->get();
+		return $resultados->result();
+	}
+
+	public function getDetalleViaje($id){
+		$this->db->select("*");
+		$this->db->from("detalle_viajes");
+		$this->db->where("personal_id", $id);
+		$resultados = $this->db->get();
+		return $resultados->result();
+	}
+	public function getDetalleSeguro($id){
+		$this->db->select("*");
+		$this->db->from("detalle_seguro");
+		$this->db->where("personal_id", $id);
+		$resultados = $this->db->get();
+		return $resultados->result();
+	}
+
+	public function getDetalleEstudios($id){
+		$this->db->select("*");
+		$this->db->from("detalle_estudios");
+		$this->db->where("personal_id", $id);
+		$resultados = $this->db->get();
+		return $resultados->result();
+	}
+
 
 	public function save_detalle_idioma($data)
 	{

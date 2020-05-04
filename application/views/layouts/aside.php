@@ -22,7 +22,7 @@
                         <ul class="treeview-menu">
                         <li><a href="<?php echo base_url(); ?>control/personal/"><i class="fa fa-circle-o">
                                     </i>Personal Militar</a></li>
-                            <li><a href="<?php echo base_url(); ?>control/sanitario_mensual/"><i class="fa fa-circle-o">
+                            <li><a href="<?php echo base_url(); ?>control/personal/civil"><i class="fa fa-circle-o">
                                     </i>Personal Civil</a></li>
                         </ul>
                     </li>
@@ -43,13 +43,12 @@
                         </ul>
 
                     </li>
-                    <li><a href="<?php echo base_url(); ?>control/unidades"><i class="fa fa-circle-o"></i>Unidades</a></li>
 
                     <li><a href="<?php echo base_url(); ?>control/vehiculos/">
                             <i class="ion ion-android-car"></i><span>Registro Vehicular</span>
                         </a>
                     </li>
-                    <li><a href="<?php echo base_url(); ?>control/vehiculos/">
+                    <li><a href="<?php echo base_url(); ?>control/tarjeta_identidad/">
                             <i class="ion ion-ios-list-outline"></i><span>Tarjeta identidad Seguridad</span>
                         </a>
                     </li>

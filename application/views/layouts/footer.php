@@ -43,8 +43,8 @@
 
 
   $(document).on("keyup", 'input[type="text"]', function() {
-    if (!/^[ a-z0-9]*$/i.test(this.value)) {
-      this.value = this.value.replace(/[^ a-z0-9]+/ig, "");
+    if (!/^[ /a-z0-9]*$/i.test(this.value)) {
+      this.value = this.value.replace(/[^ /a-z0-9]+/ig, "");
     }
   })
 
@@ -71,6 +71,25 @@
       }
     });
   });
+
+  $(document).on("click", ".btn-view-tarjeta", function() {
+    var base_url = "<?php echo base_url(); ?>";
+    valor_id = $(this).val();
+    console.log(valor_id)
+    $.ajax({
+      url: base_url + "control/tarjeta_identidad/view",
+      type: "POST",
+      dataType: "html",
+      data: {
+        id: valor_id
+      },
+      success: function(data) {
+        $("#modal-default .modal-body").html(data);
+      }
+    });
+  });
+
+
   $(document).on("click", ".btn-print-vehiculo", function() {
     $("#modal-default .modal-body").print({
       title: "Información del Vehículo"
@@ -333,9 +352,12 @@
   /* Jquery para departamento, provincia y distrito vivienda.*/
   $(document).ready(function() {
     var selectdep = $('#departamento_viv');
+    
     selectdep.append('<option value=""> Seleccione</option>');
+
     $.each(ubigeo.departamentos, function(i, item) {
       selectdep.append('<option value=' + item.nombre_ubigeo + '>' + item.nombre_ubigeo + '</option>');
+
     });
   });
 
@@ -369,6 +391,7 @@
     $.each(ubigeo.provincias[auxiliar_viv], function(i, item) {
       if (provin_viv == item.nombre_ubigeo) {
         var id_provincia = item.id_ubigeo
+        console.log(item.id_ubigeo)
         inputDistrit(id_provincia)
       }
     });
@@ -443,10 +466,10 @@
     html = "<tr>";
     html += "<td><input type='text' class='form-control' id='idioma' name='idioma[]' style='text-transform: uppercase;' required ></td>";
     html += "<td><select class='form-control form-control' id='idioma_habla' name='idioma_habla[]' required><option value=''>Seleccione</option><option value='B'>B</option><option value='R'>R</option><option value'M'>M</option></select></td>";
-    html += "<td><select class='form-control form-control' id='idioma_lee' name='idioma_lee[]'><option value=''>Seleccione</option><option value='B'>B</option><option value='R'>R</option><option value='M'>M</option></select></td>";
-    html += "<td><select class='form-control form-control' id='idioma_escribe' name='idioma_escribe[]'><option value=''>Seleccione</option><option value='B'>B</option><option value='R'>R</option><option value'M'>M</option></select></td>";
-    html += "<td><select class='form-control form-control' id='idioma_estudio' name='idioma_estudio[]'><option value=''>Seleccione</option><option>ESTUDIO</option><option>PRACTICA</option></select></td>";
-    html += "<td><select class='form-control form-control' id='idioma_practica' name='idioma_practica[]'><option value=''>Seleccione</option><option value='SI'>SI</option><option value='NO'>NO</option></select></td>";
+    html += "<td><select class='form-control form-control' id='idioma_lee' name='idioma_lee[]' required ><option value=''>Seleccione</option><option value='B'>B</option><option value='R'>R</option><option value='M'>M</option></select></td>";
+    html += "<td><select class='form-control form-control' id='idioma_escribe' name='idioma_escribe[]' required><option value=''>Seleccione</option><option value='B'>B</option><option value='R'>R</option><option value='M'>M</option></select></td>";
+    html += "<td><select class='form-control form-control' id='idioma_estudio' name='idioma_estudio[]' required><option value=''>Seleccione</option><option>ESTUDIO</option><option>PRACTICA</option></select></td>";
+    html += "<td><select class='form-control form-control' id='idioma_practica' name='idioma_practica[]' required ><option value=''>Seleccione</option><option value='SI'>SI</option><option value='NO'>NO</option></select></td>";
     html += "<td><button type='button' class='btn btn-danger btn-remove-idioma'><span class='fa fa-remove'></span></button></td>";
     html += "</tr>";
     $("#tbidiomas tbody").append(html);
@@ -461,13 +484,23 @@
   $(document).on("click", ".btn-agregarfamiliares", function() {
     html = "<tr id='tableremove1'>";
     html += "<td><input type='text' class='form-control' id='idioma' name='nombresfamiliar[]' style='text-transform: uppercase;' required ></td>";
-    html += "<td><input type='text' class='form-control' id='parentesco' name='parentesco[]' style='text-transform: uppercase;' required ></td>";
+    html += "<td><select class='form-control form-control' id='parentesco' name='parentesco[]' required><option value=''>Seleccione</option><option value='PADRE'>PADRE</option><option value='MADRE'>MADRE</option><option value='CONYUGE'>CONYUGE</option><option value='HIJO'>HIJO</option><option value='HIJA'>HIJA</option></select></td>";
     html += "<td><input type='number' class='form-control' id='edad' name='edad[]' style='text-transform: uppercase;' required ></td>";
-    html += "<td><input type='text' class='form-control' id='lugar_nac' name='lugar_nac[]' style='text-transform: uppercase;' required ></td>";
+    html += "<td><select class='form-control form-control' id='lugar_nac' name='lugar_nac[]' required></select></td>";
     html += "<td><input type='date' class='form-control' id='fecha_nac' name='fecha_nac[]' style='text-transform: uppercase;' required ></td>";
     html += "</tr>";
     $("#tbfamiliares1 tbody").append(html);
     $("#btn-agregarfamiliares").val(null);
+
+    var lugar_nac = $('#lugar_nac');
+    
+    lugar_nac.append('<option value=""> Seleccione</option>');
+
+    $.each(ubigeo.departamentos, function(i, item) {
+      lugar_nac.append('<option value=' + item.nombre_ubigeo + '>' + item.nombre_ubigeo + '</option>');
+    });
+
+
   });
 
   $(document).on("click", ".btn-agregarfamiliares", function() {
@@ -661,17 +694,7 @@
       }
     });
 
-    $('#previous_btn_personal_details').click(function() {
-      $('#list_personal_details').removeClass('active active_tab1');
-      $('#list_personal_details').removeAttr('href data-toggle');
-      $('#personal_details').removeClass('active in');
-      $('#list_personal_details').addClass('inactive_tab1');
-      $('#list_login_details').removeClass('inactive_tab1');
-      $('#list_login_details').addClass('active_tab1 active');
-      $('#list_login_details').attr('href', '#login_details');
-      $('#list_login_details').attr('data-toggle', 'tab');
-      $('#login_details').addClass('active in');
-    });
+
 
     //------------------ SEGUNDO STEP DIRECCIÓN ACTUAL --------------------------
 
@@ -748,17 +771,6 @@
       }
     });
 
-    $('#previous_btn_contact_details').click(function() {
-      $('#list_contact_details').removeClass('active active_tab1');
-      $('#list_contact_details').removeAttr('href data-toggle');
-      $('#contact_details').removeClass('active in');
-      $('#list_contact_details').addClass('inactive_tab1');
-      $('#list_personal_details').removeClass('inactive_tab1');
-      $('#list_personal_details').addClass('active_tab1 active');
-      $('#list_personal_details').attr('href', '#personal_details');
-      $('#list_personal_details').attr('data-toggle', 'tab');
-      $('#personal_details').addClass('active in');
-    });
 
     //------------------ TERCER STEP CONTACTO --------------------------
 
@@ -815,18 +827,6 @@
       }
     });
 
-    $('#previous_btn_personal_born').click(function() {
-      $('#list_born_details').removeClass('active active_tab1');
-      $('#list_born_details').removeAttr('href data-toggle');
-      $('#born_details').removeClass('active in');
-      $('#list_born_details').addClass('inactive_tab1');
-
-      $('#list_contact_details').removeClass('inactive_tab1');
-      $('#list_contact_details').addClass('active_tab1 active');
-      $('#list_contact_details').attr('href', '#contact_details');
-      $('#list_contact_details').attr('data-toggle', 'tab');
-      $('#contact_details').addClass('active in');
-    });
     //------------------ CUARTO STEP LUGAR Y FECHA NACIMIENTO --------------------------
 
     $("#fecha_nac").change(function() {
@@ -929,19 +929,6 @@
       }
     });
 
-    $('#previous_btn_personal_documents').click(function() {
-      $('#list_documents_details').removeClass('active active_tab1');
-      $('#list_documents_details').removeAttr('href data-toggle');
-      $('#documents_details').removeClass('active in');
-      $('#list_documents_details').addClass('inactive_tab1');
-
-      $('#list_born_details').removeClass('inactive_tab1');
-      $('#list_born_details').addClass('active_tab1 active');
-      $('#list_born_details').attr('href', '#born_details');
-      $('#list_born_details').attr('data-toggle', 'tab');
-      $('#born_details').addClass('active in');
-    });
-
 
     //------------------ 5TO STEP LUGAR Y DOCUMENTOS --------------------------
 
@@ -1007,18 +994,6 @@
       }
     });
 
-    $('#previous_btn_personal_documents').click(function() {
-      $('#list_documents_details').removeClass('active active_tab1');
-      $('#list_documents_details').removeAttr('href data-toggle');
-      $('#documents_details').removeClass('active in');
-      $('#list_documents_details').addClass('inactive_tab1');
-      $('#list_born_details').removeClass('inactive_tab1');
-      $('#list_born_details').addClass('active_tab1 active');
-      $('#list_born_details').attr('href', '#born_details');
-      $('#list_born_details').attr('data-toggle', 'tab');
-      $('#born_details').addClass('active in');
-    });
-
 
     //------------------ 6TO STEP LUGAR Y DOCUMENTOS --------------------------
 
@@ -1082,19 +1057,6 @@
         $('#list_clothes_details').attr('data-toggle', 'tab');
         $('#clothes_details').addClass('active in');
       }
-    });
-
-    $('#previous_btn_personal_caracters').click(function() {
-      $('#list_caracters_details').removeClass('active active_tab1');
-      $('#list_caracters_details').removeAttr('href data-toggle');
-      $('#caracters_details').removeClass('active in');
-      $('#list_caracters_details').addClass('inactive_tab1');
-      $('#list_documents_details').removeClass('inactive_tab1');
-      $('#list_documents_details').addClass('active_tab1 active');
-      $('#list_documents_details').attr('href', '#documents_details');
-      $('#list_documents_details').attr('data-toggle', 'tab');
-      $('#documents_details').addClass('active in');
-
     });
 
     //------------------ 7TO STEP LUGAR Y DOCUMENTOS --------------------------
@@ -1164,18 +1126,6 @@
       }
     });
 
-    $('#previous_btn_personal_clothes').click(function() {
-      $('#list_clothes_details').removeClass('active active_tab1');
-      $('#list_clothes_details').removeAttr('href data-toggle');
-      $('#clothes_details').removeClass('active in');
-      $('#list_clothes_details').addClass('inactive_tab1');
-      $('#list_caracters_details').removeClass('inactive_tab1');
-      $('#list_caracters_details').addClass('active_tab1 active');
-      $('#list_caracters_details').attr('href', '#caracters_details');
-      $('#list_caracters_details').attr('data-toggle', 'tab');
-      $('#caracters_details').addClass('active in');
-
-    });
     //------------------ 8TO STEP LUGAR Y DOCUMENTOS --------------------------
 
 
@@ -1230,32 +1180,10 @@
       }
     });
 
-    $('#previous_btn_personal_remuneration').click(function() {
-      $('#list_caracters_details').removeClass('active active_tab1');
-      $('#list_caracters_details').removeAttr('href data-toggle');
-      $('#caracters_details').removeClass('active in');
-      $('#list_caracters_details').addClass('inactive_tab1');
-      $('#list_documents_details').removeClass('inactive_tab1');
-      $('#list_documents_details').addClass('active_tab1 active');
-      $('#list_documents_details').attr('href', '#documents_details');
-      $('#list_documents_details').attr('data-toggle', 'tab');
-      $('#documents_details').addClass('active in');
-
-    });
-
     //------------------ 10MO STEP LUGAR Y DOCUMENTOS --------------------------
 
 
     $('#btn_personal_langtripssttudies').click(function() {
-
-      /*
-    html += "<td><input type='text' class='form-control' id='lugar' name='lugar[]' style='text-transform: uppercase;' required ></td>";
-    html += "<td><input type='text' class='form-control' id='motivo' name='motivo[]' style='text-transform: uppercase;' required ></td>";
-    html += "<td><input type='date' class='form-control' id='fecha_viaje' name='fecha_viaje[]' style='text-transform: uppercase;' required ></td>";
- 
-      */
-
-
       var error_idioma = '';
       var error_idiomaHabla = '';
       var error_idiomaLee = '';
@@ -1267,6 +1195,8 @@
       var error_motivo = '';
       var error_fecha_viaje = '';
 
+      var error_tipo_curso = '';
+      var error_curso = '';
 
       if (document.getElementById("tbidiomas").rows.length > 1) {
 
@@ -1372,58 +1302,299 @@
         $("input[id=fecha_viaje]").each(function() {
           var $this = $(this);
           if ($this.val() == '') {
-            error_fecha_viaje = 'OK';
+            error_idiomaHabla = 'OK';
             $("input[id=fecha_viaje]").addClass('has-error');
             $(".nineStep").append("<div class='alert alert-danger alert-dismissible'> <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button><p><i class='icon fa fa-ban'></i>Complete la Fecha</p></div>");
           } else {
-            error_fecha_viaje = '';
+            error_idiomaHabla = '';
             $('input[id=fecha_viaje]').removeClass('has-error');
           }
         });
-      
+      }
+
+      if (document.getElementById("tbestudiosRealizados").rows.length > 1) {
+        $("input[id=curso]").each(function() {
+          var $this = $(this);
+          if ($this.val() == '') {
+            error_curso = 'OK';
+            $("input[id=curso]").addClass('has-error');
+            $(".nineStep").append("<div class='alert alert-danger alert-dismissible'> <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button><p><i class='icon fa fa-ban'></i>Complete el Curso</p></div>");
+          } else {
+            error_curso = '';
+            $('input[id=curso]').removeClass('has-error');
+          }
+        });
+
+        $("select[id=tipo_curso]").each(function() {
+          var $this = $(this);
+          if ($this.val() == '') {
+            error_tipo_curso = 'OK';
+            $("select[id=tipo_curso]").addClass('has-error');
+            $(".nineStep").append("<div class='alert alert-danger alert-dismissible'> <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button><p><i class='icon fa fa-ban'></i>Escoja el tipo de curso</p></div>");
+          } else {
+            error_tipo_curso = '';
+            $('select[id=tipo_curso]').removeClass('has-error');
+          }
+        });
       }
 
 
+      if (document.getElementById("tbidiomas").rows.length > 1 && document.getElementById("tbviajesExtranjero").rows.length > 1 && document.getElementById("tbestudiosRealizados").rows.length > 1) {
 
-
-
-      if (
-        error_idioma != '' ||
-        error_idiomaHabla != '' ||
-        error_idiomaLee != '' ||
-        error_idiomaEscribe != '' ||
-        error_idiomaEstudio != '' ||
-        error_idiomaPractica != '' ||
-        error_lugar != '' ||
-        error_motivo != '' ||
-        error_fecha_viaje != '' 
-      ) {
-        return false;
+        if (
+          error_idioma != '' ||
+          error_idiomaHabla != '' ||
+          error_idiomaLee != '' ||
+          error_idiomaEscribe != '' ||
+          error_idiomaEstudio != '' ||
+          error_idiomaPractica != '' ||
+          error_lugar != '' ||
+          error_motivo != '' ||
+          error_fecha_viaje != '' ||
+          error_curso != '' ||
+          error_tipo_curso != ''
+        ) {
+          return false;
+        } else {
+          $('#list_langtripssttudies_details').removeClass('active active_tab1');
+          $('#list_langtripssttudies_details').removeAttr('href data-toggle');
+          $('#langtripssttudies_details').removeClass('active');
+          $('#list_langtripssttudies_details').addClass('inactive_tab1');
+          $('#list_securfam_details').removeClass('inactive_tab1');
+          $('#list_securfam_details').addClass('active_tab1 active');
+          $('#list_securfam_details').attr('href', '#securfam_details');
+          $('#list_securfam_details').attr('data-toggle', 'tab');
+          $('#securfam_details').addClass('active in');
+        }
       } else {
-        $('#list_langtripssttudies_details').removeClass('active active_tab1');
-        $('#list_langtripssttudies_details').removeAttr('href data-toggle');
-        $('#langtripssttudies_details').removeClass('active');
-        $('#list_langtripssttudies_details').addClass('inactive_tab1');
-        $('#list_securfam_details').removeClass('inactive_tab1');
-        $('#list_securfam_details').addClass('active_tab1 active');
-        $('#list_securfam_details').attr('href', '#securfam_details');
-        $('#list_securfam_details').attr('data-toggle', 'tab');
-        $('#securfam_details').addClass('active in');
+
+        if (document.getElementById("tbidiomas").rows.length > 1) {
+          if (
+            error_idioma != '' ||
+            error_idiomaHabla != '' ||
+            error_idiomaLee != '' ||
+            error_idiomaEscribe != '' ||
+            error_idiomaEstudio != '' ||
+            error_idiomaPractica != ''
+
+          ) {
+            return false;
+          } else {
+            $('#list_langtripssttudies_details').removeClass('active active_tab1');
+            $('#list_langtripssttudies_details').removeAttr('href data-toggle');
+            $('#langtripssttudies_details').removeClass('active');
+            $('#list_langtripssttudies_details').addClass('inactive_tab1');
+            $('#list_securfam_details').removeClass('inactive_tab1');
+            $('#list_securfam_details').addClass('active_tab1 active');
+            $('#list_securfam_details').attr('href', '#securfam_details');
+            $('#list_securfam_details').attr('data-toggle', 'tab');
+            $('#securfam_details').addClass('active in');
+          }
+        }
+        if (document.getElementById("tbviajesExtranjero").rows.length > 1) {
+          if (
+            error_lugar != '' ||
+            error_motivo != '' ||
+            error_fecha_viaje != ''
+          ) {
+            return false;
+          } else {
+            $('#list_langtripssttudies_details').removeClass('active active_tab1');
+            $('#list_langtripssttudies_details').removeAttr('href data-toggle');
+            $('#langtripssttudies_details').removeClass('active');
+            $('#list_langtripssttudies_details').addClass('inactive_tab1');
+            $('#list_securfam_details').removeClass('inactive_tab1');
+            $('#list_securfam_details').addClass('active_tab1 active');
+            $('#list_securfam_details').attr('href', '#securfam_details');
+            $('#list_securfam_details').attr('data-toggle', 'tab');
+            $('#securfam_details').addClass('active in');
+          }
+        }
+        if (document.getElementById("tbestudiosRealizados").rows.length > 1) {
+          if (
+            error_curso != '' ||
+            error_tipo_curso != ''
+          ) {
+            return false;
+          } else {
+            $('#list_langtripssttudies_details').removeClass('active active_tab1');
+            $('#list_langtripssttudies_details').removeAttr('href data-toggle');
+            $('#langtripssttudies_details').removeClass('active');
+            $('#list_langtripssttudies_details').addClass('inactive_tab1');
+            $('#list_securfam_details').removeClass('inactive_tab1');
+            $('#list_securfam_details').addClass('active_tab1 active');
+            $('#list_securfam_details').attr('href', '#securfam_details');
+            $('#list_securfam_details').attr('data-toggle', 'tab');
+            $('#securfam_details').addClass('active in');
+          }
+        }
+
       }
-
-      $('#previous_btn_personal_remuneration').click(function() {
-        $('#list_caracters_details').removeClass('active active_tab1');
-        $('#list_caracters_details').removeAttr('href data-toggle');
-        $('#caracters_details').removeClass('active in');
-        $('#list_caracters_details').addClass('inactive_tab1');
-        $('#list_documents_details').removeClass('inactive_tab1');
-        $('#list_documents_details').addClass('active_tab1 active');
-        $('#list_documents_details').attr('href', '#documents_details');
-        $('#list_documents_details').attr('data-toggle', 'tab');
-        $('#documents_details').addClass('active in');
-
-      });
     });
+
+
+
+    //1
+    $('#previous_btn_personal_details').click(function() {
+      $('#list_personal_details').removeClass('active active_tab1');
+      $('#list_personal_details').removeAttr('href data-toggle');
+      $('#personal_details').removeClass('active in');
+      $('#list_personal_details').addClass('inactive_tab1');
+      $('#list_login_details').removeClass('inactive_tab1');
+      $('#list_login_details').addClass('active_tab1 active');
+      $('#list_login_details').attr('href', '#login_details');
+      $('#list_login_details').attr('data-toggle', 'tab');
+      $('#login_details').addClass('active in');
+    });
+    //2
+    $('#previous_btn_contact_details').click(function() {
+      $('#list_contact_details').removeClass('active active_tab1');
+      $('#list_contact_details').removeAttr('href data-toggle');
+      $('#contact_details').removeClass('active in');
+      $('#list_contact_details').addClass('inactive_tab1');
+      $('#list_personal_details').removeClass('inactive_tab1');
+      $('#list_personal_details').addClass('active_tab1 active');
+      $('#list_personal_details').attr('href', '#personal_details');
+      $('#list_personal_details').attr('data-toggle', 'tab');
+      $('#personal_details').addClass('active in');
+    });
+
+    $('#previous_btn_personal_born').click(function() {
+      $('#list_born_details').removeClass('active active_tab1');
+      $('#list_born_details').removeAttr('href data-toggle');
+      $('#born_details').removeClass('active in');
+      $('#list_born_details').addClass('inactive_tab1');
+
+      $('#list_contact_details').removeClass('inactive_tab1');
+      $('#list_contact_details').addClass('active_tab1 active');
+      $('#list_contact_details').attr('href', '#contact_details');
+      $('#list_contact_details').attr('data-toggle', 'tab');
+      $('#contact_details').addClass('active in');
+    });
+    $('#previous_btn_personal_documents').click(function() {
+      $('#list_documents_details').removeClass('active active_tab1');
+      $('#list_documents_details').removeAttr('href data-toggle');
+      $('#documents_details').removeClass('active in');
+      $('#list_documents_details').addClass('inactive_tab1');
+
+      $('#list_born_details').removeClass('inactive_tab1');
+      $('#list_born_details').addClass('active_tab1 active');
+      $('#list_born_details').attr('href', '#born_details');
+      $('#list_born_details').attr('data-toggle', 'tab');
+      $('#born_details').addClass('active in');
+    });
+
+
+    $('#previous_btn_personal_caracters').click(function() {
+      $('#list_caracters_details').removeClass('active active_tab1');
+      $('#list_caracters_details').removeAttr('href data-toggle');
+      $('#caracters_details').removeClass('active in');
+      $('#list_caracters_details').addClass('inactive_tab1');
+      $('#list_documents_details').removeClass('inactive_tab1');
+      $('#list_documents_details').addClass('active_tab1 active');
+      $('#list_documents_details').attr('href', '#documents_details');
+      $('#list_documents_details').attr('data-toggle', 'tab');
+      $('#documents_details').addClass('active in');
+
+    });
+
+    $('#previous_btn_personal_clothes').click(function() {
+      $('#list_clothes_details').removeClass('active active_tab1');
+      $('#list_clothes_details').removeAttr('href data-toggle');
+      $('#clothes_details').removeClass('active in');
+      $('#list_clothes_details').addClass('inactive_tab1');
+      $('#list_caracters_details').removeClass('inactive_tab1');
+      $('#list_caracters_details').addClass('active_tab1 active');
+      $('#list_caracters_details').attr('href', '#caracters_details');
+      $('#list_caracters_details').attr('data-toggle', 'tab');
+      $('#caracters_details').addClass('active in');
+
+    });
+    $('#previous_btn_personal_remuneration').click(function() {
+      $('#list_remuneration_details').removeClass('active active_tab1');
+      $('#list_remuneration_details').removeAttr('href data-toggle');
+      $('#remuneration_details').removeClass('active in');
+      $('#list_remuneration_details').addClass('inactive_tab1');
+      $('#list_clothes_details').removeClass('inactive_tab1');
+      $('#list_clothes_details').addClass('active_tab1 active');
+      $('#list_clothes_details').attr('href', '#clothes_details');
+      $('#list_clothes_details').attr('data-toggle', 'tab');
+      $('#clothes_details').addClass('active in');
+
+    });
+
+
+    $('#previous_btn_personal_langtripssttudies').click(function() {
+      $('#list_langtripssttudies_details').removeClass('active active_tab1');
+      $('#list_langtripssttudies_details').removeAttr('href data-toggle');
+      $('#langtripssttudies_details').removeClass('active in');
+      $('#list_langtripssttudies_details').addClass('inactive_tab1');
+      $('#list_remuneration_details').removeClass('inactive_tab1');
+      $('#list_remuneration_details').addClass('active_tab1 active');
+      $('#list_remuneration_details').attr('href', '#remuneration_details');
+      $('#list_remuneration_details').attr('data-toggle', 'tab');
+      $('#remuneration_details').addClass('active in');
+    });
+
+    $('#previous_btn_personal_securfam').click(function() {
+      $('#list_securfam_details').removeClass('active active_tab1');
+      $('#list_securfam_details').removeAttr('href data-toggle');
+      $('#securfam_details').removeClass('active in');
+      $('#list_securfam_details').addClass('inactive_tab1');
+      $('#list_langtripssttudies_details').removeClass('inactive_tab1');
+      $('#list_langtripssttudies_details').addClass('active_tab1 active');
+      $('#list_langtripssttudies_details').attr('href', '#langtripssttudies_details');
+      $('#list_langtripssttudies_details').attr('data-toggle', 'tab');
+      $('#langtripssttudies_details').addClass('active in');
+    });
+
+
+    $('#review').click(function() {
+      $('#login_details').addClass('active in');
+      $('#personal_details').addClass('active in');
+      $('#contact_details').addClass('active in');
+      $('#born_details').addClass('active in');
+      $('#documents_details').addClass('active in');
+      $('#caracters_details').addClass('active in');
+      $('#clothes_details').addClass('active in');
+      $('#remuneration_details').addClass('active in');
+      $('#langtripssttudies_details').addClass('active in');
+      $('#langtripssttudies_details').addClass('active in');
+      $("#btn_personal_securfam").prop("disabled", false);
+
+      $("#btn_login_details").hide();
+      $("#previous_btn_personal_details").hide();
+      $("#btn_personal_details").hide();
+
+      $("#previous_btn_contact_details").hide();
+      $("#btn_contact_details").hide();
+
+      $("#previous_btn_personal_born").hide();
+      $("#btn_personal_born").hide();
+
+      $("#previous_btn_personal_documents").hide();
+      $("#btn_personal_documents").hide();
+
+      $("#previous_btn_personal_caracters").hide();
+      $("#btn_personal_caracters").hide();
+
+
+      $("#previous_btn_personal_clothes").hide();
+      $("#btn_personal_clothes").hide();
+
+      $("#previous_btn_personal_remuneration").hide();
+      $("#btn_personal_remuneration").hide();
+
+      $("#previous_btn_personal_langtripssttudies").hide();
+      $("#btn_personal_langtripssttudies").hide();
+      $("#previous_btn_personal_securfam").hide();
+
+
+    });
+
+
+
+
   });
 </script>
 <style>

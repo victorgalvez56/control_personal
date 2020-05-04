@@ -30,7 +30,7 @@ class Vehiculos extends CI_Controller
 	public function add()
 	{
 		$data = array(
-			"personales" => $this->Personal_model->getPersonals()
+			"personales" => $this->Vehiculos_model->getPersonals()
 		);
 		$this->load->view("layouts/header");
 		$this->load->view("layouts/aside");
@@ -151,7 +151,6 @@ class Vehiculos extends CI_Controller
 		$data = array(
 			"vehiculo" => $this->Vehiculos_model->getVehiculo($idventa),
 		);
-        //echo json_encode($data);
 		$this->load->view("admin/vehiculos/view",$data);
 	}
 }
