@@ -59,8 +59,9 @@
                                                     <div class="form-group">
                                                         <label for="imagen">Foto Personal:</label>
                                                         <span class="btn btn-default btn-file">
-                                                            Subir Foto <input type="file" name="upload" required>
+                                                            Subir Foto <input type="file" name="upload" id="fichero" required>
                                                         </span>
+                                                        <img id="imgenPerfil" src="" alt="" style="width:200px;">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-2">
@@ -175,7 +176,7 @@
                                                 </div>
                                             </div>
                                             <br />
-                                            <div align="center" >
+                                            <div align="center">
                                                 <button type="button" name="btn_login_details" id="btn_login_details" class="btn btn-info btn-lg">Next</button>
                                             </div>
                                             <br />
@@ -366,7 +367,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div align="center" id="hide_review"> 
+                                            <div align="center" id="hide_review">
                                                 <button type="button" name="previous_btn_personal_documents" id="previous_btn_personal_documents" class="btn btn-default btn-lg">Previous</button>
                                                 <button type="button" name="btn_personal_documents" id="btn_personal_documents" class="btn btn-info btn-lg">Next</button>
                                             </div>
@@ -619,7 +620,7 @@
                                                     </tbody>
                                                 </table>
                                             </div>
-                                            <div align="center" >
+                                            <div align="center">
                                                 <button type="button" name="previous_btn_personal_langtripssttudies" id="previous_btn_personal_langtripssttudies" class="btn btn-default btn-lg">Previous</button>
                                                 <button type="button" name="btn_personal_langtripssttudies" id="btn_personal_langtripssttudies" class="btn btn-info btn-lg">Next</button>
                                             </div>
@@ -666,7 +667,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="panel panel-default" >
+                                    <div class="panel panel-default">
                                         <div class="panel-heading">Detalle de Seguros <button type="button" class="btn btn-success btn-seguro"><span class="fa fa-plus"></span></button> </div>
                                         <div class="panel-body">
                                             <div class="col-md-12">
@@ -684,7 +685,7 @@
                                             </div>
                                             <div align="center">
                                                 <button type="button" name="previous_btn_personal_securfam" id="previous_btn_personal_securfam" class="btn btn-default btn-lg">Previous</button>
-                                                <button type="submit" name="review" id="review" class="btn btn-info btn-lg">Revisar</button>
+                                                <button type="button" name="review" id="review" class="btn btn-info btn-lg">Revisar</button>
                                                 <button type="submit" name="btn_personal_securfam" id="btn_personal_securfam" class="btn btn-info btn-lg" disabled>Guardar</button>
                                                 <input type="hidden" class="form-control" id="auxiliar_viv" name="auxiliar_viv" style="text-transform: uppercase;" required>
                                                 <input type="hidden" class="form-control" id="auxiliar_nac" name="auxiliar_nac" style="text-transform: uppercase;" required>

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
-
+ 
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -30,6 +30,9 @@
 
 </head>
 
+
+
+
 <body class="hold-transition skin-blue sidebar-mini">
     <!-- Site wrapper -->
     <div class="wrapper">
@@ -39,7 +42,8 @@
                 <!-- mini logo for sidebar mini 50x50 pixels -->
                 <span class="logo-mini">P</span>
                 <!-- logo for regular state and mobile devices -->
-                <img src="assets/img/logoepmini.png" alt="">
+                <img src="<?php echo base_url(); ?>assets/img/logoepmini.png" alt="">
+                
                 <span class="logo-lg"><b>PANEL</b></span>
             </a>
             <!-- Header Navbar: style can be found in header.less -->

@@ -33,11 +33,11 @@
                             </div>
                             <div class="form-group">
                                 <label for="telefono">Telefono:</label>
-                                <input type="text" id="telefono" name="telefono" class="form-control">
+                                <input type="number" id="telefono" name="telefono" class="form-control">
                             </div>
                             <div class="form-group">
                                 <label for="email">Email:</label>
-                                <input type="text" id="email" name="email" class="form-control">
+                                <input type="email" id="email" name="email" class="form-control">
                             </div>
                             <div class="form-group">
                                 <label for="username">Usuario:</label>

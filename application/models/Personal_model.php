@@ -7,8 +7,9 @@ class Personal_model extends CI_Model
 	{
 		$this->db->select("*");
 		$this->db->from("personal");
-		$resultados = $this->db->get();
 		$this->db->where("tipo_personal","MILITAR");
+		$this->db->where("estado","1");
+		$resultados = $this->db->get();
 		return $resultados->result();
 	}
 	public function getPersonalCivil()
@@ -16,6 +17,7 @@ class Personal_model extends CI_Model
 		$this->db->select("*");
 		$this->db->from("personal");
 		$this->db->where("tipo_personal","CIVIL");
+		$this->db->where("estado","1");
 		$resultados = $this->db->get();
 		return $resultados->result();
 	}

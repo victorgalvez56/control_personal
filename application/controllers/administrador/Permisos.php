@@ -67,7 +67,7 @@ class Permisos extends CI_Controller {
 			'permiso' => $this->Permisos_model->getPermiso($id)
 		);
 		$this->load->view("layouts/header");
-		$this->load->view("layouts/aside",$dataaside);
+		$this->load->view("layouts/aside");
 		$this->load->view("admin/permisos/edit",$data);
 		$this->load->view("layouts/footer");
 	}

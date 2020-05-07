@@ -101,7 +101,7 @@ CG-III DIV EJTO</pre>
 
 			<tr>
 
-				<th rowspan="5" vertical-align: center><img height="80" width="70" src=https://4.bp.blogspot.com/-2-f2OaR77Bw/WMfG7feqALI/AAAAAAAArGU/hVX5fQw1LrYtw6Su6kKphan1XeCd-Dl-wCLcB/s1600/III%2BDIV%2BEJTO.jpg> </th> <th rowspan="5" vertical-align: center><img height="80" width="70" src="../uploads/<?php echo $personals->imagen; ?>"></th>
+				<th rowspan="5" vertical-align: center><img height="80" width="70" src=https://4.bp.blogspot.com/-2-f2OaR77Bw/WMfG7feqALI/AAAAAAAArGU/hVX5fQw1LrYtw6Su6kKphan1XeCd-Dl-wCLcB/s1600/III%2BDIV%2BEJTO.jpg> </th> <th rowspan="5" vertical-align: center><img src="<?php echo base_url(); ?>/uploads/<?php echo $personals->imagen; ?>" style="width:200px;"></th>
 
 				<td colspan="3">CATEGORIA</td>
 			</tr>

@@ -59,8 +59,10 @@
                                                     <div class="form-group">
                                                         <label for="imagen">Foto Personal:</label>
                                                         <span class="btn btn-default btn-file">
-                                                            Subir Foto <input type="file" name="upload" required>
+                                                            Subir Foto <input type="file" name="upload" id="fichero" required>
                                                         </span>
+                                                        <img id="imgenPerfil" src="" alt="" style="width:200px;">
+
                                                     </div>
                                                 </div>
                                                 <div class="col-md-2">

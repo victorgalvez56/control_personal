@@ -62,6 +62,7 @@ class Personal extends CI_Controller
 		$config['allowed_types'] = "gif|jpg|jpeg|png";
 		$this->load->library('upload', $config);
 
+
 		if ($this->upload->do_upload($mi_imagen)) {
 
 			$data['uploadSuccess'] = $this->upload->data();
@@ -121,8 +122,8 @@ class Personal extends CI_Controller
 			$idioma_escribe = $this->input->post("idioma_escribe");
 			$idioma_estudio = $this->input->post("idioma_estudio");
 			$idioma_practica = $this->input->post("idioma_practica");
-			
-	
+
+
 			$nombresfamiliar = $this->input->post("nombresfamiliar");
 			$parentesco_fam = $this->input->post("parentesco");
 			$edad_fam = $this->input->post("edad");
@@ -133,7 +134,7 @@ class Personal extends CI_Controller
 			$telef_fam = $this->input->post("telefono");
 			$grup_sang_fam = $this->input->post("tipo_sangr");
 			$grad_inst_fam = $this->input->post("grado_instr");
-	
+
 
 			$lugar = $this->input->post("lugar");
 			$motivo = $this->input->post("motivo");
@@ -215,8 +216,8 @@ class Personal extends CI_Controller
 		} else {
 			$data['uploadError'] = $this->upload->display_errors();
 			$mensaje = $this->upload->display_errors();
-			echo $mensaje;
-			return;
+			$this->session->set_flashdata("error", $mensaje);
+			redirect(base_url() . "control/personal/add/");
 		}
 	}
 
@@ -291,8 +292,8 @@ class Personal extends CI_Controller
 			$idioma_escribe = $this->input->post("idioma_escribe");
 			$idioma_estudio = $this->input->post("idioma_estudio");
 			$idioma_practica = $this->input->post("idioma_practica");
-			
-	
+
+
 			$nombresfamiliar = $this->input->post("nombresfamiliar");
 			$parentesco_fam = $this->input->post("parentesco");
 			$edad_fam = $this->input->post("edad");
@@ -303,7 +304,7 @@ class Personal extends CI_Controller
 			$telef_fam = $this->input->post("telefono");
 			$grup_sang_fam = $this->input->post("tipo_sangr");
 			$grad_inst_fam = $this->input->post("grado_instr");
-	
+
 
 			$lugar = $this->input->post("lugar");
 			$motivo = $this->input->post("motivo");
@@ -365,7 +366,7 @@ class Personal extends CI_Controller
 				'banco' => $banco,
 				'nro_cuenta' => $nro_cuenta,
 				'afiliacion' => $afiliacion,
-				'afiliacion' => 'CIVIL',
+				'tipo_personal' => 'MILITAR',
 
 				'estado' => '1',
 				'estado_registro' => '1',
@@ -385,8 +386,8 @@ class Personal extends CI_Controller
 		} else {
 			$data['uploadError'] = $this->upload->display_errors();
 			$mensaje = $this->upload->display_errors();
-			echo $mensaje;
-			return;
+			$this->session->set_flashdata("error", $mensaje);
+			redirect(base_url() . "control/personal/add/");
 		}
 	}
 
@@ -456,24 +457,28 @@ class Personal extends CI_Controller
 
 	protected function save_detalle_familiar($personal, $nombresfamiliar, $parentesco_fam, $edad_fam, $lugar_nac_fam, $fecha_nac_fam, $cip_fam, $dni_fam, $telef_fam, $grup_sang_fam, $grad_inst_fam)
 	{
+		if (empty($nombresfamiliar)) {
+			$this->session->set_flashdata("error", "No ha ingresado datos de familiares");
+			redirect(base_url() . "control/personal/add/");
+		} else {
+			for ($i = 0; $i < count($nombresfamiliar); $i++) {
+				$data  = array(
+					'id' => '',
+					'personal_id' => $personal,
+					'nombre_fam' => $nombresfamiliar[$i],
+					'parentesco_fam' => $parentesco_fam[$i],
+					'edad_fam' => $edad_fam[$i],
+					'lugar_nac_fam' => $lugar_nac_fam[$i],
+					'fecha_nac_fam' => $fecha_nac_fam[$i],
+					'cip_fam' => $cip_fam[$i],
+					'dni_fam' => $dni_fam[$i],
+					'telef_fam' => $telef_fam[$i],
+					'grup_sang_fam' => $grup_sang_fam[$i],
+					'grad_inst_fam' => $grad_inst_fam[$i],
+				);
 
-		for ($i = 0; $i < count($nombresfamiliar); $i++) {
-			$data  = array(
-				'id' => '',
-				'personal_id' => $personal,
-				'nombre_fam' => $nombresfamiliar[$i],
-				'parentesco_fam' => $parentesco_fam[$i],
-				'edad_fam' => $edad_fam[$i],
-				'lugar_nac_fam' => $lugar_nac_fam[$i],
-				'fecha_nac_fam' => $fecha_nac_fam[$i],
-				'cip_fam' => $cip_fam[$i],
-				'dni_fam' => $dni_fam[$i],
-				'telef_fam' => $telef_fam[$i],
-				'grup_sang_fam' => $grup_sang_fam[$i],
-				'grad_inst_fam' => $grad_inst_fam[$i],
-			);
-
-			$this->Personal_model->save_detalle_familiar($data);
+				$this->Personal_model->save_detalle_familiar($data);
+			}
 		}
 	}
 	public function edit($id)

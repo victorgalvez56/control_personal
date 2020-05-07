@@ -34,7 +34,7 @@
 						<th>Estado Civil</th>
 						<th rowspan="6"> aqui va la foto
 							<div class="row" align="center">
-								<img src="../uploads/<?php echo $personals->imagen; ?>" style="width:200px;">
+								<img src="<?php echo base_url(); ?>/uploads/<?php echo $personals->imagen; ?>" style="width:200px;">
 							</div>
 						</th>
 					</tr>

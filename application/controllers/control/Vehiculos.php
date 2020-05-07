@@ -80,33 +80,9 @@ class Vehiculos extends CI_Controller
 		$data  = array(
 			'categoria' => $this->Categorias_model->getCategoria($id),
 		);
-		$idUltimaCaja = $this->Cajas_model->getIdUltimaCaja();
-		$idCaja = $idUltimaCaja->id_caja;
-		$idCajaAbierta = $idUltimaCaja->caja_abierta;
-		$idresponsable = $idUltimaCaja->responsable;
-
-		if ($idresponsable == $this->session->userdata("nombre")) {
-			$dataaside = array(
-
-				"validacion" => $this->$idCajaAbierta = $idUltimaCaja->caja_abierta,
-				"validacionusuario" => '1',
-
-			);
-		} else {
-
-			$dataaside = array(
-
-				"validacion" => $this->$idCajaAbierta = $idUltimaCaja->caja_abierta,
-				"validacionusuario" => '0',
-
-			);
-		}
-
-
-
-
+	
 		$this->load->view("layouts/header");
-		$this->load->view("layouts/aside", $dataaside);
+		$this->load->view("layouts/aside");
 		$this->load->view("admin/categorias/edit", $data);
 		$this->load->view("layouts/footer");
 	}
@@ -117,6 +93,17 @@ class Vehiculos extends CI_Controller
 		$idCategoria = $this->input->post("idCategoria");
 		$nombre = $this->input->post("nombre_cat");
 		$descripcion = $this->input->post("descripcion_cat");
+
+		$categoriaactual = $this->Categorias_model->getCategoria($idCategoria);
+
+		if ($nombre == $categoriaactual->nombre_cat) {
+			$is_unique = "";
+		} else {
+			$is_unique = "|is_unique[categorias.nombre_cat]";
+		}
+
+
+		$this->form_validation->put->post("descripcion_cat");
 
 		$categoriaactual = $this->Categorias_model->getCategoria($idCategoria);
 

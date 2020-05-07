@@ -6,8 +6,15 @@
   <strong>Copyright Vanessa Vargas Gutierrez - Teléfono: 970 510 581 &copy;2020 .</strong> All rights
   reserved.
 </footer>
-<!-- ./wrapper -->
-<!-- jQuery 3 -->
+<!-- jQuery -->
+<script src="plugins/jquery/jquery.min.js"></script>
+<!-- jQuery UI 1.11.4 -->
+<script src="plugins/jquery-ui/jquery-ui.min.js"></script>
+<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+<script>
+  $.widget.bridge('uibutton', $.ui.button)
+</script>
+<!-- Bootstrap 4 -->
 <script src="<?php echo base_url(); ?>assets/template/jquery/jquery.min.js"></script>
 <!-- Highcharts -->
 <script src="<?php echo base_url(); ?>assets/template/highcharts/highcharts.js"></script>
@@ -35,7 +42,6 @@
 <script src="<?php echo base_url(); ?>assets/template/dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="<?php echo base_url(); ?>assets/template/dist/js/demo.js"></script>
-<!-- Ubigeos -->
 <script src="<?php echo base_url(); ?>assets/template/dist/js/ubigeos.js"></script>
 
 <script>
@@ -485,16 +491,14 @@
     html += "<td><input type='text' class='form-control' id='idioma' name='nombresfamiliar[]' style='text-transform: uppercase;' required ></td>";
     html += "<td><select class='form-control form-control' id='parentesco' name='parentesco[]' required><option value=''>Seleccione</option><option value='PADRE'>PADRE</option><option value='MADRE'>MADRE</option><option value='CONYUGE'>CONYUGE</option><option value='HIJO'>HIJO</option><option value='HIJA'>HIJA</option></select></td>";
     html += "<td><input type='number' class='form-control' id='edad' name='edad[]' style='text-transform: uppercase;' required ></td>";
-    html += "<td><select class='form-control form-control' id='lugar_nac' name='lugar_nac[]' required></select></td>";
+    html += "<td><select class='form-control form-control lugar_nac' id='lugar_nac' name='lugar_nac[]' required></select></td>";
     html += "<td><input type='date' class='form-control' id='fecha_nac' name='fecha_nac[]' style='text-transform: uppercase;' required ></td>";
     html += "</tr>";
     $("#tbfamiliares1 tbody").append(html);
     $("#btn-agregarfamiliares").val(null);
 
-    var lugar_nac = $('#lugar_nac');
-
+    var lugar_nac = $('.lugar_nac');
     lugar_nac.append('<option value=""> Seleccione</option>');
-
     $.each(ubigeo.departamentos, function(i, item) {
       lugar_nac.append('<option value=' + item.nombre_ubigeo + '>' + item.nombre_ubigeo + '</option>');
     });
@@ -1596,7 +1600,7 @@
 
   });
 
-  function graficar(meses, sobrepeso,normal,delgadez, year) {
+  function graficar(meses, sobrepeso, normal, delgadez, year) {
     Highcharts.chart('grafico', {
       chart: {
         type: 'column'
@@ -1641,19 +1645,19 @@
         }
       },
       series: [{
-        name: 'SOBREPESO',
-        data: sobrepeso
+          name: 'SOBREPESO',
+          data: sobrepeso
 
-      },
-      {
-        name: 'NORMAL',
-        data: normal
-      },
-      {
-        name: 'DELGADEZ',
-        data: delgadez
-      }
-    ]
+        },
+        {
+          name: 'NORMAL',
+          data: normal
+        },
+        {
+          name: 'DELGADEZ',
+          data: delgadez
+        }
+      ]
     });
   }
 
@@ -1676,13 +1680,11 @@
           meses.push(namesMonth[value.mes - 1]);
           console.log(value.clasi_imc)
 
-          if(value.clasi_imc='SOBREPESO'){
+          if (value.clasi_imc = 'SOBREPESO') {
             var valorSobrepeso = Number(value.clasi_imc);
-          }
-          else if(value.clasi_imc='NORMAL'){
+          } else if (value.clasi_imc = 'NORMAL') {
             var valorNormal = Number(value.clasi_imc);
-          }
-          else{
+          } else {
             var valorDelgadez = Number(value.clasi_imc);
           }
 
@@ -1690,36 +1692,104 @@
           normal.push(valorNormal);
           delgadez.push(valorDelgadez);
 
-        }
-        );
-        graficar(meses, sobrepeso,normal,delgadez, year);
+        });
+        graficar(meses, sobrepeso, normal, delgadez, year);
       }
     });
   }
   $(document).ready(function() {
 
-        var base_url = "<?php echo base_url(); ?>";
-        var year = (new Date).getFullYear();
-        console.log(base_url);
-        datagrafico(base_url, year);
-        $("#year").on("change", function() {
-          yearselect = $(this).val();
-          datagrafico(base_url, yearselect);
-        });
-        $(".btn-remove").on("click", function(e) {
-          e.preventDefault();
-          var ruta = $(this).attr("href");
-          //alert(ruta);
-          $.ajax({
-            url: ruta,
-            type: "POST",
-            success: function(resp) {
-              //http://localhost/ventas_ci/mantenimiento/productos
-              window.location.href = base_url + resp;
-            }
-          });
-        });
+    var base_url = "<?php echo base_url(); ?>";
+    var year = (new Date).getFullYear();
+    console.log(base_url);
+    datagrafico(base_url, year);
+    $("#year").on("change", function() {
+      yearselect = $(this).val();
+      datagrafico(base_url, yearselect);
+    });
+    $(".btn-remove").on("click", function(e) {
+      e.preventDefault();
+      var ruta = $(this).attr("href");
+      //alert(ruta);
+      $.ajax({
+        url: ruta,
+        type: "POST",
+        success: function(resp) {
+          //http://localhost/ventas_ci/mantenimiento/productos
+          window.location.href = base_url + resp;
+        }
       });
+    });
+  });
+
+
+  $(document).ready(function() {
+
+    var extensionesValidas = ".png, .gif, .jpeg, .jpg";
+    var pesoPermitido = 1024;
+
+    // Cuando cambie #fichero
+    $("#fichero").change(function() {
+
+      $('#img').attr('src', '');
+
+      if (validarExtension(this)) {
+
+        if (validarPeso(this)) {
+          verImagen(this);
+        }
+      }
+    });
+
+    // Validacion de extensiones permitidas
+
+    function validarExtension(datos) {
+
+      var ruta = datos.value;
+      var extension = ruta.substring(ruta.lastIndexOf('.') + 1).toLowerCase();
+      var extensionValida = extensionesValidas.indexOf(extension);
+
+      if (extensionValida < 0) {
+        $(".firstStep").append("<div class='alert alert-danger alert-dismissible'> <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button><p><i class='icon fa fa-ban'></i>La extensión no es válida,use una imagen. Su fichero tiene de extensión:"+ extension+"</p></div>");
+        return false;
+      } else {
+        return true;
+      }
+    }
+
+    // Validacion de peso del fichero en kbs
+
+    function validarPeso(datos) {
+
+      if (datos.files && datos.files[0]) {
+
+        var pesoFichero = datos.files[0].size / 1024;
+
+        if (pesoFichero > pesoPermitido) {
+          $(".firstStep").append("<div class='alert alert-danger alert-dismissible'> <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button><p><i class='icon fa fa-ban'></i>El peso maximo permitido del fichero es:"  + pesoPermitido + " KBs Su fichero tiene: " + pesoFichero + " KBs</p></div>");
+
+          $('#firstStep').text('El peso maximo permitido del fichero es: ' + pesoPermitido + ' KBs Su fichero tiene: ' + pesoFichero + ' KBs');
+          return false;
+        } else {
+          return true;
+        }
+      }
+    }
+
+    // Vista preliminar de la imagen.
+    function verImagen(datos) {
+
+      if (datos.files && datos.files[0]) {
+
+        var reader = new FileReader();
+        reader.onload = function(e) {
+          $('#imgenPerfil').attr('src', e.target.result);
+        };
+
+        reader.readAsDataURL(datos.files[0]);
+      }
+    }
+  });
 </script>
 <style>
   .active_tab1 {

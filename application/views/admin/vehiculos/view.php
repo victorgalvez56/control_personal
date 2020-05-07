@@ -68,7 +68,7 @@
 
             <tr>
 
-                <th width="150" rowspan="5" vertical-align: center><img height="80" width="70" src=https://4.bp.blogspot.com/-2-f2OaR77Bw/WMfG7feqALI/AAAAAAAArGU/hVX5fQw1LrYtw6Su6kKphan1XeCd-Dl-wCLcB/s1600/III%2BDIV%2BEJTO.jpg> </th> <th width="150" rowspan="5" vertical-align: center><img height="80" width="70" src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQeFWsZL_qICzCkT7NCi1VrIGoKzv-fJZ17U9swck-0Sym3uCqx&usqp=CAU"></th>
+                <th width="150" rowspan="5" vertical-align: center><img height="80" width="70" src=https://4.bp.blogspot.com/-2-f2OaR77Bw/WMfG7feqALI/AAAAAAAArGU/hVX5fQw1LrYtw6Su6kKphan1XeCd-Dl-wCLcB/s1600/III%2BDIV%2BEJTO.jpg> </th> <th width="150" rowspan="5" vertical-align: center><img src="<?php echo base_url(); ?>/uploads/<?php echo $vehiculo->imagen; ?>" style="width:100px;"></th>
                 <th> </th>
                 <th>N° MOTOR: </th>
                 <td colspan="2"><?php echo $vehiculo->n_motor ?></td>

@@ -34,7 +34,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="telefono">Telefono:</label>
-                                <input type="text" id="telefono" name="telefono" class="form-control" value="<?php echo $usuario->telefono;?>">
+                                <input type="number" id="telefono" name="telefono" class="form-control" value="<?php echo $usuario->telefono;?>">
                             </div>
                             <div class="form-group">
                                 <label for="email">Email:</label>
@@ -42,7 +42,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="username">Usuario:</label>
-                                <input type="text" id="username" name="username" class="form-control" value="<?php echo $usuario->username;?>">
+                                <input type="email" id="username" name="username" class="form-control" value="<?php echo $usuario->username;?>">
                             </div>
                              <div class="form-group">
                                 <label for="password">Password:</label>
