@@ -12,6 +12,9 @@ class Dashboard extends CI_Controller {
 	public function index()
 	{
 		$data = array(
+			'years' => $this->Backend_model->years(),
+			"cantPersonalMilitar" => $this->Backend_model->rowCountPM(),
+			"cantPersonalCivil" => $this->Backend_model->rowCountPC(),
 		);
 		$this->load->view("layouts/header");
 		$this->load->view("layouts/aside");
@@ -20,8 +23,11 @@ class Dashboard extends CI_Controller {
 	}
 	public function getData(){
 		$year = $this->input->post("year");
-		$resultados = $this->Cajas_model->montos($year);
-		echo json_encode($resultados);
+		$resultadoSobrepeso = $this->Backend_model->registrosImcSobrepeso($year);
+		$resultadoNormal = $this->Backend_model->registrosImcNormal($year);
+		$resultadoDelgadez = $this->Backend_model->registrosImcDelgadez($year);
+		echo json_encode(array_merge($resultadoSobrepeso,$resultadoNormal, $resultadoDelgadez ));
+	
 	}
 
 }

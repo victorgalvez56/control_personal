@@ -1,9 +1,9 @@
 <footer class="main-footer">
   <div class="pull-right hidden-xs">
-    <b>Version</b> 2.4.0
+    <b>Version</b> 1.2
   </div>
 
-  <strong>Copyright &copy;2020.</strong> All rights
+  <strong>Copyright Vanessa Vargas Gutierrez - Teléfono: 970 510 581 &copy;2020 .</strong> All rights
   reserved.
 </footer>
 <!-- ./wrapper -->
@@ -41,10 +41,9 @@
 <script>
   console.log('Prueba que carga bien el script')
 
-
   $(document).on("keyup", 'input[type="text"]', function() {
-    if (!/^[ /a-z0-9]*$/i.test(this.value)) {
-      this.value = this.value.replace(/[^ /a-z0-9]+/ig, "");
+    if (!/^[ /ña-z0-9]*$/i.test(this.value)) {
+      this.value = this.value.replace(/[^ /ña-z0-9]+/ig, "");
     }
   })
 
@@ -352,7 +351,7 @@
   /* Jquery para departamento, provincia y distrito vivienda.*/
   $(document).ready(function() {
     var selectdep = $('#departamento_viv');
-    
+
     selectdep.append('<option value=""> Seleccione</option>');
 
     $.each(ubigeo.departamentos, function(i, item) {
@@ -493,7 +492,7 @@
     $("#btn-agregarfamiliares").val(null);
 
     var lugar_nac = $('#lugar_nac');
-    
+
     lugar_nac.append('<option value=""> Seleccione</option>');
 
     $.each(ubigeo.departamentos, function(i, item) {
@@ -1596,6 +1595,131 @@
 
 
   });
+
+  function graficar(meses, sobrepeso,normal,delgadez, year) {
+    Highcharts.chart('grafico', {
+      chart: {
+        type: 'column'
+      },
+      title: {
+        text: 'Clasificación IMC por meses'
+      },
+      subtitle: {
+        text: 'Año:' + year
+      },
+      xAxis: {
+        categories: meses,
+        crosshair: true
+      },
+      yAxis: {
+        min: 0,
+        title: {
+          text: 'Clasificación IMC'
+        }
+      },
+      tooltip: {
+        headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+        pointFormat: '<tr><td style="color:{series.color};padding:0">Cantidad: </td>' +
+          '<td style="padding:0"><b>{point.y:.0f}</b></td></tr>',
+        footerFormat: '</table>',
+        shared: true,
+        useHTML: true
+      },
+      plotOptions: {
+        column: {
+          pointPadding: 0.2,
+          borderWidth: 0
+        },
+        series: {
+          dataLabels: {
+            enabled: true,
+            formatter: function() {
+              return Highcharts.numberFormat(this.y, 0)
+            }
+
+          }
+        }
+      },
+      series: [{
+        name: 'SOBREPESO',
+        data: sobrepeso
+
+      },
+      {
+        name: 'NORMAL',
+        data: normal
+      },
+      {
+        name: 'DELGADEZ',
+        data: delgadez
+      }
+    ]
+    });
+  }
+
+  function datagrafico(base_url, year) {
+    namesMonth = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Setiembre", "Octubre", "Nomviembre", "Diciembre"];
+    $.ajax({
+      url: base_url + "dashboard/getData",
+      type: "POST",
+      data: {
+        year: year
+      },
+      dataType: "json",
+      success: function(data) {
+        console.log(data)
+        var meses = new Array();
+        var sobrepeso = new Array();
+        var normal = new Array();
+        var delgadez = new Array();
+        $.each(data, function(key, value) {
+          meses.push(namesMonth[value.mes - 1]);
+          console.log(value.clasi_imc)
+
+          if(value.clasi_imc='SOBREPESO'){
+            var valorSobrepeso = Number(value.clasi_imc);
+          }
+          else if(value.clasi_imc='NORMAL'){
+            var valorNormal = Number(value.clasi_imc);
+          }
+          else{
+            var valorDelgadez = Number(value.clasi_imc);
+          }
+
+          sobrepeso.push(valorSobrepeso);
+          normal.push(valorNormal);
+          delgadez.push(valorDelgadez);
+
+        }
+        );
+        graficar(meses, sobrepeso,normal,delgadez, year);
+      }
+    });
+  }
+  $(document).ready(function() {
+
+        var base_url = "<?php echo base_url(); ?>";
+        var year = (new Date).getFullYear();
+        console.log(base_url);
+        datagrafico(base_url, year);
+        $("#year").on("change", function() {
+          yearselect = $(this).val();
+          datagrafico(base_url, yearselect);
+        });
+        $(".btn-remove").on("click", function(e) {
+          e.preventDefault();
+          var ruta = $(this).attr("href");
+          //alert(ruta);
+          $.ajax({
+            url: ruta,
+            type: "POST",
+            success: function(resp) {
+              //http://localhost/ventas_ci/mantenimiento/productos
+              window.location.href = base_url + resp;
+            }
+          });
+        });
+      });
 </script>
 <style>
   .active_tab1 {

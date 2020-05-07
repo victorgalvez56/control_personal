@@ -35,11 +35,11 @@
     <div class="wrapper">
         <header class="main-header">
             <!-- Logo -->
-            <a href="" class="logo">
+            <a href="" class="logo" style="padding: 0px">
                 <!-- mini logo for sidebar mini 50x50 pixels -->
                 <span class="logo-mini">P</span>
                 <!-- logo for regular state and mobile devices -->
-                <img src="..img/logoep.png" alt="">
+                <img src="assets/img/logoepmini.png" alt="">
                 <span class="logo-lg"><b>PANEL</b></span>
             </a>
             <!-- Header Navbar: style can be found in header.less -->
