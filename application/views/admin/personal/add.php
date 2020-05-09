@@ -183,7 +183,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="tab-pane fade" id="personal_details">
+                                <div class="tab-pane active" id="personal_details">
                                     <div class="panel panel-default">
                                         <div class="panel-heading">Dirección</div>
                                         <div class="secondStep">
@@ -272,7 +272,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="tab-pane fade" id="born_details">
+                                <div class="tab-pane active" id="born_details">
                                     <div class="panel panel-default">
                                         <div class="panel-heading">Detalle Nacimiento</div>
                                         <div class="fourthStep">
@@ -687,9 +687,14 @@
                                                 <button type="button" name="previous_btn_personal_securfam" id="previous_btn_personal_securfam" class="btn btn-default btn-lg">Previous</button>
                                                 <button type="button" name="review" id="review" class="btn btn-info btn-lg">Revisar</button>
                                                 <button type="submit" name="btn_personal_securfam" id="btn_personal_securfam" class="btn btn-info btn-lg" disabled>Guardar</button>
-                                                <input type="hidden" class="form-control" id="auxiliar_viv" name="auxiliar_viv" style="text-transform: uppercase;" required>
-                                                <input type="hidden" class="form-control" id="auxiliar_nac" name="auxiliar_nac" style="text-transform: uppercase;" required>
 
+                                                <input type="hidden" class="form-control" id="aux_depart_viv" name="aux_depart_viv" style="text-transform: uppercase;">
+                                                <input type="hidden" class="form-control" id="aux_provin_viv" name="aux_provin_viv" style="text-transform: uppercase;">
+                                                <input type="hidden" class="form-control" id="aux_distri_viv" name="aux_distri_viv" style="text-transform: uppercase;">
+                                            
+                                                <input type="hidden" class="form-control" id="aux_depart_nac" name="aux_depart_viv" style="text-transform: uppercase;">
+                                                <input type="hidden" class="form-control" id="aux_provin_nac" name="aux_provin_viv" style="text-transform: uppercase;">
+                                                <input type="hidden" class="form-control" id="aux_distri_nac" name="aux_distri_viv" style="text-transform: uppercase;">
                                             </div>
                                         </div>
                                     </div>

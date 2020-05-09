@@ -135,7 +135,7 @@
       html += "<td><button type='button' class='btn btn-danger btn-remove-producto'><span class='fa fa-remove'></span></button></td>";
       html += "</tr>";
       $("#tbventas tbody").append(html);
-      $("#buttonsearch").prop("disabled", true);
+      //$("#buttonsearch").prop("disabled", true);
       $("#btn-check22").val(null);
       $("#nombrePersonalV").val(infoproducto[2]);
       $("#idPersonalV").val(infoproducto[0]);
@@ -176,7 +176,7 @@
       html += "<td><button type='button' class='btn btn-danger btn-remove-producto'><span class='fa fa-remove'></span></button></td>";
       html += "</tr>";
       $("#tbventas tbody").append(html);
-      $("#buttonsearch").prop("disabled", true);
+      //$("#buttonsearch").prop("disabled", true);
       $("#btn-check22").val(null);
     } else {
       alert("seleccione un producto...");
@@ -353,117 +353,6 @@
       show: true
     });
   });
-
-  /* Jquery para departamento, provincia y distrito vivienda.*/
-  $(document).ready(function() {
-    var selectdep = $('#departamento_viv');
-
-    selectdep.append('<option value=""> Seleccione</option>');
-
-    $.each(ubigeo.departamentos, function(i, item) {
-      selectdep.append('<option value=' + item.nombre_ubigeo + '>' + item.nombre_ubigeo + '</option>');
-
-    });
-  });
-
-  $("#departamento_viv").change(function() {
-    var departamentoc = $("#departamento_viv").val();
-    $.each(ubigeo.departamentos, function(i, item) {
-      if (departamentoc == item.nombre_ubigeo) {
-        var id_departamento = item.id_ubigeo
-        inputProvinc(id_departamento)
-      }
-    });
-  });
-
-  function inputProvinc(id_departamento) {
-    var provin_viv = $('#provin_viv');
-    provin_viv.empty()
-    var auxiliar_viv = $('#auxiliar_viv');
-    auxiliar_viv.val(id_departamento)
-    provin_viv.append('<option value=""> Seleccione</option>');
-    $.each(ubigeo.provincias[id_departamento], function(i, item) {
-      provin_viv.append('<option value=' + item.nombre_ubigeo + '>' + item.nombre_ubigeo + '</option>');
-    });
-  }
-
-  $("#provin_viv").change(function() {
-    auxiliar_viv = $('#auxiliar_viv').val();
-    var provin_viv = $('#provin_viv').val();
-    var selectdistri = $('#distri_viv');
-    selectdistri.empty()
-    console.log(auxiliar_viv)
-    $.each(ubigeo.provincias[auxiliar_viv], function(i, item) {
-      if (provin_viv == item.nombre_ubigeo) {
-        var id_provincia = item.id_ubigeo
-        console.log(item.id_ubigeo)
-        inputDistrit(id_provincia)
-      }
-    });
-  });
-
-  function inputDistrit(id_provincia) {
-    var selectdistr = $('#distri_viv');
-    selectdistr.empty()
-    selectdistr.append('<option value=""> Seleccione</option>');
-    $.each(ubigeo.distritos[id_provincia], function(i, item) {
-      selectdistr.append('<option value=' + item.nombre_ubigeo + '>' + item.nombre_ubigeo + '</option>');
-    });
-  }
-  //-------------------------------------------------------------------------------------------------------------
-  /* Jquery para departamento, provincia y distrito vivienda.*/
-  $(document).ready(function() {
-    var selectdep = $('#depart_nac');
-    selectdep.append('<option value=""> Seleccione</option>');
-    $.each(ubigeo.departamentos, function(i, item) {
-      selectdep.append('<option value=' + item.nombre_ubigeo + '>' + item.nombre_ubigeo + '</option>');
-    });
-  });
-
-  $("#depart_nac").change(function() {
-    var departamentoc = $("#depart_nac").val();
-    $.each(ubigeo.departamentos, function(i, item) {
-      if (departamentoc == item.nombre_ubigeo) {
-        var id_departamento = item.id_ubigeo
-        inputProvincNac(id_departamento)
-      }
-    });
-  });
-
-  function inputProvincNac(id_departamento) {
-    var provin_nac = $('#provin_nac');
-    provin_nac.empty()
-    var auxiliar_nac = $('#auxiliar_nac');
-    auxiliar_nac.val(id_departamento)
-    provin_nac.append('<option value=""> Seleccione</option>');
-    $.each(ubigeo.provincias[id_departamento], function(i, item) {
-      provin_nac.append('<option value=' + item.nombre_ubigeo + '>' + item.nombre_ubigeo + '</option>');
-    });
-  }
-
-  $("#provin_nac").change(function() {
-    auxiliar_nac = $('#auxiliar_nac').val();
-    var provin_nac = $('#provin_nac').val();
-    var selectdistri = $('#distri_nac');
-    selectdistri.empty()
-    $.each(ubigeo.provincias[auxiliar_nac], function(i, item) {
-      if (provin_nac == item.nombre_ubigeo) {
-        var id_provincia = item.id_ubigeo
-        inputDistritNac(id_provincia)
-      }
-    });
-  });
-
-  function inputDistritNac(id_provincia) {
-    var selectdistr = $('#distri_nac');
-    selectdistr.empty()
-    selectdistr.append('<option value=""> Seleccione</option>');
-    $.each(ubigeo.distritos[id_provincia], function(i, item) {
-      selectdistr.append('<option value=' + item.nombre_ubigeo + '>' + item.nombre_ubigeo + '</option>');
-    });
-  }
-  //-------------------------------------------------------------------------------------------------------------
-
 
 
 
@@ -1750,7 +1639,7 @@
       var extensionValida = extensionesValidas.indexOf(extension);
 
       if (extensionValida < 0) {
-        $(".firstStep").append("<div class='alert alert-danger alert-dismissible'> <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button><p><i class='icon fa fa-ban'></i>La extensión no es válida,use una imagen. Su fichero tiene de extensión:"+ extension+"</p></div>");
+        $(".firstStep").append("<div class='alert alert-danger alert-dismissible'> <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button><p><i class='icon fa fa-ban'></i>La extensión no es válida,use una imagen. Su fichero tiene de extensión:" + extension + "</p></div>");
         return false;
       } else {
         return true;
@@ -1766,7 +1655,7 @@
         var pesoFichero = datos.files[0].size / 1024;
 
         if (pesoFichero > pesoPermitido) {
-          $(".firstStep").append("<div class='alert alert-danger alert-dismissible'> <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button><p><i class='icon fa fa-ban'></i>El peso maximo permitido del fichero es:"  + pesoPermitido + " KBs Su fichero tiene: " + pesoFichero + " KBs</p></div>");
+          $(".firstStep").append("<div class='alert alert-danger alert-dismissible'> <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button><p><i class='icon fa fa-ban'></i>El peso maximo permitido del fichero es:" + pesoPermitido + " KBs Su fichero tiene: " + pesoFichero + " KBs</p></div>");
 
           $('#firstStep').text('El peso maximo permitido del fichero es: ' + pesoPermitido + ' KBs Su fichero tiene: ' + pesoFichero + ' KBs');
           return false;
@@ -1790,6 +1679,67 @@
       }
     }
   });
+
+
+  /* Jquery para departamento, provincia y distrito vivienda.*/
+  $(document).ready(function() {
+    var selectdep = $('#departamento_viv');
+    var selectpro = $('#provin_viv');
+    var selectdis = $('#distri_viv');
+    selectdep.append('<option value=""> Seleccione</option>');
+    $.each(ubigeo.departamentos, function(i, item) {
+      selectdep.append('<option value=' + item.id_ubigeo + '>' + item.nombre_ubigeo + '</option>');
+    });
+    $("#departamento_viv").change(function() {
+      $('#aux_depart_viv').val($("#departamento_viv option:selected").text())
+      selectpro.empty();
+      selectpro.append('<option value=""> Seleccione</option>');
+      $.each(ubigeo.provincias[selectdep.val()], function(i, item) {
+        selectpro.append('<option value=' + item.id_ubigeo + '>' + item.nombre_ubigeo + '</option>');
+      });
+    });
+    $("#provin_viv").change(function() {
+      $('#aux_provin_viv').val($("#provin_viv option:selected").text())
+      selectdis.empty();
+      selectdis.append('<option value=""> Seleccione</option>');
+      $.each(ubigeo.distritos[selectpro.val()], function(i, item) {
+        selectdis.append('<option value=' + item.id_ubigeo + '>' + item.nombre_ubigeo + '</option>');
+      });
+    });
+    $("#distri_viv").change(function() {
+      $('#aux_distri_viv').val($("#distri_viv option:selected").text())
+    });
+    //-------------------------------------------------------------------------------------------------------------
+    /* Jquery para departamento, provincia y distrito vivienda.*/
+    var selectdepnac = $('#depart_nac');
+    var selectpronac = $('#provin_nac');
+    var selectdisnac = $('#distri_nac');
+    selectdepnac.append('<option value=""> Seleccione</option>');
+    $.each(ubigeo.departamentos, function(i, item) {
+      selectdepnac.append('<option value=' + item.id_ubigeo + '>' + item.nombre_ubigeo + '</option>');
+    });
+    $("#depart_nac").change(function() {
+      $('#aux_depart_nac').val($("#depart_nac option:selected").text())
+      selectpronac.empty();
+      selectpronac.append('<option value=""> Seleccione</option>');
+      $.each(ubigeo.provincias[selectdepnac.val()], function(i, item) {
+        selectpronac.append('<option value=' + item.id_ubigeo + '>' + item.nombre_ubigeo + '</option>');
+      });
+    });
+    $("#provin_nac").change(function() {
+      $('#aux_provin_nac').val($("#provin_nac option:selected").text())
+      selectdisnac.empty();
+      selectdisnac.append('<option value=""> Seleccione</option>');
+      $.each(ubigeo.distritos[selectpronac.val()], function(i, item) {
+        selectdisnac.append('<option value=' + item.id_ubigeo + '>' + item.nombre_ubigeo + '</option>');
+      });
+    });
+    $("#distri_nac").change(function() {
+      $('#aux_distri_nac').val($("#distri_nac option:selected").text())
+    });
+  });
+
+  //-------------------------------------------------------------------------------------------------------------
 </script>
 <style>
   .active_tab1 {

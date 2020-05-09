@@ -70,8 +70,20 @@ class Vehiculos extends CI_Controller
 			'estado' => "1"
 		);
 
-		$this->Vehiculos_model->save($data);
-		redirect(base_url() . "control/vehiculos");
+		if (!$this->Vehiculos_model->save($data)) {
+			$this->session->set_flashdata("error","Debe escoger un Propietario");
+			redirect(base_url() . "control/vehiculos/add/");
+		}
+		else{
+			$data  = array(
+				'id' => $res->id_usu, 
+				'nombre' => $res->nombres_usu,
+				'rol' => $res->id_rol,
+				'login' => TRUE
+			);
+			$this->session->set_userdata($data);
+			redirect(base_url()."dashboard");
+		}
 
 	}
 

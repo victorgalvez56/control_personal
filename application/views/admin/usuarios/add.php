@@ -25,31 +25,31 @@
                         <form action="<?php echo base_url();?>administrador/usuarios/store" method="POST">
                             <div class="form-group">
                                 <label for="nombres">Nombres:</label>
-                                <input type="text" id="nombres" name="nombres" class="form-control">
+                                <input type="text" id="nombres" name="nombres" class="form-control" required>
                             </div>
                             <div class="form-group">
                                 <label for="apellidos">Apellidos:</label>
-                                <input type="text" id="apellidos" name="apellidos" class="form-control">
+                                <input type="text" id="apellidos" name="apellidos" class="form-control" required>
                             </div>
                             <div class="form-group">
                                 <label for="telefono">Telefono:</label>
-                                <input type="number" id="telefono" name="telefono" class="form-control">
+                                <input type="number" id="telefono" name="telefono" class="form-control" required>
                             </div>
                             <div class="form-group">
                                 <label for="email">Email:</label>
-                                <input type="email" id="email" name="email" class="form-control">
+                                <input type="email" id="email" name="email" class="form-control" required>
                             </div>
                             <div class="form-group">
                                 <label for="username">Usuario:</label>
-                                <input type="text" id="username" name="username" class="form-control">
+                                <input type="text" id="username" name="username" class="form-control" required>
                             </div>
                             <div class="form-group">
                                 <label for="password">Contraseña:</label>
-                                <input type="password" id="password" name="password" class="form-control">
+                                <input type="password" id="password" name="password" class="form-control" required>
                             </div>
                             <div class="form-group">
                                 <label for="rol">Roles:</label>
-                                <select name="rol" id="rol" class="form-control">
+                                <select name="rol" id="rol" class="form-control" required>
                                     <?php foreach($roles as $rol):?>
                                         <option value="<?php echo $rol->id_rol;?>"><?php echo $rol->nombre_rol;?></option>
                                     <?php endforeach;?>

@@ -37,7 +37,7 @@
                                                                     <span class="input-group-btn">
                                                                         <button class="btn btn-primary" id="buttonsearch" type="button" data-toggle="modal" data-target="#modal-default"><span class="fa fa-search"></span> Buscar</button>
                                                                     </span>
-                                                                    <input type="text" class="form-control" id="nombrePersonalV" name="nombrePersonalV" style="text-transform: uppercase;" disabled>
+                                                                    <input type="text" class="form-control" id="nombrePersonalV" name="nombrePersonalV" style="text-transform: uppercase;" disabled required>
                                                                 </div><!-- /input-group -->
                                                             </div>
                                                         </div>

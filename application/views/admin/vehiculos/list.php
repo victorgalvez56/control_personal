@@ -29,6 +29,7 @@
                                     <th>N° Placa</th>
                                     <th>N° Serie</th>
                                     <th>N° Motor</th>
+                                    <th>Vin</th>
                                     <th>Color</th>
                                     <th>Marca</th>
                                     <th>Modelo</th>
@@ -46,15 +47,14 @@
                                             <td><?php echo $vehiculo->nombres . " " . $vehiculo->apellido_pat; ?></td>
                                             <td><?php echo $vehiculo->n_placa; ?></td>
                                             <td><?php echo $vehiculo->n_serie; ?></td>
-                                            <td><?php echo $vehiculo->n_vin; ?></td>
                                             <td><?php echo $vehiculo->n_motor; ?></td>
+                                            <td><?php echo $vehiculo->n_vin; ?></td>
                                             <td><?php echo $vehiculo->n_color; ?></td>
+                                            <td><?php echo $vehiculo->marca; ?></td>
                                             <td><?php echo $vehiculo->modelo; ?></td>
                                             <td><?php echo $vehiculo->placa_vigente; ?></td>
                                             <td><?php echo $vehiculo->placa_anterior; ?></td>
                                             <td><?php echo $vehiculo->anotaciones; ?></td>
-                                            <td><?php echo $vehiculo->sede; ?></td>
-
                                             <td>
                                                 <div class="btn-group">
                                                     <button type="button" class="btn btn-info btn-view-vehiculo" value="<?php echo $vehiculo->id; ?>" data-toggle="modal" data-target="#modal-default"><span class="fa fa-search"></span></button>

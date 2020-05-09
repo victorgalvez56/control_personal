@@ -1,5 +1,7 @@
 
  console.log('cargó ubigeos')
+ 
+ 
  var ubigeo = {};
   ubigeo.departamentos = [{
     "id_ubigeo": "2534",
