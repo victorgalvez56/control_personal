@@ -71,5 +71,15 @@ class Backend_model extends CI_Model {
 		$resultados = $this->db->get();
 		return $resultados->result();
 	}
-
+	public function registrosImcObesidad($year){
+		$this->db->select("MONTH(fecha_registro) as mes, COUNT(clasi_imc) as cantidad, clasi_imc");
+		$this->db->from("registro_mensual");
+		$this->db->where("fecha_registro>=",$year."-01-01 00:00:00");
+		$this->db->where("fecha_registro<=",$year."-12-31 00:00:00");
+		$this->db->where("clasi_imc","OBESIDAD");
+		$this->db->group_by("mes");
+		$this->db->order_by("mes","asc");
+		$resultados = $this->db->get();
+		return $resultados->result();
+	}
 }

@@ -1489,13 +1489,99 @@
 
   });
 
-  function graficar(meses, sobrepeso, normal, delgadez, year) {
+  function datagrafico(base_url, year) {
+    namesMonth = ["Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Set", "Oct", "Nov", "Dic"];
+    var mesessobrepeso = new Array();
+    var cantSobrepeso = new Array();
+
+    var mesesnormal = new Array();
+    var cantNormal = new Array();
+
+    var mesesdelgadez = new Array();
+    var cantDelgadez = new Array();
+
+    var mesesobesidad = new Array();
+    var cantObesidad = new Array();
+    $.ajax({
+      url: base_url + "dashboard/getDataSobrepeso",
+      type: "POST",
+      data: {
+        year: year
+      },
+      dataType: "json",
+      success: function(data) {
+
+        $.each(data, function(key, value) {
+          mesessobrepeso.push(namesMonth[value.mes - 1]);
+          valor = Number(value.cantidad);
+          cantSobrepeso.push(valor);
+        });
+      }
+    });
+    $.ajax({
+      url: base_url + "dashboard/getDataNormal",
+      type: "POST",
+      data: {
+        year: year
+      },
+      dataType: "json",
+      success: function(data) {
+
+        $.each(data, function(key, value) {
+          mesesnormal.push(namesMonth[value.mes - 1]);
+          valor = Number(value.cantidad);
+          cantNormal.push(valor);
+        });
+        //graficar(namesMonth, cantSobrepeso,cantNormal,cantDelgadez, year);
+      }
+    });
+
+    $.ajax({
+      url: base_url + "dashboard/getDataDelgadez",
+      type: "POST",
+      data: {
+        year: year
+      },
+      dataType: "json",
+      success: function(data) {
+
+        $.each(data, function(key, value) {
+          mesesobesidad.push(namesMonth[value.mes - 1]);
+          valor = Number(value.cantidad);
+          cantDelgadez.push(valor);
+        });
+      }
+    });
+
+    $.ajax({
+      url: base_url + "dashboard/getDataObesidad",
+      type: "POST",
+      data: {
+        year: year
+      },
+      dataType: "json",
+      success: function(data) {
+
+        $.each(data, function(key, value) {
+          mesesnormal.push(namesMonth[value.mes - 1]);
+          valor = Number(value.cantidad);
+          cantObesidad.push(valor);
+        });
+        graficar(namesMonth, cantSobrepeso,cantNormal,cantDelgadez,cantObesidad, year);
+      }
+    });
+
+
+
+  }
+
+  function graficar(meses, cantSobrepeso,cantNormal,cantDelgadez,cantObesidad, year) {
     Highcharts.chart('grafico', {
       chart: {
         type: 'column'
       },
       title: {
-        text: 'Clasificación IMC por meses'
+        text: 'Monto acumulado por las ventas de los meses'
       },
       subtitle: {
         text: 'Año:' + year
@@ -1507,13 +1593,13 @@
       yAxis: {
         min: 0,
         title: {
-          text: 'Clasificación IMC'
+          text: 'Monto Acumulado (soles)'
         }
       },
       tooltip: {
         headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
-        pointFormat: '<tr><td style="color:{series.color};padding:0">Cantidad: </td>' +
-          '<td style="padding:0"><b>{point.y:.0f}</b></td></tr>',
+        pointFormat: '<tr><td style="color:{series.color};padding:0">Monto: </td>' +
+          '<td style="padding:0"><b>{point.y:.2f} soles</b></td></tr>',
         footerFormat: '</table>',
         shared: true,
         useHTML: true
@@ -1527,70 +1613,42 @@
           dataLabels: {
             enabled: true,
             formatter: function() {
-              return Highcharts.numberFormat(this.y, 0)
+              return Highcharts.numberFormat(this.y, 2)
             }
 
           }
         }
       },
       series: [{
-          name: 'SOBREPESO',
-          data: sobrepeso
+        name: 'Sobre-Peso',
+        data: cantSobrepeso
 
-        },
-        {
-          name: 'NORMAL',
-          data: normal
-        },
-        {
-          name: 'DELGADEZ',
-          data: delgadez
-        }
+      },
+      {
+        name: 'Normal',
+        data: cantNormal
+
+      },
+      {
+        name: 'Delgadez',
+        data: cantDelgadez
+
+      },
+      {
+        name: 'Obesidad',
+        data: cantObesidad
+
+      }
+      
       ]
     });
   }
 
-  function datagrafico(base_url, year) {
-    namesMonth = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Setiembre", "Octubre", "Nomviembre", "Diciembre"];
-    $.ajax({
-      url: base_url + "dashboard/getData",
-      type: "POST",
-      data: {
-        year: year
-      },
-      dataType: "json",
-      success: function(data) {
-        console.log(data)
-        var meses = new Array();
-        var sobrepeso = new Array();
-        var normal = new Array();
-        var delgadez = new Array();
-        $.each(data, function(key, value) {
-          meses.push(namesMonth[value.mes - 1]);
-          console.log(value.clasi_imc)
 
-          if (value.clasi_imc = 'SOBREPESO') {
-            var valorSobrepeso = Number(value.clasi_imc);
-          } else if (value.clasi_imc = 'NORMAL') {
-            var valorNormal = Number(value.clasi_imc);
-          } else {
-            var valorDelgadez = Number(value.clasi_imc);
-          }
-
-          sobrepeso.push(valorSobrepeso);
-          normal.push(valorNormal);
-          delgadez.push(valorDelgadez);
-
-        });
-        graficar(meses, sobrepeso, normal, delgadez, year);
-      }
-    });
-  }
   $(document).ready(function() {
 
     var base_url = "<?php echo base_url(); ?>";
     var year = (new Date).getFullYear();
-    console.log(base_url);
     datagrafico(base_url, year);
     $("#year").on("change", function() {
       yearselect = $(this).val();
