@@ -3,7 +3,7 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-            Personal
+            Personal Civil
             <small>Listado</small>
         </h1>
     </section>
@@ -15,7 +15,7 @@
                 <div class="row">
                     <div class="col-md-12">
                         <?php if ($permisos->insert == 1) : ?>
-                            <a href="<?php echo base_url(); ?>control/personal/add" class="btn btn-primary btn-flat"><span class="fa fa-plus"></span> Agregar Personal Militar</a>
+                            <a href="<?php echo base_url(); ?>control/personal_civil/add" class="btn btn-primary btn-flat"><span class="fa fa-plus"></span> Agregar Personal Civil</a>
                         <?php endif; ?>
                     </div>
                 </div>
@@ -29,7 +29,7 @@
                                     <th>CIP</th>
                                     <th>Nombre</th>
                                     <th>Grado</th>
-                                    <th>Arma</th>
+                                    <th>Cargo</th>
                                     <th>Teléfono</th>
                                     <th>Correo</th>
                                     <th>opciones</th>
@@ -48,12 +48,12 @@
                                             <td><?php echo $personal->correo?></td>
                                             <td>
                                                 <div class="btn-group">
-                                                    <button type="button" class="btn btn-info btn-view-personal" value="<?php echo $personal->id; ?>" data-toggle="modal" data-target="#modal-default"><span class="fa fa-search"></span></button>
+                                                    <button type="button" class="btn btn-info btn-view-personal-civil" value="<?php echo $personal->id; ?>" data-toggle="modal" data-target="#modal-default"><span class="fa fa-search"></span></button>
                                                     <?php if ($permisos->update == 1) : ?>
-                                                        <a href="<?php echo base_url() ?>control/personal/edit/<?php echo $personal->id; ?>" class="btn btn-warning"><span class="fa fa-pencil"></span></a>
+                                                        <a href="<?php echo base_url() ?>control/personal_civil/edit/<?php echo $personal->id; ?>" class="btn btn-warning"><span class="fa fa-pencil"></span></a>
                                                     <?php endif; ?>
                                                     <?php if ($permisos->delete == 1) : ?>
-                                                        <a href="<?php echo base_url(); ?>control/personal/delete/<?php echo $personal->id; ?>" class="btn btn-danger btn-remove"><span class="fa fa-remove"></span></a>
+                                                        <a href="<?php echo base_url(); ?>control/personal_civil/delete/<?php echo $personal->id; ?>" class="btn btn-danger btn-remove"><span class="fa fa-remove"></span></a>
                                                     <?php endif; ?>
                                                 </div>
                                             </td>

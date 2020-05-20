@@ -14,7 +14,7 @@
                                 <p><i class="icon fa fa-ban"></i><?php echo $this->session->flashdata("error"); ?></p>
                             </div>
                         <?php endif; ?>
-                        <form action="<?php echo base_url(); ?>control/personal/store" method="POST" enctype="multipart/form-data">
+                        <form action="<?php echo base_url(); ?>control/personal_civil/store" method="POST" enctype="multipart/form-data">
                             <ul class="nav nav-tabs">
                                 <li class="nav-item">
                                     <a class="nav-link active_tab1" style="border:1px solid #ccc" id="list_login_details">Datos Personales</a>
@@ -62,6 +62,7 @@
                                                             Subir Foto <input type="file" name="upload" id="fichero" required>
                                                         </span>
                                                         <img id="imgenPerfil" src="" alt="" style="width:200px;">
+
                                                     </div>
                                                 </div>
                                                 <div class="col-md-2">
@@ -69,40 +70,84 @@
                                                         <label for="grado">Grado:</label>
                                                         <select class="form-control form-control-lg" id="grado" name="grado" required>
                                                             <option value="">SELECCIONE</option>
-                                                            <option value="GRAL DIV EP">GRAL DIV EP</option>
-                                                            <option value="GRAL BRIG EP">GRAL BRIG EP</option>
-                                                            <option value="CRL EP">CRL EP</option>
-                                                            <option value="TTE CRL EP">TTE CRL EP</option>
-                                                            <option value="MY EP">MY EP</option>
-                                                            <option value="CAP EP">CAP EP</option>
-                                                            <option value="TTE EP">TTE EP</option>
-                                                            <option value="STTE EP">STTE EP</option>
-                                                            <option value="ALFZ EP">ALFZ EP</option>
-                                                            <option value="TCOJS EP">TCOJS EP</option>
-                                                            <option value="TCOJ EP">TCOJ EP</option>
-                                                            <option value="TCO1 EP">TCO1 EP</option>
-                                                            <option value="TCO2 EP">TCO2 EP</option>
-                                                            <option value="TCO3 EP">TCO3 EP</option>
-                                                            <option value="SO1">SO1</option>
-                                                            <option value="SO2">SO2</option>
-                                                            <option value="SO3">SO3</option>
+                                                            <option value="CSAE">CSAE</option>
+                                                            <option value="CSPC">CSPC</option>
+                                                            <option value="CSPF">CSPF</option>
+                                                            <option value="CSTA">CSTA</option>
+                                                            <option value="CSTF">CSTF</option>
+                                                            <option value="DC23">DC23</option>
+                                                            <option value="F-3">F-3</option>
+                                                            <option value="I-30">I-30</option>
+                                                            <option value="II-30">II-30</option>
+                                                            <option value="OPS-V">OPS-V</option>
+                                                            <option value="OPS-VI">OPS-VI</option>
+                                                            <option value="OPS-VII">OPS-VII</option>
+                                                            <option value="OPS-V">OPS-V</option>
+                                                            <option value="PS-VI">PS-VI</option>
+                                                            <option value="SAA">SAA</option>
+                                                            <option value="SAD">SAD</option>
+                                                            <option value="SAF">SAF</option>
+                                                            <option value="SCDTE">SCDTE</option>
+                                                            <option value="SPA">SPA</option>
+                                                            <option value="SPC">SPC</option>
+                                                            <option value="SPD">SPD</option>
+                                                            <option value="SPF">SPF</option>
+                                                            <option value="SPS5">SPS5</option>
+                                                            <option value="STA">STA</option>
+                                                            <option value="STB">STB</option>
+                                                            <option value="STC">STC</option>
+                                                            <option value="STD">STD</option>
+                                                            <option value="STE">STE</option>
+                                                            <option value="STF">STF</option>
                                                         </select>
                                                     </div>
                                                 </div>
+
+
                                                 <div class="col-md-2">
                                                     <div class="form-group">
-                                                        <label for="estado_civ">Arma:</label>
+                                                        <label for="estado_civ">Cargo:</label>
                                                         <select class="form-control form-control-lg" id="arma" name="arma" required>
                                                             <option value="">SELECCIONE</option>
-                                                            <option value="ARTILLERIA">ARTILLERIA</option>
-                                                            <option value="CABALLERIA">CABALLERIA</option>
-                                                            <option value="COMUNICACIONES">COMUNICACIONES</option>
-                                                            <option value="INTELIGENCIA">INTELIGENCIA</option>
-                                                            <option value="ADMINISTRACION PERSONAL">ADMINISTRACION PERSONAL</option>
-                                                            <option value="MATERIAL DEFENSA">MATERIAL DEFENSA</option>
-                                                            <option value="SERVICIO CIENCIA Y TECNOLOGIA DEL EJERCITO">SERVICIO CIENCIA Y TECNOLOGIA DEL EJERCITO</option>
-                                                            <option value="SERVICIO JURIDICO">SERVICIO JURIDICO</option>
-                                                            <option value="SANIDAD">SANIDAD</option>
+                                                            <option value="ARTESANO">ARTESANO</option>
+                                                            <option value="ASIS ANAL PAD">ASIS ANAL PAD</option>
+                                                            <option value="ASIST ADMTVO">ASIST ADMTVO</option>
+                                                            <option value="ASIST SER SAL">ASIST SER SAL</option>
+                                                            <option value="ASIST SOCIAL">ASIST SOCIAL</option>
+                                                            <option value="AUX FORM NIÑO">AUX FORM NIÑO</option>
+                                                            <option value="AUX NUTRICION">AUX NUTRICION</option>
+                                                            <option value="AUX SIST ADMT">AUX SIST ADMT</option>
+                                                            <option value="AUXILIAR CAP. Y DIFUSION">AUXILIAR CAP. Y DIFUSION</option>
+                                                            <option value="CAPELLAN">CAPELLAN</option>
+                                                            <option value="CHOFER">CHOFER</option>
+                                                            <option value="CONTADOR">CONTADOR</option>
+                                                            <option value="DIBUJANTE">DIBUJANTE</option>
+                                                            <option value="DOCENTE">DOCENTE</option>
+                                                            <option value="ECONOMISTA">ECONOMISTA</option>
+                                                            <option value="ELECTRICISTA">ELECTRICISTA</option>
+                                                            <option value="ENFERMERA">ENFERMERA</option>
+                                                            <option value="ESPEC EDUCAC">ESPEC EDUCAC</option>
+                                                            <option value="MECANICO">MECANICO</option>
+                                                            <option value="OFICINISTA">OFICINISTA</option>
+                                                            <option value="OPERADOR PAD">OPERADOR PAD</option>
+                                                            <option value="PERIODISTA">PERIODISTA</option>
+                                                            <option value="SECRETAR TCA">SECRETAR TCA</option>
+                                                            <option value="PSICOLOGO">PSICOLOGO</option>
+                                                            <option value="SOCIOLOGO">SOCIOLOGO</option>
+                                                            <option value="SUP CONS SERV">SUP CONS SERV</option>
+                                                            <option value="TCO ABASTOS">TCO ABASTOS</option>
+                                                            <option value="TCO CONTABIL">TCO CONTABIL</option>
+                                                            <option value="TCO ADMTVO">TCO ADMTVO</option>
+                                                            <option value="TCO AGROPECUA">TCO AGROPECUA</option>
+                                                            <option value="TCO ECONOMIA">TCO ECONOMIA</option>
+                                                            <option value="TCO EN CAP. Y DIFUSION">TCO EN CAP. Y DIFUSION</option>
+                                                            <option value="TCO INSPECT">TCO INSPECT</option>>
+                                                            <option value="TOPOGRAFO">TOPOGRAFO</option>
+                                                            <option value="TRAB SERV">TRAB SERV</option>
+                                                            <option value="TRANSCRIP PAD">TRANSCRIP PAD</option>
+                                                            <option value="ABOGADO">ABOGADO</option>
+                                                            <option value="DOCTOR">DOCTOR</option>
+                                                            <option value="DISEÑADOR GRAFICO">DISEÑADOR GRAFICO</option>
                                                         </select>
                                                     </div>
                                                 </div>
@@ -183,7 +228,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="tab-pane active" id="personal_details">
+                                <div class="tab-pane fade" id="personal_details">
                                     <div class="panel panel-default">
                                         <div class="panel-heading">Dirección</div>
                                         <div class="secondStep">
@@ -272,7 +317,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="tab-pane active" id="born_details">
+                                <div class="tab-pane fade" id="born_details">
                                     <div class="panel panel-default">
                                         <div class="panel-heading">Detalle Nacimiento</div>
                                         <div class="fourthStep">
@@ -685,16 +730,11 @@
                                             </div>
                                             <div align="center">
                                                 <button type="button" name="previous_btn_personal_securfam" id="previous_btn_personal_securfam" class="btn btn-default btn-lg">Previous</button>
-                                                <button type="button" name="review" id="review" class="btn btn-info btn-lg">Revisar</button>
+                                                <button type="submit" name="review" id="review" class="btn btn-info btn-lg">Revisar</button>
                                                 <button type="submit" name="btn_personal_securfam" id="btn_personal_securfam" class="btn btn-info btn-lg" disabled>Guardar</button>
+                                                <input type="hidden" class="form-control" id="auxiliar_viv" name="auxiliar_viv" style="text-transform: uppercase;" required>
+                                                <input type="hidden" class="form-control" id="auxiliar_nac" name="auxiliar_nac" style="text-transform: uppercase;" required>
 
-                                                <input type="hidden" class="form-control" id="aux_depart_viv" name="aux_depart_viv" style="text-transform: uppercase;">
-                                                <input type="hidden" class="form-control" id="aux_provin_viv" name="aux_provin_viv" style="text-transform: uppercase;">
-                                                <input type="hidden" class="form-control" id="aux_distri_viv" name="aux_distri_viv" style="text-transform: uppercase;">
-                                            
-                                                <input type="hidden" class="form-control" id="aux_depart_nac" name="aux_depart_viv" style="text-transform: uppercase;">
-                                                <input type="hidden" class="form-control" id="aux_provin_nac" name="aux_provin_viv" style="text-transform: uppercase;">
-                                                <input type="hidden" class="form-control" id="aux_distri_nac" name="aux_distri_viv" style="text-transform: uppercase;">
                                             </div>
                                         </div>
                                     </div>
@@ -711,28 +751,3 @@
     <!-- /.content -->
 </div>
 <!--
-
-
-
-<div class="modal modal-danger fade" id="modal_popup">
-    <div class="modal-dialog modal-sm">
-    <form action="<?php echo base_url(); ?>control/personal/storestep1" method="POST">
-            <div class="modal-content">
-                <div class="modal-header" style="height: 150px;">
-                    <h4 style="margin-top: 50px;text-align: center;">Are you sure, do you delete user?</h4>
-                    <input type="hidden" name="id" id="user_id" value="">
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger pull-left" data-dismiss="modal">No</button>
-                    <button type="submit" name="submit" class="btn btn-success">Yes</button>
-                </div>
-
-            </div>
-
-        </form>
-
-    </div>
-
-</div>
-
--->

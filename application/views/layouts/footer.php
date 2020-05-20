@@ -60,12 +60,30 @@
     });
   });
 
-  $(document).on("click", ".btn-view-personal", function() {
+  $(document).on("click", ".btn-view-personal-militar", function() {
     var base_url = "<?php echo base_url(); ?>";
     valor_id = $(this).val();
     console.log(valor_id)
     $.ajax({
-      url: base_url + "control/personal/view",
+      url: base_url + "control/personal_militar/view",
+      type: "POST",
+      dataType: "html",
+      data: {
+        id: valor_id
+      },
+      success: function(data) {
+        $("#modal-default .modal-body").html(data);
+      }
+    });
+  });
+
+
+  $(document).on("click", ".btn-view-personal-civil", function() {
+    var base_url = "<?php echo base_url(); ?>";
+    valor_id = $(this).val();
+    console.log(valor_id)
+    $.ajax({
+      url: base_url + "control/personal_civil/view",
       type: "POST",
       dataType: "html",
       data: {
@@ -379,7 +397,7 @@
     html = "<tr id='tableremove1'>";
     html += "<td><input type='text' class='form-control' id='idioma' name='nombresfamiliar[]' style='text-transform: uppercase;' required ></td>";
     html += "<td><select class='form-control form-control' id='parentesco' name='parentesco[]' required><option value=''>Seleccione</option><option value='PADRE'>PADRE</option><option value='MADRE'>MADRE</option><option value='CONYUGE'>CONYUGE</option><option value='HIJO'>HIJO</option><option value='HIJA'>HIJA</option></select></td>";
-    html += "<td><input type='number' class='form-control' id='edad' name='edad[]' style='text-transform: uppercase;' required ></td>";
+    html += "<td><input type='number' class='form-control' min='0' id='edad' name='edad[]' style='text-transform: uppercase;' required ></td>";
     html += "<td><select class='form-control form-control lugar_nac' id='lugar_nac' name='lugar_nac[]' required></select></td>";
     html += "<td><input type='date' class='form-control' id='fecha_nac' name='fecha_nac[]' style='text-transform: uppercase;' required ></td>";
     html += "</tr>";
@@ -394,7 +412,11 @@
 
 
   });
-
+  var lugar_nac = $('.lugar_nac');
+    lugar_nac.append('<option value=""> Seleccione</option>');
+    $.each(ubigeo.departamentos, function(i, item) {
+      lugar_nac.append('<option value=' + item.nombre_ubigeo + '>' + item.nombre_ubigeo + '</option>');
+    });
   $(document).on("click", ".btn-agregarfamiliares", function() {
     html = "<tr id='tableremove2'>";
     html += "<td><input type='number' class='form-control' id='cip' name='cip[]' style='text-transform: uppercase;' required ></td>";

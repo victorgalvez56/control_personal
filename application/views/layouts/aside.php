@@ -20,9 +20,9 @@
                             </span>
                         </a>
                         <ul class="treeview-menu">
-                        <li><a href="<?php echo base_url(); ?>control/personal/"><i class="fa fa-circle-o">
+                        <li><a href="<?php echo base_url(); ?>control/personal_militar/"><i class="fa fa-circle-o">
                                     </i>Personal Militar</a></li>
-                            <li><a href="<?php echo base_url(); ?>control/personal/civil"><i class="fa fa-circle-o">
+                            <li><a href="<?php echo base_url(); ?>control/personal_civil/"><i class="fa fa-circle-o">
                                     </i>Personal Civil</a></li>
                         </ul>
                     </li>
