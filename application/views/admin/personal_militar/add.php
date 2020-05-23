@@ -61,7 +61,7 @@
                                                         <span class="btn btn-default btn-file">
                                                             Subir Foto <input type="file" name="upload" id="fichero" required>
                                                         </span>
-                                                        <img id="imgenPerfil" src="" alt="" style="width:200px;">
+                                                        <img id="imgenPerfil" src="" alt="" style="width:150px;">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-2">
@@ -729,9 +729,9 @@
                                                 <input type="hidden" class="form-control" id="aux_provin_viv" name="aux_provin_viv" style="text-transform: uppercase;">
                                                 <input type="hidden" class="form-control" id="aux_distri_viv" name="aux_distri_viv" style="text-transform: uppercase;">
 
-                                                <input type="hidden" class="form-control" id="aux_depart_nac" name="aux_depart_viv" style="text-transform: uppercase;">
-                                                <input type="hidden" class="form-control" id="aux_provin_nac" name="aux_provin_viv" style="text-transform: uppercase;">
-                                                <input type="hidden" class="form-control" id="aux_distri_nac" name="aux_distri_viv" style="text-transform: uppercase;">
+                                                <input type="hidden" class="form-control" id="aux_depart_nac" name="aux_depart_nac" style="text-transform: uppercase;">
+                                                <input type="hidden" class="form-control" id="aux_provin_nac" name="aux_provin_nac" style="text-transform: uppercase;">
+                                                <input type="hidden" class="form-control" id="aux_distri_nac" name="aux_distri_nac" style="text-transform: uppercase;">
                                             </div>
                                         </div>
                                     </div>

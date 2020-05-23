@@ -41,11 +41,11 @@
                                         <tr>
                                             <td><?php echo $personal->dni ?></td>
                                             <td><?php echo $personal->cip ?></td>
-                                            <td><?php echo $personal->nombres." ".$personal->apellido_pat." ".$personal->apellido_mat ?></td>
+                                            <td><?php echo $personal->nombres . " " . $personal->apellido_pat . " " . $personal->apellido_mat ?></td>
                                             <td><?php echo $personal->grado ?></td>
                                             <td><?php echo $personal->arma ?></td>
                                             <td><?php echo $personal->telefono ?></td>
-                                            <td><?php echo $personal->correo?></td>
+                                            <td><?php echo $personal->correo ?></td>
                                             <td>
                                                 <div class="btn-group">
                                                     <button type="button" class="btn btn-info btn-view-personal-militar" value="<?php echo $personal->id; ?>" data-toggle="modal" data-target="#modal-default"><span class="fa fa-search"></span></button>
@@ -87,7 +87,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-danger pull-left" data-dismiss="modal">Cerrar</button>
-                <button type="button" class="btn btn-primary btn-print"><span class="fa fa-print"> </span>Imprimir</button>              
+                <button type="button" class="btn btn-primary btn-print"><span class="fa fa-print"> </span>Imprimir</button>
             </div>
         </div>
         <!-- /.modal-content -->

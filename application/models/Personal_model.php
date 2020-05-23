@@ -3,7 +3,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class Personal_model extends CI_Model
 {
-	public function getPersonalMilitar()
+	public function getPersonalsMilitar()
 	{
 		$this->db->select("*");
 		$this->db->from("personal");
@@ -12,7 +12,7 @@ class Personal_model extends CI_Model
 		$resultados = $this->db->get();
 		return $resultados->result();
 	}
-	public function getPersonalCivil()
+	public function getPersonalsCivil()
 	{
 		$this->db->select("*");
 		$this->db->from("personal");
@@ -29,7 +29,6 @@ class Personal_model extends CI_Model
 		$resultados = $this->db->get();
 		return $resultados->result();
 	}
-	
 
 	public function getPersonalsregistro()
 	{
@@ -41,9 +40,19 @@ class Personal_model extends CI_Model
 		return $resultados->result();
 	}
 
-	public function save($data)
-	{
-		return $this->db->insert("personal", $data);
+	public function getPersonalMilitar($id){
+		$this->db->select("*");
+		$this->db->from("personal");
+		$this->db->where("id",$id);
+		$resultado = $this->db->get();
+		return $resultado->row();
+	}
+	public function getPersonalCivil($id){
+		$this->db->select("*");
+		$this->db->from("personal");
+		$this->db->where("id",$id);
+		$resultado = $this->db->get();
+		return $resultado->row();
 	}
 	public function getPersonal($id){
 		$this->db->select("*");
@@ -52,6 +61,11 @@ class Personal_model extends CI_Model
 		$resultado = $this->db->get();
 		return $resultado->row();
 	}
+	public function save($data)
+	{
+		return $this->db->insert("personal", $data);
+	}
+
 
 	public function getDetalleIdioma($id){
 		$this->db->select("*");

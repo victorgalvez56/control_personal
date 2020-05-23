@@ -66,7 +66,7 @@ CG-III DIV EJTO</pre>
 
 				<th colspan="2"></th>
 				<th colspan="3">
-				<p id="sub"></p>
+					<p id="sub"></p>
 					<select class="form-control form-control-lg" id="sub_dependencia" name="sub_dependencia" required>
 						<option value="">SELECCIONE</option>
 						<option>CO III DE</option>
@@ -140,14 +140,14 @@ CG-III DIV EJTO</pre>
 
 				<td>GRADO:</td>
 				<td>
-				<?php echo $personals->grado ?>
+					<?php echo $personals->grado ?>
 				</td>
 				<td colspan="3">N° DE SERIE</td>
 			</tr>
 			<tr>
 				<td>APELLIDOS:</td>
 				<td>
-				<?php echo $personals->apellido_pat." ".$personals->apellido_mat ?>
+					<?php echo $personals->apellido_pat . " " . $personals->apellido_mat ?>
 
 				</td>
 				<th colspan="3"> S-<?php echo $personals->dni . "-" . $personals->grupo_sang ?></th>
@@ -155,7 +155,7 @@ CG-III DIV EJTO</pre>
 			<tr>
 				<td>NOMBRES:</td>
 				<td>
-				<?php echo $personals->nombres ?>
+					<?php echo $personals->nombres ?>
 
 				</td>
 				<td colspan="3">.</td>
@@ -173,7 +173,7 @@ CG-III DIV EJTO</pre>
 			</tr>
 			<tr>
 				<th colspan="2">.</th>
-				<td colspan="3" rowspan="3"> BARRAS</td>
+				<td colspan="3" rowspan="3"> <img id="barcode">
 			</tr>
 			<tr>
 				<th></th>
@@ -192,28 +192,39 @@ CG-III DIV EJTO</pre>
 	$('#sub').hide();
 	$('#cat').hide();
 
-$("#sub_dependencia").change(function() {
-    var sub = $("#sub_dependencia").val();
-	$('#sub_dependencia').hide();
-	$('#sub').show();
-	$("#sub").text(sub)
+	$("#sub_dependencia").change(function() {
+		var sub = $("#sub_dependencia").val();
+		$('#sub_dependencia').hide();
+		$('#sub').show();
+		$("#sub").text(sub)
 
-  });
+	});
 
-  $("#categoria_tarjeta").change(function() {
-    var cat = $("#categoria_tarjeta").val();
-	$('#categoria_tarjeta').hide();
-	$('#cat').show();
-	$("#cat").text(cat)
+	$("#categoria_tarjeta").change(function() {
+		var cat = $("#categoria_tarjeta").val();
+		$('#categoria_tarjeta').hide();
+		$('#cat').show();
+		$("#cat").text(cat)
 
-  });
+	});
 
-  $("#fecha_tarjeta").change(function() {
-    var fec = $("#fecha_tarjeta").val();
-	$('#fecha_tarjeta').hide();
-	$('#fec').show();
-	$("#fec").text(fec)
-  });
-
-
+	$("#fecha_tarjeta").change(function() {
+		var fec = $("#fecha_tarjeta").val();
+		$('#fecha_tarjeta').hide();
+		$('#fec').show();
+		$("#fec").text(fec)
+	});
+	$("#barcode").JsBarcode("Javascript is fun!", {
+		width: 2,
+		height: 100,
+		quite: 10,
+		format: "CODE128",
+		displayValue: false,
+		fontOptions: "",
+		font: "monospace",
+		textAlign: "center",
+		fontSize: 12,
+		backgroundColor: "",
+		lineColor: "#000"
+	});
 </script>

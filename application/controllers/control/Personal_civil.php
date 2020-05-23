@@ -16,7 +16,7 @@ class Personal_civil extends CI_Controller
 	{
 		$data  = array(
 			'permisos' => $this->permisos,
-			'personals' => $this->Personal_model->getPersonalCivil(),
+			'personals' => $this->Personal_model->getPersonalsCivil(),
 		);
 		$this->load->view("layouts/header");
 		$this->load->view("layouts/aside");
@@ -347,7 +347,7 @@ class Personal_civil extends CI_Controller
 	{
 		$idpersonal = $this->input->post("id");
 		$data = array(
-			"personals" => $this->Personal_model->getPersonal($idpersonal),
+			"getPersonalCivil" => $this->Personal_model->getPersonal($idpersonal),
 			"detalleFamiliar" => $this->Personal_model->getDetalleFamiliar($idpersonal),
 			"detalleIdioma" => $this->Personal_model->getDetalleIdioma($idpersonal),
 			"detalleViaje" => $this->Personal_model->getDetalleViaje($idpersonal),
