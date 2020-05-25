@@ -39,4 +39,13 @@ class Sanitario_anual_model extends CI_Model {
 	public function lastID(){
 		return $this->db->insert_id();
 	}
+
+	public function getforTarjetaSalud($id){
+		$this->db->select("MAX(r.fecha) as fecha,r.*");
+		$this->db->from("personal p");
+		$this->db->join("registro_anual r","p.id = r.personal_id");	
+		$this->db->where("p.dni",$id);
+		$resultado = $this->db->get();
+		return $resultado->row();
+	}
 }

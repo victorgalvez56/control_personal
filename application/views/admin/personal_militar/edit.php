@@ -19,10 +19,10 @@
                                 <p><i class="icon fa fa-ban"></i><?php echo $this->session->flashdata("error"); ?></p>
                             </div>
                         <?php endif; ?>
-                        <input type="hidden" value="<?php echo $personal_militar->id; ?>" id="idPersonal" name="idPersonal">
 
                         <form action="<?php echo base_url(); ?>control/personal_militar/update" method="POST" enctype="multipart/form-data">
-                            <div class="tab-content" style="margin-top:16px;">
+                        <input type="hidden" value="<?php echo $personal_militar->id; ?>" id="idPersonal" name="idPersonal">
+                        <div class="tab-content" style="margin-top:16px;">
                                 <div class="tab-pane active" id="login_details">
                                     <div class="panel panel-default">
                                         <div class="panel-heading">Detalles Personales</div>

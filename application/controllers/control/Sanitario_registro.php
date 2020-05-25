@@ -80,7 +80,6 @@ class Sanitario_registro extends CI_Controller
 
 		$idRegistro = $this->input->post("idRegistro");
 		$alergias = $this->input->post("alergias");
-		$registroactual = $this->Sanitario_registro_model->getRegistro($idRegistro);
 			$data = array(
 				'alergias' => $alergias,
 			);

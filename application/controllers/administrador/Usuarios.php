@@ -49,7 +49,7 @@ class Usuarios extends CI_Controller {
 			'telefono' => $telefono,
 			'email' => $email,
 			'username' => $username,
-			'password' => $password,
+			'password' => sha1($password),
 			'id_rol' => $rol,
 			'estado_usu' => "1"
 		);
@@ -102,7 +102,7 @@ class Usuarios extends CI_Controller {
 			'telefono' => $telefono,
 			'email' => $email,
 			'username' => $username,
-			'password' => $password,
+			'password' =>sha1($password),
 			'id_rol' => $rol,
 		);
 

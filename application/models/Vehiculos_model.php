@@ -31,7 +31,7 @@ class Vehiculos_model extends CI_Model {
 	}
 
 	public function getVehiculo($id){
-		$this->db->select("p.nombres,p.apellido_pat,p.apellido_mat,p.grado,p.imagen,v.*");
+		$this->db->select("p.nombres,p.apellido_pat,p.apellido_mat,p.grado,p.imagen,p.dni,v.*");
 		$this->db->from("vehiculos v");
 		$this->db->join("personal p", "v.personal_id = p.id");
 		$this->db->where("v.id", $id);
@@ -40,7 +40,7 @@ class Vehiculos_model extends CI_Model {
 	}
 
 	public function update($id,$data){
-		$this->db->where("id_cat",$id);
-		return $this->db->update("categorias",$data);
+		$this->db->where("id",$id);
+		return $this->db->update("vehiculos",$data);
 	}
 }

@@ -31,7 +31,7 @@
 
 
 <div class="card-footer text-muted">
-
+<input type="hidden" id="dniBarcodeTarjeta" value="<?php echo $personals->dni?>" >
 	<table>
 		<thead>
 			<tr width="40">
@@ -47,23 +47,15 @@ CG-III DIV EJTO</pre>
 				</th>
 
 			</tr>
-
 			<tr>
-
 			</tr>
-
 			<tr>
-
 			</tr>
 			<tr>
 				<th colspan="2"> </th>
 				<td width="150" colspan="3">SUB DEPENDENCIA</td>
-
 			</tr>
-
 			<tr>
-
-
 				<th colspan="2"></th>
 				<th colspan="3">
 					<p id="sub"></p>
@@ -96,13 +88,9 @@ CG-III DIV EJTO</pre>
 			<tr>
 				<th colspan="2"></th>
 				<td colspan="3">.</td>
-
 			</tr>
-
 			<tr>
-
 				<th rowspan="5" vertical-align: center><img height="80" width="70" src=https://4.bp.blogspot.com/-2-f2OaR77Bw/WMfG7feqALI/AAAAAAAArGU/hVX5fQw1LrYtw6Su6kKphan1XeCd-Dl-wCLcB/s1600/III%2BDIV%2BEJTO.jpg> </th> <th rowspan="5" vertical-align: center><img src="<?php echo base_url(); ?>/uploads/<?php echo $personals->imagen; ?>" style="width:200px;"></th>
-
 				<td colspan="3">CATEGORIA</td>
 			</tr>
 			<tr>
@@ -118,26 +106,21 @@ CG-III DIV EJTO</pre>
 					</select>
 				</th>
 			</tr>
-
 			<tr>
 				<td colspan="3">.</td>
 			</tr>
-
 			<tr>
 				<td colspan="3">N° DE CARNET</td>
 			</tr>
 			<tr>
 				<th colspan="3"><?php echo $personals->id ?></th>
-
 			</tr>
 			<tr>
 				<td></td>
 				<th></th>
 				<td colspan="3">.</td>
 			</tr>
-
 			<tr>
-
 				<td>GRADO:</td>
 				<td>
 					<?php echo $personals->grado ?>
@@ -214,17 +197,6 @@ CG-III DIV EJTO</pre>
 		$('#fec').show();
 		$("#fec").text(fec)
 	});
-	$("#barcode").JsBarcode("Javascript is fun!", {
-		width: 2,
-		height: 100,
-		quite: 10,
-		format: "CODE128",
-		displayValue: false,
-		fontOptions: "",
-		font: "monospace",
-		textAlign: "center",
-		fontSize: 12,
-		backgroundColor: "",
-		lineColor: "#000"
-	});
+	
+
 </script>

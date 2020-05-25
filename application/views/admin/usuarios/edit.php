@@ -38,11 +38,11 @@
                             </div>
                             <div class="form-group">
                                 <label for="email">Email:</label>
-                                <input type="text" id="email" name="email" class="form-control" value="<?php echo $usuario->email;?>" required >
+                                <input type="email" id="email" name="email" class="form-control" value="<?php echo $usuario->email;?>" required >
                             </div>
                             <div class="form-group">
                                 <label for="username">Usuario:</label>
-                                <input type="email" id="username" name="username" class="form-control" value="<?php echo $usuario->username;?>" required>
+                                <input type="text" id="username" name="username" class="form-control" value="<?php echo $usuario->username;?>" required>
                             </div>
                              <div class="form-group">
                                 <label for="password">Password:</label>

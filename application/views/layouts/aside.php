@@ -52,6 +52,10 @@
                             <i class="ion ion-ios-list-outline"></i><span>Tarjeta identidad Seguridad</span>
                         </a>
                     </li>
+                    <li><a href="<?php echo base_url(); ?>administrador/reportes/">
+                            <i class="ion ion-android-car"></i><span>Reportes</span>
+                        </a>
+                    </li>
                     <li class="treeview">
                         <a href="#">
                             <i class="fa fa-user-circle-o"></i><span>Administrador</span>

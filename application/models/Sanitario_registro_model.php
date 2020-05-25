@@ -54,4 +54,16 @@ class Sanitario_registro_model extends CI_Model
 	{
 		return $this->db->insert_id();
 	}
+	
+	public function getforTarjetaSalud($id){
+		$this->db->select("r.*");
+		$this->db->from("personal p");
+		$this->db->join("registro_sanitario r","p.id = r.personal_id");	
+		$this->db->where("r.estado","1");
+		$this->db->where("p.dni",$id);
+		$resultado = $this->db->get();
+		return $resultado->row();
+	}
+
+
 }

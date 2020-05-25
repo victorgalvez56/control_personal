@@ -61,6 +61,14 @@ class Personal_model extends CI_Model
 		$resultado = $this->db->get();
 		return $resultado->row();
 	}
+	public function getPersonalforTarjet($id){
+		$this->db->select("*");
+		$this->db->from("personal");
+		$this->db->where("dni",$id);
+		$this->db->where("estado","1");
+		$resultado = $this->db->get();
+		return $resultado->row();
+	}
 	public function save($data)
 	{
 		return $this->db->insert("personal", $data);

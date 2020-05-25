@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 13-05-2020 a las 22:57:17
+-- Tiempo de generación: 25-05-2020 a las 08:31:52
 -- Versión del servidor: 10.4.11-MariaDB
 -- Versión de PHP: 7.4.5
 
@@ -20,19 +20,6 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `db_personal`
 --
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `contacto`
---
-
-CREATE TABLE `contacto` (
-  `id` int(11) NOT NULL,
-  `telefono` int(9) NOT NULL,
-  `operador` varchar(16) NOT NULL,
-  `correo` varchar(32) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -60,7 +47,12 @@ INSERT INTO `detalle_estudios` (`id`, `personal_id`, `curso`, `tipo_curso`, `est
 (13, 88, 'AXD', 'MILITAR', 1),
 (14, 89, 'ASD', 'MILITAR', 1),
 (15, 90, '1', 'MILITAR', 1),
-(16, 91, '1', 'MILITAR', 1);
+(16, 91, '1', 'MILITAR', 1),
+(17, 113, 'AAAA', 'EXTRACASTRENCE', 1),
+(18, 113, 'BBB', 'MILITAR', 1),
+(19, 114, 'AAAA', 'EXTRACASTRENCE', 1),
+(20, 114, 'BBB', 'MILITAR', 1),
+(21, 115, 'PS', 'MILITAR', 1);
 
 -- --------------------------------------------------------
 
@@ -94,7 +86,16 @@ INSERT INTO `detalle_familiar` (`id`, `personal_id`, `nombre_fam`, `parentesco_f
 (12, 88, 0, 'PADRE', 1, 'Amazonas', '2020-12-14', 1, 1, 1, 'A+', 'PRIMARIA'),
 (13, 89, 0, 'CONYUGE', 123, 'Ancash', '1997-01-14', 1, 1, 123, 'B+', 'TECNICO'),
 (14, 90, 1, 'HIJO', 1, 'Apurimac', '0001-01-01', 1, 1, 1, 'B-', 'SUPERIOR'),
-(15, 91, 1, 'CONYUGE', 1, 'Apurimac', '1997-01-01', 1, 1, 1, 'B+', 'SECUNDARIA');
+(15, 91, 1, 'CONYUGE', 1, 'Apurimac', '1997-01-01', 1, 1, 1, 'B+', 'SECUNDARIA'),
+(16, 99, 0, 'PADRE', 18, 'Amazonas', '1997-12-01', 123, 123, 123, 'A-', 'SUPERIOR'),
+(17, 109, 0, 'MADRE', 123, '2', '1997-01-14', 123, 123, 123, 'A+', 'TECNICO'),
+(18, 111, 0, 'PADRE', 58, 'La', '1987-01-25', 115955000, 77127600, 958560996, 'A+', 'PRIMARIA'),
+(19, 112, 0, 'PADRE', 18, 'Amazonas', '1997-01-14', 115955050, 77127600, 2147483647, 'A+', 'PRIMARIA'),
+(20, 113, 0, 'PADRE', 18, 'Amazonas', '1997-01-14', 1155595050, 552, 59292, 'A+', 'PRIMARIA'),
+(21, 113, 0, 'PADRE', 123, 'San', '1997-01-14', 123123, 123123, 123123, 'O+', 'PRIMARIA'),
+(22, 114, 0, 'PADRE', 18, 'Amazonas', '1997-01-14', 1155595050, 552, 59292, 'A+', 'PRIMARIA'),
+(23, 114, 0, 'PADRE', 123, 'San', '1997-01-14', 123123, 123123, 123123, 'O+', 'PRIMARIA'),
+(24, 115, 0, 'PADRE', 18, 'Ayacucho', '1997-01-14', 115955050, 77127600, 958560996, 'A+', 'PRIMARIA');
 
 -- --------------------------------------------------------
 
@@ -128,7 +129,13 @@ INSERT INTO `detalle_idioma` (`id`, `personal_id`, `idioma`, `habla`, `lee`, `es
 (47, 88, '123', 'B', 'B', 'B', 'ESTUDIO', 'SI'),
 (48, 89, 'asd', 'B', 'B', 'B', 'ESTUDIO', 'SI'),
 (49, 90, 'asd', 'M', 'B', 'B', 'ESTUDIO', 'SI'),
-(50, 91, '1', 'B', 'B', 'B', 'ESTUDIO', 'SI');
+(50, 91, '1', 'B', 'B', 'B', 'ESTUDIO', 'SI'),
+(51, 99, 'ingles', 'B', 'B', 'B', 'ESTUDIO', 'SI'),
+(52, 113, 'GA', 'B', 'B', 'B', 'ESTUDIO', 'SI'),
+(53, 113, 'GT', 'B', 'B', 'R', 'ESTUDIO', 'SI'),
+(54, 114, 'GA', 'GA', 'B', 'B', 'ESTUDIO', 'SI'),
+(55, 114, 'GT', 'GT', 'B', 'R', 'ESTUDIO', 'SI'),
+(56, 115, 'INGLES', 'R', 'B', 'M', 'ESTUDIO', 'SI');
 
 -- --------------------------------------------------------
 
@@ -155,7 +162,12 @@ INSERT INTO `detalle_seguro` (`id`, `personal_id`, `seguro`, `tipo_seguro`, `est
 (12, 88, '1', 'MILITAR', 1),
 (13, 89, 'AD', 'MILITAR', 1),
 (14, 90, 'ASD', 'CIVIL', 1),
-(15, 91, 'ASD', 'MILITAR', 1);
+(15, 91, 'ASD', 'MILITAR', 1),
+(16, 113, 'AG', 'MILITAR', 1),
+(17, 113, 'GA', 'CIVIL', 1),
+(18, 114, 'AG', 'MILITAR', 1),
+(19, 114, 'GA', 'CIVIL', 1),
+(20, 115, 'SOCIAL', 'MILITAR', 1);
 
 -- --------------------------------------------------------
 
@@ -183,7 +195,12 @@ INSERT INTO `detalle_viajes` (`id`, `lugar`, `personal_id`, `motivo`, `fecha`, `
 (17, '123', 88, '3212', '2020-12-31', 1),
 (18, '123', 89, '123', '1997-01-14', 1),
 (19, 'asd', 90, 'asd', '1997-01-01', 1),
-(20, 'asd', 91, 'asd', '1997-01-14', 1);
+(20, 'asd', 91, 'asd', '1997-01-14', 1),
+(21, 'GA', 113, 'GA', '1997-01-14', 1),
+(22, 'AG', 113, 'AG', '1997-01-14', 1),
+(23, 'GA', 114, 'GA', '1997-01-14', 1),
+(24, 'AG', 114, 'AG', '1997-01-14', 1),
+(25, 'BRASIL', 115, 'TURISMO', '1997-01-14', 1);
 
 -- --------------------------------------------------------
 
@@ -203,8 +220,8 @@ CREATE TABLE `menus` (
 
 INSERT INTO `menus` (`id_men`, `nombre_men`, `link_men`) VALUES
 (1, 'Inicio', 'dashboard'),
-(2, 'Personal Militar', 'control/personal/'),
-(3, 'Personal Civil', 'control/personal/civil/'),
+(2, 'Personal Militar', 'control/personal_militar'),
+(3, 'Personal Civil', 'control/personal_civil'),
 (4, 'Sanitario Registro', 'control/sanitario_registro'),
 (5, 'Sanitario Mensual', 'control/sanitario_mensual'),
 (6, 'Sanitario Anual', 'control/sanitario_anual'),
@@ -212,7 +229,9 @@ INSERT INTO `menus` (`id_men`, `nombre_men`, `link_men`) VALUES
 (8, 'Tarjeta Identidad', 'control/tarjeta_identidad'),
 (9, 'Tarjeta Valoración Sanitaria', 'control/tarjeta_valoracion'),
 (10, 'Usuarios', 'administrador/usuarios'),
-(11, 'Permisos', 'administrador/permisos');
+(11, 'Permisos', 'administrador/permisos'),
+(12, 'Tarjeta de Salud', 'salud/tarjeta_salud'),
+(13, 'Reportes', 'administrador/reportes');
 
 -- --------------------------------------------------------
 
@@ -246,8 +265,9 @@ INSERT INTO `permisos` (`id_per`, `read`, `insert`, `update`, `delete`, `id_men`
 (9, 1, 1, 1, 1, 9, 1),
 (10, 1, 1, 1, 1, 10, 1),
 (11, 1, 1, 1, 1, 11, 1),
-(12, 1, 1, 1, 1, 1, 2),
-(13, 1, 1, 1, 1, 2, 2);
+(12, 1, 1, 1, 1, 12, 8),
+(14, 0, 0, 0, 0, 1, 8),
+(15, 1, 1, 1, 1, 13, 1);
 
 -- --------------------------------------------------------
 
@@ -297,6 +317,9 @@ CREATE TABLE `personal` (
   `nro_cuenta` int(16) NOT NULL,
   `afiliacion` varchar(16) NOT NULL,
   `tipo_personal` varchar(20) NOT NULL,
+  `area_trabajo` varchar(45) NOT NULL,
+  `unidad` varchar(45) NOT NULL,
+  `tiempo_puesto` int(11) NOT NULL,
   `estado` varchar(16) NOT NULL,
   `estado_registro` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -305,23 +328,12 @@ CREATE TABLE `personal` (
 -- Volcado de datos para la tabla `personal`
 --
 
-INSERT INTO `personal` (`id`, `imagen`, `grado`, `arma`, `apellido_pat`, `apellido_mat`, `nombres`, `estado_civ`, `anios_serv`, `grado_instruc`, `religion`, `fec_ultimo_asc`, `depart_nac`, `provinc_nac`, `distrito_nac`, `fecha_nac`, `edad`, `depart_viv`, `provinc_viv`, `distrito_viv`, `urbaniz_viv`, `calle_viv`, `telefono`, `operador`, `correo`, `cip`, `dni`, `pasaporte`, `brevete`, `talla`, `peso`, `grupo_sang`, `sexo`, `talla_camisa`, `talla_pantalon`, `talla_calzado`, `talla_prenda`, `banco`, `nro_cuenta`, `afiliacion`, `tipo_personal`, `estado`, `estado_registro`) VALUES
-(82, 'nombre_archivo5.jpg', 'asd', '123', '123', '123', 'VICTOR', '123', 123, '123', '123', '2020-04-22', '112', '12', '1', '2001-05-04', 12, '12', '123', '123', '123', '123', 123, '123', '123', 123, 123, '123', '123', 1.82, 123, '123', 'MASCULINO', '123', '123', '123', '123', '123', 123, '123', 'MILITAR', '0', 0),
-(83, 'nombre_archivo5.jpg', 'GRAL DIV EP', 'ARTILLERIA', '1', '1', '1', 'SOLTERO', 0, 'SECUNDARIA', '1', '2020-12-31', 'APURIMAC', 'ABANCAY', 'ABANCAY', '0000-00-00', 1, 'AMAZONAS', 'BAGUA', 'ARAMANGO', '1', '1', 1, '1', '1@GMAIL.COM', 1, 1, '1', 'A-II-B', 1, 1, 'A+', 'MASCULINO', 'S', '30', '35', '52', '1', 123, 'ONP', 'MILITAR', '1', 1),
-(84, 'nombre_archivo6.jpg', 'CAP EP', 'MATERIAL DEFENSA', 'GALVEZÑÑÑ', 'CHAVEZ', 'VICTOR', 'SOLTERO', 25, 'SUPERIOR', 'NO TIENE', '1997-01-14', 'AMAZONAS', 'BAGUA', 'ARAMANGO', '0000-00-00', 0, 'AMAZONAS', 'BAGUA', 'ARAMANGO', 'MIRAFLORES', 'VILLA', 958560996, 'BITEL', 'VICTOR.GALVEZ56@GMAIL.COM', 115955050, 77127600, 'NO', 'NO TIENE', 1.82, 72.5, 'A+', 'MASCULINO', 'M', '30', '35', '52', 'BCP', 2147483647, 'AFP', 'MILITAR', '1', 1),
-(85, 'nombre_archivo7.jpg', 'GRAL DIV EP', 'ARTILLERIA', '1', '1', '1', 'SOLTERO', 1, 'PRIMARIA', 'NO TIENE', '1997-01-10', 'AMAZONAS', 'BAGUA', 'ARAMANGO', '0000-00-00', 1, 'AMAZONAS', 'BAGUA', 'ARAMANGO', '1', '1', 11, 'ENTEL', '1@GMAIL.COM', 1, 1, '1', 'NO TIENE', 1, 1, 'AB-', 'MASCULINO', 'M', '30', '35', '52', '12', 1, 'AFP', 'MILITAR', '1', 1),
-(86, 'nombre_archivo9.jpg', 'GRAL DIV EP', 'ARTILLERIA', '1', '1', '1', 'SOLTERO', 1, 'PRIMARIA', 'NO TIENE', '1111-11-11', 'ANCASH', 'ASUNCION', 'ACOCHACA', '1997-01-14', 0, 'LORETO', 'LORETO', 'TIGRE', '1', '1', 1, 'BITEL', '11@GMAIL.COM', 123123, 123, '123', 'A-I', 123, 123, 'B+', 'FEMENINO', 'L', '32', '47', '55', 'BANCO DE LA NACION', 2147483647, 'AFP', 'MILITAR', '1', 1),
-(87, 'nombre_archivo10.jpg', 'GRAL DIV EP', 'ARTILLERIA', '1', '1', '1', 'SOLTERO', 1, 'PRIMARIA', 'NO TIENE', '1111-11-11', 'AREQUIPA', 'CASTILLA', 'CHILCAYMARCA', '1997-01-14', 0, 'MOQUEGUA', 'ILO', 'PACOCHA', '1', '1', 1, 'BITEL', '11@GMAIL.COM', 123123, 123, '123', 'A-I', 123, 123, 'B+', 'FEMENINO', 'L', '32', '47', '55', 'BANCO DE LA NACION', 2147483647, 'AFP', 'MILITAR', '1', 1),
-(88, 'nombre_archivo14.jpg', 'GRAL DIV EP', 'ARTILLERIA', '1', '1', '1', 'SOLTERO', 1, 'PRIMARIA', 'NO TIENE', '1111-11-11', 'LORETO', 'MAYNAS', 'TORRES', '1997-01-14', 0, 'AYACUCHO', 'LUCANAS', 'CHAVIQA', '1', '1', 1, 'ENTEL', '11@GMAIL.COM', 123123, 123, '123', 'A-I', 123, 123, 'B+', 'FEMENINO', 'L', '32', '47', '55', 'BANCO DE LA NACION', 2147483647, 'AFP', 'MILITAR', '1', 1),
-(89, 'nombre_archivo15.jpg', 'GRAL DIV EP', 'ARTILLERIA', '1', '1', '1', 'SOLTERO', 1, 'PRIMARIA', 'NO TIENE', '2020-12-31', 'APURIMAC', 'ABANCAY', 'ABANCAY', '1997-01-14', 0, 'AMAZONAS', 'BAGUA', 'ARAMANGO', '1', '1', 1, 'ENTEL', '1@GMAIL.COM', 1, 1, '1', 'NO TIENE', 1, 1, 'A-', 'MASCULINO', 'S', '30', '35', '52', 'BANCO DE LA NACION', 123, 'AFP', 'MILITAR', '1', 1),
-(90, 'nombre_archivo16.jpg', 'CSAE', 'ARTESANO', '123', '123', '1', 'DIVORCIADO', 1, 'PRIMARIA', 'NO TIENE', '2020-12-31', 'AMAZONAS', 'BAGUA', 'ARAMANGO', '1997-01-14', 0, 'AMAZONAS', 'BAGUA', 'ARAMANGO', '1', '1', 0, 'ENTEL', '1@GMAIL.COM', 1, 1, 'NO', 'NO TIENE', 123, 123, 'A-', 'MASCULINO', 'S', '32', '35', '52', '1', 1, 'CIVIL', '', '1', 1),
-(91, 'nombre_archivo17.jpg', 'CSAE', 'ARTESANO', '1', '123', '1', 'DIVORCIADO', 1, 'PRIMARIA', 'NO TIENE', '2020-12-31', 'AMAZONAS', 'BAGUA', 'ARAMANGO', '1997-01-14', 0, 'AMAZONAS', 'BAGUA', 'ARAMANGO', '123', '123', 1, 'ENTEL', '1@GMAIL.COM', 1, 11, '1', 'NO TIENE', 1, 11, 'A+', 'MASCULINO', 'XL', '30', '35', '52', 'BANCO INTERBANK', 1, 'AFP', 'CIVIL', '1', 1),
-(92, 'nombre_archivo18.jpg', 'CRL EP', 'COMUNICACIONES', 'GALVEZ ', 'CHAVEZ', 'VICTOR', 'SOLTERO', 1, 'PRIMARIA', 'NO TIENE', '1997-01-14', 'AMAZONAS', 'BAGUA', 'ARAMANGO', '1997-01-14', 0, 'HUANCAVELICA', 'CASTROVIRREYNA', 'CHUPAMARCA', '123', '123', 958506696, 'ENTEL', 'VICTOR.GALVEZ@GMAIL.XN--COM-9MA', 1512914, 15219151, '111111111', 'A-II-A', 1.85, 72, 'A+', 'MASCULINO', 'S', '30', '35', '52', 'BANCO SCOTIABANK', 22222, 'CIVIL', '', '1', 1),
-(93, 'nombre_archivo19.jpg', 'MY EP', 'CABALLERIA', '132', '13', '21', 'DIVORCIADO', 12, 'SECUNDARIA', 'CATOLICA', '1111-11-11', 'PUNO', 'YUNGUYO', 'ANAPIA', '1997-01-14', 0, 'ANCASH', 'AIJA', 'CORIS', '123', '123', 123, 'MOVISTAR', '123@GMAIL.COM', 123, 123, '123', 'A-I', 123, 123, 'A+', 'FEMENINO', 'S', '30', '35', '52', 'BANCO SCOTIABANK', 123123, 'CIVIL', '', '1', 1),
-(94, 'nombre_archivo20.jpg', 'GRAL BRIG EP', 'INTELIGENCIA', 'GAAA', 'AAAAGAAAAAAA', 'GAAAA', 'CASADO', 123, 'PRIMARIA', 'CATOLICA', '1111-11-11', 'APURIMAC', 'ANTABAMBA', 'EL', '1989-01-14', 0, 'PASCO', 'OXAPAMPA', 'CHONTABAMBA', '123', '123', 123, 'ENTEL', '123@GMAIL.COM', 123, 123, '123', 'A-I', 123, 123, 'A-', 'FEMENINO', 'M', '30', '36', '54', '123', 123, 'CIVIL', '', '1', 1),
-(95, 'nombre_archivo21.jpg', 'GRAL DIV EP', 'CABALLERIA', 'QQQQQQQ', 'Q', 'Q', 'SOLTERO', 12, 'SECUNDARIA', 'CRISTIANISMO', '1111-11-11', 'AMAZONAS', 'BAGUA', 'ARAMANGO', '1997-01-14', 0, 'AMAZONAS', 'BAGUA', 'ARAMANGO', '123', '123', 123, 'ENTEL', '123@GMAIL.COM', 123, 123, '123', 'NO TIENE', 123, 123, 'A+', 'MASCULINO', 'S', '30', '35', '52', '123', 123, 'CIVIL', '', '1', 1),
-(96, 'nombre_archivo22.jpg', 'GRAL BRIG EP', 'COMUNICACIONES', '123', '123', '123', 'DIVORCIADO', 123, 'SECUNDARIA', 'NO TIENE', '0997-01-14', 'AMAZONAS', 'BAGUA', 'ARAMANGO', '1997-01-14', 0, 'AMAZONAS', 'BAGUA', 'ARAMANGO', '123', '123', 123, 'ENTEL', '123@GMAIL.COM', 123, 123, '1', 'NO TIENE', 1, 1, 'A+', 'MASCULINO', 'S', '30', '35', '52', '123', 123, 'CIVIL', '', '1', 1),
-(97, 'nombre_archivo23.jpg', 'TTE CRL EP', 'INTELIGENCIA', '123', '123', '123', 'DIVORCIADO', 123, 'SECUNDARIA', 'CRISTIANISMO', '1111-11-11', 'AMAZONAS', 'BAGUA', 'ARAMANGO', '1997-01-14', 0, 'MADRE', 'MORROPON', 'CHULUCANAS', '123', '123', 123, 'CLARO', '123@GMAIL.COM', 1, 1, '1', 'NO TIENE', 123, 123, 'A+', 'FEMENINO', 'S', '30', '35', '52', '123', 123, 'CIVIL', '', '1', 1);
+INSERT INTO `personal` (`id`, `imagen`, `grado`, `arma`, `apellido_pat`, `apellido_mat`, `nombres`, `estado_civ`, `anios_serv`, `grado_instruc`, `religion`, `fec_ultimo_asc`, `depart_nac`, `provinc_nac`, `distrito_nac`, `fecha_nac`, `edad`, `depart_viv`, `provinc_viv`, `distrito_viv`, `urbaniz_viv`, `calle_viv`, `telefono`, `operador`, `correo`, `cip`, `dni`, `pasaporte`, `brevete`, `talla`, `peso`, `grupo_sang`, `sexo`, `talla_camisa`, `talla_pantalon`, `talla_calzado`, `talla_prenda`, `banco`, `nro_cuenta`, `afiliacion`, `tipo_personal`, `area_trabajo`, `unidad`, `tiempo_puesto`, `estado`, `estado_registro`) VALUES
+(111, 'nombre_archivo37.jpg', 'GRAL DIV EP', 'COMUNICACIONES', 'XXXXXX', 'XXXXX', 'XXXX', 'SOLTERO', 23, 'SUPERIOR', 'MORMONISMO', '2020-02-15', '', '', '', '1997-01-14', 0, 'APURIMAC', 'AYMARAES', 'COTARUSE', 'XXXX', 'XXXXX', 0, 'ENTEL', 'X@GMAIL.COM', 115955050, 77127600, 'NO', 'NO TIENE', 1.82, 74, 'A+', 'MASCULINO', 'L', '30', '35', '52', 'BANCO DE CREDITO DEL PERU', 2147483647, 'AFP', 'MILITAR', '', '', 0, '0', 1),
+(112, 'nombre_archivo38.jpg', 'MY EP', 'ADMINISTRACION PERSONAL', 'GAMES', 'GORDON', 'GOLIAT', 'CASADO', 1, 'PRIMARIA', 'CATOLICA', '1997-01-14', 'ANCASH', 'ASUNCION', 'CHACAS', '1997-01-14', 0, 'PASCO', 'OXAPAMPA', 'OXAPAMPA', 'GA', 'GA', 123, 'ENTEL', 'GA@GMAIL.COM', 115955050, 77127600, 'XXXX', 'NO TIENE', 1.82, 72.5, 'A+', 'MASCULINO', 'S', '30', '35', '52', 'BANCO DE CREDITO DEL PERU', 2147483647, 'AFP', 'MILITAR', '', '', 0, '1', 1),
+(113, 'nombre_archivo39.jpg', 'GRAL BRIG EP', 'INTELIGENCIA', '123', '123', '123', 'CASADO', 123, 'PRIMARIA', 'NO TIENE', '1111-11-11', '', '', '', '1997-01-14', 0, '', '', '', '123', '123', 123, 'BITEL', '123@GMAIL.COM', 123, 123, '123', 'A-I', 123, 123, 'B-', 'FEMENINO', 'M', '32', '48', '54', 'BANCO DEL COMERCIO', 123, 'ONP', 'MILITAR', '', '', 0, '1', 1),
+(114, 'nombre_archivo40.jpg', 'GRAL BRIG EP', 'INTELIGENCIA', '123', '123', '123', 'CASADO', 123, 'PRIMARIA', 'NO TIENE', '1111-11-11', '', '', '', '1997-01-14', 0, '', '', '', '123', '123', 123, 'BITEL', '123@GMAIL.COM', 123, 123, '123', 'A-I', 123, 123, 'B-', 'FEMENINO', 'M', '32', '48', '54', 'BANCO DEL COMERCIO', 123, 'ONP', 'MILITAR', '', '', 0, '1', 1),
+(115, 'nombre_archivo3.png', 'GRAL DIV EP', 'ARTILLERIA', 'GALVEZ', 'CHAVEZ', 'VICTOR', 'SOLTERO', 23, 'PRIMARIA', 'NO TIENE', '1997-12-01', 'LORETO', 'LORETO', 'TROMPETEROS', '1997-01-14', 0, 'APURIMAC', 'ABANCAY', 'ABANCAY', '123', '123', 123, 'BITEL', '123@GMAIL.COM', 115955050, 77127600, 'NO', 'NO TIENE', 1.82, 72.5, 'A+', 'MASCULINO', 'M', '30', '35', '52', 'BANCO DE CREDITO DEL PERU', 2147483647, 'AFP', 'MILITAR', '', '', 0, '0', 1);
 
 -- --------------------------------------------------------
 
@@ -347,9 +359,9 @@ CREATE TABLE `registro_anual` (
 --
 
 INSERT INTO `registro_anual` (`id`, `fecha`, `personal_id`, `presion`, `medicina`, `edad`, `talla`, `peso`, `peri_abdominal`, `estado`) VALUES
-(8, '2020-04-28 21:47:46', 82, 'GAAAA', 'GAAA', 23, 1.2, 2.2, 2.3, 1),
+(8, '2020-04-28 21:47:46', 111, 'GAAAA', 'GAAA', 23, 1.2, 2.2, 2.3, 1),
 (9, '2020-04-28 21:49:34', 82, 'faaa', 'faaa', 23, 123, 123, 123, 1),
-(10, '2020-04-28 22:50:28', 82, 'NO', 'NO', 23, 1.82, 72.9, 89, 1),
+(10, '2020-04-28 22:50:28', 111, 'NO', 'NO', 23, 1.82, 72.9, 89, 1),
 (11, '2020-05-02 01:52:26', 82, '123', '123', 23, 1.26, 5.6, 2.6, 0),
 (12, '2020-05-02 02:16:49', 82, 'gaa', 'gaaaa', 23, 1.2, 2.2, 2.3, 0),
 (13, '2020-05-02 02:17:53', 82, 'sss', 'ssss', 23, 123, 123, 123, 0),
@@ -384,8 +396,8 @@ CREATE TABLE `registro_mensual` (
 --
 
 INSERT INTO `registro_mensual` (`id`, `fecha`, `personal_id`, `pres_sis`, `pres_dia`, `pulso`, `valoracion`, `medico`, `peso`, `perimetro`, `imc`, `clasi_imc`, `clasi_peri`, `fecha_registro`, `estado`) VALUES
-(4, '2020-04-28 21:39:15', 82, 152, 95, 123, 'HIPERTENSIÓN 1', 'Zerito', '8888888', '1', '2683518.90', 'SOBREPESO', 'BAJO', '2020-01-05', 0),
-(5, '2020-04-28 21:55:53', 82, 158, 98, 1, 'HIPERTENSIÓN 1', 'Zerito', '1', '1', '0.30', 'SOBREPESO', 'BAJO', '2020-02-18', 0),
+(4, '2020-04-28 21:39:15', 111, 152, 95, 123, 'HIPERTENSIÓN 1', 'Zerito', '8888888', '1', '2683518.90', 'SOBREPESO', 'BAJO', '2020-04-05', 1),
+(5, '2020-04-28 21:55:53', 111, 158, 98, 1, 'HIPERTENSIÓN 1', 'Zerito', '1', '1', '0.30', 'SOBREPESO', 'BAJO', '2020-02-18', 1),
 (6, '2020-04-28 22:28:19', 82, 125, 12, 123, 'PRE-HIPERTENSION', 'Zerito', '74', '123', '22.34', 'SOBREPESO', 'MUY ALTO', '2020-03-12', 0),
 (7, '2020-04-28 22:49:05', 82, 123, 123, 123, 'PRE-HIPERTENSION', 'Zerito', '1123', '123', '339.03', 'SOBREPESO', 'MUY ALTOM', '2020-04-25', 0),
 (8, '2020-05-01 00:47:25', 82, 180, 220, 122, 'CRISIS DE HIPERTENSIÓN', 'Elvis Bustamante', '72', '123', '21.74', ' SOBREPESO', 'MUY ALTO', '2020-05-25', 0),
@@ -416,7 +428,7 @@ CREATE TABLE `registro_sanitario` (
 --
 
 INSERT INTO `registro_sanitario` (`id`, `personal_id`, `fecha`, `alergias`, `estado`) VALUES
-(67, 82, '2020-04-28 16:15:27', 'NO', 0),
+(67, 111, '2020-04-28 16:15:27', 'xxxxxxx', 1),
 (68, 82, '2020-04-28 16:19:49', 'NO', 0),
 (69, 82, '2020-04-28 19:17:34', 'NO', 0),
 (70, 82, '2020-04-28 21:00:42', 'NO', 0),
@@ -462,6 +474,7 @@ INSERT INTO `roles` (`id_rol`, `nombre_rol`, `descripcion_rol`) VALUES
 
 CREATE TABLE `usuarios` (
   `id_usu` int(11) NOT NULL,
+  `dni_usu` int(8) NOT NULL,
   `nombres_usu` varchar(100) DEFAULT NULL,
   `apellidos_usu` varchar(100) DEFAULT NULL,
   `telefono` varchar(20) DEFAULT NULL,
@@ -476,23 +489,9 @@ CREATE TABLE `usuarios` (
 -- Volcado de datos para la tabla `usuarios`
 --
 
-INSERT INTO `usuarios` (`id_usu`, `nombres_usu`, `apellidos_usu`, `telefono`, `email`, `username`, `password`, `id_rol`, `estado_usu`) VALUES
-(1, 'Elvis Bustamante', 'Apaza', '', '', 'turbo', '123', 1, 1),
-(2, 'Zerito', 'Rosales', '983304363', 'zer0_su_tk@hotmail.com', 'ga', 'ga', 1, 1),
-(3, 'Deek', 'Calderon', NULL, NULL, 'deek', '123', 3, 0),
-(4, 'Kato', NULL, NULL, NULL, 'kato', '123', 3, 0),
-(5, 'asdasdas', 'asdasdasd', 'asdasd', 'asdasdasd', 'asdasdasd', 'asdadasd', 3, 0),
-(6, '', '', '', '', '', '', 1, 0),
-(7, 'gaaaaa', 'gaaaa', 'gaaaaa', 'DASDAS', 'ASDASD', 'gaaaa', 1, 1),
-(8, 'VICTOR ', 'GALVEZ', '958560996', 'victor.galvez56@gmail.com', 'victorgalvez56@GMAIL.COM', '1', 2, 1),
-(9, 'Victor ', 'Galvez', '958560996', 'victor.galvez56@gmail.com', 'victorgalvez56gmailcom', 'cb4154596b441ebe8deb40ccaceaf9befc55b0df', 1, 0),
-(10, 'ga', 'ga', '', 'ga@gmail.com', 'ga', '72b6ef474440c54744701b2768de8799f59fa98b', 1, 0),
-(11, '', '', '', '', '', 'da39a3ee5e6b4b0d3255bfef95601890afd80709', 1, 0),
-(12, '', '', '', '', '', 'da39a3ee5e6b4b0d3255bfef95601890afd80709', 1, 0),
-(13, '', '', '', '', '', 'da39a3ee5e6b4b0d3255bfef95601890afd80709', 1, 0),
-(14, 'Victor ', 'Galvez', '958560996', '11@gmail.com', '', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', 1, 0),
-(15, '', '', '', '', '', 'da39a3ee5e6b4b0d3255bfef95601890afd80709', 1, 0),
-(16, '', '', '', '', '', 'da39a3ee5e6b4b0d3255bfef95601890afd80709', 1, 0);
+INSERT INTO `usuarios` (`id_usu`, `dni_usu`, `nombres_usu`, `apellidos_usu`, `telefono`, `email`, `username`, `password`, `id_rol`, `estado_usu`) VALUES
+(1, 12345678, 'Elvis Bustamante', 'Apaza', '958560996', 'victor.galvez56@gmail.com', 'administrador', 'ac6c15e9d87b2c1187ae20b35f1805c077bdbbaf', 1, 1),
+(17, 77127600, 'Usuario', 'galvez', '958560996', 'victor.galvez@gmail.com', 'usuario', '9dbf7c1488382487931d10235fc84a74bff5d2f4', 8, 1);
 
 -- --------------------------------------------------------
 
@@ -527,17 +526,12 @@ INSERT INTO `vehiculos` (`id`, `n_placa`, `n_serie`, `n_vin`, `n_motor`, `n_colo
 (9, 'asd', 'asd', 'asd', 'asd', 'asd', 'asd', 'asd', 'asd', 'asd', 'asdasdasd', 'AREQUIPA', 82, 1),
 (10, 'asd', 'asd', 'asd', 'asd', 'asd', 'asd', 'asd', 'asd', 'asd', 'asd', 'AREQUIPA', 84, 1),
 (11, 'X1', 'X2', 'X3', 'X4', 'BLANCO', 'X5', 'X6', 'X7', 'X8', 'X9', 'AREQUIPA', 84, 1),
-(12, 'PLACA', 'SERIE', 'VIN', 'MOTOR', 'COLOR', 'MARCA', 'MODELO', 'PLACA VIGENTE', 'PLACA ANTERIOR', 'ANOTACIONES', 'AREQUIPA', 82, 1);
+(12, 'xx', 'xxxx', 'XXXX', 'XXXX', 'XXXX', 'XXXX', 'MODELOXXX', 'PLACA VIGENTE', 'PLACA ANTERIOR', 'XXXX', 'AREQUIPA', 111, 1),
+(18, 'PLACAXXX', 'XXXSERIE', 'VINXXX', 'MOTO', 'XXXXCOLOR', 'MARCA', 'MODELO', 'PLACA VIGENTE', 'PLACA ANTERIOR', 'ANOTACIONES', 'AREQUIPA', 111, 1);
 
 --
 -- Índices para tablas volcadas
 --
-
---
--- Indices de la tabla `contacto`
---
-ALTER TABLE `contacto`
-  ADD PRIMARY KEY (`id`);
 
 --
 -- Indices de la tabla `detalle_estudios`
@@ -640,58 +634,52 @@ ALTER TABLE `vehiculos`
 --
 
 --
--- AUTO_INCREMENT de la tabla `contacto`
---
-ALTER TABLE `contacto`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT de la tabla `detalle_estudios`
 --
 ALTER TABLE `detalle_estudios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT de la tabla `detalle_familiar`
 --
 ALTER TABLE `detalle_familiar`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT de la tabla `detalle_idioma`
 --
 ALTER TABLE `detalle_idioma`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
 
 --
 -- AUTO_INCREMENT de la tabla `detalle_seguro`
 --
 ALTER TABLE `detalle_seguro`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT de la tabla `detalle_viajes`
 --
 ALTER TABLE `detalle_viajes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT de la tabla `menus`
 --
 ALTER TABLE `menus`
-  MODIFY `id_men` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id_men` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT de la tabla `permisos`
 --
 ALTER TABLE `permisos`
-  MODIFY `id_per` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id_per` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT de la tabla `personal`
 --
 ALTER TABLE `personal`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=98;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=116;
 
 --
 -- AUTO_INCREMENT de la tabla `registro_anual`
@@ -721,13 +709,13 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id_usu` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id_usu` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT de la tabla `vehiculos`
 --
 ALTER TABLE `vehiculos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- Restricciones para tablas volcadas

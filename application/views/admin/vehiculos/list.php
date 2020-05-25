@@ -33,10 +33,6 @@
                                     <th>Color</th>
                                     <th>Marca</th>
                                     <th>Modelo</th>
-                                    <th>Placa Vigente</th>
-                                    <th>Placa Anterior</th>
-                                    <th>Anotaciones</th>
-                                    <th>Sede</th>
                                     <th>opciones</th>
                                 </tr>
                             </thead>
@@ -52,12 +48,12 @@
                                             <td><?php echo $vehiculo->n_color; ?></td>
                                             <td><?php echo $vehiculo->marca; ?></td>
                                             <td><?php echo $vehiculo->modelo; ?></td>
-                                            <td><?php echo $vehiculo->placa_vigente; ?></td>
-                                            <td><?php echo $vehiculo->placa_anterior; ?></td>
-                                            <td><?php echo $vehiculo->anotaciones; ?></td>
                                             <td>
                                                 <div class="btn-group">
                                                     <button type="button" class="btn btn-info btn-view-vehiculo" value="<?php echo $vehiculo->id; ?>" data-toggle="modal" data-target="#modal-default"><span class="fa fa-search"></span></button>
+                                                    <?php if ($permisos->update == 1) : ?>
+                                                        <a href="<?php echo base_url() ?>control/vehiculos/edit/<?php echo $vehiculo->id; ?>" class="btn btn-warning"><span class="fa fa-pencil"></span></a>
+                                                    <?php endif; ?>
                                                     <?php if ($permisos->delete == 1) : ?>
                                                         <a href="<?php echo base_url(); ?>control/vehiculos/delete/<?php echo $vehiculo->id; ?>" class="btn btn-danger btn-remove"><span class="fa fa-remove"></span></a>
                                                     <?php endif; ?>
