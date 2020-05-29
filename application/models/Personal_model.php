@@ -143,6 +143,35 @@ class Personal_model extends CI_Model
 		$this->db->where("id", $id);
 		return $this->db->update("personal", $data);
 	}
+
+
+
+	public function update_detalle_idioma($id,$data)
+	{
+		$this->db->where("id", $id);
+		return $this->db->update("detalle_idioma", $data);
+		$this->db->set("detalle_idioma", $data);
+	}
+	public function update_detalle_familiar($data)
+	{
+		$this->db->set("detalle_familiar", $data);
+	}
+
+	public function update_detalle_viaje($data)
+	{
+		$this->db->set("detalle_viajes", $data);
+	}
+
+	public function update_detalle_seguro($id,$data)
+	{
+		$this->db->where("id", $id);
+		return $this->db->update("detalle_seguro", $data);
+	}
+    	public function update_detalle_curso($data)
+	{
+		$this->db->set("detalle_estudios", $data);
+	}
+
 	public function lastID()
 	{
 		return $this->db->insert_id();

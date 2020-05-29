@@ -34,7 +34,7 @@
                                                     <div class="form-group">
                                                         <label for="imagen">Foto Personal:</label>
                                                         <span class="btn btn-default btn-file">
-                                                            Subir Foto <input type="file" name="upload" id="fichero">
+                                                            Subir Foto <input type="file"  value="<?php echo $personal_militar->imagen; ?>" name="upload" class="form-control" id="fichero">
                                                         </span>
                                                         <img id="imgenPerfil" src="<?php echo base_url(); ?>/uploads/<?php echo $personal_militar->imagen; ?>" style="width:150px;">
                                                     </div>
@@ -714,13 +714,13 @@
                                                     <tbody>
                                                         <?php foreach ($detalleSeguro as $seguro) : ?>
                                                             <tr>
-                                                                <td><input type='text' value="<?php echo $seguro->seguro; ?>" class='form-control' id='curso' name='seguro[]' style='text-transform: uppercase;' required></td>
-                                                                <td><select class='form-control form-control' id='tipo_seguro' name='tipo_seguro[]'>
+                                                                <td><input type="text" value="<?php echo $seguro->seguro; ?>" class="form-control" id="curso" name="seguro[]" style="text-transform: uppercase;" required></td>
+                                                                <td><select class="form-control form-control" id="tipo_seguro" name="tipo_seguro[]">
                                                                         <option value="<?php echo $seguro->tipo_seguro; ?>" selected><?php echo $seguro->tipo_seguro; ?></option>
-                                                                        <option value='MILITAR'>MILITAR</option>
-                                                                        <option value='CIVIL'>CIVIL</option>
+                                                                        <option value="MILITAR">MILITAR</option>
+                                                                        <option value="CIVIL">CIVIL</option>
                                                                     </select></td>
-                                                                <td><button type='button' class='btn btn-danger btn-remove-seguro'><span class='fa fa-remove'></span></button></td>
+                                                                <td><button type="button" class="btn btn-danger btn-remove-seguro"><span class="fa fa-remove"></span></button></td>
                                                             </tr>
                                                         <?php endforeach; ?>
                                                     </tbody>

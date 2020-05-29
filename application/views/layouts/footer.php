@@ -49,6 +49,59 @@
 <script>
   console.log('Prueba que carga bien el script')
 
+
+  $(document).on('change', 'input[type="file"]', function() {
+    // this.files[0].size recupera el tamaño del archivo
+    // alert(this.files[0].size);
+
+    var fileName = this.files[0].name;
+    var fileSize = this.files[0].size;
+
+    if (fileSize > 500000) {
+      alert('El archivo no debe superar los 500B');
+      this.value = '';
+      $('#imgenPerfil').attr('src', '');
+      this.files[0].name = '';
+    } else {
+      // recuperamos la extensión del archivo
+      var ext = fileName.split('.').pop();
+
+      // Convertimos en minúscula porque 
+      // la extensión del archivo puede estar en mayúscula
+      ext = ext.toLowerCase();
+
+      // console.log(ext);
+      switch (ext) {
+        case 'jpg':verImagen(this)
+        case 'jpeg':verImagen(this)
+        case 'png': verImagen(this)
+          break;
+        default:
+          alert('El archivo no tiene la extensión adecuada');
+          $('#imgenPerfil').attr('src', '');
+          this.value = ''; // reset del valor
+          this.files[0].name = '';
+      }
+    }
+    // Vista preliminar de la imagen.
+    function verImagen(datos) {
+
+      if (datos.files && datos.files[0]) {
+
+        var reader = new FileReader();
+        reader.onload = function(e) {
+          $('#imgenPerfil').attr('src', e.target.result);
+        };
+
+        reader.readAsDataURL(datos.files[0]);
+      }
+    }
+  });
+
+
+
+
+
   $(document).on("keyup", 'input[type="text"]', function() {
     if (!/^[ /.@ña-z0-9]*$/i.test(this.value)) {
       this.value = this.value.replace(/[^ /.@ña-z0-9]+/ig, "");
@@ -56,16 +109,16 @@
   })
 
   $(document).ready(function() {
-    $('#xreporteCaja').DataTable( {
-        dom: 'Bfrtip',
-        buttons: [
-            'copyHtml5',
-            'excelHtml5',
-            'csvHtml5',
-            'pdfHtml5'
-        ]
-    } );
-} );
+    $('#xreporteCaja').DataTable({
+      dom: 'Bfrtip',
+      buttons: [
+        'copyHtml5',
+        'excelHtml5',
+        'csvHtml5',
+        'pdfHtml5'
+      ]
+    });
+  });
 
 
   $(document).on("click", ".btn-print", function() {
@@ -160,7 +213,7 @@
         $("#modal-default .modal-body").html(data);
         const barcodevehiculo = $("#dniBarcodevehiculos").val()
 
-        console.log( barcodevehiculo)
+        console.log(barcodevehiculo)
         $("#barcode").JsBarcode(String(barcodevehiculo), {
           width: 2,
           height: 100,
@@ -1764,73 +1817,6 @@
   });
 
 
-  $(document).ready(function() {
-
-    var extensionesValidas = ".png, .gif, .jpeg, .jpg";
-    var pesoPermitido = 1024;
-
-    // Cuando cambie #fichero
-    $("#fichero").change(function() {
-
-      $('#img').attr('src', '');
-
-      if (validarExtension(this)) {
-
-        if (validarPeso(this)) {
-          verImagen(this);
-        }
-      }
-    });
-
-    // Validacion de extensiones permitidas
-
-    function validarExtension(datos) {
-
-      var ruta = datos.value;
-      var extension = ruta.substring(ruta.lastIndexOf('.') + 1).toLowerCase();
-      var extensionValida = extensionesValidas.indexOf(extension);
-
-      if (extensionValida < 0) {
-        $(".firstStep").append("<div class='alert alert-danger alert-dismissible'> <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button><p><i class='icon fa fa-ban'></i>La extensión no es válida,use una imagen. Su fichero tiene de extensión:" + extension + "</p></div>");
-        return false;
-      } else {
-        return true;
-      }
-    }
-
-    // Validacion de peso del fichero en kbs
-
-    function validarPeso(datos) {
-
-      if (datos.files && datos.files[0]) {
-
-        var pesoFichero = datos.files[0].size / 1024;
-
-        if (pesoFichero > pesoPermitido) {
-          $(".firstStep").append("<div class='alert alert-danger alert-dismissible'> <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button><p><i class='icon fa fa-ban'></i>El peso maximo permitido del fichero es:" + pesoPermitido + " KBs Su fichero tiene: " + pesoFichero + " KBs</p></div>");
-
-          $('#firstStep').text('El peso maximo permitido del fichero es: ' + pesoPermitido + ' KBs Su fichero tiene: ' + pesoFichero + ' KBs');
-          return false;
-        } else {
-          return true;
-        }
-      }
-    }
-
-    // Vista preliminar de la imagen.
-    function verImagen(datos) {
-
-      if (datos.files && datos.files[0]) {
-
-        var reader = new FileReader();
-        reader.onload = function(e) {
-          $('#imgenPerfil').attr('src', e.target.result);
-        };
-
-        reader.readAsDataURL(datos.files[0]);
-      }
-    }
-  });
 
 
   /* Jquery para departamento, provincia y distrito vivienda.*/

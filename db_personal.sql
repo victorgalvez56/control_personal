@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 25-05-2020 a las 08:31:52
+-- Tiempo de generación: 29-05-2020 a las 06:25:11
 -- Versión del servidor: 10.4.11-MariaDB
 -- Versión de PHP: 7.4.5
 
@@ -52,7 +52,10 @@ INSERT INTO `detalle_estudios` (`id`, `personal_id`, `curso`, `tipo_curso`, `est
 (18, 113, 'BBB', 'MILITAR', 1),
 (19, 114, 'AAAA', 'EXTRACASTRENCE', 1),
 (20, 114, 'BBB', 'MILITAR', 1),
-(21, 115, 'PS', 'MILITAR', 1);
+(21, 115, 'PS', 'MILITAR', 1),
+(22, 116, 'APRENDO EN CASA', 'EXTRACASTRENCE', 1),
+(23, 117, 'APRENDO EN CASA', 'EXTRACASTRENCE', 1),
+(24, 118, 'APRENDO EN CASA', 'EXTRACASTRENCE', 1);
 
 -- --------------------------------------------------------
 
@@ -95,7 +98,10 @@ INSERT INTO `detalle_familiar` (`id`, `personal_id`, `nombre_fam`, `parentesco_f
 (21, 113, 0, 'PADRE', 123, 'San', '1997-01-14', 123123, 123123, 123123, 'O+', 'PRIMARIA'),
 (22, 114, 0, 'PADRE', 18, 'Amazonas', '1997-01-14', 1155595050, 552, 59292, 'A+', 'PRIMARIA'),
 (23, 114, 0, 'PADRE', 123, 'San', '1997-01-14', 123123, 123123, 123123, 'O+', 'PRIMARIA'),
-(24, 115, 0, 'PADRE', 18, 'Ayacucho', '1997-01-14', 115955050, 77127600, 958560996, 'A+', 'PRIMARIA');
+(24, 115, 0, 'PADRE', 18, 'Ayacucho', '1997-01-14', 115955050, 77127600, 958560996, 'A+', 'PRIMARIA'),
+(25, 116, 0, 'PADRE', 18, 'Piura', '2001-05-04', 115955051, 18181818, 958560996, 'A+', 'PRIMARIA'),
+(26, 117, 0, 'PADRE', 18, 'Piura', '2001-05-04', 115955051, 18181818, 958560996, 'A+', 'PRIMARIA'),
+(27, 118, 0, 'PADRE', 18, 'Piura', '2001-05-04', 115955051, 18181818, 958560996, 'A+', 'PRIMARIA');
 
 -- --------------------------------------------------------
 
@@ -135,7 +141,10 @@ INSERT INTO `detalle_idioma` (`id`, `personal_id`, `idioma`, `habla`, `lee`, `es
 (53, 113, 'GT', 'B', 'B', 'R', 'ESTUDIO', 'SI'),
 (54, 114, 'GA', 'GA', 'B', 'B', 'ESTUDIO', 'SI'),
 (55, 114, 'GT', 'GT', 'B', 'R', 'ESTUDIO', 'SI'),
-(56, 115, 'INGLES', 'R', 'B', 'M', 'ESTUDIO', 'SI');
+(56, 115, 'INGLES', 'R', 'B', 'M', 'ESTUDIO', 'SI'),
+(57, 116, 'INGLES', 'B', 'B', 'B', 'ESTUDIO', 'SI'),
+(58, 117, 'INGLES', 'INGLES', 'B', 'B', 'ESTUDIO', 'SI'),
+(59, 118, 'INGLES', 'INGLES', 'B', 'B', 'ESTUDIO', 'SI');
 
 -- --------------------------------------------------------
 
@@ -167,7 +176,11 @@ INSERT INTO `detalle_seguro` (`id`, `personal_id`, `seguro`, `tipo_seguro`, `est
 (17, 113, 'GA', 'CIVIL', 1),
 (18, 114, 'AG', 'MILITAR', 1),
 (19, 114, 'GA', 'CIVIL', 1),
-(20, 115, 'SOCIAL', 'MILITAR', 1);
+(20, 115, 'SOCIAL', 'MILITAR', 1),
+(21, 116, 'XXXXXXXXXX', 'MILITAR', 1),
+(22, 117, 'ONCOSALUD', 'MILITAR', 1),
+(23, 118, 'ONCOSALUD', 'MILITAR', 1),
+(24, 116, 'ZZZZZZZZZZZ', 'MILITAR', 1);
 
 -- --------------------------------------------------------
 
@@ -200,7 +213,10 @@ INSERT INTO `detalle_viajes` (`id`, `lugar`, `personal_id`, `motivo`, `fecha`, `
 (22, 'AG', 113, 'AG', '1997-01-14', 1),
 (23, 'GA', 114, 'GA', '1997-01-14', 1),
 (24, 'AG', 114, 'AG', '1997-01-14', 1),
-(25, 'BRASIL', 115, 'TURISMO', '1997-01-14', 1);
+(25, 'BRASIL', 115, 'TURISMO', '1997-01-14', 1),
+(26, 'BRASIL', 116, 'TURISMO', '2020-12-04', 1),
+(27, 'BRASIL', 117, 'TURISMO', '2020-12-04', 1),
+(28, 'BRASIL', 118, 'TURISMO', '2020-12-04', 1);
 
 -- --------------------------------------------------------
 
@@ -333,7 +349,10 @@ INSERT INTO `personal` (`id`, `imagen`, `grado`, `arma`, `apellido_pat`, `apelli
 (112, 'nombre_archivo38.jpg', 'MY EP', 'ADMINISTRACION PERSONAL', 'GAMES', 'GORDON', 'GOLIAT', 'CASADO', 1, 'PRIMARIA', 'CATOLICA', '1997-01-14', 'ANCASH', 'ASUNCION', 'CHACAS', '1997-01-14', 0, 'PASCO', 'OXAPAMPA', 'OXAPAMPA', 'GA', 'GA', 123, 'ENTEL', 'GA@GMAIL.COM', 115955050, 77127600, 'XXXX', 'NO TIENE', 1.82, 72.5, 'A+', 'MASCULINO', 'S', '30', '35', '52', 'BANCO DE CREDITO DEL PERU', 2147483647, 'AFP', 'MILITAR', '', '', 0, '1', 1),
 (113, 'nombre_archivo39.jpg', 'GRAL BRIG EP', 'INTELIGENCIA', '123', '123', '123', 'CASADO', 123, 'PRIMARIA', 'NO TIENE', '1111-11-11', '', '', '', '1997-01-14', 0, '', '', '', '123', '123', 123, 'BITEL', '123@GMAIL.COM', 123, 123, '123', 'A-I', 123, 123, 'B-', 'FEMENINO', 'M', '32', '48', '54', 'BANCO DEL COMERCIO', 123, 'ONP', 'MILITAR', '', '', 0, '1', 1),
 (114, 'nombre_archivo40.jpg', 'GRAL BRIG EP', 'INTELIGENCIA', '123', '123', '123', 'CASADO', 123, 'PRIMARIA', 'NO TIENE', '1111-11-11', '', '', '', '1997-01-14', 0, '', '', '', '123', '123', 123, 'BITEL', '123@GMAIL.COM', 123, 123, '123', 'A-I', 123, 123, 'B-', 'FEMENINO', 'M', '32', '48', '54', 'BANCO DEL COMERCIO', 123, 'ONP', 'MILITAR', '', '', 0, '1', 1),
-(115, 'nombre_archivo3.png', 'GRAL DIV EP', 'ARTILLERIA', 'GALVEZ', 'CHAVEZ', 'VICTOR', 'SOLTERO', 23, 'PRIMARIA', 'NO TIENE', '1997-12-01', 'LORETO', 'LORETO', 'TROMPETEROS', '1997-01-14', 0, 'APURIMAC', 'ABANCAY', 'ABANCAY', '123', '123', 123, 'BITEL', '123@GMAIL.COM', 115955050, 77127600, 'NO', 'NO TIENE', 1.82, 72.5, 'A+', 'MASCULINO', 'M', '30', '35', '52', 'BANCO DE CREDITO DEL PERU', 2147483647, 'AFP', 'MILITAR', '', '', 0, '0', 1);
+(115, 'nombre_archivo3.png', 'GRAL DIV EP', 'ARTILLERIA', 'GALVEZ', 'CHAVEZ', 'VICTOR', 'SOLTERO', 23, 'PRIMARIA', 'NO TIENE', '1997-12-01', 'LORETO', 'LORETO', 'TROMPETEROS', '1997-01-14', 0, 'APURIMAC', 'ABANCAY', 'ABANCAY', '123', '123', 123, 'BITEL', '123@GMAIL.COM', 115955050, 77127600, 'NO', 'NO TIENE', 1.82, 72.5, 'A+', 'MASCULINO', 'M', '30', '35', '52', 'BANCO DE CREDITO DEL PERU', 2147483647, 'AFP', 'MILITAR', '', '', 0, '0', 1),
+(116, 'nombre_archivo', 'GRAL DIV EP', 'CABALLERIA', 'GALVEZ', 'CHAVEZ', 'VICTOR EDISON', 'SOLTERO', 0, 'SUPERIOR', 'NO TIENE', '2020-02-20', '', '', '', '1997-01-14', 0, 'AREQUIPA', 'CAMANA', 'MARIANO NICOLAS ', 'MIRAFLORES', 'VILLA', 958560996, 'ENTEL', 'VICTOR.GALVEZ56@GMAIL.COM', 115955050, 77127600, 'NO', 'NO TIENE', 1.82, 72.5, 'A+', 'MASCULINO', 'L', '34', '41', '59', 'BANCO DE CREDITO DEL PERU', 2147483647, 'AFP', 'MILITAR', '', '', 0, '1', 1),
+(117, 'nombre_archivo5.png', 'GRAL DIV EP', 'CABALLERIA', 'GALVEZ', 'CHAVEZ', 'VICTOR EDISON', 'SOLTERO', 0, 'SUPERIOR', 'NO TIENE', '2020-02-20', '', '', '', '1997-01-14', 0, '', '', '', 'MIRAFLORES', 'VILLA', 958560996, 'ENTEL', 'VICTOR.GALVEZ56@GMAIL.COM', 115955050, 77127600, 'NO', 'NO TIENE', 1.82, 72.5, 'A+', 'MASCULINO', 'L', '34', '41', '59', 'BANCO DE CREDITO DEL PERU', 2147483647, 'AFP', 'MILITAR', '', '', 0, '0', 1),
+(118, 'nombre_archivo41.jpg', 'GRAL DIV EP', 'CABALLERIA', 'GALVEZ', 'CHAVEZ', 'VICTOR EDISON', 'SOLTERO', 0, 'SUPERIOR', 'NO TIENE', '2020-02-20', '', '', '', '1997-01-14', 0, 'APURIMAC', 'CHINCHEROS', 'OCOBAMBA', 'MIRAFLORES', 'VILLA', 958560996, 'ENTEL', 'VICTOR.GALVEZ56@GMAIL.COM', 115955050, 77127600, 'NO', 'NO TIENE', 1.82, 72.5, 'A+', 'MASCULINO', 'L', '34', '41', '59', 'BANCO DE CREDITO DEL PERU', 2147483647, 'AFP', 'MILITAR', '', '', 0, '0', 1);
 
 -- --------------------------------------------------------
 
@@ -490,7 +509,7 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`id_usu`, `dni_usu`, `nombres_usu`, `apellidos_usu`, `telefono`, `email`, `username`, `password`, `id_rol`, `estado_usu`) VALUES
-(1, 12345678, 'Elvis Bustamante', 'Apaza', '958560996', 'victor.galvez56@gmail.com', 'administrador', 'ac6c15e9d87b2c1187ae20b35f1805c077bdbbaf', 1, 1),
+(1, 12345678, 'Elvis Bustamante', 'Apaza', '958560996', 'victor.galvez56@gmail.com', 'administrador', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', 1, 1),
 (17, 77127600, 'Usuario', 'galvez', '958560996', 'victor.galvez@gmail.com', 'usuario', '9dbf7c1488382487931d10235fc84a74bff5d2f4', 8, 1);
 
 -- --------------------------------------------------------
@@ -637,31 +656,31 @@ ALTER TABLE `vehiculos`
 -- AUTO_INCREMENT de la tabla `detalle_estudios`
 --
 ALTER TABLE `detalle_estudios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT de la tabla `detalle_familiar`
 --
 ALTER TABLE `detalle_familiar`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT de la tabla `detalle_idioma`
 --
 ALTER TABLE `detalle_idioma`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
 
 --
 -- AUTO_INCREMENT de la tabla `detalle_seguro`
 --
 ALTER TABLE `detalle_seguro`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT de la tabla `detalle_viajes`
 --
 ALTER TABLE `detalle_viajes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT de la tabla `menus`
@@ -679,7 +698,7 @@ ALTER TABLE `permisos`
 -- AUTO_INCREMENT de la tabla `personal`
 --
 ALTER TABLE `personal`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=116;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=119;
 
 --
 -- AUTO_INCREMENT de la tabla `registro_anual`

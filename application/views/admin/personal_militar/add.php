@@ -59,9 +59,9 @@
                                                     <div class="form-group">
                                                         <label for="imagen">Foto Personal:</label>
                                                         <span class="btn btn-default btn-file">
-                                                            Subir Foto <input type="file" name="upload" id="fichero" required>
+                                                            Subir Foto <input type="file" name="upload" id="fichero" class="form-control" required>
                                                         </span>
-                                                        <img id="imgenPerfil" src="" alt="" style="width:150px;">
+                                                        <img id="imgenPerfil" src="" alt="" style="width:150px;" > 
                                                     </div>
                                                 </div>
                                                 <div class="col-md-2">
@@ -183,7 +183,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="tab-pane active" id="personal_details">
+                                <div class="tab-pane fade" id="personal_details">
                                     <div class="panel panel-default">
                                         <div class="panel-heading">Dirección</div>
                                         <div class="secondStep">
@@ -232,7 +232,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="tab-pane active" id="contact_details">
+                                <div class="tab-pane fade" id="contact_details">
                                     <div class="panel panel-default">
                                         <div class="panel-heading">Detalle Contacto</div>
                                         <div class="thirdStep">
@@ -272,7 +272,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="tab-pane active" id="born_details">
+                                <div class="tab-pane fade" id="born_details">
                                     <div class="panel panel-default">
                                         <div class="panel-heading">Detalle Nacimiento</div>
                                         <div class="fourthStep">
@@ -319,7 +319,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="tab-pane active" id="documents_details">
+                                <div class="tab-pane fade" id="documents_details">
                                     <div class="panel panel-default">
                                         <div class="panel-heading">Detalle Documentos</div>
                                         <div class="fivethStep">
@@ -375,7 +375,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="tab-pane active" id="caracters_details">
+                                <div class="tab-pane fade" id="caracters_details">
                                     <div class="panel panel-default">
                                         <div class="panel-heading">Detalle Características</div>
                                         <div class="sixStep">
@@ -431,7 +431,7 @@
                                     </div>
                                 </div>
 
-                                <div class="tab-pane active" id="clothes_details">
+                                <div class="tab-pane fade" id="clothes_details">
                                     <div class="panel panel-default">
                                         <div class="panel-heading">Detalle Talla de ropa</div>
                                         <div class="sevenStep">
@@ -514,7 +514,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="tab-pane active" id="remuneration_details">
+                                <div class="tab-pane fade" id="remuneration_details">
                                     <div class="panel panel-default">
                                         <div class="panel-heading">Detalle de Remuneración</div>
                                         <div class="eightStep">
@@ -558,7 +558,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="tab-pane active" id="langtripssttudies_details">
+                                <div class="tab-pane fade" id="langtripssttudies_details">
                                     <div class="nineStep">
                                     </div>
                                     <div class="panel panel-default">
@@ -629,7 +629,7 @@
                                     </div>
                                 </div>
 
-                                <div class="tab-pane active" id="securfam_details">
+                                <div class="tab-pane fade" id="securfam_details">
                                     <div class="panel panel-default">
                                         <div class="panel-heading">Detalle Familiares <button type="button" class="btn btn-success btn-agregarfamiliares"><span class="fa fa-plus"></span></button></div>
                                         <div class="tenStep">
