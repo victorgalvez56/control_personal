@@ -26,7 +26,6 @@ class Personal_militar extends CI_Controller
 		$this->load->view("layouts/aside");
 		$this->load->view("admin/personal_militar/list", $data);
 		$this->load->view("layouts/footer");
-		echo json_encode($data);
 	}
 	public function add()
 	{
@@ -303,7 +302,6 @@ class Personal_militar extends CI_Controller
 		$this->load->view("layouts/aside");
 		$this->load->view("admin/personal_militar/edit", $data);
 		$this->load->view("layouts/footer");
-		echo json_encode($data);
 	}
 
 	public function update()
